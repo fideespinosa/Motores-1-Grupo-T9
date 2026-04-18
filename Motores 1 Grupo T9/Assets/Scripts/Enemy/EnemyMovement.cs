@@ -11,6 +11,7 @@ public class EnemyMovement : MonoBehaviour
 
     [Header("El FOV")]
     public float detectionRange = 10f;
+    public float hearDetectionRange = 4f;
     
     [Range(0f, 180f)]
     public float fieldOfViewAngle = 90f;
@@ -39,7 +40,7 @@ public class EnemyMovement : MonoBehaviour
         if (playerDead) { return; }
 
 
-        if (CanSeePlayer())
+        if (CanSeePlayer() || CanHearPlayerNearby())
         {
             float distToPlayer = Vector3.Distance(transform.position, player.position);
 
@@ -86,6 +87,7 @@ public class EnemyMovement : MonoBehaviour
         if (distance > detectionRange) { return false; }
 
         float angle = Vector3.Angle(transform.forward, toPlayer);
+
         if (angle > fieldOfViewAngle * 0.5f) { return false; }
 
         Vector3 origin = transform.position + Vector3.up * 1f;
@@ -122,6 +124,14 @@ public class EnemyMovement : MonoBehaviour
         rb.linearVelocity = velocity;
 
         FaceTarget(transform.position + dir);
+    }
+
+    bool CanHearPlayerNearby()
+    {
+        if (player == null) { return false; }
+
+        float distance = Vector3.Distance(transform.position, player.position);
+        return distance <= hearDetectionRange;
     }
 
     void FaceTarget(Vector3 target)

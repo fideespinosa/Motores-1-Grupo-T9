@@ -1226,6 +1226,7 @@ MonoBehaviour:
   waypointTolerance: 1
   waitAtWaypoint: 0.5
   detectionRange: 10
+  hearDetectionRange: 4
   fieldOfViewAngle: 51
   obstacles:
     serializedVersion: 2
@@ -2718,7 +2719,7 @@ Transform:
   m_GameObject: {fileID: 1474393657}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 5.3, y: 10.64, z: 63.1}
+  m_LocalPosition: {x: 5.3, y: 9.54, z: 56.95}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
@@ -3360,6 +3361,7 @@ MonoBehaviour:
   waypointTolerance: 1
   waitAtWaypoint: 0.15
   detectionRange: 10
+  hearDetectionRange: 4
   fieldOfViewAngle: 90
   obstacles:
     serializedVersion: 2
