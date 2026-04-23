@@ -14,6 +14,9 @@ public class PlayerSwitcher : MonoBehaviour
 
     private bool controllingDrone = false;
 
+    [Header("HUDs")]
+    public Canvas dronHUD;
+
     void Start()
     {
         SetControl(false);
@@ -41,6 +44,7 @@ public class PlayerSwitcher : MonoBehaviour
         droneCameraControl.enabled = isDrone;
         droneCamera.enabled = isDrone;
         droneCamera.GetComponent<AudioListener>().enabled = isDrone;
+        dronHUD.gameObject.SetActive(!isDrone);
 
         Cursor.lockState = CursorLockMode.Locked;
         Cursor.visible = false;
