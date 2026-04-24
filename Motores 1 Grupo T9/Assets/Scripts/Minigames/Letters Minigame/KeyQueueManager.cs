@@ -143,14 +143,14 @@ public class KeyQueueManager : MonoBehaviour
         UpdateUI();
     }
 
-     void WinGame()
+    public void WinGame()
     {
         Debug.Log("ganaste");
         gameEnded = true;
         timer.StopTimer();
         GameResult(true);
     }
-    void LoseGame()
+    public void LoseGame()
     {
         Debug.Log("perdiste");
         gameEnded = true;
