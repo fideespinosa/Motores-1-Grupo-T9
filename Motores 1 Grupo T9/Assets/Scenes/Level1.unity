@@ -1567,7 +1567,7 @@ Canvas:
   m_AdditionalShaderChannelsFlag: 25
   m_UpdateRectTransformForStandalone: 0
   m_SortingLayerID: 0
-  m_SortingOrder: 0
+  m_SortingOrder: 1
   m_TargetDisplay: 0
 --- !u!224 &377515910
 RectTransform:
@@ -1720,7 +1720,7 @@ MonoBehaviour:
   - {fileID: 345606114}
   - {fileID: 1372479133}
   - {fileID: 408510541}
-  moveSpeed: 3
+  moveSpeed: 3.5
   waypointTolerance: 1
   waitAtWaypoint: 0.5
   detectionRange: 10
@@ -4792,7 +4792,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 334c62f692caacd4b9b7f526369b9029, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::playerInventory
-  resourcesNeeded: 0
+  resourcesNeeded: 10
   textResources: {fileID: 1702232900}
 --- !u!4 &1495100414 stripped
 Transform:
@@ -6016,7 +6016,7 @@ MonoBehaviour:
   - {fileID: 1114079882}
   - {fileID: 1968112393}
   - {fileID: 1941060809}
-  moveSpeed: 2
+  moveSpeed: 3.5
   waypointTolerance: 1
   waitAtWaypoint: 0.15
   detectionRange: 10
@@ -6818,12 +6818,12 @@ MonoBehaviour:
   - {fileID: 153752834}
   - {fileID: 1771012557}
   - {fileID: 1943347178}
-  moveSpeed: 3
+  moveSpeed: 3.5
   waypointTolerance: 1
   waitAtWaypoint: 0.15
-  detectionRange: 10
-  hearDetectionRange: 4
-  fieldOfViewAngle: 51
+  detectionRange: 12
+  hearDetectionRange: 6
+  fieldOfViewAngle: 87.4
   obstacles:
     serializedVersion: 2
     m_Bits: 0
