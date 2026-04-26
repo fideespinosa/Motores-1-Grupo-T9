@@ -1,6 +1,7 @@
 using System.Collections.Generic;
-using UnityEngine;
 using TMPro;
+using UnityEngine;
+using UnityEngine.SceneManagement;
 
 public class KeyQueueManager : MonoBehaviour
 {
@@ -11,7 +12,8 @@ public class KeyQueueManager : MonoBehaviour
     [SerializeField] float loadingTime = 5f;
 
     [SerializeField] TextMeshProUGUI counterText;
-    [SerializeField] int targetScore = 15;
+    [SerializeField] int targetScore = 5;
+    protected PlayerSwitcher switcher;
 
     int currentScore = 0;
     bool gameStarted = false;
@@ -67,30 +69,34 @@ public class KeyQueueManager : MonoBehaviour
 
     void CheckKey(KeyCode pressedKey)
     {
-        if (keyQueue.Count == 0) return;
+        if (keyQueue.Count == 0 || gameEnded) return;
 
         KeyCode expectedKey = keyQueue.Peek();
 
         if (pressedKey == expectedKey)
         {
             currentScore++;
-            Debug.Log("bien");
+            Debug.Log("Bien! Score: " + currentScore);
 
+            UpdateCounter();
+
+           
             if (currentScore >= targetScore)
             {
                 WinGame();
-                return;
+                return; 
             }
 
+           
+            AdvanceKey();
         }
         else
         {
-            Debug.Log("mal");
+            Debug.Log("Error! Reiniciando racha");
             currentScore = 0;
+            UpdateCounter();
+            
         }
-
-        UpdateCounter();
-        AdvanceKey();
     }
 
     void UpdateCounter()
@@ -123,40 +129,74 @@ public class KeyQueueManager : MonoBehaviour
 
     System.Collections.IEnumerator LoadingRoutine()
     {
+        
+        gameEnded = false;
+        gameStarted = false;
+        currentScore = 0;
+
         loadingText.gameObject.SetActive(true);
         currentKeyText.gameObject.SetActive(false);
-        timer.enabled = false;
-        timer.gameObject.SetActive(false);
 
-        yield return new WaitForSeconds(loadingTime);
+        
+        yield return new WaitForSecondsRealtime(loadingTime);
 
         loadingText.gameObject.SetActive(false);
         currentKeyText.gameObject.SetActive(true);
-        timer.gameObject.SetActive(true);
-        timer.enabled = true;
 
-        currentScore = 0;
-        UpdateCounter();
-
-        gameStarted = true;
+        
         InitializeQueue();
         UpdateUI();
+        gameStarted = true;
+
+        
+        timer.StartTimer();
     }
 
     public void WinGame()
     {
-        Debug.Log("ganaste");
         gameEnded = true;
         timer.StopTimer();
-        GameResult(true);
-    }
-    public void LoseGame()
-    {
-        Debug.Log("perdiste");
-        gameEnded = true;
-        GameResult(false);
+
+        
+        Time.timeScale = 1f;
+
+        EnemyMovement enemy = Object.FindFirstObjectByType<EnemyMovement>();
+        if (enemy != null)
+        {
+            
+            enemy.ResetEnemy();
+        }
+
+        if (switcher == null) switcher = Object.FindFirstObjectByType<PlayerSwitcher>();
+
+        if (switcher != null)
+        {
+            
+            switcher.enabled = true;
+                
+            switcher.SetControl(true);
+        }
+
+      
+        transform.root.gameObject.SetActive(false);
+
+        Debug.Log("Mundo descongelado y control devuelto al Dron.");
     }
 
+    public void LoseGame()
+    {
+        Debug.Log("FALLO DE CONEXIÓN: Dron perdido.");
+        gameEnded = true;
+
+        Time.timeScale = 1f;
+
+        
+        Cursor.lockState = CursorLockMode.None;
+        Cursor.visible = true;
+
+       
+        UnityEngine.SceneManagement.SceneManager.LoadScene("Game Over - Dron");
+    }
     public bool GameResult(bool result)
     {
         return result;

@@ -370,7 +370,7 @@ GameObject:
   - component: {fileID: 58193580}
   m_Layer: 0
   m_Name: Dron
-  m_TagString: Untagged
+  m_TagString: Player
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -441,7 +441,7 @@ Transform:
   m_GameObject: {fileID: 58193573}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -6.07, y: 10.72, z: -4.42}
+  m_LocalPosition: {x: 2.35, y: 10.62, z: -3.59}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
@@ -1104,7 +1104,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::Timer
   timerText: {fileID: 224610662}
-  timeLeft: 10
+  initialTime: 0
   keyManager: {fileID: 1628565060}
 --- !u!1001 &255873116
 PrefabInstance:
@@ -2120,6 +2120,8 @@ MonoBehaviour:
   obstacles:
     serializedVersion: 2
     m_Bits: 0
+  switcher: {fileID: 0}
+  minigameCanvas: {fileID: 0}
 --- !u!136 &470371977
 CapsuleCollider:
   m_ObjectHideFlags: 0
@@ -2658,6 +2660,53 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: a03d67c6a9103d140a8c7695801b5c9f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::Audio
+--- !u!1 &654460579
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 654460580}
+  - component: {fileID: 654460581}
+  m_Layer: 0
+  m_Name: Timer
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 0
+--- !u!4 &654460580
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 654460579}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 1213029920}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &654460581
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 654460579}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: cada3d37d8ae92947a09f5462bd9607a, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::Timer
+  timerText: {fileID: 0}
+  initialTime: 40
+  keyManager: {fileID: 1628565060}
 --- !u!4 &655627018 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 7270620107919773639, guid: bb128355a4591534f9f1e4410938f472, type: 3}
@@ -4423,7 +4472,8 @@ Transform:
   m_LocalPosition: {x: -8.31509, y: 11.57515, z: 0.60984}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
-  m_Children: []
+  m_Children:
+  - {fileID: 654460580}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &1259470117
@@ -5090,7 +5140,7 @@ Transform:
   m_GameObject: {fileID: 1474393657}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0.9984408, z: -0, w: -0.05582139}
-  m_LocalPosition: {x: 5.3, y: 10.6, z: 12.65}
+  m_LocalPosition: {x: -2.423, y: 10.64, z: 1.001}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
@@ -6172,7 +6222,7 @@ MonoBehaviour:
   - {fileID: 1265157773}
   - {fileID: 1899945338}
   - {fileID: 513108371}
-  moveSpeed: 3.5
+  moveSpeed: 1.5
   waypointTolerance: 1
   waitAtWaypoint: 0.15
   detectionRange: 5
@@ -6181,6 +6231,8 @@ MonoBehaviour:
   obstacles:
     serializedVersion: 2
     m_Bits: 0
+  switcher: {fileID: 1213029919}
+  minigameCanvas: {fileID: 1628565056}
 --- !u!136 &1807735905
 CapsuleCollider:
   m_ObjectHideFlags: 0
@@ -6376,6 +6428,8 @@ MonoBehaviour:
   obstacles:
     serializedVersion: 2
     m_Bits: 64
+  switcher: {fileID: 0}
+  minigameCanvas: {fileID: 0}
 --- !u!136 &1815701830
 CapsuleCollider:
   m_ObjectHideFlags: 0
@@ -7103,6 +7157,8 @@ MonoBehaviour:
   obstacles:
     serializedVersion: 2
     m_Bits: 0
+  switcher: {fileID: 0}
+  minigameCanvas: {fileID: 0}
 --- !u!136 &1979240310
 CapsuleCollider:
   m_ObjectHideFlags: 0

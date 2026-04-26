@@ -4,17 +4,11 @@ using UnityEngine;
 public class Timer : MonoBehaviour
 {
     [SerializeField] TextMeshProUGUI timerText;
-    [SerializeField] float timeLeft = 10f;
+    [SerializeField] float initialTime = 10f; 
 
-    float initialTime;
-    bool isRunning = true;
-
+    private float timeLeft;
+    private bool isRunning = false; 
     [SerializeField] KeyQueueManager keyManager;
-
-    void Start()
-    {
-        initialTime = timeLeft;
-    }
 
     void Update()
     {
@@ -22,20 +16,35 @@ public class Timer : MonoBehaviour
 
         if (timeLeft > 0)
         {
-            timeLeft -= Time.deltaTime;
+            timeLeft -= Time.unscaledDeltaTime;
             timerText.text = Mathf.Ceil(timeLeft).ToString();
         }
         else
         {
-            timerText.text = "0";
+            
+            Debug.LogWarning("Timer llegó a cero o menos. Valor actual: " + timeLeft);
             isRunning = false;
             keyManager.LoseGame();
         }
     }
 
-    public void ResetTimer()
+
+    public void StartTimer()
     {
+        
+        if (initialTime <= 0)
+        {
+            initialTime = 10f;
+            Debug.LogWarning("Ojo: Initial Time estaba en 0 en el Inspector. Usando 10 por defecto.");
+        }
+
         timeLeft = initialTime;
+        isRunning = true;
+
+        if (timerText != null)
+            timerText.text = initialTime.ToString("f0");
+
+        Debug.Log("Timer iniciado con: " + timeLeft);
     }
 
     public void StopTimer()
