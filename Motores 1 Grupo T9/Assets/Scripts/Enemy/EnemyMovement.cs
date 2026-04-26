@@ -17,12 +17,16 @@ public class EnemyMovement : MonoBehaviour
     public float fieldOfViewAngle = 90f;
     public LayerMask obstacles;
 
+    [Header("Referencias de Eventos")]
+    public PlayerSwitcher switcher; 
+    public GameObject minigameCanvas; 
+
     private bool playerDead = false;
     private int nowWaypoint = 0;
     private float waitTimer = 0f;
     private Transform player;
     private Rigidbody rb;
-
+    private bool isAttacking = false; 
     void Start()
     {
         rb = GetComponent<Rigidbody>();
@@ -44,13 +48,19 @@ public class EnemyMovement : MonoBehaviour
         {
             float distToPlayer = Vector3.Distance(transform.position, player.position);
 
-            if (distToPlayer <= 2f)
+            
+            if (distToPlayer <= 2f && !isAttacking)
             {
-                Debug.Log("Bang! Che... Explotó el dron, ponele el ending del triste :( ");
+                isAttacking = true; 
+                Debug.Log("Dron interceptado. Iniciando minijuego...");
                 Die();
+                return; 
             }
 
-            MoveTowards(player.position);
+            if (!isAttacking)
+            {
+                MoveTowards(player.position);
+            }
             return;
         }
 
@@ -147,15 +157,42 @@ public class EnemyMovement : MonoBehaviour
 
     void Die()
     {
-        if (playerDead)
-        { 
-            return; 
-        }
+        if (playerDead) return;
 
-        playerDead = true;
-        SceneManager.LoadScene("Game Over - Dron");
+        
+        Debug.Log("Dron interceptado. Iniciando secuencia de reparación...");
+
+        TriggerDroneFailure();
     }
 
+    void TriggerDroneFailure()
+    {
+        
+        if (switcher != null)
+        {
+            switcher.SetControl(false); 
+            switcher.enabled = false;   
+        }
+
+      
+        if (minigameCanvas != null)
+        {
+            minigameCanvas.SetActive(true);
+            
+        }
+
+        rb.linearVelocity = Vector3.zero;
+        nowWaypoint = (nowWaypoint + 1) % waypoints.Length;
+        Time.timeScale = 0f; 
+        Cursor.lockState = CursorLockMode.None; 
+        Cursor.visible = true;
+    }
+    public void ResetEnemy()
+    {
+        isAttacking = false;
+        
+        nowWaypoint = (nowWaypoint + 1) % waypoints.Length;
+    }
     void OnDrawGizmosSelected()
     {
         Gizmos.color = Color.yellow;

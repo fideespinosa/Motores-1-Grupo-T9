@@ -32,21 +32,29 @@ public class PlayerSwitcher : MonoBehaviour
         }
     }
 
-    void SetControl(bool isDrone)
+    public void SetControl(bool isDrone)
     {
-      
-        humanMovement.enabled = !isDrone;
-        humanCamera.enabled = !isDrone;
-        humanCamera.GetComponent<AudioListener>().enabled = !isDrone;
+        
+        controllingDrone = isDrone;
 
         
+        humanMovement.enabled = !isDrone;
+        humanCamera.enabled = !isDrone;
+        var humanAudio = humanCamera.GetComponent<AudioListener>();
+        if (humanAudio != null) humanAudio.enabled = !isDrone;
+
+      
         droneMovement.enabled = isDrone;
         droneCameraControl.enabled = isDrone;
         droneCamera.enabled = isDrone;
-        droneCamera.GetComponent<AudioListener>().enabled = isDrone;
-        dronHUD.gameObject.SetActive(!isDrone);
+        var droneAudio = droneCamera.GetComponent<AudioListener>();
+        if (droneAudio != null) droneAudio.enabled = isDrone;
 
+       
         Cursor.lockState = CursorLockMode.Locked;
         Cursor.visible = false;
+
+       
+        this.enabled = true;
     }
 }
