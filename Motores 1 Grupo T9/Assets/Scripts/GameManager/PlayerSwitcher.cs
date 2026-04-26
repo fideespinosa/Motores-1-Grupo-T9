@@ -14,6 +14,9 @@ public class PlayerSwitcher : MonoBehaviour
 
     private bool controllingDrone = false;
 
+    [Header("HUDs")]
+    public Canvas dronHUD;
+
     void Start()
     {
         SetControl(false);
