@@ -47,6 +47,7 @@ public class PlayerSwitcher : MonoBehaviour
         droneMovement.enabled = isDrone;
         droneCameraControl.enabled = isDrone;
         droneCamera.enabled = isDrone;
+        dronHUD.gameObject.SetActive(isDrone);
         var droneAudio = droneCamera.GetComponent<AudioListener>();
         if (droneAudio != null) droneAudio.enabled = isDrone;
 
