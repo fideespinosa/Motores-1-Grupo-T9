@@ -4,12 +4,17 @@ using UnityEngine;
 public class Timer : MonoBehaviour
 {
     [SerializeField] TextMeshProUGUI timerText;
-    [SerializeField] float initialTime = 10f; 
+    [SerializeField] float Totaltime = 15f;
+    float initialTime;
 
     private float timeLeft;
     private bool isRunning = false; 
     [SerializeField] KeyQueueManager keyManager;
 
+    private void Start()
+    {
+        initialTime = Totaltime;
+    }
     void Update()
     {
         if (!isRunning) return;
@@ -34,7 +39,7 @@ public class Timer : MonoBehaviour
         
         if (initialTime <= 0)
         {
-            initialTime = 10f;
+            initialTime = Totaltime;
             Debug.LogWarning("Ojo: Initial Time estaba en 0 en el Inspector. Usando 10 por defecto.");
         }
 
