@@ -4,7 +4,7 @@ using UnityEngine.InputSystem;
 public class PlayerSwitcher : MonoBehaviour
 {
     
-    public MonoBehaviour humanMovement;
+
     public Camera humanCamera;
 
     
@@ -38,7 +38,6 @@ public class PlayerSwitcher : MonoBehaviour
         controllingDrone = isDrone;
 
         
-        humanMovement.enabled = !isDrone;
         humanCamera.enabled = !isDrone;
         var humanAudio = humanCamera.GetComponent<AudioListener>();
         if (humanAudio != null) humanAudio.enabled = !isDrone;

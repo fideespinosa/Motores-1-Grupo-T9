@@ -1,6 +1,6 @@
 using UnityEngine;
 
-public class CameraLookOnly : MonoBehaviour
+public class FPS_OldInput : MonoBehaviour
 {
     public Transform playerCamera;
     public float lookSpeed = 2f;
