@@ -7,7 +7,8 @@ public class DroneController : MonoBehaviour
     public RoverWheel[] leftWheels;
     public RoverWheel[] rightWheels;
 
-    
+    [SerializeField] private Light flashlight;
+
     public float motorForce = 1500f;
     public float turnForce = 1000f;
 
@@ -25,6 +26,11 @@ public class DroneController : MonoBehaviour
         if (Keyboard.current.aKey.isPressed) turn = -1;
 
         inputMove = new Vector2(turn, forward);
+
+        if (Keyboard.current.fKey.wasPressedThisFrame)
+        {
+            flashlight.enabled = !flashlight.enabled;
+        }
     }
 
     void FixedUpdate()
