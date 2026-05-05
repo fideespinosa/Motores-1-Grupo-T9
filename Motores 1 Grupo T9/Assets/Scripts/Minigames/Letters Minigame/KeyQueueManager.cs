@@ -5,14 +5,16 @@ using UnityEngine.SceneManagement;
 
 public class KeyQueueManager : MonoBehaviour
 {
+    [SerializeField] MinigamesManager minigamesManager;
+
     [SerializeField] TextMeshProUGUI currentKeyText;
     [SerializeField] Timer timer;
 
     [SerializeField] TextMeshProUGUI loadingText;
-    [SerializeField] float loadingTime = 5f;
+    [SerializeField] float loadingTime;
 
     [SerializeField] TextMeshProUGUI counterText;
-    [SerializeField] int targetScore = 5;
+    [SerializeField] int targetScore;
     protected PlayerSwitcher switcher;
 
     int currentScore = 0;
@@ -33,6 +35,7 @@ public class KeyQueueManager : MonoBehaviour
 
     void Start()
     {
+        minigamesManager = minigamesManager.GetComponent<MinigamesManager>();
         StartCoroutine(LoadingRoutine());
     }
 
@@ -159,6 +162,8 @@ public class KeyQueueManager : MonoBehaviour
 
         
         Time.timeScale = 1f;
+
+        minigamesManager.UnfreezeGame();
 
         EnemyMovement enemy = Object.FindFirstObjectByType<EnemyMovement>();
         if (enemy != null)

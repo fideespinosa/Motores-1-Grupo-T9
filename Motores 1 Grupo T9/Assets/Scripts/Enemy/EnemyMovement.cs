@@ -19,7 +19,7 @@ public class EnemyMovement : MonoBehaviour
 
     [Header("Referencias de Eventos")]
     public PlayerSwitcher switcher; 
-    public GameObject minigameCanvas; 
+    public MinigamesManager minigamesManager; 
 
     private bool playerDead = false;
     private int nowWaypoint = 0;
@@ -36,6 +36,8 @@ public class EnemyMovement : MonoBehaviour
         if (p) player = p.transform;
         if (waypoints == null || waypoints.Length == 0)
             waypoints = new Transform[] { transform };
+
+        minigamesManager = minigamesManager.GetComponent<MinigamesManager>();
     }
 
     void Update()
@@ -175,9 +177,9 @@ public class EnemyMovement : MonoBehaviour
         }
 
       
-        if (minigameCanvas != null)
+        if (minigamesManager != null)
         {
-            minigameCanvas.SetActive(true);
+            minigamesManager.StartLettersGame();
             
         }
 

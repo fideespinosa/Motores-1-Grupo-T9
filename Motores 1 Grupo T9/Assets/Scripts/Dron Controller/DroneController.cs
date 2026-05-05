@@ -27,10 +27,6 @@ public class DroneController : MonoBehaviour
 
         inputMove = new Vector2(turn, forward);
 
-        if (Keyboard.current.fKey.wasPressedThisFrame)
-        {
-            flashlight.enabled = !flashlight.enabled;
-        }
     }
 
     void FixedUpdate()
