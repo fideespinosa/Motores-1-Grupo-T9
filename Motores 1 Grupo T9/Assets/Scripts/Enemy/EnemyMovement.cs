@@ -26,7 +26,8 @@ public class EnemyMovement : MonoBehaviour
     private float waitTimer = 0f;
     private Transform player;
     private Rigidbody rb;
-    private bool isAttacking = false; 
+    private bool isAttacking = false;
+    private bool minigameActive= false;
     void Start()
     {
         rb = GetComponent<Rigidbody>();
@@ -46,7 +47,7 @@ public class EnemyMovement : MonoBehaviour
         if (playerDead) { return; }
 
 
-        if (CanSeePlayer() || CanHearPlayerNearby())
+        if (!minigameActive && CanSeePlayer() || CanHearPlayerNearby())
         {
             float distToPlayer = Vector3.Distance(transform.position, player.position);
 
@@ -59,11 +60,11 @@ public class EnemyMovement : MonoBehaviour
                 return; 
             }
 
-            if (!isAttacking)
+            if (!isAttacking && !minigameActive)
             {
                 MoveTowards(player.position);
+                return;
             }
-            return;
         }
 
         if (waypoints.Length == 0) { return; }
@@ -169,30 +170,30 @@ public class EnemyMovement : MonoBehaviour
 
     void TriggerDroneFailure()
     {
-        
-        if (switcher != null)
-        {
-            switcher.SetControl(false); 
-            switcher.enabled = false;   
-        }
 
-      
+        /*if (switcher != null)
+        {
+            switcher.SetControl(false);
+            switcher.enabled = false;
+        }
+*/
+
         if (minigamesManager != null)
         {
+            minigameActive = true;
             minigamesManager.StartLettersGame();
-            
+
         }
 
-        rb.linearVelocity = Vector3.zero;
-        nowWaypoint = (nowWaypoint + 1) % waypoints.Length;
-        Time.timeScale = 0f; 
-        Cursor.lockState = CursorLockMode.None; 
-        Cursor.visible = true;
+        //rb.linearVelocity = Vector3.zero;
+        //nowWaypoint = (nowWaypoint + 1) % waypoints.Length;
+
     }
     public void ResetEnemy()
     {
         isAttacking = false;
-        
+        minigameActive = false;
+        minigamesManager.EndLettersGame();
         nowWaypoint = (nowWaypoint + 1) % waypoints.Length;
     }
     void OnDrawGizmosSelected()

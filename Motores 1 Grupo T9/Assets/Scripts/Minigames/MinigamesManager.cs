@@ -3,6 +3,9 @@ using UnityEngine;
 
 public class MinigamesManager : MonoBehaviour
 {
+    [Header("Player")]
+    [SerializeField] GameObject player;
+
     [Header("Minigames")]
     [SerializeField] GameObject lettersGame;
 
@@ -14,9 +17,16 @@ public class MinigamesManager : MonoBehaviour
 
     protected PlayerSwitcher switcher;
 
+
+    private void Start()
+    {
+        if (switcher == null) switcher = Object.FindFirstObjectByType<PlayerSwitcher>();
+    }
     public void StartLettersGame()
     {
         Debug.Log("lo llamo desde el manager");
+
+        FreezeGame();
 
         if (!instructionsPanel.GetComponent<InstructionsScript>().ShowInstructions())
         {
@@ -27,20 +37,18 @@ public class MinigamesManager : MonoBehaviour
 
     public void EndLettersGame()
     {
-
+        Debug.Log("terminamos");
         lettersPanel.SetActive(false);
         lettersGame.SetActive(false);
+        UnfreezeGame();
     }
 
     public void UnfreezeGame()
     {
-        if (switcher == null) switcher = Object.FindFirstObjectByType<PlayerSwitcher>();
-
+        player.GetComponent<FPS_OldInput>().EnableCameraMovement();
         if (switcher != null)
         {
-
             switcher.enabled = true;
-
             switcher.SetControl(true);
         }
 
@@ -52,11 +60,15 @@ public class MinigamesManager : MonoBehaviour
 
     public void FreezeGame()
     {
+        player.GetComponent<FPS_OldInput>().DisableCameraMovement();
         if (switcher != null)
         {
             switcher.SetControl(false);
             switcher.enabled = false;
         }
+        
+        Cursor.lockState = CursorLockMode.None;
+        Cursor.visible = true;
 
         Debug.Log("Mundo congelado y desde el manager.");
     }
