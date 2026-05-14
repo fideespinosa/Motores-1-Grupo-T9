@@ -163,7 +163,7 @@ public class KeyQueueManager : MonoBehaviour
         
         Time.timeScale = 1f;
 
-        minigamesManager.UnfreezeGame();
+        minigamesManager.EndLettersGame();
 
         EnemyMovement enemy = Object.FindFirstObjectByType<EnemyMovement>();
         if (enemy != null)
@@ -171,7 +171,7 @@ public class KeyQueueManager : MonoBehaviour
             
             enemy.ResetEnemy();
         }
-
+/*
         if (switcher == null) switcher = Object.FindFirstObjectByType<PlayerSwitcher>();
 
         if (switcher != null)
@@ -181,7 +181,7 @@ public class KeyQueueManager : MonoBehaviour
                 
             switcher.SetControl(true);
         }
-
+*/
       
         transform.root.gameObject.SetActive(false);
 
@@ -199,7 +199,8 @@ public class KeyQueueManager : MonoBehaviour
         Cursor.lockState = CursorLockMode.None;
         Cursor.visible = true;
 
-       
+        minigamesManager.EndLettersGame();
+
         UnityEngine.SceneManagement.SceneManager.LoadScene("Game Over - Dron");
     }
     public bool GameResult(bool result)

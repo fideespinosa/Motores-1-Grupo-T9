@@ -48,12 +48,13 @@ public class MinigamesManager : MonoBehaviour
         player.GetComponent<FPS_OldInput>().EnableCameraMovement();
         if (switcher != null)
         {
-            switcher.enabled = true;
+            Debug.Log("swtichea ahora");
             switcher.SetControl(true);
+            switcher.enabled = true;
         }
 
 
-        transform.root.gameObject.SetActive(false);
+       // transform.root.gameObject.SetActive(false);
 
         Debug.Log("Mundo descongelado y control devuelto al Dron desde el manager.");
     }
@@ -63,6 +64,7 @@ public class MinigamesManager : MonoBehaviour
         player.GetComponent<FPS_OldInput>().DisableCameraMovement();
         if (switcher != null)
         {
+            Debug.Log("NOO swtichea ahora");
             switcher.SetControl(false);
             switcher.enabled = false;
         }

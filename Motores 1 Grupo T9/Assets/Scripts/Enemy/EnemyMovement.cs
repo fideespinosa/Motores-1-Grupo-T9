@@ -170,24 +170,12 @@ public class EnemyMovement : MonoBehaviour
 
     void TriggerDroneFailure()
     {
-
-        /*if (switcher != null)
-        {
-            switcher.SetControl(false);
-            switcher.enabled = false;
-        }
-*/
-
         if (minigamesManager != null)
         {
             minigameActive = true;
             minigamesManager.StartLettersGame();
 
         }
-
-        //rb.linearVelocity = Vector3.zero;
-        //nowWaypoint = (nowWaypoint + 1) % waypoints.Length;
-
     }
     public void ResetEnemy()
     {
