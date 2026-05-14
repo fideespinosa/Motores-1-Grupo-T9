@@ -1,7 +1,10 @@
 using UnityEngine;
+using UnityEngine.SceneManagement;
 using UnityEngine.UI;
 public class CrosshairRaycast : MonoBehaviour
 {
+    [SerializeField] ScreensManagerScript screensManager;
+
     [SerializeField] float rayDistance;
     [SerializeField] LayerMask layerMask;
 
@@ -11,7 +14,12 @@ public class CrosshairRaycast : MonoBehaviour
     [SerializeField] Sprite defaultSprite;
     [SerializeField] Sprite interactSprite;
 
-    // Update is called once per frame
+
+    private void Start()
+    {
+        screensManager = screensManager.GetComponent<ScreensManagerScript>();
+    }
+
     void Update()
     {
         RaycastHit hit;
@@ -20,14 +28,19 @@ public class CrosshairRaycast : MonoBehaviour
 
         if (Physics.Raycast(origin, direction, out hit, rayDistance, layerMask))
         {
-            Debug.Log("colisionamos con: " + hit.collider.gameObject.name);
             crosshairImage.sprite = interactSprite;
-            Debug.DrawLine(origin, hit.point, Color.red);
+
+            if (Input.GetMouseButtonDown(0))
+            {
+                if (hit.collider.gameObject.CompareTag("Screen 1"))
+                {
+                    screensManager.OpenPanelScreen1();
+                }
+            }
         }
         else
         {
             crosshairImage.sprite = defaultSprite;
-            Debug.DrawLine(origin, origin + direction * rayDistance, Color.green);
         }
     }
 }

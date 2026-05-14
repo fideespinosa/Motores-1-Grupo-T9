@@ -1,4 +1,5 @@
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
 public class FPS_OldInput : MonoBehaviour
 {
@@ -11,6 +12,9 @@ public class FPS_OldInput : MonoBehaviour
 
     void Start()
     {
+        ScreensManagerScript.OnScreenActive += DisableCameraMovement;
+        ScreensManagerScript.OnScreenInactive += EnableCameraMovement;
+
         Cursor.lockState = CursorLockMode.Locked;
         Cursor.visible = false;
     }
