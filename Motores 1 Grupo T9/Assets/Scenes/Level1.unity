@@ -409,8 +409,8 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 58193573}
   serializedVersion: 2
-  m_LocalRotation: {x: 0, y: -0.97892094, z: 0, w: 0.20423946}
-  m_LocalPosition: {x: 3.459, y: 10.361, z: -4.13}
+  m_LocalRotation: {x: -0, y: 0.5677101, z: -0, w: 0.8232286}
+  m_LocalPosition: {x: 4.402, y: 10.119, z: -4.595}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
@@ -420,7 +420,7 @@ Transform:
   - {fileID: 1795068221}
   - {fileID: 1587061915}
   m_Father: {fileID: 0}
-  m_LocalEulerAnglesHint: {x: 0, y: 563.57, z: 0}
+  m_LocalEulerAnglesHint: {x: 0, y: 789.181, z: 0}
 --- !u!54 &58193578
 Rigidbody:
   m_ObjectHideFlags: 0
@@ -3459,11 +3459,11 @@ Light:
   m_Enabled: 1
   serializedVersion: 12
   m_Type: 0
-  m_Color: {r: 1, g: 1, b: 1, a: 1}
-  m_Intensity: 1
-  m_Range: 10
-  m_SpotAngle: 30
-  m_InnerSpotAngle: 21.80208
+  m_Color: {r: 1, g: 0.95686275, b: 0.8392157, a: 1}
+  m_Intensity: 6
+  m_Range: 14
+  m_SpotAngle: 70
+  m_InnerSpotAngle: 30
   m_CookieSize2D: {x: 0.5, y: 0.5}
   m_Shadows:
     m_Type: 0
@@ -5399,7 +5399,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!114 &1303351817
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -7925,6 +7925,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 1cbd48f995ff60f428897894331d1c40, type: 3}
   m_Name: 
   m_EditorClassIdentifier: '::'
+  player: {fileID: 1474393657}
   lettersGame: {fileID: 1991834753}
   lettersPanel: {fileID: 1628565056}
   instructionsPanel: {fileID: 1026974393}
@@ -8737,8 +8738,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: dd702d70e731c204f97da6d88922559c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: '::'
-  InstructionPanel: {fileID: 1026974393}
-  count: 0
 --- !u!1001 &2022180812
 PrefabInstance:
   m_ObjectHideFlags: 0
