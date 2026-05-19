@@ -3,6 +3,8 @@ using UnityEngine;
 
 public class resourcesManager : MonoBehaviour
 {
+    public enum ResourceType { Metal, Combustible, InsumosElectronicos }
+    public ResourceType type;
     private void OnTriggerEnter(Collider other)
     {
         PlayerInventory playerInventory = other.GetComponent<PlayerInventory>();
@@ -10,7 +12,7 @@ public class resourcesManager : MonoBehaviour
 
         if (playerInventory != null )
         {
-            playerInventory.CollectResource();
+            playerInventory.CollectResource(type);
             gameObject.SetActive(false);
         }
     }

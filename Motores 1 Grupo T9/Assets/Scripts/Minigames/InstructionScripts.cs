@@ -1,5 +1,6 @@
 using UnityEngine;
 
+/// che, las clases abstractas no son para esto. Solo para ser heredadas, no para ponerlas en los GameObjects, siempre te va a tirar alertas en la compilación
 public abstract class InstructionsScript : MonoBehaviour
 {
     [SerializeField] GameObject InstructionPanel;

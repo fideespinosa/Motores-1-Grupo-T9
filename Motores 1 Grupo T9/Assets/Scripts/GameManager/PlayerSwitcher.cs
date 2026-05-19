@@ -17,6 +17,8 @@ public class PlayerSwitcher : MonoBehaviour
     [Header("HUDs")]
     public Canvas dronHUD;
 
+    public Canvas playerDialogueHUD;
+
     void Start()
     {
         SetControl(false);
@@ -29,6 +31,13 @@ public class PlayerSwitcher : MonoBehaviour
         {
             controllingDrone = !controllingDrone;
             SetControl(controllingDrone);
+        }
+
+        if (!controllingDrone && Keyboard.current.qKey.wasPressedThisFrame)
+        {
+            Debug.Log("Presiona la q");
+            if (ControlPanelManager.Instance != null)
+                ControlPanelManager.Instance.ShowCurrentDialogue();
         }
     }
 
@@ -47,6 +56,7 @@ public class PlayerSwitcher : MonoBehaviour
         droneCameraControl.enabled = isDrone;
         droneCamera.enabled = isDrone;
         dronHUD.gameObject.SetActive(isDrone);
+
         var droneAudio = droneCamera.GetComponent<AudioListener>();
         if (droneAudio != null) droneAudio.enabled = isDrone;
 
@@ -56,5 +66,6 @@ public class PlayerSwitcher : MonoBehaviour
 
        
         this.enabled = true;
+
     }
 }
