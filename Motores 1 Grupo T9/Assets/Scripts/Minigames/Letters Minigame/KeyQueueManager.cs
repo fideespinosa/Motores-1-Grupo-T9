@@ -17,6 +17,8 @@ public class KeyQueueManager : MonoBehaviour
     [SerializeField] int targetScore;
     protected PlayerSwitcher switcher;
 
+    [SerializeField] TextMeshProUGUI totalText;
+
     int currentScore = 0;
     bool gameStarted = false;
     bool gameEnded = false;
@@ -146,7 +148,8 @@ public class KeyQueueManager : MonoBehaviour
         loadingText.gameObject.SetActive(false);
         currentKeyText.gameObject.SetActive(true);
 
-        
+        totalText.text = " / " + targetScore;
+
         InitializeQueue();
         UpdateUI();
         gameStarted = true;

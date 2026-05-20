@@ -43,7 +43,7 @@ public class CrosshairRaycast : MonoBehaviour
         else
         {
             crosshairImage.sprite = defaultSprite;
-            Debug.Log("DEFAULT");
+            //Debug.Log("DEFAULT");
             Debug.DrawRay(origin, direction * rayDistance, Color.green);
         }
     }
