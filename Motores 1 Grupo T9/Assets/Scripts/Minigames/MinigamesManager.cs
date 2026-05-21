@@ -1,4 +1,3 @@
-using UnityEditor;
 using UnityEngine;
 
 public class MinigamesManager : MonoBehaviour
@@ -17,15 +16,13 @@ public class MinigamesManager : MonoBehaviour
 
     protected PlayerSwitcher switcher;
 
-
     private void Start()
     {
         if (switcher == null) switcher = Object.FindFirstObjectByType<PlayerSwitcher>();
     }
+
     public void StartLettersGame()
     {
-        Debug.Log("lo llamo desde el manager");
-
         FreezeGame();
 
         if (!instructionsPanel.GetComponent<InstructionsScript>().ShowInstructions())
@@ -37,7 +34,6 @@ public class MinigamesManager : MonoBehaviour
 
     public void EndLettersGame()
     {
-        Debug.Log("terminamos");
         lettersPanel.SetActive(false);
         lettersGame.SetActive(false);
         UnfreezeGame();
@@ -46,33 +42,33 @@ public class MinigamesManager : MonoBehaviour
     public void UnfreezeGame()
     {
         player.GetComponent<FPS_OldInput>().EnableCameraMovement();
+
         if (switcher != null)
         {
-            Debug.Log("swtichea ahora");
-            switcher.SetControl(true);
-            switcher.enabled = true;
+            switcher.AllowSwitching();
+
+            
+            switcher.SetControl(false);
+
+            
         }
 
-
-       // transform.root.gameObject.SetActive(false);
-
-        Debug.Log("Mundo descongelado y control devuelto al Dron desde el manager.");
+        Cursor.lockState = CursorLockMode.None;
+        Cursor.visible = true;
     }
 
     public void FreezeGame()
     {
         player.GetComponent<FPS_OldInput>().DisableCameraMovement();
+
         if (switcher != null)
         {
-            Debug.Log("NOO swtichea ahora");
-            switcher.SetControl(false);
-            switcher.enabled = false;
+            switcher.BlockSwitching(); 
         }
-        
+
         Cursor.lockState = CursorLockMode.None;
         Cursor.visible = true;
 
-        Debug.Log("Mundo congelado y desde el manager.");
+        Debug.Log("Mundo congelado para minijuego.");
     }
-
 }

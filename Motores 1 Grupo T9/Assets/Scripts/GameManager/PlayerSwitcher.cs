@@ -3,20 +3,15 @@ using UnityEngine.InputSystem;
 
 public class PlayerSwitcher : MonoBehaviour
 {
-    
-
     public Camera humanCamera;
-
-    
-    public MonoBehaviour droneMovement; 
-    public MonoBehaviour droneCameraControl; 
+    public MonoBehaviour droneMovement;
+    public MonoBehaviour droneCameraControl;
     public Camera droneCamera;
 
     private bool controllingDrone = false;
-
+    private bool canSwitch = true; 
     [Header("HUDs")]
     public Canvas dronHUD;
-
     public Canvas playerDialogueHUD;
 
     void Start()
@@ -27,6 +22,8 @@ public class PlayerSwitcher : MonoBehaviour
     void Update()
     {
         
+        if (!canSwitch) return;
+
         if (Keyboard.current.tabKey.wasPressedThisFrame)
         {
             controllingDrone = !controllingDrone;
@@ -35,15 +32,17 @@ public class PlayerSwitcher : MonoBehaviour
 
         if (!controllingDrone && Keyboard.current.qKey.wasPressedThisFrame)
         {
-            Debug.Log("Presiona la q");
             if (ControlPanelManager.Instance != null)
                 ControlPanelManager.Instance.ShowCurrentDialogue();
         }
     }
 
+    
+    public void BlockSwitching() => canSwitch = false;
+    public void AllowSwitching() => canSwitch = true;
+
     public void SetControl(bool isDrone)
     {
-        
         controllingDrone = isDrone;
 
         
@@ -51,21 +50,20 @@ public class PlayerSwitcher : MonoBehaviour
         var humanAudio = humanCamera.GetComponent<AudioListener>();
         if (humanAudio != null) humanAudio.enabled = !isDrone;
 
-      
-        droneMovement.enabled = isDrone;
-        droneCameraControl.enabled = isDrone;
-        droneCamera.enabled = isDrone;
-        dronHUD.gameObject.SetActive(isDrone);
+        
+        if (droneMovement != null) droneMovement.enabled = isDrone;
+        if (droneCameraControl != null) droneCameraControl.enabled = isDrone;
+        if (droneCamera != null) droneCamera.enabled = isDrone;
+        if (dronHUD != null) dronHUD.gameObject.SetActive(isDrone);
 
-        var droneAudio = droneCamera.GetComponent<AudioListener>();
+        var droneAudio = droneCamera != null ? droneCamera.GetComponent<AudioListener>() : null;
         if (droneAudio != null) droneAudio.enabled = isDrone;
 
-       
-        Cursor.lockState = CursorLockMode.Locked;
-        Cursor.visible = false;
-
-       
-        this.enabled = true;
-
+        
+        if (canSwitch)
+        {
+            Cursor.lockState = isDrone ? CursorLockMode.Locked : CursorLockMode.None;
+            Cursor.visible = !isDrone;
+        }
     }
 }

@@ -163,32 +163,20 @@ public class KeyQueueManager : MonoBehaviour
         gameEnded = true;
         timer.StopTimer();
 
-        
         Time.timeScale = 1f;
 
+        
         minigamesManager.EndLettersGame();
 
         EnemyMovement enemy = Object.FindFirstObjectByType<EnemyMovement>();
         if (enemy != null)
         {
-            
             enemy.ResetEnemy();
         }
-/*
-        if (switcher == null) switcher = Object.FindFirstObjectByType<PlayerSwitcher>();
 
-        if (switcher != null)
-        {
-            
-            switcher.enabled = true;
-                
-            switcher.SetControl(true);
-        }
-*/
-      
-        transform.root.gameObject.SetActive(false);
+        gameObject.SetActive(false);
 
-        Debug.Log("Mundo descongelado y control devuelto al Dron.");
+        Debug.Log("Minijuego superado con éxito. Control devuelto de forma segura.");
     }
 
     public void LoseGame()

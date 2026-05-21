@@ -337,6 +337,7 @@ GameObject:
   - component: {fileID: 58193580}
   - component: {fileID: 58193581}
   - component: {fileID: 58193582}
+  - component: {fileID: 58193583}
   m_Layer: 0
   m_Name: Dron
   m_TagString: Player
@@ -410,7 +411,7 @@ Transform:
   m_GameObject: {fileID: 58193573}
   serializedVersion: 2
   m_LocalRotation: {x: -0, y: -0.9909129, z: 0, w: -0.134505}
-  m_LocalPosition: {x: 2.8, y: 10.34, z: 8.7}
+  m_LocalPosition: {x: 0.08, y: 10.339, z: 18.53}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
@@ -429,9 +430,9 @@ Rigidbody:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 58193573}
   serializedVersion: 5
-  m_Mass: 500
-  m_LinearDamping: 0.5
-  m_AngularDamping: 2
+  m_Mass: 55
+  m_LinearDamping: 0.2
+  m_AngularDamping: 1.5
   m_CenterOfMass: {x: 0, y: 0, z: 0}
   m_InertiaTensor: {x: 1, y: 1, z: 1}
   m_InertiaRotation: {x: 0, y: 0, z: 0, w: 1}
@@ -447,7 +448,7 @@ Rigidbody:
   m_IsKinematic: 0
   m_Interpolate: 0
   m_Constraints: 0
-  m_CollisionDetection: 0
+  m_CollisionDetection: 2
 --- !u!65 &58193579
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -487,9 +488,14 @@ MonoBehaviour:
   rightWheels:
   - {fileID: 939524603}
   - {fileID: 1095874630}
-  flashlight: {fileID: 773711489}
-  motorForce: 1500
-  turnForce: 1000
+  motorForce: 250
+  turnForce: 120
+  stabilityStrength: 10
+  stabilityDamper: 2
+  customCenterOfMass: {x: 0, y: -0.6, z: 0}
+  groundLayer:
+    serializedVersion: 2
+    m_Bits: 64
 --- !u!114 &58193581
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -529,6 +535,23 @@ MonoBehaviour:
   minIntensity: 0.8
   maxIntensity: 1.2
   flickerSpeed: 0.05
+--- !u!114 &58193583
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 58193573}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: d21de349fb85a2049a78ee42aefef0cf, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::DroneMagnet
+  groundLayer:
+    serializedVersion: 2
+    m_Bits: 64
+  magnetForce: 6
+  maxDistance: 1.5
 --- !u!1 &72465119
 GameObject:
   m_ObjectHideFlags: 0
@@ -5360,8 +5383,11 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::RoverWheel
   rb: {fileID: 58193578}
   restDistance: 0.5
-  springStrength: 500
+  springStrength: 400
   springDamper: 20
+  groundLayer:
+    serializedVersion: 2
+    m_Bits: 64
 --- !u!1 &973682865
 GameObject:
   m_ObjectHideFlags: 0
@@ -6284,8 +6310,11 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::RoverWheel
   rb: {fileID: 58193578}
   restDistance: 0.5
-  springStrength: 500
+  springStrength: 400
   springDamper: 20
+  groundLayer:
+    serializedVersion: 2
+    m_Bits: 64
 --- !u!1 &1114079881
 GameObject:
   m_ObjectHideFlags: 0
@@ -8170,7 +8199,7 @@ Transform:
   m_GameObject: {fileID: 1474393657}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0.9984408, z: -0, w: -0.05582139}
-  m_LocalPosition: {x: -2.423, y: 10.64, z: 1.001}
+  m_LocalPosition: {x: 4.097, y: 23.182, z: -98.23}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
@@ -8966,8 +8995,11 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::RoverWheel
   rb: {fileID: 58193578}
   restDistance: 0.5
-  springStrength: 500
+  springStrength: 400
   springDamper: 20
+  groundLayer:
+    serializedVersion: 2
+    m_Bits: 64
 --- !u!1 &1628565056
 GameObject:
   m_ObjectHideFlags: 0
@@ -10129,8 +10161,11 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::RoverWheel
   rb: {fileID: 58193578}
   restDistance: 0.5
-  springStrength: 500
+  springStrength: 400
   springDamper: 20
+  groundLayer:
+    serializedVersion: 2
+    m_Bits: 64
 --- !u!1 &1807735901
 GameObject:
   m_ObjectHideFlags: 0
@@ -11795,6 +11830,63 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1998419109}
   m_CullTransparentMesh: 1
+--- !u!1001 &2008241055
+PrefabInstance:
+  m_ObjectHideFlags: 0
+  serializedVersion: 2
+  m_Modification:
+    serializedVersion: 3
+    m_TransformParent: {fileID: 0}
+    m_Modifications:
+    - target: {fileID: -8679921383154817045, guid: 76330047ed1346a40b3026ca863ae74e, type: 3}
+      propertyPath: m_LocalPosition.x
+      value: 4.1
+      objectReference: {fileID: 0}
+    - target: {fileID: -8679921383154817045, guid: 76330047ed1346a40b3026ca863ae74e, type: 3}
+      propertyPath: m_LocalPosition.y
+      value: 20.4
+      objectReference: {fileID: 0}
+    - target: {fileID: -8679921383154817045, guid: 76330047ed1346a40b3026ca863ae74e, type: 3}
+      propertyPath: m_LocalPosition.z
+      value: -98.2
+      objectReference: {fileID: 0}
+    - target: {fileID: -8679921383154817045, guid: 76330047ed1346a40b3026ca863ae74e, type: 3}
+      propertyPath: m_LocalRotation.w
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: -8679921383154817045, guid: 76330047ed1346a40b3026ca863ae74e, type: 3}
+      propertyPath: m_LocalRotation.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: -8679921383154817045, guid: 76330047ed1346a40b3026ca863ae74e, type: 3}
+      propertyPath: m_LocalRotation.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: -8679921383154817045, guid: 76330047ed1346a40b3026ca863ae74e, type: 3}
+      propertyPath: m_LocalRotation.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: -8679921383154817045, guid: 76330047ed1346a40b3026ca863ae74e, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: -8679921383154817045, guid: 76330047ed1346a40b3026ca863ae74e, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: -8679921383154817045, guid: 76330047ed1346a40b3026ca863ae74e, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 919132149155446097, guid: 76330047ed1346a40b3026ca863ae74e, type: 3}
+      propertyPath: m_Name
+      value: InteriorOfShip
+      objectReference: {fileID: 0}
+    m_RemovedComponents: []
+    m_RemovedGameObjects: []
+    m_AddedGameObjects: []
+    m_AddedComponents: []
+  m_SourcePrefab: {fileID: 100100000, guid: 76330047ed1346a40b3026ca863ae74e, type: 3}
 --- !u!1001 &2022180812
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -12117,3 +12209,4 @@ SceneRoots:
   - {fileID: 278130804}
   - {fileID: 92881368}
   - {fileID: 841335458}
+  - {fileID: 2008241055}

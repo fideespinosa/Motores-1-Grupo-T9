@@ -7,14 +7,27 @@ public class DroneController : MonoBehaviour
     public RoverWheel[] leftWheels;
     public RoverWheel[] rightWheels;
 
-    [SerializeField] private Light flashlight;
+   
+    public float motorForce = 300f;
+    public float turnForce = 150f;
 
-    public float motorForce = 1500f;
-    public float turnForce = 1000f;
+    
+    [SerializeField] private float stabilityStrength = 10f; 
+    [SerializeField] private float stabilityDamper = 2f;    
+    [SerializeField] private Vector3 customCenterOfMass = new Vector3(0, -0.6f, 0);
 
+    private Rigidbody rb;
+    [SerializeField] private LayerMask groundLayer;
     private Vector2 inputMove;
 
-   
+    void Start()
+    {
+        rb = GetComponent<Rigidbody>();
+
+        
+        rb.centerOfMass = customCenterOfMass;
+    }
+
     void Update()
     {
         float forward = 0;
@@ -26,11 +39,11 @@ public class DroneController : MonoBehaviour
         if (Keyboard.current.aKey.isPressed) turn = -1;
 
         inputMove = new Vector2(turn, forward);
-
     }
 
     void FixedUpdate()
     {
+       
         float leftPower = inputMove.y + inputMove.x;
         float rightPower = inputMove.y - inputMove.x;
 
@@ -43,5 +56,32 @@ public class DroneController : MonoBehaviour
         {
             wheel.ApplyDriveForce(rightPower * motorForce);
         }
+
+        
+        ApplyGiroscopicStabiliy();
+    }
+
+    private void ApplyGiroscopicStabiliy()
+    {
+        
+        Vector3 targetUp = Vector3.up;
+
+        
+        RaycastHit hit;
+        if (Physics.Raycast(transform.position, -transform.up, out hit, 2f, groundLayer))
+        {
+            
+            targetUp = hit.normal;
+        }
+
+        
+        Vector3 predictedUp = Quaternion.AngleAxis(rb.angularVelocity.magnitude * Mathf.Rad2Deg * stabilityDamper / stabilityStrength, rb.angularVelocity) * transform.up;
+        Vector3 torqueVector = Vector3.Cross(predictedUp, targetUp);
+
+        
+        rb.AddTorque(torqueVector * (stabilityStrength * stabilityStrength), ForceMode.Acceleration);
+
+        
+        rb.angularVelocity = Vector3.ClampMagnitude(rb.angularVelocity, 4f);
     }
 }
