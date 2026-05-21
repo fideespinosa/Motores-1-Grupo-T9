@@ -41,34 +41,39 @@ public class MinigamesManager : MonoBehaviour
 
     public void UnfreezeGame()
     {
+        
         player.GetComponent<FPS_OldInput>().EnableCameraMovement();
 
         if (switcher != null)
         {
+            
             switcher.AllowSwitching();
-
-            
             switcher.SetControl(false);
-
-            
         }
 
-        Cursor.lockState = CursorLockMode.None;
-        Cursor.visible = true;
+        
+        Cursor.lockState = CursorLockMode.Locked;
+        Cursor.visible = false;
+
+        Debug.Log("Minijuego terminado: Cámara del astronauta desbloqueada y sistema listo.");
     }
 
     public void FreezeGame()
     {
+        
         player.GetComponent<FPS_OldInput>().DisableCameraMovement();
 
         if (switcher != null)
         {
-            switcher.BlockSwitching(); 
+            
+            switcher.BlockSwitching();
+            switcher.SetControl(false);
         }
 
+        
         Cursor.lockState = CursorLockMode.None;
         Cursor.visible = true;
 
-        Debug.Log("Mundo congelado para minijuego.");
+        Debug.Log("Encuentro iniciado: Dron apagado. Control y cámara fija transferidos al astronauta.");
     }
 }
