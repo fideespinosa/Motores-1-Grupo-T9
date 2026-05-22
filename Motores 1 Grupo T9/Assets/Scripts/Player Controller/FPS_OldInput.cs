@@ -46,4 +46,5 @@ public class FPS_OldInput : MonoBehaviour
         Cursor.lockState = CursorLockMode.Locked;
         Cursor.visible = false;
     }
+
 }

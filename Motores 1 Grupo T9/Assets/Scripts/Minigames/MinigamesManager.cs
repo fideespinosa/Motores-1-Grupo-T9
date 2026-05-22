@@ -14,6 +14,10 @@ public class MinigamesManager : MonoBehaviour
     [Header("Instructions Scripts")]
     [SerializeField] GameObject instructionsPanel;
 
+    [Header("Spaceship objects")]
+    [SerializeField] GameObject alarmLight;
+    [SerializeField] GameObject screenWarningImage;
+
     protected PlayerSwitcher switcher;
 
     private void Start()
@@ -21,8 +25,19 @@ public class MinigamesManager : MonoBehaviour
         if (switcher == null) switcher = Object.FindFirstObjectByType<PlayerSwitcher>();
     }
 
+    public void DronFailure()
+    {
+        if (switcher != null)
+        {
+            switcher.BlockSwitching();
+            switcher.SetControl(false);
+        }
+        alarmLight.SetActive(true);
+        screenWarningImage.SetActive(true);
+    }
     public void StartLettersGame()
     {
+        Debug.Log("arranco miniijuego");
         FreezeGame();
 
         if (!instructionsPanel.GetComponent<InstructionsScript>().ShowInstructions())
@@ -34,6 +49,8 @@ public class MinigamesManager : MonoBehaviour
 
     public void EndLettersGame()
     {
+        alarmLight.SetActive(false);
+        screenWarningImage.SetActive(false);
         lettersPanel.SetActive(false);
         lettersGame.SetActive(false);
         UnfreezeGame();
@@ -63,14 +80,6 @@ public class MinigamesManager : MonoBehaviour
         
         player.GetComponent<FPS_OldInput>().DisableCameraMovement();
 
-        if (switcher != null)
-        {
-            
-            switcher.BlockSwitching();
-            switcher.SetControl(false);
-        }
-
-        
         Cursor.lockState = CursorLockMode.None;
         Cursor.visible = true;
 

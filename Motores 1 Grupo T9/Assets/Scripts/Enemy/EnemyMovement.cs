@@ -173,7 +173,7 @@ public class EnemyMovement : MonoBehaviour
         if (minigamesManager != null)
         {
             minigameActive = true;
-            minigamesManager.StartLettersGame();
+            minigamesManager.DronFailure();
 
         }
     }
