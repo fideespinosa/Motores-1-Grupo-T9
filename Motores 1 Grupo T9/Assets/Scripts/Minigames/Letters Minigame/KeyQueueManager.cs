@@ -19,6 +19,8 @@ public class KeyQueueManager : MonoBehaviour
 
     [SerializeField] TextMeshProUGUI totalText;
 
+    [SerializeField] GameObject Panel;
+
     int currentScore = 0;
     bool gameStarted = false;
     bool gameEnded = false;
@@ -38,7 +40,12 @@ public class KeyQueueManager : MonoBehaviour
     void Start()
     {
         minigamesManager = minigamesManager.GetComponent<MinigamesManager>();
-        StartCoroutine(LoadingRoutine());
+    }
+
+    private void OnEnable()
+    {
+        Panel.SetActive(true);
+        ResetGame();
     }
 
     void Update()
@@ -50,7 +57,10 @@ public class KeyQueueManager : MonoBehaviour
 
     void InitializeQueue()
     {
+        counterText.text = "0";
+
         keyQueue.Clear();
+
         EnqueueRandomKey();
         EnqueueRandomKey();
     }
@@ -81,18 +91,17 @@ public class KeyQueueManager : MonoBehaviour
         if (pressedKey == expectedKey)
         {
             currentScore++;
+
             Debug.Log("Bien! Score: " + currentScore);
 
             UpdateCounter();
 
-           
             if (currentScore >= targetScore)
             {
                 WinGame();
-                return; 
+                return;
             }
 
-           
             AdvanceKey();
         }
         else
@@ -100,7 +109,6 @@ public class KeyQueueManager : MonoBehaviour
             Debug.Log("Error! Reiniciando racha");
             currentScore = 0;
             UpdateCounter();
-            
         }
     }
 
@@ -134,27 +142,18 @@ public class KeyQueueManager : MonoBehaviour
 
     System.Collections.IEnumerator LoadingRoutine()
     {
-        
         gameEnded = false;
         gameStarted = false;
         currentScore = 0;
 
-        loadingText.gameObject.SetActive(true);
-        currentKeyText.gameObject.SetActive(false);
-
-        
         yield return new WaitForSecondsRealtime(loadingTime);
 
         loadingText.gameObject.SetActive(false);
         currentKeyText.gameObject.SetActive(true);
-
         totalText.text = " / " + targetScore;
-
         InitializeQueue();
         UpdateUI();
         gameStarted = true;
-
-        
         timer.StartTimer();
     }
 
@@ -162,40 +161,57 @@ public class KeyQueueManager : MonoBehaviour
     {
         gameEnded = true;
         timer.StopTimer();
-
         Time.timeScale = 1f;
-
-        
         minigamesManager.EndLettersGame();
-
         EnemyMovement enemy = Object.FindFirstObjectByType<EnemyMovement>();
+
         if (enemy != null)
         {
             enemy.ResetEnemy();
         }
 
+        Debug.Log("Minijuego superado con éxito. Control devuelto de forma segura");
+        Panel.SetActive(false);
         gameObject.SetActive(false);
-
-        Debug.Log("Minijuego superado con éxito. Control devuelto de forma segura.");
     }
 
     public void LoseGame()
     {
         Debug.Log("FALLO DE CONEXIÓN: Dron perdido.");
+
         gameEnded = true;
 
         Time.timeScale = 1f;
 
-        
         Cursor.lockState = CursorLockMode.None;
         Cursor.visible = true;
 
         minigamesManager.EndLettersGame();
 
-        UnityEngine.SceneManagement.SceneManager.LoadScene("Game Over - Dron");
+        Panel.SetActive(false);
+
+        SceneManager.LoadScene("Game Over - Dron");
     }
+
     public bool GameResult(bool result)
     {
         return result;
+    }
+
+    public void ResetGame()
+    {
+        StopAllCoroutines();
+
+        gameEnded = false;
+        gameStarted = false;
+        currentScore = 0;
+        counterText.text = "0";
+        totalText.text = " / " + targetScore;
+        keyQueue.Clear();
+        currentKeyText.text = "";
+        loadingText.gameObject.SetActive(true);
+        currentKeyText.gameObject.SetActive(false);
+        timer.ResetTimer();
+        StartCoroutine(LoadingRoutine());
     }
 }

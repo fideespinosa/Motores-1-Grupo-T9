@@ -14,6 +14,7 @@ public class CrosshairRaycast : MonoBehaviour
     [SerializeField] Sprite defaultSprite;
     [SerializeField] Sprite interactSprite;
 
+    bool screen1Opened = false;
 
     private void Start()
     {
@@ -34,10 +35,14 @@ public class CrosshairRaycast : MonoBehaviour
 
             if (Input.GetMouseButtonDown(0))
             {
+
+                screen1Opened = screensManager.Screen1Opened();
+
                 if (hit.collider.gameObject.CompareTag("Screen 1"))
                 {
                     screensManager.OpenPanelScreen1();
                 }
+
             }
         }
         else

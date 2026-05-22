@@ -56,4 +56,13 @@ public class Timer : MonoBehaviour
     {
         isRunning = false;
     }
+
+    public void ResetTimer()
+    {
+        isRunning = false;
+        timeLeft = initialTime;
+
+        if (timerText != null)
+            timerText.text = Mathf.Ceil(timeLeft).ToString();
+    }
 }

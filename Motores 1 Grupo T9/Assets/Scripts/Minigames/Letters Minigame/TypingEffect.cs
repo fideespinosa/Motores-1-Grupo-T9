@@ -8,9 +8,12 @@ public class TypingEffect : MonoBehaviour
     public string texto;
     public float demoraPorLetra = 0.25f;
 
-    void Start()
+    private void OnEnable()
     {
+        StopAllCoroutines();
+
         textComponent.text = "";
+
         StartCoroutine(ShowText());
     }
 
@@ -19,7 +22,8 @@ public class TypingEffect : MonoBehaviour
         foreach (char caracter in texto)
         {
             textComponent.text += caracter;
-            yield return new WaitForSeconds(demoraPorLetra);
+
+            yield return new WaitForSecondsRealtime(demoraPorLetra);
         }
     }
 }

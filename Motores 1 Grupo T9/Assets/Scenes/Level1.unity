@@ -1985,7 +1985,6 @@ GameObject:
   - component: {fileID: 286080615}
   - component: {fileID: 286080617}
   - component: {fileID: 286080616}
-  - component: {fileID: 286080618}
   m_Layer: 5
   m_Name: Screen 1
   m_TagString: Untagged
@@ -2051,18 +2050,6 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 286080614}
   m_CullTransparentMesh: 1
---- !u!114 &286080618
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 286080614}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: bcdfbe2de3ca42440b5d6830931983e4, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: Assembly-CSharp::Screen_1
 --- !u!1 &299975825
 GameObject:
   m_ObjectHideFlags: 0
@@ -4942,6 +4929,7 @@ GameObject:
   - component: {fileID: 780562862}
   - component: {fileID: 780562861}
   - component: {fileID: 780562860}
+  - component: {fileID: 780562864}
   m_Layer: 5
   m_Name: Screen 1 Canvas
   m_TagString: Untagged
@@ -5032,6 +5020,18 @@ RectTransform:
   m_AnchoredPosition: {x: 0, y: 0}
   m_SizeDelta: {x: 0, y: 0}
   m_Pivot: {x: 0, y: 0}
+--- !u!114 &780562864
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 780562859}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: bcdfbe2de3ca42440b5d6830931983e4, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::Screen_1
 --- !u!4 &829699410 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: -8679921383154817045, guid: 7714408a0c8814d4298e5b5b1fee3d54, type: 3}
@@ -9270,9 +9270,9 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 286080618}
+      - m_Target: {fileID: 780562864}
         m_TargetAssemblyTypeName: Screen_1, Assembly-CSharp
-        m_MethodName: ScreenOff
+        m_MethodName: CanvasOff
         m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
@@ -11935,6 +11935,7 @@ MonoBehaviour:
   counterText: {fileID: 703781852}
   targetScore: 10
   totalText: {fileID: 1387348162}
+  Panel: {fileID: 1628565056}
 --- !u!114 &1991834757
 MonoBehaviour:
   m_ObjectHideFlags: 0

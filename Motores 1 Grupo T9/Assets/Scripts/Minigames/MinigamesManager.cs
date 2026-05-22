@@ -2,6 +2,9 @@ using UnityEngine;
 
 public class MinigamesManager : MonoBehaviour
 {
+
+    [SerializeField] ScreensManagerScript screensManager;
+
     [Header("Player")]
     [SerializeField] GameObject player;
 
@@ -20,9 +23,11 @@ public class MinigamesManager : MonoBehaviour
 
     protected PlayerSwitcher switcher;
 
+
     private void Start()
     {
         if (switcher == null) switcher = Object.FindFirstObjectByType<PlayerSwitcher>();
+        screensManager = screensManager.GetComponent<ScreensManagerScript>();
     }
 
     public void DronFailure()
@@ -49,11 +54,13 @@ public class MinigamesManager : MonoBehaviour
 
     public void EndLettersGame()
     {
+        Debug.Log("termino del minijuego");
         alarmLight.SetActive(false);
         screenWarningImage.SetActive(false);
         lettersPanel.SetActive(false);
         lettersGame.SetActive(false);
         UnfreezeGame();
+        screensManager.ClosePanelScreen1();
     }
 
     public void UnfreezeGame()

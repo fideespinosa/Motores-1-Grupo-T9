@@ -4,6 +4,7 @@ using UnityEngine.SceneManagement;
 using System;
 public class ScreensManagerScript : MonoBehaviour
 {
+    bool screen1Status = false;
     int currentLevel = 1;
     public static event Action OnScreenActive;
     public static event Action OnScreenInactive;
@@ -58,11 +59,23 @@ public class ScreensManagerScript : MonoBehaviour
         Screen1.SetActive(true);
         Cursor.visible = true;
         OnScreenActive?.Invoke();
+        screen1Status = true;
     }
     public void ClosePanelScreen1()
     {
         Screen1.SetActive(false);
         Cursor.visible = false;
         OnScreenInactive?.Invoke();
+        screen1Status = false;
+    }
+
+    public bool Screen1Opened()
+    {
+        return screen1Status;
+    }
+
+    public bool asd()
+    {
+        return screen1Status;
     }
 }
