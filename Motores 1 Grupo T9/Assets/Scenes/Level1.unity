@@ -6903,7 +6903,7 @@ RectTransform:
   m_GameObject: {fileID: 1188500722}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_LocalScale: {x: 2.2171, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 1347090700}
@@ -6960,8 +6960,8 @@ MonoBehaviour:
   m_faceColor:
     serializedVersion: 2
     rgba: 4294967295
-  m_fontSize: 24
-  m_fontSizeBase: 24
+  m_fontSize: 150
+  m_fontSizeBase: 150
   m_fontWeight: 400
   m_enableAutoSizing: 0
   m_fontSizeMin: 18
@@ -7876,8 +7876,8 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: 40, y: 66}
-  m_SizeDelta: {x: 391.3911, y: 121.1646}
+  m_AnchoredPosition: {x: 875.5587, y: 464.13046}
+  m_SizeDelta: {x: 575.2137, y: 164.152}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1347090701
 MonoBehaviour:
@@ -7923,9 +7923,9 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 780562864}
-        m_TargetAssemblyTypeName: Screen_1, Assembly-CSharp
-        m_MethodName: CanvasOff
+      - m_Target: {fileID: 932023463}
+        m_TargetAssemblyTypeName: ScreensManagerScript, Assembly-CSharp
+        m_MethodName: ClosePanelScreen1
         m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
