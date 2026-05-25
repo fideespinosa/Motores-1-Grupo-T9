@@ -17,10 +17,17 @@ public class FPS_OldInput : MonoBehaviour
 
         Cursor.lockState = CursorLockMode.Locked;
         Cursor.visible = false;
+
+        
     }
 
     void Update()
     {
+        if (MenuPausa.gamePaused)
+        {
+            return;
+        }
+
         if (!canLook) return;
 
         rotationX += -Input.GetAxis("Mouse Y") * lookSpeed;

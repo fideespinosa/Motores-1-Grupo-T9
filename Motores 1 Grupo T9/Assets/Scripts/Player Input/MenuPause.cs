@@ -8,9 +8,7 @@ public class MenuPausa : MonoBehaviour
 
     public static bool gamePaused = false;
 
-    
 
- 
     void Update()
     {
         

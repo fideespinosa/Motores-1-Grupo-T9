@@ -12,6 +12,7 @@ public class CameraController : MonoBehaviour
     private float rotY = 0f;
     private float rotX = 0f;
 
+
     void Start()
     {
         
@@ -20,7 +21,11 @@ public class CameraController : MonoBehaviour
 
     void Update()
     {
-        
+        if (MenuPausa.gamePaused)
+        {
+            return;
+        }
+
         float mouseX = Input.GetAxis("Mouse X") * sensitivity * Time.deltaTime;
         float mouseY = Input.GetAxis("Mouse Y") * sensitivity * Time.deltaTime;
 
@@ -33,5 +38,6 @@ public class CameraController : MonoBehaviour
         
         gimbalY.localRotation = Quaternion.Slerp(gimbalY.localRotation, Quaternion.Euler(0f, rotY, 0f), 0.1f);
         pivotX.localRotation = Quaternion.Slerp(pivotX.localRotation, Quaternion.Euler(rotX, 0f, 0f), 0.1f);
+
     }
 }
