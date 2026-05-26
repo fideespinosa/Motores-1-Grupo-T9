@@ -1,4 +1,5 @@
 using TMPro;
+using Unity.VisualScripting;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 
@@ -23,6 +24,7 @@ public class PlayerInventory : MonoBehaviour
 
     public void CollectResource(resourcesManager.ResourceType type)
     {
+
         switch (type)
         {
             case resourcesManager.ResourceType.Metal:
@@ -39,6 +41,15 @@ public class PlayerInventory : MonoBehaviour
                 insumosCollected++;
                 textInsumos.text = insumosCollected.ToString();
                 break;
+        }
+
+        if (metalCollected >= metalNeeded &&
+            combustibleCollected >= combustibleNeeded &&
+            insumosCollected >= insumosNeeded && SceneManager.GetActiveScene().name == "Level0")
+        {
+            Debug.Log("Ganó el lvl 0");
+            SceneManager.LoadScene("Level1");
+            return;
         }
 
         if (metalCollected >= metalNeeded &&

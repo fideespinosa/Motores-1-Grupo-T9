@@ -411,7 +411,7 @@ Transform:
   m_GameObject: {fileID: 58193573}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: -0.82717866, z: 0, w: 0.56193906}
-  m_LocalPosition: {x: -3.4, y: 11.89, z: 64.51}
+  m_LocalPosition: {x: 60.91, y: 7.01, z: 19.27}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
@@ -4596,7 +4596,7 @@ PrefabInstance:
     - target: {fileID: 5258302243695411257, guid: 856c855239a041e42bf192d4bbf9cd29, type: 3}
       propertyPath: alertText
       value: 
-      objectReference: {fileID: 1498467208}
+      objectReference: {fileID: 851492694}
     - target: {fileID: 5258302243695411257, guid: 856c855239a041e42bf192d4bbf9cd29, type: 3}
       propertyPath: narrativePanel
       value: 
@@ -9989,7 +9989,7 @@ PrefabInstance:
     - target: {fileID: 5258302243695411257, guid: 856c855239a041e42bf192d4bbf9cd29, type: 3}
       propertyPath: alertText
       value: 
-      objectReference: {fileID: 1498467208}
+      objectReference: {fileID: 851492694}
     - target: {fileID: 5258302243695411257, guid: 856c855239a041e42bf192d4bbf9cd29, type: 3}
       propertyPath: narrativePanel
       value: 
@@ -11686,6 +11686,7 @@ MonoBehaviour:
   hasHDD: 0
   hasSmartphone: 0
   hasPC: 0
+  hasCard: 0
   defaultDialogues: []
   typingSpeed: 0.05
 --- !u!114 &1939576820

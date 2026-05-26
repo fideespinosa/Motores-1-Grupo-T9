@@ -18,6 +18,7 @@ public class ControlPanelManager : MonoBehaviour
     public bool hasHDD;
     public bool hasSmartphone;
     public bool hasPC;
+    public bool hasCard;
 
     [Header("Diálogos")]
     public List<DialogueEntry> defaultDialogues;
@@ -39,6 +40,11 @@ public class ControlPanelManager : MonoBehaviour
         defaultDialogues = new List<DialogueEntry>
         {
             new DialogueEntry {
+                dialogueText = "Esto parece una Tarjeta...",
+                priority = 0,
+                needsCard = true
+            },
+            new DialogueEntry {
                 dialogueText = "Qué extraño encontrar esto aquí... El disco duro tiene archivos encriptados...",
                 priority = 3,
                 needsHDD = true
@@ -55,7 +61,7 @@ public class ControlPanelManager : MonoBehaviour
             },
             new DialogueEntry {
                 dialogueText = "Con los tres objetos la verdad es clara...",
-                priority = 0,
+                priority = 4,
                 needsHDD = true,
                 needsPhone = true,
                 needsPC = true
@@ -127,14 +133,18 @@ public class ControlPanelManager : MonoBehaviour
 
     bool IsUnlocked(DialogueEntry entradaDialogo)
     {
+        if (entradaDialogo.needsCard && !hasCard) return false;
         if (entradaDialogo.needsHDD && !hasHDD) return false;
         if (entradaDialogo.needsPhone && !hasSmartphone) return false;
         if (entradaDialogo.needsPC && !hasPC) return false;
         return true;
     }
 
-    public void 
-        RecollectHDD() { 
+    public void RecollectCard()
+    {
+        hasCard = true;
+    }
+    public void RecollectHDD() { 
         hasHDD = true; 
     }
 
