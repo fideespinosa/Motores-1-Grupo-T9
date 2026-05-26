@@ -3,6 +3,7 @@ using UnityEngine;
 public class AlarmLight : MonoBehaviour
 {
     [SerializeField] Light alarmLight;
+    [SerializeField] Light normalLight;
 
     [SerializeField] float minIntensity = 0f;
     [SerializeField] float maxIntensity = 8f;
@@ -30,5 +31,16 @@ public class AlarmLight : MonoBehaviour
     {
         enabled = false;
         alarmLight.enabled = false;
+        normalLight.enabled = true;
     }
+
+    private void OnEnable()
+    {
+        normalLight.enabled = false;
+    }
+    private void OnDisable()
+    {
+        normalLight.enabled = true;
+    }
+
 }
