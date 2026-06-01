@@ -58,8 +58,19 @@ public class PlayerSwitcher : MonoBehaviour
 
         var droneAudio = droneCamera != null ? droneCamera.GetComponent<AudioListener>() : null;
         if (droneAudio != null) droneAudio.enabled = isDrone;
+      
+        if (AudioAmbienceController.Instance != null) //Agus: Cambio de ambientes sonoros.
+        {
+            if (isDrone)
+            {
+                AudioAmbienceController.Instance.ToDron();
+            }
+            else
+            {
+                AudioAmbienceController.Instance.ToShip();
+            }
+        }
 
-        
         if (canSwitch)
         {
             Cursor.lockState = isDrone ? CursorLockMode.Locked : CursorLockMode.None;
