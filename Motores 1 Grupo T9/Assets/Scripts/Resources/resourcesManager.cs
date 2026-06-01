@@ -8,7 +8,7 @@ public class resourcesManager : MonoBehaviour
     private void OnTriggerEnter(Collider other)
     {
         PlayerInventory playerInventory = other.GetComponent<PlayerInventory>();
-        Debug.Log("Que la parta y la choque");
+        Debug.Log("colision");
 
         if (playerInventory != null )
         {
