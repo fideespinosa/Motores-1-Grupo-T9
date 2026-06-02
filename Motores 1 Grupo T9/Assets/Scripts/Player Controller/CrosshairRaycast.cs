@@ -8,6 +8,8 @@ public class CrosshairRaycast : MonoBehaviour
     [SerializeField] float rayDistance;
     [SerializeField] LayerMask layerMask;
 
+    [SerializeField] MinigamesManager minigamesManager;
+
     [Header("Crosshair")]
     [SerializeField] Image crosshairImage;
 
@@ -38,7 +40,7 @@ public class CrosshairRaycast : MonoBehaviour
 
                 screen1Opened = screensManager.Screen1Opened();
 
-                if (hit.collider.gameObject.CompareTag("Screen 1"))
+                if (hit.collider.gameObject.CompareTag("Screen 1") && minigamesManager.isAlarmActive)
                 {
                     screensManager.OpenPanelScreen1();
                 }

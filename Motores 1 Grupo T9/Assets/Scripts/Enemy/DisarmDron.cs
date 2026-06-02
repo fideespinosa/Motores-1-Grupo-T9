@@ -12,6 +12,8 @@ public class DisarmDron : MonoBehaviour
     [Header("Referencias de Eventos")]
     public PlayerSwitcher switcher;
     public MinigamesManager minigamesManager;
+    public GameObject alarmScreen;
+    public GameObject alarmLight;
 
     private bool minigameActive = false;
     private Transform player;
@@ -88,6 +90,9 @@ public class DisarmDron : MonoBehaviour
         {
             minigameActive = true;
             minigamesManager.DronFailure();
+            //alarmScreen.SetActive(true);
+            //alarmLight.SetActive(true);
+
             gameObject.SetActive(false);
         }
     }

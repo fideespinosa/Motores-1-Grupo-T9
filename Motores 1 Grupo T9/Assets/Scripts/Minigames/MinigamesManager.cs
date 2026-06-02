@@ -22,6 +22,7 @@ public class MinigamesManager : MonoBehaviour
     [SerializeField] GameObject screenWarningImage;
 
     protected PlayerSwitcher switcher;
+    public bool isAlarmActive;
 
 
     private void Start()
@@ -32,6 +33,8 @@ public class MinigamesManager : MonoBehaviour
 
     public void DronFailure()
     {
+        isAlarmActive = true;
+
         if (switcher != null)
         {
             switcher.BlockSwitching();
@@ -55,6 +58,7 @@ public class MinigamesManager : MonoBehaviour
     public void EndLettersGame()
     {
         Debug.Log("termino del minijuego");
+        isAlarmActive = false;
         alarmLight.SetActive(false);
         screenWarningImage.SetActive(false);
         lettersPanel.SetActive(false);
