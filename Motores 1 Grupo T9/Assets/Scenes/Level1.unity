@@ -188,7 +188,7 @@ MonoBehaviour:
   bedSourceA: {fileID: 14140539}
   bedSourceB: {fileID: 14140538}
   shipBedClip: {fileID: 8300000, guid: 4e141fe2f3e198a44bc1bbfd581a83bf, type: 3}
-  caveBedClip: {fileID: 8300000, guid: 278e9c41bc28ed14fa84d17840128e30, type: 3}
+  caveBedClip: {fileID: 8300000, guid: a1aa9af044ca3874d927353aab9347cd, type: 3}
   crossfadeTime: 3
   sweetMixerGroup: {fileID: -941978377655253467, guid: 8ae6de4a4ce8e8c44a52514f69fa1e82, type: 2}
   shipSweeteners:
@@ -7872,12 +7872,12 @@ MonoBehaviour:
   transitionTime: 2
   exploreSource: {fileID: 1213894644}
   exploreClips:
-  - {fileID: 8300000, guid: 68a3df70e0fb55348abae24b44e66ff9, type: 3}
-  - {fileID: 8300000, guid: 60e97fc890f0294439ab483f6bbd58a2, type: 3}
+  - {fileID: 8300000, guid: 21559ab53d1add94eb111a10a23ea1e3, type: 3}
+  - {fileID: 8300000, guid: b08f61b33e0f47f4ba2b327cfe7b8385, type: 3}
   minWaitTime: 30
   maxWaitTime: 90
   combatSource: {fileID: 1213894643}
-  combatClip: {fileID: 8300000, guid: c1cf2679560df6d4482f2c30c489bedb, type: 3}
+  combatClip: {fileID: 8300000, guid: 7bf0f5b8ab8245243ba0198bd7129581, type: 3}
 --- !u!4 &1213894646
 Transform:
   m_ObjectHideFlags: 0
@@ -9064,6 +9064,7 @@ MonoBehaviour:
   layerMask:
     serializedVersion: 2
     m_Bits: 128
+  minigamesManager: {fileID: 0}
   crosshairImage: {fileID: 1595621970}
   defaultSprite: {fileID: 21300000, guid: d2186a5d7887d9d4a9758d47787e4178, type: 3}
   interactSprite: {fileID: 21300000, guid: 22bbd37d8c4947141ae76554ec0f48c8, type: 3}
@@ -11987,6 +11988,7 @@ MonoBehaviour:
   instructionsPanel: {fileID: 1026974393}
   alarmLight: {fileID: 2008631539}
   screenWarningImage: {fileID: 199128139}
+  isAlarmActive: 0
 --- !u!1 &1830169254
 GameObject:
   m_ObjectHideFlags: 0
