@@ -22,7 +22,6 @@ public class CinematicManager : MonoBehaviour
     {
         if (cinematicPlaying)
             return;
-        Debug.Log("aaaaaaaaaaaa");
         StartCoroutine(MonsterSequence());
     }
 

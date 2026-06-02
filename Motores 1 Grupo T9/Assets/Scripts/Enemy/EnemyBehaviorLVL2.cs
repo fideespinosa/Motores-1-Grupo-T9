@@ -7,6 +7,7 @@ public class EnemyBehaviorLVL2 : MonoBehaviour
 
     [SerializeField] Transform player;
     [SerializeField] Animator animator;
+    [SerializeField] GameObject staticImage;
 
     bool run = false;
 
@@ -38,11 +39,13 @@ public class EnemyBehaviorLVL2 : MonoBehaviour
 
     public void StartScreaming()
     {
+
         animator.SetBool("StartScreaming", true);
     }
 
     public void Run()
     {
+        staticImage.SetActive(true);
          run = true; 
         ActivateObstacles();
     }
