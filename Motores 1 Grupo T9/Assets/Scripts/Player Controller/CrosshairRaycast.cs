@@ -16,6 +16,10 @@ public class CrosshairRaycast : MonoBehaviour
     [SerializeField] Sprite defaultSprite;
     [SerializeField] Sprite interactSprite;
 
+    [Header("Player Inventory")]
+    [SerializeField] PlayerInventory playerInventory;
+
+
     bool screen1Opened = false;
 
     private void Start()
@@ -30,14 +34,15 @@ public class CrosshairRaycast : MonoBehaviour
         Vector3 origin = transform.position;
         Vector3 direction = transform.forward;
 
+
         if (Physics.Raycast(origin, direction, out hit, rayDistance, layerMask))
         {
             Debug.DrawLine(origin, hit.point, Color.red);
             crosshairImage.sprite = interactSprite;
 
+            
             if (Input.GetMouseButtonDown(0))
             {
-
                 screen1Opened = screensManager.Screen1Opened();
 
                 if (hit.collider.gameObject.CompareTag("Screen 1") && minigamesManager.isAlarmActive)
@@ -45,6 +50,10 @@ public class CrosshairRaycast : MonoBehaviour
                     screensManager.OpenPanelScreen1();
                 }
 
+                if (hit.collider.gameObject.CompareTag("NextLvl"))
+                {
+                    playerInventory.CheckVictory();
+                }
             }
         }
         else
