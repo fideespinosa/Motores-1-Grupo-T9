@@ -3,6 +3,7 @@ using UnityEngine;
 public class SpecialResourceEvent : MonoBehaviour
 {
     [SerializeField] GameObject enemy;
+    bool isTaken = true;
    // [SerializeField] GameObject particles;
     void Start()
     {
@@ -19,10 +20,15 @@ public class SpecialResourceEvent : MonoBehaviour
     {
         if (other.gameObject.CompareTag("Player"))
         {
+           isTaken = true; 
            gameObject.SetActive(false);
-            enemy.SetActive(true);
-
+           enemy.SetActive(true);
         }
+    }
+
+    public bool GetStatus()
+    {
+        return isTaken;
     }
 
 }

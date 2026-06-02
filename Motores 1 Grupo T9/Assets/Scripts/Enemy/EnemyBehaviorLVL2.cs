@@ -17,6 +17,7 @@ public class EnemyBehaviorLVL2 : MonoBehaviour
 
     void Update()
     {
+        transform.LookAt(player.transform);
         if (run)
         {
             agent.destination = player.position;
@@ -30,13 +31,13 @@ public class EnemyBehaviorLVL2 : MonoBehaviour
 
     public void StartScreaming()
     {
-        Debug.Log("grita");
         animator.SetBool("StartScreaming", true);
     }
 
     public void Run()
     {
-        // run = true; habilitar para que empiece a perseguirte
+        //habilitar para que empiece a perseguirte
+         run = true; 
         ActivateObstacles();
     }
 
