@@ -1,12 +1,13 @@
 using UnityEngine;
 using UnityEngine.AI;
-
+using UnityEngine.SceneManagement;
 public class EnemyBehaviorLVL2 : MonoBehaviour
 {
     NavMeshAgent agent;
 
     [SerializeField] Transform player;
     [SerializeField] Animator animator;
+    [SerializeField] GameObject staticImage;
 
     bool run = false;
 
@@ -17,12 +18,20 @@ public class EnemyBehaviorLVL2 : MonoBehaviour
 
     void Update()
     {
+        transform.LookAt(player.transform);
         if (run)
         {
             agent.destination = player.position;
         }
     }
 
+    private void OnCollisionEnter(Collision collision)
+    {
+        if (collision.gameObject.CompareTag("Player"))
+        {
+            SceneManager.LoadScene("Lose");
+        }
+    }
     public void StartRunning()
     {
         animator.SetBool("StartRun", true);
@@ -30,13 +39,14 @@ public class EnemyBehaviorLVL2 : MonoBehaviour
 
     public void StartScreaming()
     {
-        Debug.Log("grita");
+
         animator.SetBool("StartScreaming", true);
     }
 
     public void Run()
     {
-        // run = true; habilitar para que empiece a perseguirte
+        staticImage.SetActive(true);
+         run = true; 
         ActivateObstacles();
     }
 

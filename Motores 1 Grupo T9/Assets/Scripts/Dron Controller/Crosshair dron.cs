@@ -4,11 +4,12 @@ public class Crosshairdron : MonoBehaviour
 {
     [SerializeField] float rayDistance;
     [SerializeField] LayerMask layerMask;
-    [SerializeField] EnemyBehaviorLVL2 enemy;
+    [SerializeField] CinematicManager cinematicManager;
+    bool enemyDetected = false;
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
     {
-        enemy = enemy.GetComponent<EnemyBehaviorLVL2>();
+        cinematicManager = cinematicManager.GetComponent<CinematicManager>();
     }
 
     // Update is called once per frame
@@ -23,9 +24,10 @@ public class Crosshairdron : MonoBehaviour
             Debug.DrawLine(origin, hit.point, Color.red);
 
 
-                if (hit.collider.gameObject.CompareTag("EnemyLVL2"))
+                if (hit.collider.gameObject.CompareTag("EnemyLVL2") && !enemyDetected)
                 {
-                enemy.StartScreaming();
+                 enemyDetected = true;
+                 cinematicManager.StartMonsterCinematic();
                 }
 
         }
