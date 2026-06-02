@@ -3,7 +3,7 @@ using UnityEngine;
 public class SpecialResourceEvent : MonoBehaviour
 {
     [SerializeField] GameObject enemy;
-    bool isTaken = true;
+    bool isTaken = false;
    // [SerializeField] GameObject particles;
     void Start()
     {

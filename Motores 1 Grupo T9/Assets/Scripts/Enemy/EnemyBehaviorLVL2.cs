@@ -1,6 +1,6 @@
 using UnityEngine;
 using UnityEngine.AI;
-
+using UnityEngine.SceneManagement;
 public class EnemyBehaviorLVL2 : MonoBehaviour
 {
     NavMeshAgent agent;
@@ -24,6 +24,13 @@ public class EnemyBehaviorLVL2 : MonoBehaviour
         }
     }
 
+    private void OnCollisionEnter(Collision collision)
+    {
+        if (collision.gameObject.CompareTag("Player"))
+        {
+            SceneManager.LoadScene("Lose");
+        }
+    }
     public void StartRunning()
     {
         animator.SetBool("StartRun", true);
@@ -36,7 +43,6 @@ public class EnemyBehaviorLVL2 : MonoBehaviour
 
     public void Run()
     {
-        //habilitar para que empiece a perseguirte
          run = true; 
         ActivateObstacles();
     }
