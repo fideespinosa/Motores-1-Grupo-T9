@@ -52,7 +52,7 @@ public class CrosshairRaycast : MonoBehaviour
 
                 if (hit.collider.gameObject.CompareTag("NextLvl"))
                 {
-                    playerInventory.CheckVictory();
+                    playerInventory.CheckVictory(); 
                 }
             }
         }

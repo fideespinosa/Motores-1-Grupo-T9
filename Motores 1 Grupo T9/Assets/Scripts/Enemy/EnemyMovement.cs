@@ -1,4 +1,4 @@
-using UnityEngine;
+ï»¿using UnityEngine;
 using UnityEngine.SceneManagement;
 
 public class EnemyMovement : MonoBehaviour
@@ -12,14 +12,14 @@ public class EnemyMovement : MonoBehaviour
     [Header("El FOV")]
     public float detectionRange = 10f;
     public float hearDetectionRange = 4f;
-    
+
     [Range(0f, 180f)]
     public float fieldOfViewAngle = 90f;
     public LayerMask obstacles;
 
     [Header("Referencias de Eventos")]
-    public PlayerSwitcher switcher; 
-    public MinigamesManager minigamesManager; 
+    public PlayerSwitcher switcher;
+    public MinigamesManager minigamesManager;
 
     private bool playerDead = false;
     private int nowWaypoint = 0;
@@ -27,7 +27,7 @@ public class EnemyMovement : MonoBehaviour
     private Transform player;
     private Rigidbody rb;
     private bool isAttacking = false;
-    private bool minigameActive= false;
+    private bool minigameActive = false;
     void Start()
     {
         rb = GetComponent<Rigidbody>();
@@ -51,13 +51,13 @@ public class EnemyMovement : MonoBehaviour
         {
             float distToPlayer = Vector3.Distance(transform.position, player.position);
 
-            
+
             if (distToPlayer <= 2f && !isAttacking)
             {
-                isAttacking = true; 
+                isAttacking = true;
                 Debug.Log("Dron interceptado. Iniciando minijuego...");
                 Die();
-                return; 
+                return;
             }
 
             if (!isAttacking && !minigameActive)
@@ -80,7 +80,7 @@ public class EnemyMovement : MonoBehaviour
             {
                 waitTimer -= Time.deltaTime;
                 rb.linearVelocity = new Vector3(0, rb.linearVelocity.y, 0);
-                if (waitTimer <= 0f) 
+                if (waitTimer <= 0f)
                     nowWaypoint = (nowWaypoint + 1) % waypoints.Length;
             }
         }
@@ -162,8 +162,8 @@ public class EnemyMovement : MonoBehaviour
     {
         if (playerDead) return;
 
-        
-        Debug.Log("Dron interceptado. Iniciando secuencia de reparación...");
+
+        Debug.Log("Dron interceptado. Iniciando secuencia de reparaciï¿½n...");
 
         TriggerDroneFailure();
     }
