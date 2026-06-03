@@ -2,22 +2,41 @@ using UnityEngine;
 
 public class Screen_1 : MonoBehaviour
 {
-    [SerializeField] ScreensManagerScript screensManager;
-    // Start is called once before the first execution of Update after the MonoBehaviour is created
+    [SerializeField] private ScreensManagerScript screensManager;
+
+    
+    [SerializeField] private GameObject deploymentPanel; 
+
     void Start()
     {
-        screensManager = screensManager.GetComponent<ScreensManagerScript>();
+        if (screensManager != null)
+        {
+            screensManager = screensManager.GetComponent<ScreensManagerScript>();
+        }
+
+        if (deploymentPanel != null)
+        {
+            deploymentPanel.SetActive(false);
+        }
     }
 
-    // Update is called once per frame
-    void Update()
+    public void ShowDeploymentOptions()
     {
-        
+        if (deploymentPanel != null)
+        {
+            deploymentPanel.SetActive(true); // Hace aparecer el cartel con SÍ y NO
+
+            // Liberamos el mouse para que el jugador pueda interactuar con los botones
+            Cursor.lockState = CursorLockMode.None;
+            Cursor.visible = true;
+        }
     }
 
     public void CanvasOff()
     {
+        // Si cierran la pantalla general, por seguridad también apagamos el panel de despliegue
+        if (deploymentPanel != null) deploymentPanel.SetActive(false);
+
         gameObject.SetActive(false);
     }
-
 }
