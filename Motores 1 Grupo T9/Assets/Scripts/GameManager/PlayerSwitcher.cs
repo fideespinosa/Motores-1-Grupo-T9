@@ -70,6 +70,11 @@ public class PlayerSwitcher : MonoBehaviour
             }
         }
 
+        if (SFXManager.Instance != null && SFXManager.Instance.Transition != null)
+        {
+            SFXManager.Instance.Transition.PlayTransition(isDrone);
+        }
+
         if (canSwitch)
         {
             Cursor.lockState = isDrone ? CursorLockMode.Locked : CursorLockMode.None;

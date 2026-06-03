@@ -11,8 +11,8 @@ public class AudioAmbienceController : MonoBehaviour
     [Header("Posición Actual")]
     public AmbienceZone currentZone;
 
-    [SerializeField] private Transform playerTransform;
-    [SerializeField] private Transform droneTransform;
+    [SerializeField] private Transform shipPlayerTransform;
+    [SerializeField] private Transform droneTransform;      
 
     [Header("Beds 2D")]
     [SerializeField] private AudioMixerGroup bedsMixerGroup;
@@ -138,7 +138,7 @@ public class AudioAmbienceController : MonoBehaviour
         }
         else
         {
-            activeTransform = playerTransform;
+            activeTransform = shipPlayerTransform;
             arrayActual = shipSweeteners;
         }
 
