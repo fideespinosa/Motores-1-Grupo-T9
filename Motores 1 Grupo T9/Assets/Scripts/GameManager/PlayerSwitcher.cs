@@ -9,8 +9,7 @@ public class PlayerSwitcher : MonoBehaviour
     public Camera droneCamera;
 
     private bool controllingDrone = false;
-    private bool canSwitch = true; 
-    [Header("HUDs")]
+    private bool canSwitch = false; 
     public Canvas dronHUD;
     public Canvas playerDialogueHUD;
 

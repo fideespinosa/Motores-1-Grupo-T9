@@ -74,8 +74,5 @@ public class ScreensManagerScript : MonoBehaviour
         return screen1Status;
     }
 
-    public bool asd()
-    {
-        return screen1Status;
-    }
+    
 }
