@@ -12,7 +12,10 @@ public class CameraController : MonoBehaviour
     private float rotY = 0f;
     private float rotX = 0f;
 
-
+    void Awake()
+    {
+        Debug.Log("Awake CameraController en: " + gameObject.name);
+    }
     void Start()
     {
         
@@ -21,6 +24,7 @@ public class CameraController : MonoBehaviour
 
     void Update()
     {
+       // Debug.Log("Update " + gameObject.name + " ID:" + GetInstanceID());
         if (MenuPausa.gamePaused)
         {
             return;
@@ -39,5 +43,10 @@ public class CameraController : MonoBehaviour
         gimbalY.localRotation = Quaternion.Slerp(gimbalY.localRotation, Quaternion.Euler(0f, rotY, 0f), 0.1f);
         pivotX.localRotation = Quaternion.Slerp(pivotX.localRotation, Quaternion.Euler(rotX, 0f, 0f), 0.1f);
 
+    }
+
+    void OnDisable()
+    {
+        Debug.Log("OnDisable CameraController en: " + gameObject.name);
     }
 }

@@ -4967,7 +4967,7 @@ MonoBehaviour:
   layerMask:
     serializedVersion: 2
     m_Bits: 128
-  minigamesManager: {fileID: 0}
+  minigamesManager: {fileID: 847515058}
   crosshairImage: {fileID: 1445302960}
   defaultSprite: {fileID: 21300000, guid: d2186a5d7887d9d4a9758d47787e4178, type: 3}
   interactSprite: {fileID: 21300000, guid: 22bbd37d8c4947141ae76554ec0f48c8, type: 3}
@@ -8622,9 +8622,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: a6d9223cf57b14d488bc43a6093d7f6f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::PlayerSwitcher
+  humanCameraScript: {fileID: 1073564836}
   humanCamera: {fileID: 717498092}
   droneMovement: {fileID: 1882600046}
-  droneCameraControl: {fileID: 2030045928}
+  droneCameraControl: {fileID: 2030045927}
   droneCamera: {fileID: 2030045930}
   dronHUD: {fileID: 1573705780}
   playerDialogueHUD: {fileID: 121468118}
@@ -13397,9 +13398,9 @@ GameObject:
   - component: {fileID: 2030045926}
   - component: {fileID: 2030045930}
   - component: {fileID: 2030045929}
-  - component: {fileID: 2030045928}
   - component: {fileID: 2030045927}
   - component: {fileID: 2030045931}
+  - component: {fileID: 2030045928}
   m_Layer: 0
   m_Name: DronCamera
   m_TagString: Untagged

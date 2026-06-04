@@ -3,10 +3,12 @@ using UnityEngine.InputSystem;
 
 public class PlayerSwitcher : MonoBehaviour
 {
+    public MonoBehaviour humanCameraScript;
     public Camera humanCamera;
     public MonoBehaviour droneMovement;
     public MonoBehaviour droneCameraControl;
     public Camera droneCamera;
+
 
     private bool controllingDrone = false;
     private bool canSwitch = false;
@@ -60,6 +62,7 @@ public class PlayerSwitcher : MonoBehaviour
 
     public void SetControl(bool isDrone)
     {
+        Debug.Log(droneCameraControl.GetType().Name);
         controllingDrone = isDrone;
 
         humanCamera.enabled = !isDrone;
@@ -67,6 +70,7 @@ public class PlayerSwitcher : MonoBehaviour
         if (humanAudio != null) humanAudio.enabled = !isDrone;
 
         if (droneMovement != null) droneMovement.enabled = isDrone;
+        if (humanCameraScript != null) humanCameraScript.enabled = !isDrone; // bloquea la camara del player cuando se juega con el dron
         if (droneCameraControl != null) droneCameraControl.enabled = isDrone;
         if (droneCamera != null) droneCamera.enabled = isDrone;
         if (dronHUD != null) dronHUD.gameObject.SetActive(isDrone);
