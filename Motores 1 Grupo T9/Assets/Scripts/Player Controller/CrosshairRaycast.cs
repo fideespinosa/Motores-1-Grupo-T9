@@ -55,7 +55,7 @@ public class CrosshairRaycast : MonoBehaviour
                     screensManager.DeployDron();
                 }
 
-                if (hit.collider.gameObject.CompareTag("NextLvl"))
+                if (hit.collider.gameObject.CompareTag("NextLvl") && !minigamesManager.isAlarmActive)
                 {
                     playerInventory.CheckVictory(); 
                 }

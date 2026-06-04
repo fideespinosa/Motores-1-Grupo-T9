@@ -190,6 +190,8 @@ public class KeyQueueManager : MonoBehaviour
 
         Panel.SetActive(false);
 
+        PlayerPrefs.SetString("LastScene", SceneManager.GetActiveScene().name);
+        PlayerPrefs.Save();
         SceneManager.LoadScene("Game Over - Dron");
     }
 
