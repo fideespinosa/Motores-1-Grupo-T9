@@ -78,16 +78,8 @@ public class PlayerSwitcher : MonoBehaviour
         var droneAudio = droneCamera != null ? droneCamera.GetComponent<AudioListener>() : null;
         if (droneAudio != null) droneAudio.enabled = isDrone;
 
-        // Si canSwitch es false al principio, igual bloqueamos el cursor para el astronauta
-        if (canSwitch)
-        {
-            Cursor.lockState = isDrone ? CursorLockMode.Locked : CursorLockMode.None;
-            Cursor.visible = !isDrone;
-        }
-        else
-        {
             Cursor.lockState = CursorLockMode.Locked;
             Cursor.visible = false;
-        }
+
     }
 }
