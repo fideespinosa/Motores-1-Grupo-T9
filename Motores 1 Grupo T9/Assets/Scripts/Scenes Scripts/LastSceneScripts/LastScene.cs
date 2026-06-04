@@ -21,6 +21,8 @@ public class EndingSequence : MonoBehaviour
 
     private void Start()
     {
+        Cursor.lockState = CursorLockMode.Locked;
+        Cursor.visible = false;
 
         SetTextAlpha(firstText, 0);
         SetImageAlpha(continueImage, 0);

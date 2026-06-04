@@ -3991,6 +3991,10 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: -7511558181221131132, guid: 07c590000a2cbb843937750b033a5460, type: 3}
+      propertyPath: 'm_Materials.Array.data[0]'
+      value: 
+      objectReference: {fileID: 2100000, guid: ef2170d75433858478c7f10e4ef87d13, type: 2}
     - target: {fileID: 919132149155446097, guid: 07c590000a2cbb843937750b033a5460, type: 3}
       propertyPath: m_Name
       value: Level0Map
@@ -10027,7 +10031,7 @@ MonoBehaviour:
   metalNeeded: 1
   combustibleNeeded: 1
   insumosNeeded: 1
-  nextLevel: Level1
+  nextLevel: Transition 1
   textMetal: {fileID: 1228137637}
   textCombustible: {fileID: 589545300}
   textInsumos: {fileID: 1051250970}
