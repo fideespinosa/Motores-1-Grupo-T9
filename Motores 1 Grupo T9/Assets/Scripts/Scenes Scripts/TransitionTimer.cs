@@ -7,6 +7,8 @@ public class TransitionTimer : MonoBehaviour
     [SerializeField] int levelToChange = 0;
     void Start()
     {
+        Cursor.lockState = CursorLockMode.Locked;
+        Cursor.visible = false;
         StartCoroutine(CTimer());
     }
 

@@ -4955,7 +4955,7 @@ MonoBehaviour:
   crosshairImage: {fileID: 1445302960}
   defaultSprite: {fileID: 21300000, guid: d2186a5d7887d9d4a9758d47787e4178, type: 3}
   interactSprite: {fileID: 21300000, guid: 22bbd37d8c4947141ae76554ec0f48c8, type: 3}
-  playerInventory: {fileID: 0}
+  playerInventory: {fileID: 1882600045}
 --- !u!114 &717498094
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -7452,27 +7452,27 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 8897093224900880590, guid: 3fc10d0b1fd2b694fb17a4d8278b02f1, type: 3}
       propertyPath: m_LocalScale.x
-      value: 0.5948839
+      value: 0.38981554
       objectReference: {fileID: 0}
     - target: {fileID: 8897093224900880590, guid: 3fc10d0b1fd2b694fb17a4d8278b02f1, type: 3}
       propertyPath: m_LocalScale.y
-      value: 0.5948839
+      value: 0.38981554
       objectReference: {fileID: 0}
     - target: {fileID: 8897093224900880590, guid: 3fc10d0b1fd2b694fb17a4d8278b02f1, type: 3}
       propertyPath: m_LocalScale.z
-      value: 0.5948839
+      value: 0.38981554
       objectReference: {fileID: 0}
     - target: {fileID: 8897093224900880590, guid: 3fc10d0b1fd2b694fb17a4d8278b02f1, type: 3}
       propertyPath: m_LocalPosition.x
-      value: 59.84
+      value: 59.843
       objectReference: {fileID: 0}
     - target: {fileID: 8897093224900880590, guid: 3fc10d0b1fd2b694fb17a4d8278b02f1, type: 3}
       propertyPath: m_LocalPosition.y
-      value: -8.294
+      value: -8.948
       objectReference: {fileID: 0}
     - target: {fileID: 8897093224900880590, guid: 3fc10d0b1fd2b694fb17a4d8278b02f1, type: 3}
       propertyPath: m_LocalPosition.z
-      value: -117.73
+      value: -117.386
       objectReference: {fileID: 0}
     - target: {fileID: 8897093224900880590, guid: 3fc10d0b1fd2b694fb17a4d8278b02f1, type: 3}
       propertyPath: m_LocalRotation.w
@@ -8711,11 +8711,11 @@ NavMeshAgent:
   m_Enabled: 1
   m_AgentTypeID: 0
   m_Radius: 0.5
-  m_Speed: 4
+  m_Speed: 3
   m_Acceleration: 8
   avoidancePriority: 50
   m_AngularSpeed: 120
-  m_StoppingDistance: 3
+  m_StoppingDistance: 0
   m_AutoTraverseOffMeshLink: 1
   m_AutoBraking: 1
   m_AutoRepath: 1
@@ -13564,7 +13564,7 @@ Transform:
   m_GameObject: {fileID: 2067049498}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 122.95631, y: 8.06852, z: -62.42292}
+  m_LocalPosition: {x: 25.18, y: 2.32, z: -63.11}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
