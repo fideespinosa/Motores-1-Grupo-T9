@@ -6387,7 +6387,7 @@ Transform:
   m_GameObject: {fileID: 940589764}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -51.95, y: 8.5, z: -27.98}
+  m_LocalPosition: {x: 16.31, y: 10.9, z: -7.67}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -8193,9 +8193,9 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::PlayerSwitcher
   humanCamera: {fileID: 1434242620}
-  droneMovement: {fileID: 0}
-  droneCameraControl: {fileID: 0}
-  droneCamera: {fileID: 0}
+  droneMovement: {fileID: 8898654158852840253}
+  droneCameraControl: {fileID: 518523350278992282}
+  droneCamera: {fileID: 653986404633663559}
   dronHUD: {fileID: 1654381878}
   playerDialogueHUD: {fileID: 1939576822}
 --- !u!4 &1213029920
@@ -10022,7 +10022,7 @@ GameObject:
   - component: {fileID: 1474393664}
   m_Layer: 0
   m_Name: Player
-  m_TagString: Player
+  m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0

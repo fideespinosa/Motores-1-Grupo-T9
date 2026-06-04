@@ -1,17 +1,19 @@
 using UnityEngine;
 
+
+
 public class Screen_1 : MonoBehaviour
 {
     [SerializeField] private ScreensManagerScript screensManager;
 
-    
+    [Header("UI Despliegue de Dron (Canvas 3D)")]
     [SerializeField] private Canvas deployCanvas;
 
- 
-    [SerializeField] private GameObject droneInScene; 
-    [SerializeField] private Transform spawnPoint;     
+    [Header("Referencias del Dron en Escena")]
+    [SerializeField] private GameObject droneInScene; // ¡Devuelto!
+    [SerializeField] private Transform spawnPoint;     // ¡Devuelto!
 
-   
+    [Header("Referencias de Cámara y Player")]
     [SerializeField] private Camera astronautCamera;
     [SerializeField] private GameObject player;
 
@@ -21,7 +23,11 @@ public class Screen_1 : MonoBehaviour
 
     void Start()
     {
-        if (screensManager != null)
+        if (screensManager == null)
+        {
+            screensManager = Object.FindFirstObjectByType<ScreensManagerScript>();
+        }
+        else
         {
             screensManager = screensManager.GetComponent<ScreensManagerScript>();
         }
@@ -30,12 +36,6 @@ public class Screen_1 : MonoBehaviour
 
         if (astronautCamera == null) astronautCamera = Camera.main;
         if (deployCanvas != null) deployCanvas.gameObject.SetActive(false);
-
-        
-        if (droneInScene != null && !isDroneDeployed)
-        {
-            droneInScene.SetActive(false);
-        }
     }
 
     private void OnMouseEnter()
@@ -102,27 +102,22 @@ public class Screen_1 : MonoBehaviour
 
         if (droneInScene == null || spawnPoint == null)
         {
-            Debug.LogError("Error: Faltan asignar el Dron de la escena o el SpawnPoint en Screen_1.");
+            Debug.LogError("Faltan asignar las referencias del Dron o el SpawnPoint en Screen_1.");
             return;
         }
 
-        
+        // Mantenemos tu teletransportación estática al presionar "Si"
         droneInScene.transform.position = spawnPoint.position;
         droneInScene.transform.rotation = spawnPoint.rotation;
 
-        
-        droneInScene.SetActive(true);
-
-        
         if (switcher != null)
         {
             switcher.AllowSwitching();
-            switcher.SetControl(true); 
+            switcher.SetControl(true); // Saltamos a la cámara del dron con su HUD
         }
 
         isDroneDeployed = true;
         CanvasOff();
-        Debug.Log("Dron en escena despertado y posicionado correctamente.");
     }
 
     public void CanvasOff()

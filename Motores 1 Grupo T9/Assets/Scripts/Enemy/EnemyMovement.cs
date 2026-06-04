@@ -28,33 +28,59 @@ public class EnemyMovement : MonoBehaviour
     private Rigidbody rb;
     private bool isAttacking = false;
     private bool minigameActive = false;
+
     void Start()
     {
         rb = GetComponent<Rigidbody>();
 
         GameObject p = GameObject.FindGameObjectWithTag("Player");
-
         if (p) player = p.transform;
+
         if (waypoints == null || waypoints.Length == 0)
             waypoints = new Transform[] { transform };
 
-        minigamesManager = minigamesManager.GetComponent<MinigamesManager>();
+        if (minigamesManager != null)
+        {
+            minigamesManager = minigamesManager.GetComponent<MinigamesManager>();
+        }
+
+        if (switcher == null)
+        {
+            switcher = Object.FindFirstObjectByType<PlayerSwitcher>();
+        }
     }
 
     void Update()
     {
-
         if (playerDead) { return; }
 
-
-        if (!minigameActive && CanSeePlayer() || CanHearPlayerNearby())
+        if (player == null)
         {
-            float distToPlayer = Vector3.Distance(transform.position, player.position);
+            GameObject p = GameObject.FindGameObjectWithTag("Player");
+            if (p)
+            {
+                player = p.transform;
+            }
+            else
+            {
+                PatrolBehaviour();
+                return;
+            }
+        }
 
+        bool canSee = CanSeePlayer();
+        bool canHear = CanHearPlayerNearby();
+        float distToPlayer = Vector3.Distance(transform.position, player.position);
 
-            if (distToPlayer <= 2f && !isAttacking)
+        bool shouldChase = !minigameActive && (canSee || canHear || (distToPlayer <= 5f && !isAttacking));
+
+        if (shouldChase)
+        {
+            if (distToPlayer <= 2.5f && !isAttacking)
             {
                 isAttacking = true;
+                rb.linearVelocity = Vector3.zero;
+                rb.angularVelocity = Vector3.zero;
                 Debug.Log("Dron interceptado. Iniciando minijuego...");
                 Die();
                 return;
@@ -67,6 +93,11 @@ public class EnemyMovement : MonoBehaviour
             }
         }
 
+        PatrolBehaviour();
+    }
+
+    void PatrolBehaviour()
+    {
         if (waypoints.Length == 0) { return; }
 
         Transform wp = waypoints[nowWaypoint];
@@ -100,7 +131,6 @@ public class EnemyMovement : MonoBehaviour
         if (distance > detectionRange) { return false; }
 
         float angle = Vector3.Angle(transform.forward, toPlayer);
-
         if (angle > fieldOfViewAngle * 0.5f) { return false; }
 
         Vector3 origin = transform.position + Vector3.up * 1f;
@@ -161,10 +191,7 @@ public class EnemyMovement : MonoBehaviour
     void Die()
     {
         if (playerDead) return;
-
-
-        Debug.Log("Dron interceptado. Iniciando secuencia de reparaci�n...");
-
+        Debug.Log("Dron interceptado. Iniciando secuencia de reparacion...");
         TriggerDroneFailure();
     }
 
@@ -174,27 +201,25 @@ public class EnemyMovement : MonoBehaviour
         {
             minigameActive = true;
             minigamesManager.DronFailure();
-
         }
     }
+
     public void ResetEnemy()
     {
         isAttacking = false;
         minigameActive = false;
-        minigamesManager.EndLettersGame();
         nowWaypoint = (nowWaypoint + 1) % waypoints.Length;
     }
+
     void OnDrawGizmosSelected()
     {
         Gizmos.color = Color.yellow;
-
         Gizmos.DrawWireSphere(transform.position, detectionRange);
 
         Vector3 left = Quaternion.Euler(0, -fieldOfViewAngle * 0.5f, 0) * transform.forward;
         Vector3 right = Quaternion.Euler(0, fieldOfViewAngle * 0.5f, 0) * transform.forward;
 
         Gizmos.color = new Color(1f, 0.9f, 0f, 0.4f);
-
         Gizmos.DrawLine(transform.position, transform.position + left * detectionRange);
         Gizmos.DrawLine(transform.position, transform.position + right * detectionRange);
 
