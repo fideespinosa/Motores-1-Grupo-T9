@@ -614,7 +614,7 @@ GameObject:
   - component: {fileID: 98466242}
   m_Layer: 5
   m_Name: Button - Si
-  m_TagString: Untagged
+  m_TagString: Button-Yes
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -6450,11 +6450,11 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::Screen_1
   screensManager: {fileID: 932023463}
-  deployCanvas: {fileID: 0}
-  droneInScene: {fileID: 0}
-  spawnPoint: {fileID: 0}
-  astronautCamera: {fileID: 0}
-  player: {fileID: 0}
+  deployCanvas: {fileID: 497530384}
+  droneInScene: {fileID: 6891182721162927388}
+  spawnPoint: {fileID: 940589765}
+  astronautCamera: {fileID: 1434242620}
+  player: {fileID: 1474393657}
 --- !u!1 &811526787 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: 7730664940197472725, guid: bb128355a4591534f9f1e4410938f472, type: 3}
@@ -7048,7 +7048,7 @@ Transform:
   m_GameObject: {fileID: 940589764}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 2.924, y: 10.97, z: -4.77}
+  m_LocalPosition: {x: 29.2, y: 10.26, z: 2.72}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -9648,7 +9648,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!114 &1303351817
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -10963,12 +10963,12 @@ MonoBehaviour:
   rayDistance: 30
   layerMask:
     serializedVersion: 2
-    m_Bits: 128
+    m_Bits: 160
   minigamesManager: {fileID: 1827134378}
   crosshairImage: {fileID: 1595621970}
   defaultSprite: {fileID: 21300000, guid: d2186a5d7887d9d4a9758d47787e4178, type: 3}
   interactSprite: {fileID: 21300000, guid: 22bbd37d8c4947141ae76554ec0f48c8, type: 3}
-  playerInventory: {fileID: 0}
+  playerInventory: {fileID: 4206315965489988737}
 --- !u!114 &1434242622
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -11233,6 +11233,7 @@ Transform:
   m_ConstrainProportionsScale: 0
   m_Children:
   - {fileID: 1434242617}
+  - {fileID: 2434151236373737278}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 186.4, z: 0}
 --- !u!143 &1474393663
@@ -16810,10 +16811,10 @@ Light:
   serializedVersion: 12
   m_Type: 0
   m_Color: {r: 1, g: 0.95686275, b: 0.8392157, a: 1}
-  m_Intensity: 6
-  m_Range: 30
-  m_SpotAngle: 70
-  m_InnerSpotAngle: 30
+  m_Intensity: 9
+  m_Range: 60
+  m_SpotAngle: 91.546326
+  m_InnerSpotAngle: 51.546295
   m_CookieSize2D: {x: 0.5, y: 0.5}
   m_Shadows:
     m_Type: 0
@@ -17151,8 +17152,8 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 6891182721162927388}
   serializedVersion: 2
-  m_LocalRotation: {x: 0, y: -0.82717866, z: 0, w: 0.56193906}
-  m_LocalPosition: {x: 23.72777, y: 10.238, z: 34.27319}
+  m_LocalRotation: {x: -0, y: -0.5148886, z: -0, w: -0.8572571}
+  m_LocalPosition: {x: -4.738474, y: -12.943999, z: -133.86566}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
@@ -17161,7 +17162,7 @@ Transform:
   - {fileID: 3479207299215000912}
   - {fileID: 8105023022319293347}
   - {fileID: 4962847149238586167}
-  m_Father: {fileID: 0}
+  m_Father: {fileID: 1474393661}
   m_LocalEulerAnglesHint: {x: 0, y: -111.62, z: 0}
 --- !u!114 &2564574156014859735
 MonoBehaviour:
@@ -17749,5 +17750,4 @@ SceneRoots:
   - {fileID: 2008241055}
   - {fileID: 1360484339}
   - {fileID: 940589765}
-  - {fileID: 2434151236373737278}
   - {fileID: 426466984}

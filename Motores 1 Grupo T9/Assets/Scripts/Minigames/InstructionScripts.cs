@@ -11,10 +11,11 @@ public abstract class InstructionsScript : MonoBehaviour
     {
         if (count == 0)
         {
-            //Time.timeScale = 0f;
+            
             Debug.Log("aca estamos");
+/*            Cursor.visible = true;
+            Cursor.lockState = CursorLockMode.None;*/
             InstructionPanel.SetActive(true);
-            Cursor.visible = true;
             count++;
             return true;
         }
@@ -27,7 +28,6 @@ public abstract class InstructionsScript : MonoBehaviour
     }
     public void ContinueButton()
     {
-        //Time.timeScale = 1f;
         InstructionPanel.SetActive(false);
         StartMinigame();
     }

@@ -5,7 +5,6 @@ using UnityEngine;
 public class Screen_1 : MonoBehaviour
 {
     [SerializeField] private ScreensManagerScript screensManager;
-
     [Header("UI Despliegue de Dron (Canvas 3D)")]
     [SerializeField] private Canvas deployCanvas;
 
@@ -18,6 +17,7 @@ public class Screen_1 : MonoBehaviour
     [SerializeField] private GameObject player;
 
     private PlayerSwitcher switcher;
+    
     private bool isDroneDeployed = false;
     private bool isPlayerLooking = false;
 
@@ -73,8 +73,8 @@ public class Screen_1 : MonoBehaviour
             deployCanvas.renderMode = RenderMode.WorldSpace;
             deployCanvas.worldCamera = astronautCamera;
 
-            Cursor.lockState = CursorLockMode.None;
-            Cursor.visible = true;
+           // Cursor.lockState = CursorLockMode.None;
+          //  Cursor.visible = true;
         }
     }
 
@@ -115,8 +115,12 @@ public class Screen_1 : MonoBehaviour
             switcher.AllowSwitching();
             switcher.SetControl(true); // Saltamos a la cámara del dron con su HUD
         }
+        else
+        {
+            Debug.Log("no haay");
+        }
 
-        isDroneDeployed = true;
+            isDroneDeployed = true;
         CanvasOff();
     }
 

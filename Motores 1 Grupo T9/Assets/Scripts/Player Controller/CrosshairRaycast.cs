@@ -50,6 +50,11 @@ public class CrosshairRaycast : MonoBehaviour
                     screensManager.OpenPanelScreen1();
                 }
 
+                if (hit.collider.gameObject.CompareTag("Button-Yes"))
+                {
+                    screensManager.DeployDron();
+                }
+
                 if (hit.collider.gameObject.CompareTag("NextLvl"))
                 {
                     playerInventory.CheckVictory(); 

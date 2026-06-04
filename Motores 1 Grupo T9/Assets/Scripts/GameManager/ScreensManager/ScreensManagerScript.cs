@@ -10,13 +10,16 @@ public class ScreensManagerScript : MonoBehaviour
     public static event Action OnScreenInactive;
     [Header("Screens")]
     [SerializeField] private GameObject Screen1;
-    // Start is called once before the first execution of Update after the MonoBehaviour is created
+    Screen_1 screenFunctions;
+    private void Start()
+    {
+        screenFunctions = Screen1.GetComponent<Screen_1>();
+    }
 
 
     public void NextLevel()
     {
-        // no cambiar de escena en implementacion final, sino que mueve al dron al nuevo nivel.
-        // falta validacion de recursos
+
 
         switch (currentLevel)
         {
@@ -60,6 +63,11 @@ public class ScreensManagerScript : MonoBehaviour
         Cursor.visible = true;
         OnScreenActive?.Invoke();
         screen1Status = true;
+    }
+
+    public void DeployDron()
+    {
+        screenFunctions.OnConfirmDeployment();
     }
     public void ClosePanelScreen1()
     {
