@@ -4978,11 +4978,11 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::Screen_1
   screensManager: {fileID: 1976800636}
-  deployCanvas: {fileID: 0}
-  droneInScene: {fileID: 0}
-  spawnPoint: {fileID: 0}
-  astronautCamera: {fileID: 0}
-  player: {fileID: 0}
+  deployCanvas: {fileID: 1785308951}
+  droneInScene: {fileID: 1882600042}
+  spawnPoint: {fileID: 264252605}
+  astronautCamera: {fileID: 717498092}
+  player: {fileID: 1073564834}
 --- !u!114 &847171926
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -9399,7 +9399,7 @@ SpriteRenderer:
   m_SortingLayer: 0
   m_SortingOrder: 0
   m_MaskInteraction: 0
-  m_Sprite: {fileID: 21300000, guid: f3fbd58ff2f1cc0489f08f7d20569070, type: 3}
+  m_Sprite: {fileID: 21300000, guid: a5541ce74e586e6439f1794387ffa6a0, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
   m_FlipY: 0
