@@ -9276,9 +9276,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: a6d9223cf57b14d488bc43a6093d7f6f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::PlayerSwitcher
+  humanCameraScript: {fileID: 1474393664}
   humanCamera: {fileID: 1434242620}
   droneMovement: {fileID: 8898654158852840253}
-  droneCameraControl: {fileID: 518523350278992282}
+  droneCameraControl: {fileID: 5326829191275646101}
   droneCamera: {fileID: 653986404633663559}
   dronHUD: {fileID: 1654381878}
   playerDialogueHUD: {fileID: 1939576822}
@@ -17002,8 +17003,8 @@ GameObject:
   - component: {fileID: 8426902281995649280}
   - component: {fileID: 653986404633663559}
   - component: {fileID: 7532345919131251138}
-  - component: {fileID: 518523350278992282}
   - component: {fileID: 5326829191275646101}
+  - component: {fileID: 518523350278992282}
   m_Layer: 2
   m_Name: DronCamera
   m_TagString: Untagged
