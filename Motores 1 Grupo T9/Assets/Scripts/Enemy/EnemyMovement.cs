@@ -110,6 +110,7 @@ public class EnemyMovement : MonoBehaviour
         {
             return false;
         }
+
         return true;
     }
 
