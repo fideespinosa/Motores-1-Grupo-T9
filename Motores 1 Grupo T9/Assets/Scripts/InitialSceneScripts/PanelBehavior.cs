@@ -2,21 +2,22 @@ using UnityEngine;
 using UnityEngine.UI;
 using System.Collections;
 using UnityEngine.SceneManagement;
+
 public class PanelBehavior : MonoBehaviour
 {
     [SerializeField] float delayBeforeFade = 5f;
-    [SerializeField]float fadeDuration = 3f;
+    [SerializeField] float fadeDuration = 3f;
     [SerializeField] float audioDuration = 33f;
-
+    [SerializeField] float blackScreenDuration = 3f;
 
     private Image panelImage;
 
     void Start()
     {
         panelImage = GetComponent<Image>();
-        StartCoroutine(FadeOut());
 
-        Invoke(nameof(ChangeScene), audioDuration);
+        StartCoroutine(FadeOut());
+        StartCoroutine(EndSceneSequence());
     }
 
     IEnumerator FadeOut()
@@ -24,7 +25,6 @@ public class PanelBehavior : MonoBehaviour
         yield return new WaitForSeconds(delayBeforeFade);
 
         Color color = panelImage.color;
-
         float timer = 0f;
 
         while (timer < fadeDuration)
@@ -41,13 +41,27 @@ public class PanelBehavior : MonoBehaviour
         panelImage.color = color;
     }
 
-    void ChangeScene()
+    IEnumerator EndSceneSequence()
     {
+        yield return new WaitForSeconds(audioDuration);
+
         Color color = panelImage.color;
+        float timer = 0f;
+
+        while (timer < fadeDuration)
+        {
+            timer += Time.deltaTime;
+
+            color.a = Mathf.Lerp(0f, 1f, timer / fadeDuration);
+            panelImage.color = color;
+
+            yield return null;
+        }
+
         color.a = 1f;
         panelImage.color = color;
 
-        gameObject.SetActive(true);
+        yield return new WaitForSeconds(blackScreenDuration);
 
         SceneManager.LoadScene("SecondScene");
     }
