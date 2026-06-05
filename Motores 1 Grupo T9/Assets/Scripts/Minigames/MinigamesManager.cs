@@ -42,6 +42,11 @@ public class MinigamesManager : MonoBehaviour
         }
         alarmLight.SetActive(true);
         screenWarningImage.SetActive(true);
+
+        if (SFXManager.Instance != null && SFXManager.Instance.Alarm != null)
+        {
+            SFXManager.Instance.Alarm.SetAlarmState(true);
+        }
     }
     public void StartLettersGame()
     {
@@ -65,6 +70,12 @@ public class MinigamesManager : MonoBehaviour
         lettersGame.SetActive(false);
         UnfreezeGame();
         screensManager.ClosePanelScreen1();
+
+        if (SFXManager.Instance != null)
+        {
+            if (SFXManager.Instance.Alarm != null) SFXManager.Instance.Alarm.SetAlarmState(false);
+            if (SFXManager.Instance.Minigame != null) SFXManager.Instance.Minigame.PlayFeedback(true);
+        }
     }
 
     public void UnfreezeGame()
