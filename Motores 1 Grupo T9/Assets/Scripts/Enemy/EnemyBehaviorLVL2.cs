@@ -29,7 +29,7 @@ public class EnemyBehaviorLVL2 : MonoBehaviour
     {
         if (collision.gameObject.CompareTag("Player"))
         {
-            SceneManager.LoadScene("Lose");
+            SceneManager.LoadScene("Game Over - Dron");
         }
     }
     public void StartRunning()

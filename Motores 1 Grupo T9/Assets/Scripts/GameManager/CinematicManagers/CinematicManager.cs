@@ -3,6 +3,7 @@ using UnityEngine;
 
 public class CinematicManager : MonoBehaviour
 {
+    [SerializeField] Transform cameraPlace;
     [SerializeField] Camera playerCamera;
     [SerializeField] Transform monsterViewPoint;
     [SerializeField] EnemyBehaviorLVL2 enemy;
@@ -22,6 +23,7 @@ public class CinematicManager : MonoBehaviour
     {
         if (cinematicPlaying)
             return;
+
         StartCoroutine(MonsterSequence());
     }
 
@@ -29,22 +31,29 @@ public class CinematicManager : MonoBehaviour
     {
         cinematicPlaying = true;
 
-        cameraController.enabled = false;
-
-        Vector3 originalPos = playerCamera.transform.position;
-        Quaternion originalRot = playerCamera.transform.rotation;
+        if (cameraController != null)
+            cameraController.enabled = false;
 
         enemy.StartScreaming();
 
         float t = 0f;
 
+        Vector3 startPos = playerCamera.transform.position;
+        Quaternion startRot = playerCamera.transform.rotation;
+
         while (t < zoomDuration)
         {
             t += Time.deltaTime;
 
-            playerCamera.transform.position = Vector3.Lerp(originalPos, monsterViewPoint.position, t / zoomDuration);
+            playerCamera.transform.position = Vector3.Lerp(
+                startPos,
+                monsterViewPoint.position,
+                t / zoomDuration);
 
-            playerCamera.transform.rotation = Quaternion.Lerp(originalRot,monsterViewPoint.rotation,t / zoomDuration);
+            playerCamera.transform.rotation = Quaternion.Lerp(
+                startRot,
+                monsterViewPoint.rotation,
+                t / zoomDuration);
 
             yield return null;
         }
@@ -57,15 +66,24 @@ public class CinematicManager : MonoBehaviour
         {
             t += Time.deltaTime;
 
-            playerCamera.transform.position =
-                Vector3.Lerp(monsterViewPoint.position,originalPos,t / zoomDuration);
+            playerCamera.transform.position = Vector3.Lerp(
+                monsterViewPoint.position,
+                cameraPlace.position,
+                t / zoomDuration);
 
-            playerCamera.transform.rotation = Quaternion.Lerp(monsterViewPoint.rotation,originalRot, t / zoomDuration);
+            playerCamera.transform.rotation = Quaternion.Lerp(
+                monsterViewPoint.rotation,
+                cameraPlace.rotation,
+                t / zoomDuration);
 
             yield return null;
         }
 
-        cameraController.enabled = true;
+        playerCamera.transform.position = cameraPlace.position;
+        playerCamera.transform.rotation = cameraPlace.rotation;
+
+        if (cameraController != null)
+            cameraController.enabled = true;
 
         enemy.StartRunning();
 
