@@ -94,6 +94,11 @@ public class KeyQueueManager : MonoBehaviour
 
             Debug.Log("Bien! Score: " + currentScore);
 
+            if (SFXManager.Instance != null && SFXManager.Instance.Minigame != null)
+            {
+                SFXManager.Instance.Minigame.PlayFeedback(true);
+            }
+
             UpdateCounter();
 
             if (currentScore >= targetScore)
@@ -109,6 +114,11 @@ public class KeyQueueManager : MonoBehaviour
             Debug.Log("Error! Reiniciando racha");
             currentScore = 0;
             UpdateCounter();
+
+            if (SFXManager.Instance != null && SFXManager.Instance.Minigame != null)
+            {
+                SFXManager.Instance.Minigame.PlayFeedback(false);
+            }
         }
     }
 
