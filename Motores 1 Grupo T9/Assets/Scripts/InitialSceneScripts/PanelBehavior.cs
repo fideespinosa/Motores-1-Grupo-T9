@@ -14,6 +14,8 @@ public class PanelBehavior : MonoBehaviour
 
     void Start()
     {
+        Cursor.lockState = CursorLockMode.Locked;
+        Cursor.visible = false;
         panelImage = GetComponent<Image>();
 
         StartCoroutine(FadeOut());
