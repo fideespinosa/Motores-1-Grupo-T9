@@ -1512,7 +1512,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!114 &203844587
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -9115,9 +9115,9 @@ Light:
   m_Type: 0
   m_Color: {r: 1, g: 0.95686275, b: 0.8392157, a: 1}
   m_Intensity: 6
-  m_Range: 30
-  m_SpotAngle: 70
-  m_InnerSpotAngle: 30
+  m_Range: 60
+  m_SpotAngle: 91.546326
+  m_InnerSpotAngle: 51.546295
   m_CookieSize2D: {x: 0.5, y: 0.5}
   m_Shadows:
     m_Type: 0
@@ -11970,11 +11970,11 @@ Transform:
 SceneRoots:
   m_ObjectHideFlags: 0
   m_Roots:
+  - {fileID: 203844589}
   - {fileID: 961739753}
   - {fileID: 674269891}
   - {fileID: 1073564835}
   - {fileID: 1882600051}
-  - {fileID: 203844589}
   - {fileID: 683083108}
   - {fileID: 738479841}
   - {fileID: 9492428}
