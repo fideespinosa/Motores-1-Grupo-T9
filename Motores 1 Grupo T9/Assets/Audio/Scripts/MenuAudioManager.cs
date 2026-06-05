@@ -1,110 +1,61 @@
-using Unity.VisualScripting;
-using System.Collections;
 using UnityEngine;
 
-public class MenuAudioManager : MonoBehaviour
+public class UIMenuAudioManager : MonoBehaviour
 {
-    [Header("Canales de Audio")]
-    public AudioSource musicChannel;
-    public AudioSource uiChannel;
-    public AudioSource hoverChannel;
-    [Range(0f, 1f)]
-    public float uiVolume;
+ 
+    public static UIMenuAudioManager Instance { get; private set; }
 
-    [Header("Clips")]
-    public AudioClip selectUi;
-    public AudioClip acceptUi;
-    public AudioClip exitUi;
-    public AudioClip hoverUi;
-    public AudioClip gameMusic;
+    [Header("UI")]
+    [SerializeField] private AudioSource uiSource;
+    [SerializeField] private AudioClip okClip;
+    [SerializeField] private AudioClip errClip;
+    [SerializeField] private AudioClip openPanelClip;
 
-    private Coroutine fadeCoroutine;    
-    void Start()
+    private void Awake()
     {
-        if (musicChannel != null && gameMusic != null)
+        if (Instance != null && Instance != this)
         {
-            musicChannel.PlayOneShot(gameMusic);
+            Destroy(gameObject);
         }
-
-        if (hoverChannel != null)
+        else
         {
-            hoverChannel.volume = 0f;
-            hoverChannel.loop = true;
-            hoverChannel.clip = hoverUi;
-            hoverChannel.ignoreListenerPause = true;
+            Instance = this;
         }
     }
 
-    private void LastingAudioClip(AudioClip Click)
+    public void PlayClick()
     {
-        if (Click == null) return;
-
-        GameObject eternalAudio = new GameObject("eternal_ " + Click.name);
-        DontDestroyOnLoad(eternalAudio);
-
-        AudioSource eternalSource = eternalAudio.AddComponent<AudioSource>();
-        eternalSource.clip = Click;
-        eternalSource.ignoreListenerPause = true;
-
-        eternalSource.Play();
-
-        Destroy(eternalAudio, Click.length);
-    }
-
-    public void PlayClickSelect()
-    {
-        if (uiChannel != null && selectUi != null)
+        if (uiSource != null && okClip != null)
         {
-            uiChannel.PlayOneShot(selectUi);
-
+            uiSource.PlayOneShot(okClip);
         }
     }
 
-    public void PlayClickAccept()
+    public void PlayPanelOpen()
     {
-        LastingAudioClip(acceptUi);
-    }
-
-    public void PlayClickExit()
-    {
-        LastingAudioClip(exitUi);
-    }
-
-    public void StartHover()
-    {
-        if (hoverChannel == null) return;
-
-        if (fadeCoroutine != null) StopCoroutine(fadeCoroutine);
-
-        if (!hoverChannel.isPlaying) hoverChannel.Play();
-
-        fadeCoroutine = StartCoroutine(MakeFade(uiVolume)); 
-    }
-
-    public void StopHover()
-    {
-        if (hoverChannel == null) return;
-
-        if (fadeCoroutine != null) StopCoroutine(fadeCoroutine);
-
-        fadeCoroutine = StartCoroutine(MakeFade(0f)); 
-    }
-
-    private IEnumerator MakeFade(float destinyVolume)
-    {
-        float fadeTime = 0.3f; 
-        float volumenInicial = hoverChannel.volume;
-        float time = 0;
-
-        while (time < fadeTime)
+        if (uiSource != null && openPanelClip != null)
         {
-            time += Time.unscaledDeltaTime;
-            hoverChannel.volume = Mathf.Lerp(volumenInicial, destinyVolume, time / fadeTime);
-            yield return null;
+            uiSource.PlayOneShot(openPanelClip);
         }
+    }
 
-        hoverChannel.volume = destinyVolume;
-        if (destinyVolume <= 0f) hoverChannel.Stop();
+    public void ErrorPlay()
+    {
+        if (uiSource != null && errClip != null)
+        {
+            uiSource.PlayOneShot(errClip);
+        }
+    }
+
+    public void TogglePauseMenu(bool isPaused)
+    {
+        if (isPaused)
+        {
+            PlayPanelOpen(); 
+        }
+        else
+        {
+            PlayClick(); 
+        }
     }
 }
-

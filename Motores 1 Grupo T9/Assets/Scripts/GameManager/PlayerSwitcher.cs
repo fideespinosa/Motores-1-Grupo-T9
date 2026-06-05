@@ -8,6 +8,7 @@ public class PlayerSwitcher : MonoBehaviour
     public MonoBehaviour droneMovement;
     public MonoBehaviour droneCameraControl;
     public Camera droneCamera;
+    public DroneEngineAudio droneAudioScript;   
 
 
     private bool controllingDrone = false;
@@ -27,6 +28,7 @@ public class PlayerSwitcher : MonoBehaviour
         if (droneCameraControl != null) droneCameraControl.enabled = false;
         if (dronHUD != null) dronHUD.gameObject.SetActive(false);
 
+        if (droneAudioScript != null) droneAudioScript.enabled = false;
         // 3. Encendemos los ojos del astronauta de forma explícita
         if (humanCamera != null)
         {
@@ -38,6 +40,12 @@ public class PlayerSwitcher : MonoBehaviour
         // 4. Aseguramos el cursor inicial en primera persona
         Cursor.lockState = CursorLockMode.Locked;
         Cursor.visible = false;
+
+        if (droneMovement != null)
+        {
+            var droneEngineScript = droneMovement.GetComponent<DroneEngineAudio>();
+            if (droneEngineScript != null) droneEngineScript.enabled = false;
+        }
     }
 
     void Update()
@@ -78,7 +86,8 @@ public class PlayerSwitcher : MonoBehaviour
         var droneAudio = droneCamera != null ? droneCamera.GetComponent<AudioListener>() : null;
         if (droneAudio != null) droneAudio.enabled = isDrone;
 
-        // Agus: agrego cambio de ambientes
+        if (droneAudioScript != null) droneAudioScript.enabled = isDrone;
+
         if (AudioAmbienceController.Instance != null)
         {
             if (isDrone)
