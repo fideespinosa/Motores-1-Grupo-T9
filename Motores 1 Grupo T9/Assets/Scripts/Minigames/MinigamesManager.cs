@@ -70,6 +70,16 @@ public class MinigamesManager : MonoBehaviour
         lettersGame.SetActive(false);
         UnfreezeGame();
         screensManager.ClosePanelScreen1();
+        
+        
+        if (UnityEngine.SceneManagement.SceneManager.GetActiveScene().name == "Level1")
+        {
+                foreach (EnemyMovement enemy in Object.FindObjectsByType<EnemyMovement>(FindObjectsSortMode.None))
+            {
+                enemy.ResetEnemy();
+            }
+        }
+
 
         if (SFXManager.Instance != null)
         {

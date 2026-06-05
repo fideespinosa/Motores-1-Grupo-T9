@@ -28,6 +28,8 @@ public class EnemyMovement : MonoBehaviour
     private Rigidbody rb;
     private bool isAttacking = false;
     private bool minigameActive = false;
+    private float resetCooldown = 0f;
+    private const float resetCooldownTime = 5f;
 
     void Start()
     {
@@ -53,6 +55,13 @@ public class EnemyMovement : MonoBehaviour
     void Update()
     {
         if (playerDead) { return; }
+
+        if (resetCooldown > 0f)
+        {
+            resetCooldown -= Time.deltaTime;
+            PatrolBehaviour();
+            return;
+        }
 
         if (player == null)
         {
@@ -208,6 +217,7 @@ public class EnemyMovement : MonoBehaviour
     {
         isAttacking = false;
         minigameActive = false;
+        resetCooldown = resetCooldownTime;
         nowWaypoint = (nowWaypoint + 1) % waypoints.Length;
     }
 
