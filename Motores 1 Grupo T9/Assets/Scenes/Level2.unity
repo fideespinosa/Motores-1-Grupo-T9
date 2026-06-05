@@ -13436,10 +13436,13 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c1c7962687cda8540af995041d36b35a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::CameraController
+  droneBody: {fileID: 1882600051}
   gimbalY: {fileID: 768618631}
   pivotX: {fileID: 946133730}
-  sensitivity: 200
-  clampAngle: 70
+  sensitivity: 100
+  clampAngle: 40
+  cameraYawLimit: 25
+  droneTurnSpeed: 100
 --- !u!114 &2030045928
 MonoBehaviour:
   m_ObjectHideFlags: 0

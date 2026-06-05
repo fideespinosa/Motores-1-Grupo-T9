@@ -2,51 +2,65 @@ using UnityEngine;
 
 public class CameraController : MonoBehaviour
 {
-    [Header("Configuración de Rotación")]
-    public Transform gimbalY; 
-    public Transform pivotX;  
+    [Header("Referencias")]
+    public Transform droneBody;
+    public Transform gimbalY;
+    public Transform pivotX;
 
+    [Header("Configuración")]
     public float sensitivity = 200f;
-    public float clampAngle = 70f; 
+    public float clampAngle = 70f;
 
-    private float rotY = 0f;
-    private float rotX = 0f;
+    [Header("Límite de cámara")]
+    public float cameraYawLimit = 45f;
+    public float droneTurnSpeed = 120f;
 
-    void Awake()
-    {
-        Debug.Log("Awake CameraController en: " + gameObject.name);
-    }
+    private float cameraYaw = 0f;
+    private float cameraPitch = 0f;
+
     void Start()
     {
-        
         Cursor.lockState = CursorLockMode.Locked;
     }
 
     void Update()
     {
-       // Debug.Log("Update " + gameObject.name + " ID:" + GetInstanceID());
         if (MenuPausa.gamePaused)
-        {
             return;
-        }
 
         float mouseX = Input.GetAxis("Mouse X") * sensitivity * Time.deltaTime;
         float mouseY = Input.GetAxis("Mouse Y") * sensitivity * Time.deltaTime;
 
-        rotY += mouseX;
-        rotX -= mouseY;
+        cameraPitch -= mouseY;
+        cameraPitch = Mathf.Clamp(cameraPitch, -clampAngle, clampAngle);
 
-        
-        rotX = Mathf.Clamp(rotX, -clampAngle, clampAngle);
+        float nextYaw = cameraYaw + mouseX;
 
-        
-        gimbalY.localRotation = Quaternion.Slerp(gimbalY.localRotation, Quaternion.Euler(0f, rotY, 0f), 0.1f);
-        pivotX.localRotation = Quaternion.Slerp(pivotX.localRotation, Quaternion.Euler(rotX, 0f, 0f), 0.1f);
+        if (Mathf.Abs(nextYaw) <= cameraYawLimit)
+        {
+            cameraYaw = nextYaw;
+        }
+        else
+        {
+            float direction = Mathf.Sign(mouseX);
 
-    }
+            droneBody.Rotate(
+                Vector3.up,
+                direction * droneTurnSpeed * Time.deltaTime,
+                Space.World
+            );
+        }
 
-    void OnDisable()
-    {
-        Debug.Log("OnDisable CameraController en: " + gameObject.name);
+        gimbalY.localRotation = Quaternion.Slerp(
+            gimbalY.localRotation,
+            Quaternion.Euler(0f, cameraYaw, 0f),
+            10f * Time.deltaTime
+        );
+
+        pivotX.localRotation = Quaternion.Slerp(
+            pivotX.localRotation,
+            Quaternion.Euler(cameraPitch, 0f, 0f),
+            10f * Time.deltaTime
+        );
     }
 }
