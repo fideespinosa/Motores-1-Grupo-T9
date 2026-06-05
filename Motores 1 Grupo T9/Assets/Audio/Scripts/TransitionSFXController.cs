@@ -7,6 +7,7 @@ public class TransitionSFXController : MonoBehaviour
 
     [Tooltip("ToDron")]
     [SerializeField] private AudioClip toDroneClip;
+    [SerializeField] private AudioClip ignitionClip;
 
     [Tooltip("ToShip")]
     [SerializeField] private AudioClip toShipClip;
@@ -15,11 +16,21 @@ public class TransitionSFXController : MonoBehaviour
     {
         if (transitionSource == null) return;
 
-        AudioClip clipToPlay = isGoingToDrone ? toDroneClip : toShipClip;
+       // AudioClip clipToPlay = isGoingToDrone ? toDroneClip : toShipClip;
 
-        if (clipToPlay != null)
+        if (isGoingToDrone == true && ignitionClip != null)
         {
-            transitionSource.PlayOneShot(clipToPlay);
+            transitionSource.PlayOneShot(ignitionClip);
+
+            if (toDroneClip != null)
+            {
+                transitionSource.PlayOneShot(toDroneClip);
+            }
+        }
+
+        if (isGoingToDrone == false && toShipClip != null)
+        {
+            transitionSource.PlayOneShot(toShipClip);
         }
     }
 }

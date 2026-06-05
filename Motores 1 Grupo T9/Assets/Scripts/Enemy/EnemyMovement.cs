@@ -31,9 +31,13 @@ public class EnemyMovement : MonoBehaviour
     private float resetCooldown = 0f;
     private const float resetCooldownTime = 5f;
 
+    private MonsterAudioController audioController;
+    private bool wasChasing = false;
+
     void Start()
     {
         rb = GetComponent<Rigidbody>();
+        audioController = GetComponent<MonsterAudioController>();
 
         GameObject p = GameObject.FindGameObjectWithTag("Player");
         if (p) player = p.transform;
@@ -83,10 +87,29 @@ public class EnemyMovement : MonoBehaviour
 
         bool shouldChase = !minigameActive && (canSee || canHear || (distToPlayer <= 5f && !isAttacking));
 
+        if (audioController != null)
+        {
+            
+            if (shouldChase && !wasChasing)
+            {
+                audioController.PlayRoar();
+
+                GameMusicManager.Instance.SetCombatState(true); 
+            }
+            
+            else if (!shouldChase && wasChasing)
+            {
+                GameMusicManager.Instance.SetCombatState(false);
+            }
+        }
+
+        wasChasing = shouldChase;
+
         if (shouldChase)
         {
             if (distToPlayer <= 2.5f && !isAttacking)
             {
+                if (audioController != null) audioController.PlayAttackSound();
                 isAttacking = true;
                 rb.linearVelocity = Vector3.zero;
                 rb.angularVelocity = Vector3.zero;
@@ -219,6 +242,9 @@ public class EnemyMovement : MonoBehaviour
         minigameActive = false;
         resetCooldown = resetCooldownTime;
         nowWaypoint = (nowWaypoint + 1) % waypoints.Length;
+
+        wasChasing = false;
+       
     }
 
     void OnDrawGizmosSelected()
