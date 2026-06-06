@@ -8,12 +8,15 @@ public class EnemyBehaviorLVL2 : MonoBehaviour
     [SerializeField] Transform player;
     [SerializeField] Animator animator;
     [SerializeField] GameObject staticImage;
+    [SerializeField] MonsterAudioController audioController;
+
 
     bool run = false;
 
     void Start()
     {
         agent = GetComponent<NavMeshAgent>();
+        audioController = GetComponent<MonsterAudioController>();
     }
 
     void Update()
@@ -43,6 +46,16 @@ public class EnemyBehaviorLVL2 : MonoBehaviour
     {
 
         animator.SetBool("StartScreaming", true);
+        
+        if (audioController != null)
+        {
+            audioController.PlayRoar();
+        }
+
+        if (GameMusicManager.Instance != null)
+        {
+            GameMusicManager.Instance.SetCombatState(true);
+        }
     }
 
     public void Run()
