@@ -16,6 +16,8 @@ public class PlayerSwitcher : MonoBehaviour
     public Canvas dronHUD;
     public Canvas playerDialogueHUD;
 
+
+
     void Start()
     {
         // 1. Bloqueamos el Tab al arrancar el mapa
@@ -28,7 +30,15 @@ public class PlayerSwitcher : MonoBehaviour
         if (droneCameraControl != null) droneCameraControl.enabled = false;
         if (dronHUD != null) dronHUD.gameObject.SetActive(false);
 
-        if (droneAudioScript != null) droneAudioScript.enabled = false;
+        if (droneAudioScript != null)
+        {
+            droneAudioScript.enabled = false;
+        }
+        else if (droneMovement != null)
+        {
+            var fallbackAudio = droneMovement.GetComponent<DroneEngineAudio>();
+            if (fallbackAudio != null) fallbackAudio.enabled = false;
+        }
         // 3. Encendemos los ojos del astronauta de forma explícita
         if (humanCamera != null)
         {
@@ -41,11 +51,6 @@ public class PlayerSwitcher : MonoBehaviour
         Cursor.lockState = CursorLockMode.Locked;
         Cursor.visible = false;
 
-        if (droneMovement != null)
-        {
-            var droneEngineScript = droneMovement.GetComponent<DroneEngineAudio>();
-            if (droneEngineScript != null) droneEngineScript.enabled = false;
-        }
     }
 
     void Update()
@@ -86,7 +91,15 @@ public class PlayerSwitcher : MonoBehaviour
         var droneAudio = droneCamera != null ? droneCamera.GetComponent<AudioListener>() : null;
         if (droneAudio != null) droneAudio.enabled = isDrone;
 
-        if (droneAudioScript != null) droneAudioScript.enabled = isDrone;
+        if (droneAudioScript != null)
+        {
+            droneAudioScript.enabled = isDrone;
+        }
+        else if (droneMovement != null) 
+        {
+            var fallbackAudio = droneMovement.GetComponent<DroneEngineAudio>();
+            if (fallbackAudio != null) fallbackAudio.enabled = isDrone;
+        }
 
         if (AudioAmbienceController.Instance != null)
         {
