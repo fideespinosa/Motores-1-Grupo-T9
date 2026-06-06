@@ -5,7 +5,7 @@ public class DroneEngineAudio : MonoBehaviour
    
     [SerializeField] private Rigidbody droneRigidbody;
 
-    [Header("(Motor / Zumbido")]
+    [Header("Motor / Zumbido")]
     [SerializeField] private AudioSource engineSource;
     [SerializeField] private float minPitch = 0.8f;
     [SerializeField] private float maxPitch = 2.0f;
@@ -25,6 +25,11 @@ public class DroneEngineAudio : MonoBehaviour
     [SerializeField] private AudioClip impactClips;
     [SerializeField] private float collisionThreshold = 1.5f;
 
+
+    private void Start()
+    {
+        Rigidbody droneRigidbody = GetComponent<Rigidbody>();
+    }
     private void Update()
     {
         if (droneRigidbody == null) return;
@@ -39,7 +44,8 @@ public class DroneEngineAudio : MonoBehaviour
         if (frictionSource != null)
             frictionSource.volume = Mathf.Lerp(0f, maxFrictionVolume, speedNormalized);
 
-      
+        Debug.Log($"Velocidad: {currentSpeed} | ¿Suena el motor?: {engineSource.isPlaying} | Volumen: {engineSource.volume}");
+
         if (rotationSource != null)
         {
             

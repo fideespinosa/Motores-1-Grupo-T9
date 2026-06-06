@@ -8,6 +8,7 @@ public class DroneMagnet : MonoBehaviour
     [SerializeField] private LayerMask groundLayer;
     [SerializeField] private float magnetForce = 8f; 
     [SerializeField] private float maxDistance = 1.2f;
+    [SerializeField] private DroneEngineAudio droneAudioScript;
 
     void Start()
     {
