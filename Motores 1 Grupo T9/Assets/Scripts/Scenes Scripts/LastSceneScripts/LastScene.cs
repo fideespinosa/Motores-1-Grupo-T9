@@ -1,3 +1,4 @@
+using System;
 using System.Collections;
 using TMPro;
 using UnityEngine;
@@ -6,53 +7,57 @@ using UnityEngine.UI;
 public class EndingSequence : MonoBehaviour
 {
     [Header("Referencias")]
-    [SerializeField] private TextMeshProUGUI firstText;
-    [SerializeField] private Image continueImage;
-
-    [SerializeField] private Button menuButton;
-    [SerializeField] private CanvasGroup buttonCanvasGroup;
+    [SerializeField] TextMeshProUGUI firstText;
+    [SerializeField] Image continueImage;
+    [SerializeField] Button menuButton;
+    [SerializeField] CanvasGroup buttonCanvasGroup;
 
     [Header("Tiempos")]
-    [SerializeField] private float initialDelay = 2f;
-    [SerializeField] private float fadeDuration = 1f;
-    [SerializeField] private float firstTextVisibleTime = 3f;
-    [SerializeField] private float continueDelay = 1f;
-    [SerializeField] private float buttonDelay = 3f;
+    [SerializeField] float sequenceStartDelay = 67f;
+    [SerializeField] float initialDelay = 2f;
+    [SerializeField] float fadeDuration = 1f;
+    [SerializeField] float firstTextVisibleTime = 3f;
+    [SerializeField] float continueDelay = 1f;
+    [SerializeField] float buttonDelay = 3f;
 
     private void Start()
     {
         Cursor.lockState = CursorLockMode.Locked;
         Cursor.visible = false;
 
-        SetTextAlpha(firstText, 0);
-        SetImageAlpha(continueImage, 0);
+        SetGraphicAlpha(firstText, 0f);
+        SetGraphicAlpha(continueImage, 0f);
 
-        buttonCanvasGroup.alpha = 0;
+        buttonCanvasGroup.alpha = 0f;
         menuButton.interactable = false;
 
         StartCoroutine(Sequence());
-    }
 
+
+    }
     private IEnumerator Sequence()
     {
+        yield return new WaitForSeconds(sequenceStartDelay);
         yield return new WaitForSeconds(initialDelay);
 
-        yield return FadeText(firstText, 0, 1);
+        yield return Fade(0f, 1f, alpha => SetGraphicAlpha(firstText, alpha));
         yield return new WaitForSeconds(firstTextVisibleTime);
-        yield return FadeText(firstText, 1, 0);
+        yield return Fade(1f, 0f, alpha => SetGraphicAlpha(firstText, alpha));
 
         yield return new WaitForSeconds(continueDelay);
 
-        yield return FadeImage(continueImage, 0, 1);
+        yield return Fade(0f, 1f, alpha => SetGraphicAlpha(continueImage, alpha));
 
         yield return new WaitForSeconds(buttonDelay);
 
-        yield return FadeCanvasGroup(buttonCanvasGroup, 0, 1);
+        yield return Fade(0f, 1f, alpha => buttonCanvasGroup.alpha = alpha);
+
+        Cursor.visible = true;
+        Cursor.lockState = CursorLockMode.None;
 
         menuButton.interactable = true;
     }
-
-    private IEnumerator FadeText(TextMeshProUGUI text, float startAlpha, float endAlpha)
+    private IEnumerator Fade(float startAlpha, float endAlpha, Action<float> setAlpha)
     {
         float elapsed = 0f;
 
@@ -60,61 +65,18 @@ public class EndingSequence : MonoBehaviour
         {
             elapsed += Time.deltaTime;
 
-            SetTextAlpha(text,
-                Mathf.Lerp(startAlpha, endAlpha, elapsed / fadeDuration));
+            setAlpha(Mathf.Lerp(startAlpha, endAlpha, elapsed / fadeDuration));
 
             yield return null;
         }
 
-        SetTextAlpha(text, endAlpha);
+        setAlpha(endAlpha);
     }
-
-    private IEnumerator FadeImage(Image image, float startAlpha, float endAlpha)
+    private void SetGraphicAlpha(Graphic graphic, float alpha)
     {
-        float elapsed = 0f;
-
-        while (elapsed < fadeDuration)
-        {
-            elapsed += Time.deltaTime;
-
-            SetImageAlpha(image,
-                Mathf.Lerp(startAlpha, endAlpha, elapsed / fadeDuration));
-
-            yield return null;
-        }
-
-        SetImageAlpha(image, endAlpha);
-    }
-
-    private IEnumerator FadeCanvasGroup(CanvasGroup canvasGroup, float startAlpha, float endAlpha)
-    {
-        float elapsed = 0f;
-
-        while (elapsed < fadeDuration)
-        {
-            elapsed += Time.deltaTime;
-
-            canvasGroup.alpha =
-                Mathf.Lerp(startAlpha, endAlpha, elapsed / fadeDuration);
-
-            yield return null;
-        }
-        Cursor.visible = true;
-        Cursor.lockState = CursorLockMode.None;
-        canvasGroup.alpha = endAlpha;
-    }
-
-    private void SetTextAlpha(TextMeshProUGUI text, float alpha)
-    {
-        Color color = text.color;
+        Color color = graphic.color;
         color.a = alpha;
-        text.color = color;
+        graphic.color = color;
     }
 
-    private void SetImageAlpha(Image image, float alpha)
-    {
-        Color color = image.color;
-        color.a = alpha;
-        image.color = color;
-    }
 }
