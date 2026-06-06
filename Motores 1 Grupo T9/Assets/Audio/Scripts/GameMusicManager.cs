@@ -9,6 +9,7 @@ public class GameMusicManager : MonoBehaviour
     [Header("Mixer y Snapshots")]
     public AudioMixerSnapshot exploreSnapshot;
     public AudioMixerSnapshot combatSnapshot;
+    [SerializeField] private AudioMixer mainMixer;
     public float transitionTime = 2f; 
 
     [Header("Música de Exploración")]
@@ -22,6 +23,18 @@ public class GameMusicManager : MonoBehaviour
     public AudioClip combatClip;
 
     private bool isCombatActive = false;
+
+    [Header(" Reverb")]
+
+    [SerializeField] private string reverbParamName = "MyExposedParam4";
+    
+    [SerializeField] private float normalReverb = 0f;
+   
+    [SerializeField] private float combatReverb = -80f;
+
+    
+    private Coroutine lowpassCoroutine;
+    private Coroutine reverbCoroutine;
 
     void Awake()
     {
@@ -37,6 +50,15 @@ public class GameMusicManager : MonoBehaviour
         exploreSnapshot.TransitionTo(0.1f);
 
         StartCoroutine(RutinaExploracionEsporadica());
+
+        if (mainMixer != null)
+        {
+            
+            mainMixer.SetFloat(reverbParamName, normalReverb);
+           
+        }
+
+
     }
 
     private IEnumerator RutinaExploracionEsporadica()
@@ -74,12 +96,39 @@ public class GameMusicManager : MonoBehaviour
             }
 
             combatSnapshot.TransitionTo(transitionTime);
+
+            if (reverbCoroutine != null) StopCoroutine(reverbCoroutine);
+            reverbCoroutine = StartCoroutine(LerpParameter(reverbParamName, combatReverb, transitionTime));
         }
         else
         {
             exploreSnapshot.TransitionTo(transitionTime);
             Invoke(nameof(StopCombatMusic), transitionTime);
+            if (reverbCoroutine != null) StopCoroutine(reverbCoroutine);
+            reverbCoroutine = StartCoroutine(LerpParameter(reverbParamName, normalReverb, transitionTime));
+
         }
+    }
+
+    private IEnumerator LerpParameter(string paramName, float targetValue, float duration)
+    {
+        if (mainMixer == null) yield break;
+
+        float currentValue;
+        mainMixer.GetFloat(paramName, out currentValue);
+
+        float time = 0f;
+
+        while (time < duration)
+        {
+            time += Time.deltaTime;
+            float newValue = Mathf.Lerp(currentValue, targetValue, time / duration);
+            mainMixer.SetFloat(paramName, newValue);
+            yield return null;
+        }
+
+        
+        mainMixer.SetFloat(paramName, targetValue);
     }
 
     private void StopCombatMusic()
