@@ -9,7 +9,6 @@ public class FinalZone : MonoBehaviour
         specialResource = specialResource.GetComponent<SpecialResourceEvent>();
     }
 
-    // Update is called once per frame
     void Update()
     {
         
