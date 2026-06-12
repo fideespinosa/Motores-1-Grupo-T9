@@ -20,12 +20,14 @@ public class DroneController : MonoBehaviour
     [SerializeField] private LayerMask groundLayer;
     private Vector2 inputMove;
 
+    RigidbodyConstraints originalConstraints;
+
     void Start()
     {
         rb = GetComponent<Rigidbody>();
 
-        
         rb.centerOfMass = customCenterOfMass;
+        originalConstraints = rb.constraints;
     }
 
     void Update()
@@ -61,6 +63,17 @@ public class DroneController : MonoBehaviour
         ApplyGiroscopicStabiliy();
     }
 
+    public void FreezeDrone()
+    {
+        rb.linearVelocity = Vector3.zero;
+        rb.angularVelocity = Vector3.zero;
+        rb.constraints = RigidbodyConstraints.FreezeAll;
+    }
+
+    public void UnfreezeDrone()
+    {
+        rb.constraints = originalConstraints;
+    }
     private void ApplyGiroscopicStabiliy()
     {
         

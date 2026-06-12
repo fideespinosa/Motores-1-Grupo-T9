@@ -44,7 +44,6 @@ public class EnemyBehaviorLVL2 : MonoBehaviour
 
     public void StartScreaming()
     {
-
         animator.SetBool("StartScreaming", true);
         
         if (audioController != null)

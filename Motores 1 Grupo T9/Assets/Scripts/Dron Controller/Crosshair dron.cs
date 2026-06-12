@@ -27,6 +27,7 @@ public class Crosshairdron : MonoBehaviour
                 if (hit.collider.gameObject.CompareTag("EnemyLVL2") && !enemyDetected)
                 {
                  enemyDetected = true;
+                Debug.Log("?????????????????????");
                  cinematicManager.StartMonsterCinematic();
                 }
 

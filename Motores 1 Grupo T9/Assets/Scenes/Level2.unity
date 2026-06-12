@@ -1938,7 +1938,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!114 &203844587
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -9835,6 +9835,7 @@ MonoBehaviour:
   enemy: {fileID: 1189110824}
   zoomDuration: 0.5
   monsterViewTime: 1.5
+  dronScript: {fileID: 1882600046}
 --- !u!1 &1228137634
 GameObject:
   m_ObjectHideFlags: 0
@@ -13276,7 +13277,8 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: "Se ha detectado un material no identificado, podr\xEDa ser de utilidad:"
+  m_text: Se ha detectado un material no identificado, encuentralo y traelo a la
+    nave.
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 9a80eaff267ac5c45921eb84943b2095, type: 2}
   m_sharedMaterial: {fileID: -4913511322303963329, guid: 9a80eaff267ac5c45921eb84943b2095, type: 2}
@@ -13960,7 +13962,7 @@ Transform:
   m_GameObject: {fileID: 1882600042}
   serializedVersion: 2
   m_LocalRotation: {x: -0, y: 0.82303715, z: -0, w: -0.5679875}
-  m_LocalPosition: {x: 122.384, y: 7.807, z: -62.324}
+  m_LocalPosition: {x: 26.64, y: 1.82, z: -63.37}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
@@ -15452,7 +15454,7 @@ Transform:
   m_GameObject: {fileID: 2067049498}
   serializedVersion: 2
   m_LocalRotation: {x: -0, y: -0.7018702, z: -0, w: 0.71230495}
-  m_LocalPosition: {x: 124.22, y: 6.2, z: -62.35}
+  m_LocalPosition: {x: 28.35, y: 2.03, z: -63.78}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []

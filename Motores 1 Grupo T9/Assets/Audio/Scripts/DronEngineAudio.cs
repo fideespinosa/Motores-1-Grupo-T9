@@ -44,7 +44,7 @@ public class DroneEngineAudio : MonoBehaviour
         if (frictionSource != null)
             frictionSource.volume = Mathf.Lerp(0f, maxFrictionVolume, speedNormalized);
 
-        Debug.Log($"Velocidad: {currentSpeed} | ¿Suena el motor?: {engineSource.isPlaying} | Volumen: {engineSource.volume}");
+       // Debug.Log($"Velocidad: {currentSpeed} | ¿Suena el motor?: {engineSource.isPlaying} | Volumen: {engineSource.volume}");
 
         if (rotationSource != null)
         {
