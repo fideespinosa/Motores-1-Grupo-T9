@@ -20,6 +20,7 @@ public class EnemyMovement : MonoBehaviour
     [Header("Referencias de Eventos")]
     public PlayerSwitcher switcher;
     public MinigamesManager minigamesManager;
+    [SerializeField] private Transform spawnPoint;
 
     private bool playerDead = false;
     private int nowWaypoint = 0;
@@ -30,7 +31,6 @@ public class EnemyMovement : MonoBehaviour
     private bool minigameActive = false;
     private float resetCooldown = 0f;
     private const float resetCooldownTime = 5f;
-
     private MonsterAudioController audioController;
     private bool wasChasing = false;
 
@@ -223,6 +223,7 @@ public class EnemyMovement : MonoBehaviour
     void Die()
     {
         if (playerDead) return;
+        RestartPatrol();
         Debug.Log("Dron interceptado. Iniciando secuencia de reparacion...");
         TriggerDroneFailure();
     }
@@ -244,7 +245,18 @@ public class EnemyMovement : MonoBehaviour
         nowWaypoint = (nowWaypoint + 1) % waypoints.Length;
 
         wasChasing = false;
-       
+    }
+
+    public void RestartPatrol()
+    {
+        rb.linearVelocity = Vector3.zero;
+        rb.angularVelocity = Vector3.zero;
+
+        rb.position = spawnPoint.position;
+        rb.rotation = spawnPoint.rotation;
+
+        nowWaypoint = 0;
+        waitTimer = 0f;
     }
 
     void OnDrawGizmosSelected()
@@ -272,4 +284,5 @@ public class EnemyMovement : MonoBehaviour
             }
         }
     }
+
 }
