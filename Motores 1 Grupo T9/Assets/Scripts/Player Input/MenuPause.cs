@@ -1,10 +1,14 @@
 using UnityEngine;
+using UnityEngine.Audio;
 using UnityEngine.SceneManagement;
 
 public class MenuPausa : MonoBehaviour
 {
     [Header("Interfaz")]
-    public GameObject panelPause; 
+    public GameObject panelPause;
+
+    [SerializeField] AudioMixerSnapshot pauseSnapshot;
+    [SerializeField] AudioMixerSnapshot normalState;
 
     public static bool gamePaused = false;
 
@@ -30,6 +34,7 @@ public class MenuPausa : MonoBehaviour
         panelPause.SetActive(true);
         Time.timeScale = 0f; 
         gamePaused = true;
+        pauseSnapshot.TransitionTo(0.5f);
 
         Cursor.visible = true;
         Cursor.lockState = CursorLockMode.None;
@@ -40,6 +45,7 @@ public class MenuPausa : MonoBehaviour
         panelPause.SetActive(false);
         Time.timeScale = 1f; 
         gamePaused = false;
+        normalState.TransitionTo(0.5f);
 
         Cursor.visible = false;
         Cursor.lockState = CursorLockMode.Locked;

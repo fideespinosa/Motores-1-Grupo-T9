@@ -30,6 +30,9 @@ public class AudioAmbienceController : MonoBehaviour
     [SerializeField] private float maxTimeBetweenSweeteners = 20f;
     [SerializeField] private float spawnRadius = 15f;
 
+    [SerializeField] private AudioMixerSnapshot ambienceShip;
+    [SerializeField] private AudioMixerSnapshot normalAmbience;
+
     private Coroutine sweetenerRoutine;
     private Coroutine fadeRoutine;
 
