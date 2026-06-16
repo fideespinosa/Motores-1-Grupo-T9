@@ -1,10 +1,12 @@
 using UnityEngine;
+using UnityEngine.Audio;
 
 public class NarrativeItem : MonoBehaviour
 {
     [Header("Audio del Ítem")]
-    
+
     public AudioClip voiceClip;
+    [SerializeField] AudioMixerGroup dialogueBus;
 
     
     private bool wasTriggered = false;
