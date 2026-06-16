@@ -1,6 +1,6 @@
 using UnityEngine;
 
-public class AlarmLight : MonoBehaviour
+public class AlarmLightScript : MonoBehaviour
 {
     [SerializeField] Light alarmLight;
     [SerializeField] Light normalLight;
