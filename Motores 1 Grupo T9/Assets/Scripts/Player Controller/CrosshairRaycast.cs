@@ -45,6 +45,11 @@ public class CrosshairRaycast : MonoBehaviour
             {
                 screen1Opened = screensManager.Screen1Opened();
 
+                if (hit.collider.TryGetComponent(out PanelButton button))
+                {
+                    button.Press();
+                }
+
                 if (hit.collider.gameObject.CompareTag("Screen 1") && minigamesManager.isAlarmActive)
                 {
                     screensManager.OpenPanelScreen1();
@@ -64,7 +69,6 @@ public class CrosshairRaycast : MonoBehaviour
         else
         {
             crosshairImage.sprite = defaultSprite;
-            //Debug.Log("DEFAULT");
             Debug.DrawRay(origin, direction * rayDistance, Color.green);
         }
     }
