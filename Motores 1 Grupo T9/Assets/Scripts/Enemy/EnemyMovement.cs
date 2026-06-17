@@ -1,5 +1,6 @@
 ﻿using UnityEngine;
 using UnityEngine.SceneManagement;
+using UnityEngine.AI;
 
 public class EnemyMovement : MonoBehaviour
 {
@@ -26,7 +27,7 @@ public class EnemyMovement : MonoBehaviour
     private int nowWaypoint = 0;
     private float waitTimer = 0f;
     private Transform player;
-    private Rigidbody rb;
+    private NavMeshAgent agent;
     private bool isAttacking = false;
     private bool minigameActive = false;
     private float resetCooldown = 0f;
@@ -36,7 +37,15 @@ public class EnemyMovement : MonoBehaviour
 
     void Start()
     {
-        rb = GetComponent<Rigidbody>();
+        agent = GetComponent<NavMeshAgent>();
+
+        if (agent != null)
+        {
+            agent.speed = moveSpeed;
+            agent.updateRotation = false;
+            agent.stoppingDistance = waypointTolerance;
+        }
+
         audioController = GetComponent<MonsterAudioController>();
 
         GameObject p = GameObject.FindGameObjectWithTag("Player");
@@ -89,14 +98,11 @@ public class EnemyMovement : MonoBehaviour
 
         if (audioController != null)
         {
-            
             if (shouldChase && !wasChasing)
             {
                 audioController.PlayRoar();
-
-                GameMusicManager.Instance.SetCombatState(true); 
+                GameMusicManager.Instance.SetCombatState(true);
             }
-            
             else if (!shouldChase && wasChasing)
             {
                 GameMusicManager.Instance.SetCombatState(false);
@@ -109,10 +115,16 @@ public class EnemyMovement : MonoBehaviour
         {
             if (distToPlayer <= 2.5f && !isAttacking)
             {
-                if (audioController != null) audioController.PlayAttackSound();
+                if (audioController != null)
+                    audioController.PlayAttackSound();
+
                 isAttacking = true;
-                rb.linearVelocity = Vector3.zero;
-                rb.angularVelocity = Vector3.zero;
+
+                if (agent != null)
+                {
+                    agent.ResetPath();
+                }
+
                 Debug.Log("Dron interceptado. Iniciando minijuego...");
                 Die();
                 return;
@@ -130,21 +142,32 @@ public class EnemyMovement : MonoBehaviour
 
     void PatrolBehaviour()
     {
-        if (waypoints.Length == 0) { return; }
+        if (waypoints.Length == 0)
+            return;
 
         Transform wp = waypoints[nowWaypoint];
+
         float dist = Vector3.Distance(transform.position, wp.position);
 
         if (dist <= waypointTolerance)
         {
             if (waitTimer <= 0f)
+            {
                 waitTimer = waitAtWaypoint;
+
+                if (agent != null)
+                {
+                    agent.ResetPath();
+                }
+            }
             else
             {
                 waitTimer -= Time.deltaTime;
-                rb.linearVelocity = new Vector3(0, rb.linearVelocity.y, 0);
+
                 if (waitTimer <= 0f)
+                {
                     nowWaypoint = (nowWaypoint + 1) % waypoints.Length;
+                }
             }
         }
         else
@@ -155,15 +178,18 @@ public class EnemyMovement : MonoBehaviour
 
     bool CanSeePlayer()
     {
-        if (player == null) { return false; }
+        if (player == null) return false;
 
         Vector3 toPlayer = player.position - transform.position;
         float distance = toPlayer.magnitude;
 
-        if (distance > detectionRange) { return false; }
+        if (distance > detectionRange)
+            return false;
 
         float angle = Vector3.Angle(transform.forward, toPlayer);
-        if (angle > fieldOfViewAngle * 0.5f) { return false; }
+
+        if (angle > fieldOfViewAngle * 0.5f)
+            return false;
 
         Vector3 origin = transform.position + Vector3.up * 1f;
         Vector3 direction = (player.position + Vector3.up * 1f - origin).normalized;
@@ -178,32 +204,22 @@ public class EnemyMovement : MonoBehaviour
 
     void MoveTowards(Vector3 target)
     {
-        Vector3 dir = target - transform.position;
-        dir.y = 0f;
+        if (agent == null)
+            return;
 
-        Vector3 rayOrigin = transform.position + Vector3.up * 1.2f;
+        agent.speed = moveSpeed;
+        agent.SetDestination(target);
 
-        bool obstacleFront = Physics.Raycast(rayOrigin, transform.forward, 1.0f, obstacles);
-        bool obstacleLeft = Physics.Raycast(rayOrigin, Quaternion.Euler(0, -30, 0) * transform.forward, 1.0f, obstacles);
-        bool obstacleRight = Physics.Raycast(rayOrigin, Quaternion.Euler(0, 30, 0) * transform.forward, 1.0f, obstacles);
-
-        if (obstacleFront)
+        if (agent.velocity.sqrMagnitude > 0.1f)
         {
-            if (!obstacleLeft) { dir = Quaternion.Euler(0, -30, 0) * dir; }
-            else if (!obstacleRight) { dir = Quaternion.Euler(0, 30, 0) * dir; }
-            else { dir = Quaternion.Euler(0, 180, 0) * dir; }
+            FaceTarget(transform.position + agent.velocity);
         }
-
-        Vector3 velocity = dir.normalized * moveSpeed;
-        velocity.y = rb.linearVelocity.y;
-        rb.linearVelocity = velocity;
-
-        FaceTarget(transform.position + dir);
     }
 
     bool CanHearPlayerNearby()
     {
-        if (player == null) { return false; }
+        if (player == null)
+            return false;
 
         float distance = Vector3.Distance(transform.position, player.position);
         return distance <= hearDetectionRange;
@@ -213,6 +229,7 @@ public class EnemyMovement : MonoBehaviour
     {
         Vector3 dir = target - transform.position;
         dir.y = 0f;
+
         if (dir.sqrMagnitude > 0.0001f)
         {
             Quaternion targetRot = Quaternion.LookRotation(dir);
@@ -223,7 +240,6 @@ public class EnemyMovement : MonoBehaviour
     void Die()
     {
         if (playerDead) return;
-        RestartPatrol();
         Debug.Log("Dron interceptado. Iniciando secuencia de reparacion...");
         TriggerDroneFailure();
     }
@@ -242,18 +258,20 @@ public class EnemyMovement : MonoBehaviour
         isAttacking = false;
         minigameActive = false;
         resetCooldown = resetCooldownTime;
-        nowWaypoint = (nowWaypoint + 1) % waypoints.Length;
 
         wasChasing = false;
     }
 
     public void RestartPatrol()
     {
-        rb.linearVelocity = Vector3.zero;
-        rb.angularVelocity = Vector3.zero;
+        if (agent != null)
+        {
+            agent.ResetPath();
+            agent.Warp(spawnPoint.position);
+        }
 
-        rb.position = spawnPoint.position;
-        rb.rotation = spawnPoint.rotation;
+        transform.position = spawnPoint.position;
+        transform.rotation = spawnPoint.rotation;
 
         nowWaypoint = 0;
         waitTimer = 0f;
@@ -274,15 +292,23 @@ public class EnemyMovement : MonoBehaviour
         if (waypoints != null && waypoints.Length > 0)
         {
             Gizmos.color = Color.cyan;
+
             for (int i = 0; i < waypoints.Length; i++)
             {
                 if (waypoints[i] == null) continue;
+
                 Gizmos.DrawSphere(waypoints[i].position, 0.12f);
+
                 int next = (i + 1) % waypoints.Length;
+
                 if (waypoints[next] != null)
-                    Gizmos.DrawLine(waypoints[i].position, waypoints[next].position);
+                {
+                    Gizmos.DrawLine(
+                        waypoints[i].position,
+                        waypoints[next].position
+                    );
+                }
             }
         }
     }
-
 }
