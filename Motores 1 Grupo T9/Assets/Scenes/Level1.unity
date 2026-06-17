@@ -6287,7 +6287,7 @@ Transform:
   m_GameObject: {fileID: 940589764}
   serializedVersion: 2
   m_LocalRotation: {x: -0, y: 0.8279819, z: -0, w: -0.5607549}
-  m_LocalPosition: {x: 29.56, y: 12.86, z: -0.52}
+  m_LocalPosition: {x: -1.46, y: 10.71, z: 8.24}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -6866,7 +6866,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!224 &1026974394
 RectTransform:
   m_ObjectHideFlags: 0
@@ -6946,7 +6946,7 @@ SpriteRenderer:
   m_Size: {x: 19.2, y: 10.8}
   m_AdaptiveModeThreshold: 0.5
   m_SpriteTileMode: 0
-  m_WasSpriteAssigned: 1
+  m_WasSpriteAssigned: 0
   m_SpriteSortPoint: 0
 --- !u!114 &1026974396
 MonoBehaviour:
@@ -6968,7 +6968,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_Sprite: {fileID: 21300000, guid: f3fbd58ff2f1cc0489f08f7d20569070, type: 3}
+  m_Sprite: {fileID: 21300000, guid: 6bbdf02326f7a96488cdbc96d424b27e, type: 3}
   m_Type: 0
   m_PreserveAspect: 0
   m_FillCenter: 1
@@ -11360,13 +11360,14 @@ GameObject:
   - component: {fileID: 1654381878}
   - component: {fileID: 1654381877}
   - component: {fileID: 1654381876}
+  - component: {fileID: 1654381880}
   m_Layer: 5
   m_Name: Canvas-DronHUD
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!114 &1654381876
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -11453,6 +11454,18 @@ RectTransform:
   m_AnchoredPosition: {x: 0, y: 0}
   m_SizeDelta: {x: 0, y: 0}
   m_Pivot: {x: 0, y: 0}
+--- !u!114 &1654381880
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1654381875}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 3ee9fc1fd0040e94d9d7056efb5c26ac, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: '::'
 --- !u!1001 &1677973202
 PrefabInstance:
   m_ObjectHideFlags: 0
