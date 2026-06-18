@@ -2093,6 +2093,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::MenuPausa
   panelPause: {fileID: 459224040}
+  pauseSnapshot: {fileID: 0}
+  normalState: {fileID: 0}
 --- !u!1 &242800775
 GameObject:
   m_ObjectHideFlags: 0
@@ -2260,6 +2262,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::NarrativeItem
   voiceClip: {fileID: 8300000, guid: 8b56fee3a228a134bad3983349127678, type: 3}
+  dialogueBus: {fileID: 0}
 --- !u!114 &292514888
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -2475,7 +2478,7 @@ MonoBehaviour:
   m_OverrideTileSize: 0
   m_TileSize: 256
   m_OverrideVoxelSize: 0
-  m_VoxelSize: 0.16666667
+  m_VoxelSize: 0.1
   m_MinRegionArea: 2
   m_NavMeshData: {fileID: 23800000, guid: 7c37c5259f1a1524dbb3bb594c3cdf06, type: 2}
   m_BuildHeightMesh: 0
@@ -9573,7 +9576,7 @@ MonoBehaviour:
   player: {fileID: 1882600051}
   animator: {fileID: 1189110819}
   staticImage: {fileID: 112534483}
-  audioController: {fileID: 0}
+  audioController: {fileID: 1189110827}
 --- !u!82 &1189110825
 AudioSource:
   m_ObjectHideFlags: 0
@@ -12942,9 +12945,17 @@ PrefabInstance:
       value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 5186807320461386515, guid: bf320a0f2ae261a4a904f81424fe86d2, type: 3}
+      propertyPath: ambienceShip
+      value: 
+      objectReference: {fileID: 163561052429349070, guid: 8ae6de4a4ce8e8c44a52514f69fa1e82, type: 2}
+    - target: {fileID: 5186807320461386515, guid: bf320a0f2ae261a4a904f81424fe86d2, type: 3}
       propertyPath: droneTransform
       value: 
       objectReference: {fileID: 1882600051}
+    - target: {fileID: 5186807320461386515, guid: bf320a0f2ae261a4a904f81424fe86d2, type: 3}
+      propertyPath: normalAmbience
+      value: 
+      objectReference: {fileID: 24500006, guid: 8ae6de4a4ce8e8c44a52514f69fa1e82, type: 2}
     - target: {fileID: 5186807320461386515, guid: bf320a0f2ae261a4a904f81424fe86d2, type: 3}
       propertyPath: shipPlayerTransform
       value: 
@@ -13084,7 +13095,7 @@ SpriteRenderer:
   m_Size: {x: 19.2, y: 10.8}
   m_AdaptiveModeThreshold: 0.5
   m_SpriteTileMode: 0
-  m_WasSpriteAssigned: 1
+  m_WasSpriteAssigned: 0
   m_SpriteSortPoint: 0
 --- !u!224 &1750626842
 RectTransform:

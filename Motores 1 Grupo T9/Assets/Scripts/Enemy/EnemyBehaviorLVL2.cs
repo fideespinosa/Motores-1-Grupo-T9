@@ -1,6 +1,7 @@
 using UnityEngine;
 using UnityEngine.AI;
 using UnityEngine.SceneManagement;
+using UnityEngine.Audio;
 public class EnemyBehaviorLVL2 : MonoBehaviour
 {
     NavMeshAgent agent;
@@ -54,6 +55,7 @@ public class EnemyBehaviorLVL2 : MonoBehaviour
         if (GameMusicManager.Instance != null)
         {
             GameMusicManager.Instance.SetCombatState(true);
+         
         }
     }
 

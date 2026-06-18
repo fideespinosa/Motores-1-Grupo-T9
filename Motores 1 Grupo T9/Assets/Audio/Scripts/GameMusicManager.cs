@@ -32,8 +32,6 @@ public class GameMusicManager : MonoBehaviour
    
     [SerializeField] private float combatReverb = -80f;
 
-    
-    private Coroutine lowpassCoroutine;
     private Coroutine reverbCoroutine;
 
     void Awake()
@@ -93,6 +91,8 @@ public class GameMusicManager : MonoBehaviour
                 combatSource.clip = combatClip;
                 combatSource.loop = true;
                 combatSource.Play();
+
+                Debug.Log("El clip de combate suena");
             }
 
             combatSnapshot.TransitionTo(transitionTime);
@@ -127,7 +127,6 @@ public class GameMusicManager : MonoBehaviour
             yield return null;
         }
 
-        
         mainMixer.SetFloat(paramName, targetValue);
     }
 
