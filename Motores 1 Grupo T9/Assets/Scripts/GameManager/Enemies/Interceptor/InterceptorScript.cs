@@ -5,15 +5,18 @@ public class InterceptorScript : MonoBehaviour
 {
     [SerializeField] private float minSeconds = 1f; //180f son 3 minutos
     [SerializeField] private float maxSeconds = 4f; //420f son 7 minutos
+    [SerializeField] private float timeWhileAttacking = 30f;
+
 
     [SerializeField] private GameObject alarmLight;
+    [SerializeField] private AnimationManagerMemory animatorScript;
     [SerializeField] private AlarmLightScript alarmLightScript;
 
     private Coroutine attackRoutine;
 
     private void OnEnable()
     {
-        attackRoutine = StartCoroutine(AttackTimer());
+        attackRoutine = StartCoroutine(AppearTimer());
     }
 
     private void OnDisable()
@@ -22,7 +25,7 @@ public class InterceptorScript : MonoBehaviour
             StopCoroutine(attackRoutine);
     }
 
-    private IEnumerator AttackTimer()
+    private IEnumerator AppearTimer()
     {
         float waitTime = Random.Range(minSeconds, maxSeconds);
 
@@ -35,5 +38,14 @@ public class InterceptorScript : MonoBehaviour
     {
         alarmLight.SetActive(true);
         Debug.Log("aparece");
+        animatorScript.StartAnimation();
+        StartCoroutine(AttackTimer());
+    }
+
+    private IEnumerator AttackTimer()
+    {
+
+        yield return new WaitForSeconds(timeWhileAttacking);
+
     }
 }

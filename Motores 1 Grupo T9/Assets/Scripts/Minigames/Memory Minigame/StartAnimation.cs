@@ -2,13 +2,16 @@ using UnityEngine;
 
 public class StartAnimation : MonoBehaviour
 {
-    private void OnEnable()
+    [SerializeField] private Animator animator;
+
+    public void Open()
     {
-        Debug.Log("animar puerta y panel para arriba");
+
+        animator.SetTrigger("Open");
     }
 
-    private void OnDisable()
+    public void Close()
     {
-        Debug.Log("animar puerta y panel para abajo");
+        animator.SetTrigger("Close");
     }
 }
