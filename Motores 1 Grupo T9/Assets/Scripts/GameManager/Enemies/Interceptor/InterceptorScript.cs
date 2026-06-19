@@ -44,8 +44,12 @@ public class InterceptorScript : MonoBehaviour
 
     private IEnumerator AttackTimer()
     {
-
         yield return new WaitForSeconds(timeWhileAttacking);
+        Debug.Log("perdiste");
+    }
 
+    public void Win()
+    {
+        Debug.Log("bicho se fue");
     }
 }

@@ -3830,7 +3830,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!4 &434469995
 Transform:
   m_ObjectHideFlags: 0
@@ -4978,8 +4978,7 @@ Transform:
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
-  m_Children:
-  - {fileID: 986019493}
+  m_Children: []
   m_Father: {fileID: 1827134377}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!114 &636767783
@@ -4995,6 +4994,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::PanelManager
   totalButtons: 9
+  interceptorScript: {fileID: 434469996}
 --- !u!114 &636767784
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -5008,6 +5008,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: '::'
   CompuertaAnimator: {fileID: 485552406}
+  PanelAnimator: {fileID: 1706144111711447027}
 --- !u!4 &655627018 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 7270620107919773639, guid: bb128355a4591534f9f1e4410938f472, type: 3}
@@ -7032,7 +7033,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!4 &986019493
 Transform:
   m_ObjectHideFlags: 0
@@ -7041,9 +7042,9 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 986019492}
   serializedVersion: 2
-  m_LocalRotation: {x: 0.4776162, y: -0, z: -0, w: 0.87856853}
-  m_LocalPosition: {x: 26.784, y: -50.025, z: -84.602}
-  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_LocalRotation: {x: 0.9589675, y: -0, z: -0, w: 0.28351605}
+  m_LocalPosition: {x: 0.14368911, y: -0.11998735, z: -0.6313885}
+  m_LocalScale: {x: 0.01, y: 0.010000002, z: 0.010000002}
   m_ConstrainProportionsScale: 0
   m_Children:
   - {fileID: 1333170353}
@@ -7055,7 +7056,7 @@ Transform:
   - {fileID: 1277198771}
   - {fileID: 1460174181}
   - {fileID: 835079894}
-  m_Father: {fileID: 636767782}
+  m_Father: {fileID: 8420173446884814731}
   m_LocalEulerAnglesHint: {x: 57.06, y: 0, z: 0}
 --- !u!1001 &1006182513
 PrefabInstance:
@@ -16496,6 +16497,7 @@ GameObject:
   - component: {fileID: 8420173446884814731}
   - component: {fileID: 5686565869975856681}
   - component: {fileID: 3543139633007953592}
+  - component: {fileID: 8420173446884814732}
   m_Layer: 0
   m_Name: PanelDefensa
   m_TagString: Untagged
@@ -17032,12 +17034,35 @@ Transform:
   m_GameObject: {fileID: 1706144111711447027}
   serializedVersion: 2
   m_LocalRotation: {x: -0.7071068, y: -0, z: -0, w: 0.7071067}
-  m_LocalPosition: {x: 2.47684, y: 12.56101, z: -95.338905}
+  m_LocalPosition: {x: 2.47684, y: 12.436, z: -95.33891}
   m_LocalScale: {x: 100, y: 99.999985, z: 99.999985}
   m_ConstrainProportionsScale: 0
-  m_Children: []
+  m_Children:
+  - {fileID: 986019493}
   m_Father: {fileID: 841335458}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!95 &8420173446884814732
+Animator:
+  serializedVersion: 7
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1706144111711447027}
+  m_Enabled: 1
+  m_Avatar: {fileID: 0}
+  m_Controller: {fileID: 9100000, guid: 954e734b7c2beea4abf8a8b2d447499e, type: 2}
+  m_CullingMode: 0
+  m_UpdateMode: 0
+  m_ApplyRootMotion: 0
+  m_LinearVelocityBlending: 0
+  m_StabilizeFeet: 0
+  m_AnimatePhysics: 0
+  m_WarningMessage: 
+  m_HasTransformHierarchy: 1
+  m_AllowConstantClipSamplingOptimization: 1
+  m_KeepAnimatorStateOnDisable: 0
+  m_WriteDefaultValuesOnDisable: 0
 --- !u!1001 &8603252963807832690
 PrefabInstance:
   m_ObjectHideFlags: 0

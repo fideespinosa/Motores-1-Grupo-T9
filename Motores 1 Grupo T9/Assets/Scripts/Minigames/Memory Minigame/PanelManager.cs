@@ -5,7 +5,7 @@ public class PanelManager : MonoBehaviour
 {
 
     [SerializeField] private int totalButtons = 5;
-
+    [SerializeField] InterceptorScript interceptorScript;
     private int[] correctOrder;
 
     private bool puzzleCompleted = false;
@@ -65,6 +65,7 @@ public class PanelManager : MonoBehaviour
 
             if (currentStep >= correctOrder.Length)
             {
+                interceptorScript.Win();
                 Debug.Log("ganaste");
                 puzzleCompleted = true;
             }
