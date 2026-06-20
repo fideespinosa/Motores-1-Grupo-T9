@@ -12,7 +12,7 @@ public class AudioAmbienceController : MonoBehaviour
     public AmbienceZone currentZone;
 
     [SerializeField] private Transform shipPlayerTransform;
-    [SerializeField] private Transform droneTransform;      
+    [SerializeField] private Transform droneTransform;
 
     [Header("Beds 2D")]
     [SerializeField] private AudioMixerGroup bedsMixerGroup;
@@ -30,8 +30,9 @@ public class AudioAmbienceController : MonoBehaviour
     [SerializeField] private float maxTimeBetweenSweeteners = 20f;
     [SerializeField] private float spawnRadius = 15f;
 
-    [SerializeField] private AudioMixerSnapshot ambienceShip;
-    [SerializeField] private AudioMixerSnapshot normalAmbience;
+    [Header("Snapshots de Ambience")]
+    [SerializeField] private AudioMixerSnapshot shipSnapshot;
+    [SerializeField] private AudioMixerSnapshot caveSnapshot;
 
     private Coroutine sweetenerRoutine;
     private Coroutine fadeRoutine;
@@ -65,7 +66,6 @@ public class AudioAmbienceController : MonoBehaviour
         SwitchZone(AmbienceZone.Ship, true);
     }
 
-
     private void SwitchZone(AmbienceZone newZone, bool forceInstant = false)
     {
         if (currentZone == newZone && (bedSourceA.isPlaying || bedSourceB.isPlaying) && !forceInstant) return;
@@ -73,13 +73,23 @@ public class AudioAmbienceController : MonoBehaviour
         currentZone = newZone;
         AudioClip nuevoClip = (newZone == AmbienceZone.Cave) ? caveBedClip : shipBedClip;
 
+        float tiempoTransicion = forceInstant ? 0.01f : crossfadeTime;
+        if (newZone == AmbienceZone.Cave && caveSnapshot != null)
+        {
+            caveSnapshot.TransitionTo(tiempoTransicion);
+        }
+        else if (newZone == AmbienceZone.Ship && shipSnapshot != null)
+        {
+            shipSnapshot.TransitionTo(tiempoTransicion);
+        }
+
         AudioSource fadeOutSource = bedSourceA.isPlaying ? bedSourceA : bedSourceB;
         AudioSource fadeInSource = bedSourceA.isPlaying ? bedSourceB : bedSourceA;
 
         fadeInSource.clip = nuevoClip;
         fadeInSource.loop = true;
         fadeInSource.Play();
-      
+
         if (fadeRoutine != null) StopCoroutine(fadeRoutine);
 
         if (forceInstant)
@@ -90,7 +100,6 @@ public class AudioAmbienceController : MonoBehaviour
         }
         else
         {
-  
             fadeRoutine = StartCoroutine(Crossfade(fadeOutSource, fadeInSource, crossfadeTime));
         }
     }

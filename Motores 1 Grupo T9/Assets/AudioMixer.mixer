@@ -73,6 +73,29 @@ AudioMixerEffectController:
   m_SendTarget: {fileID: 0}
   m_EnableWetMix: 0
   m_Bypass: 0
+--- !u!245 &-8050779399371570253
+AudioMixerSnapshotController:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_Name: Cave
+  m_AudioMixer: {fileID: 24100000}
+  m_SnapshotID: e90ec0436b9f76f47a268ef8deb1d869
+  m_FloatValues:
+    ff7997424fb9c624bb1167bd9e6d71db: -50
+    83263fc486f62de4f8cb86d77ed4a530: -1.7612991
+    8cc7693562b5daf4cb2ed1aae8033dbe: 22000
+    6004b975f5375be44b6e171fb24c884f: -4.1973577
+    7b3c84c58cb4f7f4db5a3667995d758e: -80
+    fad0e74627e18a046b47438df4b9caa9: -4.9356413
+    badc73f800d63b948b8bdcfd1912c17b: -4.9356413
+    a6b5ceca0dc92f84f99db905fd175049: -12.082023
+    073aba9dababd2749be7f057b9831b32: 13199
+    2a2f8afdd64ac8344bef0da28673ba94: -5.7224793
+    dcb77e8e662aed345aa902ed34189d5f: 3.704152
+    b62b3bbe902d01443ba911052ff05f23: -2.2889833
+  m_TransitionOverrides: {}
 --- !u!243 &-7716865748464405045
 AudioMixerGroupController:
   m_ObjectHideFlags: 0
@@ -416,6 +439,7 @@ AudioMixerController:
   - {fileID: 2265206388458865384}
   - {fileID: -585007614993954903}
   - {fileID: 163561052429349070}
+  - {fileID: -8050779399371570253}
   m_StartSnapshot: {fileID: 24500006}
   m_SuspendThreshold: -80
   m_EnableSuspend: 1
@@ -448,7 +472,7 @@ AudioMixerController:
     - 5cd02094b6810bd4f9d4fdd19b907439
     name: View
   m_CurrentViewIndex: 0
-  m_TargetSnapshot: {fileID: -4484694439906878552}
+  m_TargetSnapshot: {fileID: 163561052429349070}
 --- !u!243 &24300002
 AudioMixerGroupController:
   m_ObjectHideFlags: 0
@@ -517,7 +541,7 @@ AudioMixerSnapshotController:
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_Name: Ship Ambience
+  m_Name: Ship
   m_AudioMixer: {fileID: 24100000}
   m_SnapshotID: 6920958a5a04f3b428bb5208589264cc
   m_FloatValues:
