@@ -2226,7 +2226,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!4 &248654559
 Transform:
   m_ObjectHideFlags: 0
@@ -3874,9 +3874,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d2e46ca43f43fae43aca15624a098529, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::InterceptorScript
-  minSeconds: 5
-  maxSeconds: 10
-  timeWhileAttacking: 30
+  minSeconds: 180
+  maxSeconds: 420
+  timeWhileAttacking: 25
+  playerSwitcher: {fileID: 1213029919}
   alarmLight: {fileID: 2008631539}
   animatorScript: {fileID: 636767784}
   alarmLightScript: {fileID: 2008631540}
@@ -5009,7 +5010,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 885f703a34ce9a9489d9377251d1a3c2, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::PanelManager
-  totalButtons: 9
+  totalButtons: 7
   interceptorScript: {fileID: 434469996}
 --- !u!114 &636767784
 MonoBehaviour:
@@ -6425,7 +6426,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e0238f7bcb029d94f9802f12c5f590e5, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::PanelButton
-  buttonNumber: 9
+  buttonNumber: 7
   panelManager: {fileID: 636767783}
   pressDistance: -0.1
   buttonRenderer: {fileID: 835079897}
@@ -6476,7 +6477,7 @@ MeshRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 2100000, guid: 31321ba15b8f8eb4c954353edc038b1d, type: 2}
+  - {fileID: 2100000, guid: 070d0ee9c39cf914792f609c41c25fc3, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -7814,7 +7815,7 @@ MeshRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 2100000, guid: 31321ba15b8f8eb4c954353edc038b1d, type: 2}
+  - {fileID: 2100000, guid: d9e44657edf227e4bb8b691f09fcde60, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -8791,6 +8792,7 @@ Transform:
   - {fileID: 1269697465}
   - {fileID: 434469995}
   - {fileID: 529048414}
+  - {fileID: 2056701595}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &1244764689
@@ -9170,7 +9172,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e0238f7bcb029d94f9802f12c5f590e5, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::PanelButton
-  buttonNumber: 7
+  buttonNumber: 5
   panelManager: {fileID: 636767783}
   pressDistance: -0.1
   buttonRenderer: {fileID: 1277198774}
@@ -9221,7 +9223,7 @@ MeshRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 2100000, guid: 31321ba15b8f8eb4c954353edc038b1d, type: 2}
+  - {fileID: 2100000, guid: 070d0ee9c39cf914792f609c41c25fc3, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -9270,7 +9272,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!114 &1303351817
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -9567,7 +9569,7 @@ MeshRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 2100000, guid: 31321ba15b8f8eb4c954353edc038b1d, type: 2}
+  - {fileID: 2100000, guid: 070d0ee9c39cf914792f609c41c25fc3, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -10959,7 +10961,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e0238f7bcb029d94f9802f12c5f590e5, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::PanelButton
-  buttonNumber: 8
+  buttonNumber: 6
   panelManager: {fileID: 636767783}
   pressDistance: -0.1
   buttonRenderer: {fileID: 1460174184}
@@ -11010,7 +11012,7 @@ MeshRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 2100000, guid: 31321ba15b8f8eb4c954353edc038b1d, type: 2}
+  - {fileID: 2100000, guid: 070d0ee9c39cf914792f609c41c25fc3, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -12848,7 +12850,7 @@ MeshRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 2100000, guid: 31321ba15b8f8eb4c954353edc038b1d, type: 2}
+  - {fileID: 2100000, guid: 070d0ee9c39cf914792f609c41c25fc3, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -13930,7 +13932,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e0238f7bcb029d94f9802f12c5f590e5, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::PanelButton
-  buttonNumber: 5
+  buttonNumber: 4
   panelManager: {fileID: 636767783}
   pressDistance: -0.1
   buttonRenderer: {fileID: 1842062511}
@@ -13981,7 +13983,7 @@ MeshRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 2100000, guid: 31321ba15b8f8eb4c954353edc038b1d, type: 2}
+  - {fileID: 2100000, guid: 070d0ee9c39cf914792f609c41c25fc3, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -14032,7 +14034,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!4 &1861812002
 Transform:
   m_ObjectHideFlags: 0
@@ -15925,7 +15927,7 @@ MeshRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 2100000, guid: 31321ba15b8f8eb4c954353edc038b1d, type: 2}
+  - {fileID: 2100000, guid: 070d0ee9c39cf914792f609c41c25fc3, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -15957,6 +15959,51 @@ MeshFilter:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 2056215751}
   m_Mesh: {fileID: 10202, guid: 0000000000000000e000000000000000, type: 0}
+--- !u!1 &2056701594
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 2056701595}
+  - component: {fileID: 2056701596}
+  m_Layer: 0
+  m_Name: GameStatus
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &2056701595
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2056701594}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 1213029920}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &2056701596
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2056701594}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ecf6fcb8611dd954ea102f47c0bd2401, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: '::'
+  minigameRunning: 0
 --- !u!1001 &2067965086
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -16551,8 +16598,8 @@ MeshRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: -7631099751467146742, guid: 4c4c2c22c810cab4c9cf353c20ad2605, type: 3}
-  - {fileID: -740003773155224925, guid: 4c4c2c22c810cab4c9cf353c20ad2605, type: 3}
+  - {fileID: 2100000, guid: d9e44657edf227e4bb8b691f09fcde60, type: 2}
+  - {fileID: 2100000, guid: d9e44657edf227e4bb8b691f09fcde60, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0

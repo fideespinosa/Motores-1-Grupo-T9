@@ -26,8 +26,8 @@ public class AnimationManagerMemory : MonoBehaviour
 
     public void EndAnimation()
     {
-        animatorPanel.ResetTrigger("Down");
-        animatorPanel.SetTrigger("Up");
+        animatorPanel.SetTrigger("Down");
+        animatorPanel.ResetTrigger("Up");
 
         animatorCompuerta.ResetTrigger("Open");
         animatorCompuerta.SetTrigger("Close");

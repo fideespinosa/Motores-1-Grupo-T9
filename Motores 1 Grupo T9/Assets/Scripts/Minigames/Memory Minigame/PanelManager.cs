@@ -67,7 +67,8 @@ public class PanelManager : MonoBehaviour
             {
                 interceptorScript.Win();
                 Debug.Log("ganaste");
-                puzzleCompleted = true;
+
+                RandomizeOrder();
             }
         }
         else
