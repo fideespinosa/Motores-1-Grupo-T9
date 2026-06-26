@@ -107,6 +107,7 @@ public class InterceptorScript : MonoBehaviour
         Debug.Log("bicho se fue");
 
         if (GameStatusScript.Instance != null)
+        Debug.Log("minijuego apagado");
             GameStatusScript.Instance.EndMinigame();
 
         animatorScript.EndAnimation();

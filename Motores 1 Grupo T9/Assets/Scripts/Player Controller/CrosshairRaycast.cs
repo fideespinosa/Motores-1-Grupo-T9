@@ -48,12 +48,11 @@ public class CrosshairRaycast : MonoBehaviour
 
             if (Input.GetMouseButtonDown(0))
             {
-                screen1Opened = screensManager.Screen1Opened();
 
-                if (hit.collider.TryGetComponent(out PanelButton button))
+                if (GameStatusScript.Instance != null && !GameStatusScript.Instance.minigameRunning)
                 {
-                    button.Press();
-                }
+
+                   screen1Opened = screensManager.Screen1Opened();
 
                 if (hit.collider.gameObject.CompareTag("Screen 1") && minigamesManager.isAlarmActive)
                 {
@@ -68,6 +67,16 @@ public class CrosshairRaycast : MonoBehaviour
                 if (hit.collider.gameObject.CompareTag("NextLvl") && !minigamesManager.isAlarmActive)
                 {
                     playerInventory.CheckVictory(); 
+                }
+
+                }
+                else if(GameStatusScript.Instance != null && GameStatusScript.Instance.minigameRunning)
+                {
+                if (hit.collider.TryGetComponent(out PanelButton button))
+                {
+                    button.Press();
+                }
+
                 }
 
             }
