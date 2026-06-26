@@ -13,6 +13,8 @@ public class InterceptorScript : MonoBehaviour
     [SerializeField] private AnimationManagerMemory animatorScript;
     [SerializeField] private AlarmLightScript alarmLightScript;
 
+    [SerializeField] private GameObject zone;
+
     private Coroutine attackRoutine;
     private Coroutine attackTimerRoutine;
 
@@ -78,7 +80,10 @@ public class InterceptorScript : MonoBehaviour
         playerSwitcher.SetControl(false);
         playerSwitcher.BlockSwitching();
 
+        ActivateZone();
         Debug.Log("aparece");
+
+
 
         animatorScript.StartAnimation();
 
@@ -113,5 +118,13 @@ public class InterceptorScript : MonoBehaviour
         StopAllLocalCoroutines();
 
         TryStartAppearCycle();
+    }
+
+    private void ActivateZone()
+    {
+        if (zone == null)
+            return;
+
+        zone.SetActive(true);
     }
 }

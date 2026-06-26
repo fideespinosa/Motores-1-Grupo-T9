@@ -40,7 +40,12 @@ public class CrosshairRaycast : MonoBehaviour
             Debug.DrawLine(origin, hit.point, Color.red);
             crosshairImage.sprite = interactSprite;
 
-            
+            if (hit.collider.TryGetComponent(out MemoryZoneInstructions panel))
+            {
+                // abre panel de instrucciones para minijuego de memoria
+                panel.ExecuteAction();
+            }
+
             if (Input.GetMouseButtonDown(0))
             {
                 screen1Opened = screensManager.Screen1Opened();
@@ -64,6 +69,7 @@ public class CrosshairRaycast : MonoBehaviour
                 {
                     playerInventory.CheckVictory(); 
                 }
+
             }
         }
         else
