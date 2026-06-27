@@ -4040,8 +4040,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d2e46ca43f43fae43aca15624a098529, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::InterceptorScript
-  minSeconds: 180
-  maxSeconds: 360
+  minSeconds: 60
+  maxSeconds: 90
   timeWhileAttacking: 40
   playerSwitcher: {fileID: 1213029919}
   alarmLight: {fileID: 2008631539}

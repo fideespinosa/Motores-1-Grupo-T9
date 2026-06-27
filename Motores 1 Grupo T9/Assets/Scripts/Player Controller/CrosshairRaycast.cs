@@ -29,7 +29,6 @@ public class CrosshairRaycast : MonoBehaviour
 
     void Update()
     {
-
         RaycastHit hit;
         Vector3 origin = transform.position;
         Vector3 direction = transform.forward;
@@ -45,19 +44,20 @@ public class CrosshairRaycast : MonoBehaviour
                 // abre panel de instrucciones para minijuego de memoria
                 panel.ExecuteAction();
             }
-
+            
             if (Input.GetMouseButtonDown(0))
             {
-
-                if (GameStatusScript.Instance != null && !GameStatusScript.Instance.minigameRunning)
+                Debug.Log(" if de click");
+                if (!GameStatusScript.Instance.minigameRunning)
                 {
-
+                    Debug.Log("primer if");
                    screen1Opened = screensManager.Screen1Opened();
 
                 if (hit.collider.gameObject.CompareTag("Screen 1") && minigamesManager.isAlarmActive)
                 {
                     screensManager.OpenPanelScreen1();
-                }
+                        Debug.Log("sgundo if");
+                    }
 
                 if (hit.collider.gameObject.CompareTag("Button-Yes"))
                 {
@@ -70,7 +70,7 @@ public class CrosshairRaycast : MonoBehaviour
                 }
 
                 }
-                else if(GameStatusScript.Instance != null && GameStatusScript.Instance.minigameRunning)
+                else if(GameStatusScript.Instance.minigameRunning)
                 {
                 if (hit.collider.TryGetComponent(out PanelButton button))
                 {

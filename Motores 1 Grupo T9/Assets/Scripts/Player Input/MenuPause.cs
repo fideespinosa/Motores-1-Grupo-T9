@@ -34,7 +34,7 @@ public class MenuPausa : MonoBehaviour
         panelPause.SetActive(true);
         Time.timeScale = 0f; 
         gamePaused = true;
-        pauseSnapshot.TransitionTo(0.5f);
+      //  pauseSnapshot.TransitionTo(0.5f);
 
         Cursor.visible = true;
         Cursor.lockState = CursorLockMode.None;
@@ -45,7 +45,7 @@ public class MenuPausa : MonoBehaviour
         panelPause.SetActive(false);
         Time.timeScale = 1f; 
         gamePaused = false;
-        normalState.TransitionTo(0.5f);
+     //   normalState.TransitionTo(0.5f);
 
         Cursor.visible = false;
         Cursor.lockState = CursorLockMode.Locked;

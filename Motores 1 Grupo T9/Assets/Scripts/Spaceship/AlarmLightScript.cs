@@ -38,7 +38,6 @@ public class AlarmLightScript : MonoBehaviour
     private void OnEnable()
     {
         normalLight.enabled = false;
-        GameStatusScript.Instance.StartMinigame();
     }
     private void OnDisable()
     {
