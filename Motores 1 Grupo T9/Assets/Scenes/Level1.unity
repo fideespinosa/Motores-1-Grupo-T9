@@ -4040,8 +4040,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d2e46ca43f43fae43aca15624a098529, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::InterceptorScript
-  minSeconds: 60
-  maxSeconds: 90
+  minSeconds: 240
+  maxSeconds: 360
   timeWhileAttacking: 40
   playerSwitcher: {fileID: 1213029919}
   alarmLight: {fileID: 2008631539}
@@ -10282,7 +10282,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!114 &1303351817
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -13307,7 +13307,8 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: "Una vez lo tengas, haz click para avazar en la misi\xF3n"
+  m_text: "Para cambiar al dron cuando este desplegado, precionar [TAB]\n\n\nUna
+    vez tengas los recursos, haz click para avazar en la misi\xF3n\n"
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 9a80eaff267ac5c45921eb84943b2095, type: 2}
   m_sharedMaterial: {fileID: -4913511322303963329, guid: 9a80eaff267ac5c45921eb84943b2095, type: 2}
@@ -13373,7 +13374,7 @@ MonoBehaviour:
   m_VertexBufferAutoSizeReduction: 0
   m_useMaxVisibleDescender: 1
   m_pageToDisplay: 1
-  m_margin: {x: 0.005246818, y: 1.2757125, z: -0.008425266, w: 0.512304}
+  m_margin: {x: 0.005246818, y: 1.2757125, z: 0.017369896, w: 0.512304}
   m_isUsingLegacyAnimationComponent: 0
   m_isVolumetricText: 0
   m_hasFontAssetChanged: 0
