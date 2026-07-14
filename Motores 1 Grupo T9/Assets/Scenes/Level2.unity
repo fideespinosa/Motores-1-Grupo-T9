@@ -7231,11 +7231,11 @@ ParticleSystem:
       emitProbability: 1
   LightsModule:
     enabled: 1
-    ratio: 0.1
+    ratio: 0.2
     light: {fileID: 4480858135757119985, guid: fa7bec1039ca6a1449f80cda599994e8, type: 3}
     randomDistribution: 1
     color: 1
-    range: 1
+    range: 0
     intensity: 1
     rangeCurve:
       serializedVersion: 2
@@ -7343,7 +7343,7 @@ ParticleSystem:
         m_PreInfinity: 2
         m_PostInfinity: 2
         m_RotationOrder: 4
-    maxLights: 20
+    maxLights: 6
   TrailModule:
     enabled: 0
     mode: 0
