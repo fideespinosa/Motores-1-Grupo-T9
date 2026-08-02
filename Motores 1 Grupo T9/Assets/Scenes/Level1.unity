@@ -4286,8 +4286,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d2e46ca43f43fae43aca15624a098529, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::InterceptorScript
-  minSeconds: 240
-  maxSeconds: 360
+  minSeconds: 150
+  maxSeconds: 330
   timeWhileAttacking: 40
   playerSwitcher: {fileID: 1213029919}
   alarmLight: {fileID: 2008631539}
@@ -24356,6 +24356,18 @@ PrefabInstance:
     - target: {fileID: 2093133283308105052, guid: 9432ab0552710d342944471738e27bbe, type: 3}
       propertyPath: m_IsActive
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 2098867977985917449, guid: 9432ab0552710d342944471738e27bbe, type: 3}
+      propertyPath: m_LocalPosition.y
+      value: 9.017
+      objectReference: {fileID: 0}
+    - target: {fileID: 2436002760769892064, guid: 9432ab0552710d342944471738e27bbe, type: 3}
+      propertyPath: m_LocalPosition.x
+      value: -43.31
+      objectReference: {fileID: 0}
+    - target: {fileID: 2436002760769892064, guid: 9432ab0552710d342944471738e27bbe, type: 3}
+      propertyPath: m_LocalPosition.y
+      value: 8.764
       objectReference: {fileID: 0}
     - target: {fileID: 3224898301819318893, guid: 9432ab0552710d342944471738e27bbe, type: 3}
       propertyPath: switcher
