@@ -748,13 +748,13 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b863afa03cd7ddc4d85145fcb14c4cc5, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::Crosshair
-  rayDistance: 15
+  rayDistance: 4
   layerMask:
     serializedVersion: 2
     m_Bits: 1024
   crosshairImage: {fileID: 1481553992}
   defaultSprite: {fileID: 21300000, guid: d2186a5d7887d9d4a9758d47787e4178, type: 3}
-  interactSprite: {fileID: 21300000, guid: 22bbd37d8c4947141ae76554ec0f48c8, type: 3}
+  interactSprite: {fileID: 21300000, guid: 6b0b9dc6687e7284eb4d9c2733d98973, type: 3}
 --- !u!1 &1378991809
 GameObject:
   m_ObjectHideFlags: 0
