@@ -73,7 +73,7 @@ public class Openable : MonoBehaviour, IInteractable
             }
             else
             {
-                Debug.Log("Sonido de puerta abriéndose");
+                Debug.Log("Sonido de apertura");
                 Open();
             }
             return;
@@ -88,7 +88,7 @@ public class Openable : MonoBehaviour, IInteractable
         if (!RequiresKey)
         {
             isUnlocked = true;
-            Debug.Log("Sonido de puerta abriéndose");
+            Debug.Log("Sonido de apertura");
             Open();
             return;
         }
@@ -99,7 +99,7 @@ public class Openable : MonoBehaviour, IInteractable
         {
             isUnlocked = true;
             Debug.Log("Sonido de llave utilizada");
-            Debug.Log("Sonido de puerta abriéndose");
+            Debug.Log("Sonido de apertura");
             Open();
         }
         else
@@ -128,7 +128,7 @@ public class Openable : MonoBehaviour, IInteractable
     {
         isOpen = false;
 
-        Debug.Log("Sonido de puerta cerrándose");
+        Debug.Log("Sonido de puerta cerrandose");
 
         if (animationCoroutine != null)
         {

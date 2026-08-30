@@ -63,7 +63,7 @@ public class MedicationManager : MonoBehaviour
             {
                 StoryFlagManager.Instance.SetFlag(completedFlag);
             }
-            ShowMessage("Creo que ya tengo todo lo que necesita. Ahora hay que llevárselo a su cuarto.");
+            ShowMessage("Creo que ya tengo todo lo que necesita. Ahora me falta un vaso de agua.");
         }
         else
         {
