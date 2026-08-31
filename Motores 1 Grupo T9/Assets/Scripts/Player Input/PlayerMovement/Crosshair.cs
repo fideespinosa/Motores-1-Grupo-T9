@@ -27,7 +27,7 @@ public class Crosshair : MonoBehaviour
             crosshairImage.sprite = interactSprite;
 
             IInteractable interactable = null;
-            if (hit.collider.gameObject.CompareTag("Item"))
+            if (hit.collider.gameObject.layer == LayerMask.NameToLayer("Item"))
             {
                 interactable = hit.collider.GetComponent<IInteractable>();
             }
