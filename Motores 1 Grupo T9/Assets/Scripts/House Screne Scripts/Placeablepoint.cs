@@ -85,6 +85,8 @@ public class PlacementPoint : MonoBehaviour, IInteractable
             {
                 TextPanelManager.Instance.ShowText(successMessage);
             }
+
+            gameObject.SetActive(false);
         }
         else if (!string.IsNullOrEmpty(wrongItemMessage) && TextPanelManager.Instance != null)
         {

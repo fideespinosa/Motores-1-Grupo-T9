@@ -21,6 +21,8 @@ public class Openable : MonoBehaviour, IInteractable
     [Tooltip("Solo se usa si Required Item Id no está vacío.")]
     [TextArea]
     [SerializeField] private string lockedMessage;
+    [Tooltip("Flag que se activa la primera vez que se muestra el mensaje de bloqueada. Dejar vacío si no aplica.")]
+    [SerializeField] private string flagToSetOnLocked;
 
     [Header("Open Animation")]
     [Tooltip("Transform que rota/se desliza al abrir. Dejar vacío para usar este mismo objeto.")]
@@ -103,6 +105,11 @@ public class Openable : MonoBehaviour, IInteractable
         {
             Debug.Log("Sonido de puerta cerrada");
 
+            if (!string.IsNullOrEmpty(flagToSetOnLocked) && StoryFlagManager.Instance != null)
+            {
+                StoryFlagManager.Instance.SetFlag(flagToSetOnLocked);
+            }
+
             if (TextPanelManager.Instance != null)
             {
                 TextPanelManager.Instance.ShowText(lockedMessage);
@@ -112,9 +119,8 @@ public class Openable : MonoBehaviour, IInteractable
 
     private void Open()
     {
+        Debug.Log("Sonido de puerta abriendose");
         isOpen = true;
-
-        Debug.Log("Sonido de apertura");
 
         if (animationCoroutine != null)
         {
@@ -127,7 +133,7 @@ public class Openable : MonoBehaviour, IInteractable
     {
         isOpen = false;
 
-        Debug.Log("Sonido de puerta cerrandose");
+        Debug.Log("Sonido de puerta cerrándose");
 
         if (animationCoroutine != null)
         {
