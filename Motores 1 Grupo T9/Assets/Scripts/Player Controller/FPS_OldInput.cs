@@ -23,6 +23,7 @@ public class FPS_OldInput : MonoBehaviour
 
     void Update()
     {
+
         if (MenuPausa.gamePaused)
         {
             return;

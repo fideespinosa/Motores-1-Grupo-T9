@@ -6,6 +6,10 @@ public class PanelManager : MonoBehaviour
 
     [SerializeField] private int totalButtons = 5;
     [SerializeField] InterceptorScript interceptorScript;
+
+    [SerializeField] private AudioSource correct;
+    [SerializeField] private AudioSource incorrect;
+
     private int[] correctOrder;
 
     private bool puzzleCompleted = false;
@@ -57,6 +61,7 @@ public class PanelManager : MonoBehaviour
         if (buttonNumber == correctOrder[currentStep])
         {
             Debug.Log("bien");
+            correct.Play();
 
             button.SetPressed();
             pressedButtons.Add(button);
@@ -67,11 +72,13 @@ public class PanelManager : MonoBehaviour
             {
                 interceptorScript.Win();
                 Debug.Log("ganaste");
-                puzzleCompleted = true;
+
+                RandomizeOrder();
             }
         }
         else
         {
+            incorrect.Play();
             Debug.Log("mal");
 
             foreach (PanelButton pressedButton in pressedButtons)

@@ -29,7 +29,6 @@ public class CrosshairRaycast : MonoBehaviour
 
     void Update()
     {
-
         RaycastHit hit;
         Vector3 origin = transform.position;
         Vector3 direction = transform.forward;
@@ -40,20 +39,25 @@ public class CrosshairRaycast : MonoBehaviour
             Debug.DrawLine(origin, hit.point, Color.red);
             crosshairImage.sprite = interactSprite;
 
+            if (hit.collider.TryGetComponent(out MemoryZoneInstructions panel))
+            {
+                // abre panel de instrucciones para minijuego de memoria
+                panel.ExecuteAction();
+            }
             
             if (Input.GetMouseButtonDown(0))
             {
-                screen1Opened = screensManager.Screen1Opened();
-
-                if (hit.collider.TryGetComponent(out PanelButton button))
+                Debug.Log(" if de click");
+                if (!GameStatusScript.Instance.minigameRunning)
                 {
-                    button.Press();
-                }
+                    Debug.Log("primer if");
+                   screen1Opened = screensManager.Screen1Opened();
 
                 if (hit.collider.gameObject.CompareTag("Screen 1") && minigamesManager.isAlarmActive)
                 {
                     screensManager.OpenPanelScreen1();
-                }
+                        Debug.Log("sgundo if");
+                    }
 
                 if (hit.collider.gameObject.CompareTag("Button-Yes"))
                 {
@@ -64,6 +68,17 @@ public class CrosshairRaycast : MonoBehaviour
                 {
                     playerInventory.CheckVictory(); 
                 }
+
+                }
+                else if(GameStatusScript.Instance.minigameRunning)
+                {
+                if (hit.collider.TryGetComponent(out PanelButton button))
+                {
+                    button.Press();
+                }
+
+                }
+
             }
         }
         else

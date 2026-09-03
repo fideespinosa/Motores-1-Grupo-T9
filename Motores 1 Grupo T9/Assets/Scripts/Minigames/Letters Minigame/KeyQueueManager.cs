@@ -46,6 +46,8 @@ public class KeyQueueManager : MonoBehaviour
     {
         Panel.SetActive(true);
         ResetGame();
+        GameStatusScript.Instance.StartMinigame();
+
     }
 
     void Update()

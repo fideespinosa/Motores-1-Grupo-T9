@@ -1,3 +1,4 @@
+using System.Reflection;
 using UnityEngine;
 
 public class AlarmLightScript : MonoBehaviour
@@ -41,6 +42,7 @@ public class AlarmLightScript : MonoBehaviour
     private void OnDisable()
     {
         normalLight.enabled = true;
+        GameStatusScript.Instance.EndMinigame();
     }
 
 }
