@@ -24,15 +24,19 @@ public class Crosshair : MonoBehaviour
         if (Physics.Raycast(origin, direction, out hit, rayDistance, layerMask))
         {
             Debug.DrawLine(origin, hit.point, Color.red);
-            crosshairImage.sprite = interactSprite;
 
             IInteractable interactable = null;
             if (hit.collider.gameObject.layer == LayerMask.NameToLayer("Item"))
             {
                 interactable = hit.collider.GetComponent<IInteractable>();
+                crosshairImage.sprite = interactSprite;
+            }
+            else
+            {
+                crosshairImage.sprite = defaultSprite;
             }
 
-            UpdateHover(interactable);
+                UpdateHover(interactable);
 
             if (interactable != null && Input.GetMouseButtonDown(0))
             {

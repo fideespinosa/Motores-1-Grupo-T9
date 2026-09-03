@@ -1311,6 +1311,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::PlaceableItem
   itemId: empty_glass
   requiredFlag: medication_collected
+  placementPointToActivate: {fileID: 0}
   outline: {fileID: 265927712}
 --- !u!65 &265927714
 BoxCollider:
@@ -1642,7 +1643,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!114 &288479015
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -2658,6 +2659,7 @@ MonoBehaviour:
   requiredFlag: 
   requiredItemId: notopenable
   lockedMessage: No tengo necesidad de salir.
+  flagToSetOnLocked: 
   pivot: {fileID: 1745558728}
   animationType: 0
   rotationOffset: {x: 0, y: 90, z: 0}
@@ -3904,6 +3906,7 @@ MonoBehaviour:
   requiredFlag: medication_ready
   requiredItemId: son_key
   lockedMessage: Esta cerrada... creo que tengo una llave en alguna parte de mi habitacion.
+  flagToSetOnLocked: 
   pivot: {fileID: 0}
   animationType: 0
   rotationOffset: {x: 0, y: 90, z: 0}
@@ -4414,6 +4417,139 @@ MonoBehaviour:
   precomputeOutline: 0
   bakeKeys: []
   bakeValues: []
+--- !u!1 &845644751
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 845644755}
+  - component: {fileID: 845644754}
+  - component: {fileID: 845644753}
+  - component: {fileID: 845644752}
+  - component: {fileID: 845644756}
+  m_Layer: 10
+  m_Name: backpack
+  m_TagString: Item
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!65 &845644752
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 845644751}
+  m_Material: {fileID: 0}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_LayerOverridePriority: 0
+  m_IsTrigger: 0
+  m_ProvidesContacts: 0
+  m_Enabled: 1
+  serializedVersion: 3
+  m_Size: {x: 1, y: 1, z: 1}
+  m_Center: {x: 0, y: 0, z: 0}
+--- !u!23 &845644753
+MeshRenderer:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 845644751}
+  m_Enabled: 1
+  m_CastShadows: 1
+  m_ReceiveShadows: 1
+  m_DynamicOccludee: 1
+  m_StaticShadowCaster: 0
+  m_MotionVectors: 1
+  m_LightProbeUsage: 1
+  m_ReflectionProbeUsage: 1
+  m_RayTracingMode: 2
+  m_RayTraceProcedural: 0
+  m_RayTracingAccelStructBuildFlagsOverride: 0
+  m_RayTracingAccelStructBuildFlags: 1
+  m_SmallMeshCulling: 1
+  m_ForceMeshLod: -1
+  m_MeshLodSelectionBias: 0
+  m_RenderingLayerMask: 1
+  m_RendererPriority: 0
+  m_Materials:
+  - {fileID: 2100000, guid: 31321ba15b8f8eb4c954353edc038b1d, type: 2}
+  m_StaticBatchInfo:
+    firstSubMesh: 0
+    subMeshCount: 0
+  m_StaticBatchRoot: {fileID: 0}
+  m_ProbeAnchor: {fileID: 0}
+  m_LightProbeVolumeOverride: {fileID: 0}
+  m_ScaleInLightmap: 1
+  m_ReceiveGI: 1
+  m_PreserveUVs: 0
+  m_IgnoreNormalsForChartDetection: 0
+  m_ImportantGI: 0
+  m_StitchLightmapSeams: 1
+  m_SelectedEditorRenderState: 3
+  m_MinimumChartSize: 4
+  m_AutoUVMaxDistance: 0.5
+  m_AutoUVMaxAngle: 89
+  m_LightmapParameters: {fileID: 0}
+  m_GlobalIlluminationMeshLod: 0
+  m_SortingLayerID: 0
+  m_SortingLayer: 0
+  m_SortingOrder: 0
+  m_MaskInteraction: 0
+  m_AdditionalVertexStreams: {fileID: 0}
+--- !u!33 &845644754
+MeshFilter:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 845644751}
+  m_Mesh: {fileID: 10202, guid: 0000000000000000e000000000000000, type: 0}
+--- !u!4 &845644755
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 845644751}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 370.556, y: 3.49, z: -584.897}
+  m_LocalScale: {x: 0.37940165, y: 0.37940165, z: 0.37940165}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &845644756
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 845644751}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 7958629d600318a4db5b2b2ea6ec5215, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::BackpackTrigger
+  requiredFlag: backpack_hint_given
+  triggerText: "Debo buscar algo para subir hasta all\xE1..."
+  holdDuration: 2.5
+  flagToSetAfter: ladder_unlocked
+  playerMovement: {fileID: 1834139653}
+  playerCameraTransform: {fileID: 1367706136}
+  cameraTurnDuration: 0.6
+  outline: {fileID: 0}
 --- !u!1 &867123231
 GameObject:
   m_ObjectHideFlags: 0
@@ -5388,6 +5524,7 @@ MonoBehaviour:
   requiredFlag: 
   requiredItemId: notopenable
   lockedMessage: No tengo necesidad de salir.
+  flagToSetOnLocked: 
   pivot: {fileID: 1415433145}
   animationType: 0
   rotationOffset: {x: 0, y: 90, z: 0}
@@ -6261,6 +6398,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::PlaceableItem
   itemId: full_glass
   requiredFlag: medication_collected
+  placementPointToActivate: {fileID: 0}
   outline: {fileID: 1303916650}
 --- !u!65 &1303916652
 BoxCollider:
@@ -6500,7 +6638,7 @@ Transform:
   m_GameObject: {fileID: 1351912188}
   serializedVersion: 2
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: -13.627, y: 1.463, z: -2.797}
+  m_LocalPosition: {x: -21.1785, y: 3.39, z: -0.856}
   m_LocalScale: {x: 0.031281564, y: 0.031281564, z: 0.12599276}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -7979,7 +8117,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::PlaceableItem
   itemId: ladder
-  requiredFlag: 
+  requiredFlag: ladder_unlocked
+  placementPointToActivate: {fileID: 288479014}
   outline: {fileID: 1661395105}
 --- !u!65 &1661395107
 BoxCollider:
@@ -9561,6 +9700,7 @@ MonoBehaviour:
   requiredFlag: medication_ready
   requiredItemId: son_key
   lockedMessage: Esta cerrada... creo que tengo una llave en alguna parte de mi habitacion.
+  flagToSetOnLocked: backpack_hint_given
   pivot: {fileID: 880540189}
   animationType: 0
   rotationOffset: {x: 0, y: 90, z: 0}
@@ -9983,9 +10123,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 59f417392c809fb47a72f2b01f920e21, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::LockedDrawer
-  requiredFlag: 
+  requiredFlag: backpack_hint_given
   requiredItemId: red_key
-  lockedMessage: Esta cerrado, no se donde esta la llave.
+  lockedMessage: Esta cerrado, creo que la llave la deje en la mochila.
+  flagToSetOnLocked: 
   pivot: {fileID: 0}
   animationType: 0
   rotationOffset: {x: 0, y: 90, z: 0}
@@ -11139,6 +11280,10 @@ PrefabInstance:
       propertyPath: crosshairImage
       value: 
       objectReference: {fileID: 1481553992}
+    - target: {fileID: 673473094954212713, guid: 5227ce862db5983408320603d259fb44, type: 3}
+      propertyPath: layerMask.m_Bits
+      value: 3072
+      objectReference: {fileID: 0}
     - target: {fileID: 7704503355901849607, guid: 5227ce862db5983408320603d259fb44, type: 3}
       propertyPath: m_Name
       value: Player
@@ -11300,6 +11445,7 @@ MonoBehaviour:
   requiredFlag: 
   requiredItemId: 
   lockedMessage: 
+  flagToSetOnLocked: 
   pivot: {fileID: 121155162}
   animationType: 0
   rotationOffset: {x: 0, y: 90, z: 0}
@@ -11318,7 +11464,7 @@ GameObject:
   - component: {fileID: 1216534883774911666}
   - component: {fileID: 2137590533612768317}
   - component: {fileID: 928925960}
-  m_Layer: 0
+  m_Layer: 11
   m_Name: casa
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -11485,3 +11631,4 @@ SceneRoots:
   - {fileID: 1446451819}
   - {fileID: 1535191279}
   - {fileID: 112410038}
+  - {fileID: 845644755}
