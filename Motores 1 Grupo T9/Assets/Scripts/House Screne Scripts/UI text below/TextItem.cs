@@ -25,7 +25,7 @@ public class TextItem : MonoBehaviour, IInteractable
         }
         else
         {
-            Debug.LogWarning("No se encontró un TextPanelManager en la escena.");
+            Debug.LogWarning("No se encontró un TextPanelManager en la escena");
         }
     }
 

@@ -292,6 +292,50 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 51748069}
   m_CullTransparentMesh: 1
+--- !u!1 &52666996 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 919132149155446097, guid: c8a531f9c30c11b4c9bc00bf7fd34354, type: 3}
+  m_PrefabInstance: {fileID: 1384079750}
+  m_PrefabAsset: {fileID: 0}
+--- !u!114 &52667000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 52666996}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: dbede58aef5fa2f4d8c6ecb10d92caf0, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::SubtitleSequencePlayer
+  displayedText: {fileID: 1877780381}
+  panel: {fileID: 1735435230}
+  panelCanvasGroup: {fileID: 1735435235}
+  subtitles:
+  - text: este es el programa pharus, es un orgullo presentarlo
+    displayDuration: 4
+  - text: te va a sorprender
+    displayDuration: 2
+  - text: se trata de bla bla bla
+    displayDuration: 7
+  - text: gracias por escuchar
+    displayDuration: 2
+  fadeInDuration: 0.5
+  fadeOutDuration: 0.5
+--- !u!114 &52667004
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 52666996}
+  m_Enabled: 0
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 432a3c14044e50b4dbea26df2efa915f, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::SubtitleTestTrigger
+  subtitlePlayer: {fileID: 52667000}
 --- !u!1 &87303248
 GameObject:
   m_ObjectHideFlags: 0
@@ -7202,10 +7246,20 @@ PrefabInstance:
       propertyPath: m_Name
       value: Radio
       objectReference: {fileID: 0}
+    - target: {fileID: 919132149155446097, guid: c8a531f9c30c11b4c9bc00bf7fd34354, type: 3}
+      propertyPath: m_IsActive
+      value: 1
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
-    m_AddedComponents: []
+    m_AddedComponents:
+    - targetCorrespondingSourceObject: {fileID: 919132149155446097, guid: c8a531f9c30c11b4c9bc00bf7fd34354, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 52667000}
+    - targetCorrespondingSourceObject: {fileID: 919132149155446097, guid: c8a531f9c30c11b4c9bc00bf7fd34354, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 52667004}
   m_SourcePrefab: {fileID: 100100000, guid: c8a531f9c30c11b4c9bc00bf7fd34354, type: 3}
 --- !u!1 &1395811705
 GameObject:
@@ -8958,7 +9012,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!224 &1735435231
 RectTransform:
   m_ObjectHideFlags: 0
@@ -9825,7 +9879,7 @@ MonoBehaviour:
   m_fontMaterials: []
   m_fontColor32:
     serializedVersion: 2
-    rgba: 4278190080
+    rgba: 4294967295
   m_fontColor: {r: 1, g: 1, b: 1, a: 1}
   m_enableVertexGradient: 0
   m_colorMode: 3
