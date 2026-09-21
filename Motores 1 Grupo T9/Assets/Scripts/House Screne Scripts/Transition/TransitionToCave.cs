@@ -5,12 +5,11 @@ using UnityEngine.SceneManagement;
 public class TransitionToCave : MonoBehaviour
 {
     [Header("Player Detection")]
-    [SerializeField] private string playerTag = "Player";
     [SerializeField] private PlayerMovement playerMovement;
 
     [Header("Cinematic")]
-    [Tooltip("Animators a disparar al mismo tiempo")]
-    [SerializeField] private Animator[] cinematicAnimators;
+    [SerializeField] private Animator cameraAnimator;
+    [SerializeField] private Animator eyelidsAnimator;
     [SerializeField] private string playTriggerName = "Play";
 
     [Header("Scene Change")]
@@ -23,30 +22,33 @@ public class TransitionToCave : MonoBehaviour
         GetComponent<Collider>().isTrigger = true;
     }
 
-    private void OnTriggerEnter(Collider other)
+    public void StartAnimation()
     {
         if (triggered) return;
-        if (!other.CompareTag(playerTag)) return;
-
         triggered = true;
+
 
         if (playerMovement != null)
         {
+            Debug.Log("asd");
             playerMovement.enabled = false;
         }
 
-        if (cinematicAnimators != null)
+        if (cameraAnimator != null)
         {
-            foreach (Animator animator in cinematicAnimators)
-            {
-                if (animator != null)
-                {
-                    animator.SetTrigger(playTriggerName);
-                }
-            }
+            cameraAnimator.SetTrigger(playTriggerName);
         }
     }
-    
+
+    public void TriggerEyesClose()
+    {
+        if (eyelidsAnimator != null)
+        {
+            Debug.Log("aaaa");
+            eyelidsAnimator.SetTrigger(playTriggerName);
+        }
+    }
+
     public void OnCinematicFinished()
     {
         SceneManager.LoadScene(sceneToLoad);
