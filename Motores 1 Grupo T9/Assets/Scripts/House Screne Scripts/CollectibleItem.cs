@@ -7,10 +7,12 @@ public class CollectibleItem : MonoBehaviour, IInteractable
     [SerializeField] private string itemId;
 
     [Header("On Pickup")]
-    [Tooltip("Texto opcional que dice el protagonista al agarrarlo. Dejalo vacío si no querés comentario.")]
+    [Tooltip("Texto opcional que dice el protagonista al agarrarlo. Dejalo vacío si no querés comentario")]
     [TextArea]
     [SerializeField] private string pickupComment;
     [SerializeField] private bool disableOnPickup = true;
+    [Tooltip("GameObjects que se activan al agarrar este item")]
+    [SerializeField] private GameObject[] objectsToActivate;
 
     [Header("Outline")]
     [SerializeField] private Outline outline;
@@ -33,6 +35,17 @@ public class CollectibleItem : MonoBehaviour, IInteractable
         if (!string.IsNullOrEmpty(pickupComment) && TextPanelManager.Instance != null)
         {
             TextPanelManager.Instance.ShowText(pickupComment);
+        }
+
+        if (objectsToActivate != null)
+        {
+            foreach (GameObject obj in objectsToActivate)
+            {
+                if (obj != null)
+                {
+                    obj.SetActive(true);
+                }
+            }
         }
 
         if (disableOnPickup)
