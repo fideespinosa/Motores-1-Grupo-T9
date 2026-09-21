@@ -4,6 +4,7 @@ using UnityEngine.SceneManagement;
 [RequireComponent(typeof(Collider))]
 public class TransitionToCave : MonoBehaviour
 {
+    [SerializeField] GameObject HUD;
     [Header("Player Detection")]
     [SerializeField] private PlayerMovement playerMovement;
 
@@ -27,6 +28,7 @@ public class TransitionToCave : MonoBehaviour
         if (triggered) return;
         triggered = true;
 
+        HUD.SetActive(false);
 
         if (playerMovement != null)
         {
