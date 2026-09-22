@@ -23,7 +23,6 @@ public class ImagePanelManager : MonoBehaviour
 
     private void Awake()
     {
-
         if (Instance != null && Instance != this)
         {
             Destroy(gameObject);
@@ -50,11 +49,11 @@ public class ImagePanelManager : MonoBehaviour
     public void ShowImage(Sprite sprite)
     {
         if (panel == null || displayedImage == null || sprite == null) return;
+        if (IsShowingImage) return;
 
         displayedImage.sprite = sprite;
         panel.SetActive(true);
         IsShowingImage = true;
-
 
         if (playerMovement != null)
         {
