@@ -21,7 +21,6 @@ public class CaveToHouseScript : MonoBehaviour
     {
         panelImage = Panel.GetComponent<Image>();
 
-        // Empieza completamente transparente
         Color color = panelImage.color;
         color.a = 0f;
         panelImage.color = color;
@@ -44,11 +43,9 @@ public class CaveToHouseScript : MonoBehaviour
 
         transitioning = true;
 
-        // Desactivar controles
         droneController.enabled = false;
         playerSwitcher.enabled = false;
 
-        // Activar el panel blanco
         Panel.SetActive(true);
 
         StartCoroutine(FadeToWhite());
@@ -65,7 +62,6 @@ public class CaveToHouseScript : MonoBehaviour
         {
             elapsed += Time.deltaTime;
 
-            // Aumenta progresivamente el alfa del blanco
             float alpha = Mathf.Lerp(0f, 1f, elapsed / FadeDuration);
 
             color.a = alpha;
@@ -74,11 +70,9 @@ public class CaveToHouseScript : MonoBehaviour
             yield return null;
         }
 
-        // Asegurar blanco completamente opaco
         color.a = 1f;
         panelImage.color = color;
 
-        // Cambiar a la escena del recuerdo
         SceneManager.LoadScene(SceneName);
     }
 }
