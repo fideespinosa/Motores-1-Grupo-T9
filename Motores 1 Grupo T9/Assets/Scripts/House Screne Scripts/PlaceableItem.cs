@@ -10,6 +10,10 @@ public class PlaceableItem : MonoBehaviour, IInteractable
     [Tooltip("Flag que debe estar activo para poder agarrar este objeto. Dejar vacío si no aplica.")]
     [SerializeField] private string requiredFlag;
 
+    [Header("Placement Point")]
+    [Tooltip("GameObject del PlacementPoint correspondiente, que empieza desactivado en la escena y se activa al agarrar este objeto.")]
+    [SerializeField] private GameObject placementPointToActivate;
+
     [Header("Outline")]
     [SerializeField] private Outline outline;
 
@@ -35,6 +39,12 @@ public class PlaceableItem : MonoBehaviour, IInteractable
         Debug.Log("Sonido de objeto recogido");
 
         PlacementManager.Instance.PickUp(itemId);
+
+        if (placementPointToActivate != null)
+        {
+            placementPointToActivate.SetActive(true);
+        }
+
         gameObject.SetActive(false);
     }
 

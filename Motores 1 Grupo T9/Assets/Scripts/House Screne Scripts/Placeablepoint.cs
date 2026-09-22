@@ -85,10 +85,17 @@ public class PlacementPoint : MonoBehaviour, IInteractable
             {
                 TextPanelManager.Instance.ShowText(successMessage);
             }
+
+            gameObject.SetActive(false);
         }
-        else if (!string.IsNullOrEmpty(wrongItemMessage) && TextPanelManager.Instance != null)
+        else
         {
-            TextPanelManager.Instance.ShowText(wrongItemMessage);
+            Debug.Log("PlacementPoint '" + gameObject.name + "' espera Item Id '" + acceptedItemId + "', pero tengo en mano: " + PlacementManager.Instance.GetHeldItemsDebugString());
+
+            if (!string.IsNullOrEmpty(wrongItemMessage) && TextPanelManager.Instance != null)
+            {
+                TextPanelManager.Instance.ShowText(wrongItemMessage);
+            }
         }
     }
 

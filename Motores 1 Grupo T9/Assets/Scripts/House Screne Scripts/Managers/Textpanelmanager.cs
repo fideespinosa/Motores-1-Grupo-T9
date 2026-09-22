@@ -65,6 +65,7 @@ public class TextPanelManager : MonoBehaviour
         yield return Fade(panelCanvasGroup, panelCanvasGroup.alpha, 0f, fadeOutDuration);
 
         panel.SetActive(false);
+
         sequenceCoroutine = null;
     }
 
@@ -98,6 +99,10 @@ public class TextPanelManager : MonoBehaviour
             yield return null;
         }
         canvasGroup.alpha = to;
+        if(to == 0f)
+        {
+            displayedText.text = "";
+        }
     }
 
     public void HideText()
@@ -117,5 +122,6 @@ public class TextPanelManager : MonoBehaviour
         {
             panelCanvasGroup.alpha = 0f;
         }
+
     }
 }

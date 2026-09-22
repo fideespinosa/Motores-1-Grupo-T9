@@ -2,9 +2,15 @@ using UnityEngine;
 
 public class ImageItem : MonoBehaviour, IInteractable
 {
-    [Header("Imagen")]
+    [Header("Image To Show")]
     [SerializeField] private Sprite imageToShow;
+
+    [Header("On Interact")]
+    [Tooltip("Si está activo, el objeto desaparece de la escena después de mostrarse una vez")]
+    [SerializeField] private bool disableOnInteract = false;
+
     [Header("Outline")]
+    [Tooltip("Script de outline del objeto. Se activa al mirarlo y se desactiva al dejar de mirarlo")]
     [SerializeField] private Outline outline;
 
     private void Awake()
@@ -23,7 +29,12 @@ public class ImageItem : MonoBehaviour, IInteractable
         }
         else
         {
-            Debug.LogWarning("no se encuentra ImagePanelManager en la escena");
+            Debug.LogWarning("No se encontró un ImagePanelManager en la escena.");
+        }
+
+        if (disableOnInteract)
+        {
+            gameObject.SetActive(false);
         }
     }
 
