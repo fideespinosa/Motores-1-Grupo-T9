@@ -10,19 +10,20 @@ public class ImagePanelManager : MonoBehaviour
     [SerializeField] private Image displayedImage;
 
     [Header("Player Reference")]
-    [Tooltip("Se desactiva mientras se muestra la imagen para que la camara quede quieta.")]
+    [Tooltip("Se desactiva mientras se muestra la imagen para que la cámara quede quieta.")]
     [SerializeField] private PlayerMovement playerMovement;
 
     [Header("Settings")]
-    [Tooltip("Si está activo, el cursor se libera mientras se ve la imagen")]
+    [Tooltip("Si está activo, el cursor se libera mientras se ve la imagen (útil si normalmente está bloqueado).")]
     [SerializeField] private bool unlockCursorWhenShown = true;
-    [Tooltip("Tecla alternativa para cerrar la imagen")]
-    [SerializeField] private KeyCode closeKey = KeyCode.Escape;
 
     public bool IsShowingImage { get; private set; }
 
+    private bool playerMovementWasEnabledBeforeShow;
+
     private void Awake()
     {
+
         if (Instance != null && Instance != this)
         {
             Destroy(gameObject);
@@ -40,7 +41,7 @@ public class ImagePanelManager : MonoBehaviour
     {
         if (!IsShowingImage) return;
 
-        if (Input.GetMouseButtonDown(0) || Input.GetKeyDown(closeKey))
+        if (Input.GetMouseButtonDown(0))
         {
             HideImage();
         }
@@ -54,8 +55,10 @@ public class ImagePanelManager : MonoBehaviour
         panel.SetActive(true);
         IsShowingImage = true;
 
+
         if (playerMovement != null)
         {
+            playerMovementWasEnabledBeforeShow = playerMovement.enabled;
             playerMovement.enabled = false;
         }
 
@@ -73,7 +76,7 @@ public class ImagePanelManager : MonoBehaviour
         panel.SetActive(false);
         IsShowingImage = false;
 
-        if (playerMovement != null)
+        if (playerMovement != null && playerMovementWasEnabledBeforeShow)
         {
             playerMovement.enabled = true;
         }
