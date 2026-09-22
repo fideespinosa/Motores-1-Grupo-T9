@@ -21,6 +21,11 @@ public class CameraController : MonoBehaviour
     void Start()
     {
         Cursor.lockState = CursorLockMode.Locked;
+
+        cameraPitch = pivotX.localEulerAngles.x;
+
+        if (cameraPitch > 180f)
+            cameraPitch -= 360f;
     }
 
     void Update()
@@ -32,7 +37,19 @@ public class CameraController : MonoBehaviour
         float mouseY = Input.GetAxis("Mouse Y") * sensitivity * Time.deltaTime;
 
         cameraPitch -= mouseY;
-        cameraPitch = Mathf.Clamp(cameraPitch, -clampAngle, clampAngle);
+
+        cameraPitch = Mathf.Clamp(
+            cameraPitch,
+            -clampAngle,
+            clampAngle
+        );
+
+        pivotX.localRotation = Quaternion.Euler(
+            cameraPitch,
+            0f,
+            0f
+        );
+
 
         float nextYaw = cameraYaw + mouseX;
 
@@ -51,16 +68,10 @@ public class CameraController : MonoBehaviour
             );
         }
 
-        gimbalY.localRotation = Quaternion.Slerp(
-            gimbalY.localRotation,
-            Quaternion.Euler(0f, cameraYaw, 0f),
-            10f * Time.deltaTime
-        );
-
-        pivotX.localRotation = Quaternion.Slerp(
-            pivotX.localRotation,
-            Quaternion.Euler(cameraPitch, 0f, 0f),
-            10f * Time.deltaTime
+        gimbalY.localRotation = Quaternion.Euler(
+            0f,
+            cameraYaw,
+            0f
         );
     }
 }
