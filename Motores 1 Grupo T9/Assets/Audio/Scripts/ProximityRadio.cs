@@ -8,7 +8,7 @@ public class ProximityRadio : MonoBehaviour
     [SerializeField] private AudioMixerSnapshot snapshotRadioON;
 
     [Tooltip("Tiempo en segundos que tarda en hacer el fade de volúmenes")]
-    [SerializeField] private float tiempoDeTransicion = 1.5f;
+    [SerializeField] private float tiempoDeTransicion;
 
     [Header("Configuración")]
     public string playerTag = "Player";

@@ -500,9 +500,11 @@ AudioMixerController:
     - 63de00594be14474195d9eec9147b6f2
     - 2fbff1b57ff13db49b29b57ee6f56168
     - 5cd02094b6810bd4f9d4fdd19b907439
+    - 4e272751e42e57147a3c7c5d69c4b634
+    - 52b8fe373c32d7d489bf0e7362637e1b
     name: View
   m_CurrentViewIndex: 0
-  m_TargetSnapshot: {fileID: -1923263248004975246}
+  m_TargetSnapshot: {fileID: 24500006}
 --- !u!243 &24300002
 AudioMixerGroupController:
   m_ObjectHideFlags: 0
@@ -561,6 +563,7 @@ AudioMixerSnapshotController:
     badc73f800d63b948b8bdcfd1912c17b: -4.9356413
     a6b5ceca0dc92f84f99db905fd175049: -16.035946
     c1a15a3b07efdd34ab117b99a2e6fb04: -14.816608
+    5e3a068cc70d32243bef7525cc2285b4: -5.7224774
     7f1a3eed9bbe3544bbb920940befff11: -23.569185
     2a2f8afdd64ac8344bef0da28673ba94: -14.816608
     dcb77e8e662aed345aa902ed34189d5f: -0.08374829
@@ -609,6 +612,25 @@ AudioMixerSnapshotController:
     2a2f8afdd64ac8344bef0da28673ba94: -14.816608
     b62b3bbe902d01443ba911052ff05f23: -2.2889833
   m_TransitionOverrides: {}
+--- !u!243 &1375927033990113481
+AudioMixerGroupController:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_Name: FOOTSTEPS
+  m_AudioMixer: {fileID: 24100000}
+  m_GroupID: 52b8fe373c32d7d489bf0e7362637e1b
+  m_Children: []
+  m_Volume: 5e3a068cc70d32243bef7525cc2285b4
+  m_Pitch: 96c0667b5c3e7974d851cddd493fdced
+  m_Send: 00000000000000000000000000000000
+  m_Effects:
+  - {fileID: 2816665806989935760}
+  m_UserColorIndex: 0
+  m_Mute: 0
+  m_Solo: 0
+  m_BypassEffects: 0
 --- !u!244 &1379841088158416927
 AudioMixerEffectController:
   m_ObjectHideFlags: 3
@@ -622,6 +644,20 @@ AudioMixerEffectController:
   m_Parameters:
   - m_ParameterName: Cutoff freq
     m_GUID: 8cc7693562b5daf4cb2ed1aae8033dbe
+  m_SendTarget: {fileID: 0}
+  m_EnableWetMix: 0
+  m_Bypass: 0
+--- !u!244 &2122144568628984867
+AudioMixerEffectController:
+  m_ObjectHideFlags: 3
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_Name: 
+  m_EffectID: 548ab2b771fd56c45a9fc7f43a69c983
+  m_EffectName: Attenuation
+  m_MixLevel: b6138bbe0ce0e1745a539b15bafde420
+  m_Parameters: []
   m_SendTarget: {fileID: 0}
   m_EnableWetMix: 0
   m_Bypass: 0
@@ -687,6 +723,20 @@ AudioMixerEffectController:
   m_EffectID: e85588af0465b884da39ba76d09026cc
   m_EffectName: Receive
   m_MixLevel: bffda2dce0d1f004fab0aa33e9f1c5ab
+  m_Parameters: []
+  m_SendTarget: {fileID: 0}
+  m_EnableWetMix: 0
+  m_Bypass: 0
+--- !u!244 &2816665806989935760
+AudioMixerEffectController:
+  m_ObjectHideFlags: 3
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_Name: 
+  m_EffectID: 26dece2d0b3b50f43bab534cf0d79903
+  m_EffectName: Attenuation
+  m_MixLevel: 9e0b53f85ec17384289f1f7cbd9c3f72
   m_Parameters: []
   m_SendTarget: {fileID: 0}
   m_EnableWetMix: 0
@@ -878,6 +928,26 @@ AudioMixerEffectController:
   m_SendTarget: {fileID: 2401709488017523028}
   m_EnableWetMix: 0
   m_Bypass: 0
+--- !u!243 &8064559072308962337
+AudioMixerGroupController:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_Name: PLAYER
+  m_AudioMixer: {fileID: 24100000}
+  m_GroupID: 4e272751e42e57147a3c7c5d69c4b634
+  m_Children:
+  - {fileID: 1375927033990113481}
+  m_Volume: 029eaafe9cc5f174397a42c26472d819
+  m_Pitch: cbe5c8b0683ab4848a64413749d7e2d0
+  m_Send: 00000000000000000000000000000000
+  m_Effects:
+  - {fileID: 2122144568628984867}
+  m_UserColorIndex: 0
+  m_Mute: 0
+  m_Solo: 0
+  m_BypassEffects: 0
 --- !u!243 &8285214626755014582
 AudioMixerGroupController:
   m_ObjectHideFlags: 0
@@ -891,6 +961,7 @@ AudioMixerGroupController:
   - {fileID: -3501506380775347564}
   - {fileID: 3425053190839044321}
   - {fileID: -6476232975484960500}
+  - {fileID: 8064559072308962337}
   m_Volume: badc73f800d63b948b8bdcfd1912c17b
   m_Pitch: 7d6ced27f963295469757d75f03717c7
   m_Send: 00000000000000000000000000000000
