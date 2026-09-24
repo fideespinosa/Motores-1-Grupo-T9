@@ -15375,6 +15375,9 @@ MonoBehaviour:
   imageToShow: {fileID: 21300000, guid: 08dcacf7463fdbe469439def1cc06f84, type: 3}
   disableOnInteract: 0
   outline: {fileID: 1046640134}
+  audioSource: {fileID: 0}
+  paperOn: {fileID: 0}
+  paperOff: {fileID: 0}
 --- !u!114 &1046640134
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -15752,19 +15755,19 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: -8679921383154817045, guid: 7eb089fb30cb287429f7161a15805269, type: 3}
       propertyPath: m_LocalScale.x
-      value: 5.4334435
+      value: 5.3053775
       objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: 7eb089fb30cb287429f7161a15805269, type: 3}
       propertyPath: m_LocalScale.y
-      value: 4.898625
+      value: 4.7831645
       objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: 7eb089fb30cb287429f7161a15805269, type: 3}
       propertyPath: m_LocalScale.z
-      value: 5.4334435
+      value: 5.3053775
       objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: 7eb089fb30cb287429f7161a15805269, type: 3}
       propertyPath: m_LocalPosition.x
-      value: 31.86044
+      value: 30.25
       objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: 7eb089fb30cb287429f7161a15805269, type: 3}
       propertyPath: m_LocalPosition.y
@@ -15772,7 +15775,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: 7eb089fb30cb287429f7161a15805269, type: 3}
       propertyPath: m_LocalPosition.z
-      value: 33.49401
+      value: 33.06
       objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: 7eb089fb30cb287429f7161a15805269, type: 3}
       propertyPath: m_LocalRotation.w
@@ -25530,7 +25533,7 @@ Transform:
   m_GameObject: {fileID: 1667824553}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 10.52, y: 27.27, z: -83.18}
+  m_LocalPosition: {x: 12.045, y: 26.198, z: -80.05}
   m_LocalScale: {x: 1.5657, y: 1.5657, z: 1.5657}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -26873,6 +26876,9 @@ MonoBehaviour:
   imageToShow: {fileID: 21300000, guid: 73b9345f08507f945a7bd66d4e3cabcf, type: 3}
   disableOnInteract: 1
   outline: {fileID: 1717906422}
+  audioSource: {fileID: 0}
+  paperOn: {fileID: 0}
+  paperOff: {fileID: 0}
 --- !u!65 &1717906424
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -33491,9 +33497,25 @@ PrefabInstance:
       value: 
       objectReference: {fileID: 2100000, guid: 17fda3c55f48ba9419212e7cabb1e1cc, type: 2}
     - target: {fileID: -7511558181221131132, guid: 874ebd5c371c19147a3c39b3c3364e90, type: 3}
+      propertyPath: 'm_Materials.Array.data[1]'
+      value: 
+      objectReference: {fileID: 2100000, guid: f5d929329d7ef574faae6e1af2debde3, type: 2}
+    - target: {fileID: -7511558181221131132, guid: 874ebd5c371c19147a3c39b3c3364e90, type: 3}
+      propertyPath: 'm_Materials.Array.data[2]'
+      value: 
+      objectReference: {fileID: 2100000, guid: ff0de3cbf12b2fc40a60c3e739ed1644, type: 2}
+    - target: {fileID: -7511558181221131132, guid: 874ebd5c371c19147a3c39b3c3364e90, type: 3}
       propertyPath: 'm_Materials.Array.data[3]'
       value: 
       objectReference: {fileID: 2100000, guid: 09fb41c69622b3b42884fcbd986b7639, type: 2}
+    - target: {fileID: -7511558181221131132, guid: 874ebd5c371c19147a3c39b3c3364e90, type: 3}
+      propertyPath: 'm_Materials.Array.data[4]'
+      value: 
+      objectReference: {fileID: 2100000, guid: f5597f3456bc0cd459815e36a851cc86, type: 2}
+    - target: {fileID: -7511558181221131132, guid: 874ebd5c371c19147a3c39b3c3364e90, type: 3}
+      propertyPath: 'm_Materials.Array.data[5]'
+      value: 
+      objectReference: {fileID: 2100000, guid: f5597f3456bc0cd459815e36a851cc86, type: 2}
     - target: {fileID: 919132149155446097, guid: 874ebd5c371c19147a3c39b3c3364e90, type: 3}
       propertyPath: m_Name
       value: CasaFlashback
