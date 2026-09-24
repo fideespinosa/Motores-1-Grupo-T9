@@ -25,6 +25,7 @@ public class EnemyMovement : MonoBehaviour
 
     private bool playerDead = false;
     private int nowWaypoint = 0;
+    private int waypointDirection = 1; // 1 = avanzando, -1 = retrocediendo (ping-pong)
     private float waitTimer = 0f;
     private Transform player;
     private NavMeshAgent agent;
@@ -149,9 +150,15 @@ public class EnemyMovement : MonoBehaviour
 
         float dist = Vector3.Distance(transform.position, wp.position);
 
+        bool isCorner = (nowWaypoint == 0 || nowWaypoint == waypoints.Length - 1);
+
         if (dist <= waypointTolerance)
         {
-            if (waitTimer <= 0f)
+            if (!isCorner)
+            {
+                AdvanceWaypointPingPong();
+            }
+            else if (waitTimer <= 0f)
             {
                 waitTimer = waitAtWaypoint;
 
@@ -166,7 +173,7 @@ public class EnemyMovement : MonoBehaviour
 
                 if (waitTimer <= 0f)
                 {
-                    nowWaypoint = (nowWaypoint + 1) % waypoints.Length;
+                    AdvanceWaypointPingPong();
                 }
             }
         }
@@ -174,6 +181,24 @@ public class EnemyMovement : MonoBehaviour
         {
             MoveTowards(wp.position);
         }
+    }
+
+    void AdvanceWaypointPingPong()
+    {
+        if (waypoints.Length <= 1)
+            return;
+
+        // Si estamos en un extremo, invertimos la direccion antes de avanzar
+        if (nowWaypoint == waypoints.Length - 1)
+        {
+            waypointDirection = -1;
+        }
+        else if (nowWaypoint == 0)
+        {
+            waypointDirection = 1;
+        }
+
+        nowWaypoint += waypointDirection;
     }
 
     bool CanSeePlayer()
@@ -274,6 +299,7 @@ public class EnemyMovement : MonoBehaviour
         transform.rotation = spawnPoint.rotation;
 
         nowWaypoint = 0;
+        waypointDirection = 1;
         waitTimer = 0f;
     }
 
