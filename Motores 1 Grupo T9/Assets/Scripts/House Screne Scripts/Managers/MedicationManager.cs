@@ -51,7 +51,7 @@ public class MedicationManager : MonoBehaviour
 
         if (collectedAmounts[medicationId] >= requiredAmounts[medicationId])
         {
-            ShowMessage("Ya tengo suficiente de esto.");
+            ShowMessage("No necesito mas de esto.");
             return false;
         }
 
@@ -63,12 +63,12 @@ public class MedicationManager : MonoBehaviour
             {
                 StoryFlagManager.Instance.SetFlag(completedFlag);
             }
-            ShowMessage("Creo que ya tengo todo lo que necesita. Ahora me falta un vaso de agua.");
+            ShowMessage("Ya tengo todos los remedios que necesito. Deberia dejarle tambien un vaso con agua.");
         }
         else
         {
             string name = displayNames.ContainsKey(medicationId) ? displayNames[medicationId] : medicationId;
-            ShowMessage("Tomé " + name + ".");
+            ShowMessage("Aca está la " + name + ".");
         }
 
         return true;
