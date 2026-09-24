@@ -14,6 +14,10 @@ public class PlaceableItem : MonoBehaviour, IInteractable
     [Tooltip("GameObject del PlacementPoint correspondiente, que empieza desactivado en la escena y se activa al agarrar este objeto.")]
     [SerializeField] private GameObject placementPointToActivate;
 
+    [Header("Story Flag")]
+    [Tooltip("Flag que se activa al agarrar este objeto. Dejar vacío si no aplica.")]
+    [SerializeField] private string flagToSetOnPickup;
+
     [Header("Outline")]
     [SerializeField] private Outline outline;
 
@@ -43,6 +47,11 @@ public class PlaceableItem : MonoBehaviour, IInteractable
         if (placementPointToActivate != null)
         {
             placementPointToActivate.SetActive(true);
+        }
+
+        if (!string.IsNullOrEmpty(flagToSetOnPickup) && StoryFlagManager.Instance != null)
+        {
+            StoryFlagManager.Instance.SetFlag(flagToSetOnPickup);
         }
 
         gameObject.SetActive(false);

@@ -4,6 +4,10 @@ using System.Collections;
 
 public class AnimationScript : MonoBehaviour
 {
+
+    [SerializeField] private PlayerMovement playerMovement;
+    [SerializeField] private GameObject HUD;
+
     [Header("Fog")]
     [SerializeField] private GameObject fog;
 
@@ -14,11 +18,34 @@ public class AnimationScript : MonoBehaviour
 
     [Header("Puerta")]
     [SerializeField] private Animator doorAnimator;
+    [SerializeField] private GameObject shipDoor;
+    [SerializeField] private GameObject houseDoor;
 
     [Header("Ojos")]
     [SerializeField] private Animator Eyes;
 
+    public void ChangeDoor()
+    {
+        houseDoor.SetActive(true);
+        shipDoor.SetActive(false);
+    }
+    public void DisableMovement()
+    {
+        playerMovement.enabled = false;
+        HUD.SetActive(false);
+        Debug.Log("asdasdsad");
+    }
 
+    public void EnableMovement()
+    {
+        playerMovement.enabled = true;
+        HUD.SetActive(true);
+    }
+
+    public void FogStart()
+    {
+        fog.SetActive(true);
+    }
     public void FogFade()
     {
         if (fog != null)

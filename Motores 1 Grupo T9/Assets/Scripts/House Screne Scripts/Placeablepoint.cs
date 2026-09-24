@@ -23,6 +23,8 @@ public class PlacementPoint : MonoBehaviour, IInteractable
     [SerializeField] private string flagToSet;
     [Tooltip("Otros GameObjects que se activan al colocar el objeto correctamente (ej. el trigger del teléfono).")]
     [SerializeField] private GameObject[] objectsToActivate;
+    [Tooltip("Si está activo, este GameObject se desactiva a sí mismo después de colocar el objeto correctamente.")]
+    [SerializeField] private bool disableOnSuccess = true;
 
     [Header("Outline")]
     [SerializeField] private Outline outline;
@@ -86,11 +88,13 @@ public class PlacementPoint : MonoBehaviour, IInteractable
                 TextPanelManager.Instance.ShowText(successMessage);
             }
 
-            gameObject.SetActive(false);
+            if (disableOnSuccess)
+            {
+                gameObject.SetActive(false);
+            }
         }
         else
         {
-            Debug.Log("PlacementPoint '" + gameObject.name + "' espera Item Id '" + acceptedItemId + "', pero tengo en mano: " + PlacementManager.Instance.GetHeldItemsDebugString());
 
             if (!string.IsNullOrEmpty(wrongItemMessage) && TextPanelManager.Instance != null)
             {

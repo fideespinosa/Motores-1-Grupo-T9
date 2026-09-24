@@ -1922,6 +1922,7 @@ MonoBehaviour:
   itemId: ladder
   requiredFlag: ladder_unlocked
   placementPointToActivate: {fileID: 169338639}
+  flagToSetOnPickup: 
   outline: {fileID: 92697162}
 --- !u!64 &92697161
 MeshCollider:
@@ -2858,6 +2859,7 @@ MonoBehaviour:
   successMessage: 
   flagToSet: 
   objectsToActivate: []
+  disableOnSuccess: 1
   outline: {fileID: 169338640}
 --- !u!65 &169338642
 BoxCollider:
@@ -3115,15 +3117,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 59f417392c809fb47a72f2b01f920e21, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::Openable
-  requiredFlag: medication_ready
   requiredItemId: son_key (borrar esto para que funcione)
   lockedMessage: Esta cerrada... creo que tengo una llave en alguna parte de mi habitacion.
-  flagToSetOnLocked: backpack_hint_given
-  pivot: {fileID: 0}
-  animationType: 0
-  rotationOffset: {x: 0, y: 90, z: 0}
-  slideOffset: {x: 0, y: 0, z: 0.4}
-  openDuration: 0.6
+  drawerAnimator: {fileID: 0}
+  openTriggerName: Open
   outline: {fileID: 175995827}
 --- !u!114 &175995827
 MonoBehaviour:
@@ -3954,8 +3951,8 @@ MonoBehaviour:
       m_Calls: []
   m_text: 0
   m_isRightToLeft: 0
-  m_fontAsset: {fileID: 11400000, guid: 9a80eaff267ac5c45921eb84943b2095, type: 2}
-  m_sharedMaterial: {fileID: -4913511322303963329, guid: 9a80eaff267ac5c45921eb84943b2095, type: 2}
+  m_fontAsset: {fileID: 11400000, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
+  m_sharedMaterial: {fileID: 2180264, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
   m_fontSharedMaterials: []
   m_fontMaterial: {fileID: 0}
   m_fontMaterials: []
@@ -5571,6 +5568,81 @@ RectTransform:
   m_AnchoredPosition: {x: 0, y: 0}
   m_SizeDelta: {x: 0, y: 0}
   m_Pivot: {x: 0, y: 0}
+--- !u!1 &300747980
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 300747981}
+  - component: {fileID: 300747983}
+  - component: {fileID: 300747982}
+  m_Layer: 5
+  m_Name: white panel
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 0
+--- !u!224 &300747981
+RectTransform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 300747980}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1.0295, y: 1.0295, z: 1.0295}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 1654381879}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+  m_AnchorMin: {x: 0, y: 0}
+  m_AnchorMax: {x: 1, y: 1}
+  m_AnchoredPosition: {x: 0, y: 0}
+  m_SizeDelta: {x: 0, y: 0}
+  m_Pivot: {x: 0.5, y: 0.5}
+--- !u!114 &300747982
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 300747980}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: fe87c0e1cc204ed48ad3b37840f39efc, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: UnityEngine.UI::UnityEngine.UI.Image
+  m_Material: {fileID: 0}
+  m_Color: {r: 1, g: 1, b: 1, a: 1}
+  m_RaycastTarget: 1
+  m_RaycastPadding: {x: 0, y: 0, z: 0, w: 0}
+  m_Maskable: 1
+  m_OnCullStateChanged:
+    m_PersistentCalls:
+      m_Calls: []
+  m_Sprite: {fileID: 10907, guid: 0000000000000000f000000000000000, type: 0}
+  m_Type: 1
+  m_PreserveAspect: 0
+  m_FillCenter: 1
+  m_FillMethod: 4
+  m_FillAmount: 1
+  m_FillClockwise: 1
+  m_FillOrigin: 0
+  m_UseSpriteMesh: 0
+  m_PixelsPerUnitMultiplier: 1
+--- !u!222 &300747983
+CanvasRenderer:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 300747980}
+  m_CullTransparentMesh: 1
 --- !u!1 &303548574
 GameObject:
   m_ObjectHideFlags: 0
@@ -6417,13 +6489,13 @@ PrefabInstance:
     m_AddedComponents:
     - targetCorrespondingSourceObject: {fileID: 919132149155446097, guid: 3f15c4f8976598d4bbf3dbcc49ab9ec8, type: 3}
       insertIndex: -1
-      addedObject: {fileID: 347714277}
-    - targetCorrespondingSourceObject: {fileID: 919132149155446097, guid: 3f15c4f8976598d4bbf3dbcc49ab9ec8, type: 3}
-      insertIndex: -1
       addedObject: {fileID: 347714276}
     - targetCorrespondingSourceObject: {fileID: 919132149155446097, guid: 3f15c4f8976598d4bbf3dbcc49ab9ec8, type: 3}
       insertIndex: -1
       addedObject: {fileID: 347714279}
+    - targetCorrespondingSourceObject: {fileID: 919132149155446097, guid: 3f15c4f8976598d4bbf3dbcc49ab9ec8, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 347714280}
   m_SourcePrefab: {fileID: 100100000, guid: 3f15c4f8976598d4bbf3dbcc49ab9ec8, type: 3}
 --- !u!1 &347714275 stripped
 GameObject:
@@ -6448,28 +6520,6 @@ MonoBehaviour:
   precomputeOutline: 0
   bakeKeys: []
   bakeValues: []
---- !u!114 &347714277
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 347714275}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 59f417392c809fb47a72f2b01f920e21, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: Assembly-CSharp::Openable
-  requiredFlag: 
-  requiredItemId: 
-  lockedMessage: 
-  flagToSetOnLocked: 
-  pivot: {fileID: 1509988740}
-  animationType: 0
-  rotationOffset: {x: 0, y: 90, z: 0}
-  slideOffset: {x: 0, y: 0, z: 0.4}
-  openDuration: 0.6
-  outline: {fileID: 347714276}
 --- !u!4 &347714278 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: -8679921383154817045, guid: 3f15c4f8976598d4bbf3dbcc49ab9ec8, type: 3}
@@ -6496,6 +6546,28 @@ BoxCollider:
   serializedVersion: 3
   m_Size: {x: 0.6928547, y: 1.3670005, z: 0.14369445}
   m_Center: {x: -2.3572073, y: 0.6248374, z: -3.508066}
+--- !u!114 &347714280
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 347714275}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: a3403a904f4a98440ae30622837736ae, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::Openable
+  requiredFlag: 
+  requiredItemId: 
+  lockedMessage: 
+  flagToSetOnLocked: 
+  pivot: {fileID: 1509988740}
+  animationType: 0
+  rotationOffset: {x: 0, y: 97, z: 0}
+  slideOffset: {x: 0, y: 0, z: 0.4}
+  openDuration: 0.6
+  outline: {fileID: 347714276}
 --- !u!1 &352735108
 GameObject:
   m_ObjectHideFlags: 0
@@ -6589,8 +6661,8 @@ MonoBehaviour:
       m_Calls: []
   m_text: "Dron Inactivo\n\xBFDesea desplegarlo?"
   m_isRightToLeft: 0
-  m_fontAsset: {fileID: 11400000, guid: 9a80eaff267ac5c45921eb84943b2095, type: 2}
-  m_sharedMaterial: {fileID: -4913511322303963329, guid: 9a80eaff267ac5c45921eb84943b2095, type: 2}
+  m_fontAsset: {fileID: 11400000, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
+  m_sharedMaterial: {fileID: 2180264, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
   m_fontSharedMaterials: []
   m_fontMaterial: {fileID: 0}
   m_fontMaterials: []
@@ -7048,6 +7120,33 @@ Transform:
   - {fileID: 131697383}
   m_Father: {fileID: 535172955}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!1 &403286028 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 919132149155446097, guid: 874ebd5c371c19147a3c39b3c3364e90, type: 3}
+  m_PrefabInstance: {fileID: 1853449709}
+  m_PrefabAsset: {fileID: 0}
+--- !u!64 &403286031
+MeshCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 403286028}
+  m_Material: {fileID: 0}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_LayerOverridePriority: 0
+  m_IsTrigger: 0
+  m_ProvidesContacts: 0
+  m_Enabled: 1
+  serializedVersion: 5
+  m_Convex: 0
+  m_CookingOptions: 30
+  m_Mesh: {fileID: -3382216993566515596, guid: 874ebd5c371c19147a3c39b3c3364e90, type: 3}
 --- !u!1 &404118274
 GameObject:
   m_ObjectHideFlags: 0
@@ -7164,11 +7263,11 @@ Transform:
   m_GameObject: {fileID: 410002547}
   serializedVersion: 2
   m_LocalRotation: {x: -0, y: -0.71334624, z: -0, w: 0.7008118}
-  m_LocalPosition: {x: 28.845, y: 26.19, z: 17.622}
-  m_LocalScale: {x: 1.758546, y: 1.758546, z: 1.758546}
+  m_LocalPosition: {x: 29.37018, y: 27.505339, z: 16.420372}
+  m_LocalScale: {x: 2.0732172, y: 2.0732172, z: 2.0732172}
   m_ConstrainProportionsScale: 0
   m_Children: []
-  m_Father: {fileID: 1833043486}
+  m_Father: {fileID: 1370575639}
   m_LocalEulerAnglesHint: {x: 0, y: -91.016, z: 0}
 --- !u!1 &415060708
 GameObject:
@@ -7844,15 +7943,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 59f417392c809fb47a72f2b01f920e21, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::Openable
-  requiredFlag: 
   requiredItemId: notopenable
   lockedMessage: No necesito salir.
-  flagToSetOnLocked: 
-  pivot: {fileID: 0}
-  animationType: 0
-  rotationOffset: {x: 0, y: 0, z: 90}
-  slideOffset: {x: 0, y: 0, z: 0.4}
-  openDuration: 0.6
+  drawerAnimator: {fileID: 0}
+  openTriggerName: Open
   outline: {fileID: 480289932}
 --- !u!114 &480289932
 MonoBehaviour:
@@ -9363,6 +9457,7 @@ MonoBehaviour:
   flagToSet: medication_ready
   objectsToActivate:
   - {fileID: 1364343146}
+  disableOnSuccess: 0
   outline: {fileID: 548077493}
 --- !u!1 &549844816
 GameObject:
@@ -10708,15 +10803,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 59f417392c809fb47a72f2b01f920e21, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::Openable
-  requiredFlag: 
   requiredItemId: notopenable
   lockedMessage: No necesito salir.
-  flagToSetOnLocked: 
-  pivot: {fileID: 0}
-  animationType: 0
-  rotationOffset: {x: 0, y: 0, z: 90}
-  slideOffset: {x: 0, y: 0, z: 0.4}
-  openDuration: 0.6
+  drawerAnimator: {fileID: 0}
+  openTriggerName: Open
   outline: {fileID: 622720771}
 --- !u!1 &634827166
 GameObject:
@@ -14427,7 +14517,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!4 &905555798
 Transform:
   m_ObjectHideFlags: 0
@@ -15077,13 +15167,13 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 940589764}
   serializedVersion: 2
-  m_LocalRotation: {x: -0, y: 0.8279819, z: -0, w: -0.5607549}
-  m_LocalPosition: {x: 55.79, y: 17.437, z: -27.3}
+  m_LocalRotation: {x: -0, y: 0.71365726, z: -0, w: -0.7004951}
+  m_LocalPosition: {x: 56.703, y: 19.22, z: -28.141}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 0}
-  m_LocalEulerAnglesHint: {x: 0, y: 248.216, z: 0}
+  m_LocalEulerAnglesHint: {x: 0, y: 268.93298, z: 0}
 --- !u!1 &947606207
 GameObject:
   m_ObjectHideFlags: 0
@@ -15301,6 +15391,136 @@ Transform:
   m_CorrespondingSourceObject: {fileID: -8679921383154817045, guid: 666557f0e31f3c34ebd33ed4754dffa0, type: 3}
   m_PrefabInstance: {fileID: 950481725}
   m_PrefabAsset: {fileID: 0}
+--- !u!1 &952106052
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 952106057}
+  - component: {fileID: 952106056}
+  - component: {fileID: 952106055}
+  - component: {fileID: 952106054}
+  - component: {fileID: 952106053}
+  m_Layer: 0
+  m_Name: CinematicTrigger
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!114 &952106053
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 952106052}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: df093efe3faa6804b807f7b4ea4323d7, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: '::'
+  Panel: {fileID: 300747980}
+  droneController: {fileID: 8898654158852840253}
+  playerSwitcher: {fileID: 1213029919}
+  SceneName: HouseScene 1
+  FadeDuration: 4
+--- !u!65 &952106054
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 952106052}
+  m_Material: {fileID: 0}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_LayerOverridePriority: 0
+  m_IsTrigger: 1
+  m_ProvidesContacts: 0
+  m_Enabled: 1
+  serializedVersion: 3
+  m_Size: {x: 1, y: 1, z: 1}
+  m_Center: {x: 0, y: 0, z: 0}
+--- !u!23 &952106055
+MeshRenderer:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 952106052}
+  m_Enabled: 0
+  m_CastShadows: 1
+  m_ReceiveShadows: 1
+  m_DynamicOccludee: 1
+  m_StaticShadowCaster: 0
+  m_MotionVectors: 1
+  m_LightProbeUsage: 1
+  m_ReflectionProbeUsage: 1
+  m_RayTracingMode: 2
+  m_RayTraceProcedural: 0
+  m_RayTracingAccelStructBuildFlagsOverride: 0
+  m_RayTracingAccelStructBuildFlags: 1
+  m_SmallMeshCulling: 1
+  m_ForceMeshLod: -1
+  m_MeshLodSelectionBias: 0
+  m_RenderingLayerMask: 1
+  m_RendererPriority: 0
+  m_Materials:
+  - {fileID: 2100000, guid: 31321ba15b8f8eb4c954353edc038b1d, type: 2}
+  m_StaticBatchInfo:
+    firstSubMesh: 0
+    subMeshCount: 0
+  m_StaticBatchRoot: {fileID: 0}
+  m_ProbeAnchor: {fileID: 0}
+  m_LightProbeVolumeOverride: {fileID: 0}
+  m_ScaleInLightmap: 1
+  m_ReceiveGI: 1
+  m_PreserveUVs: 0
+  m_IgnoreNormalsForChartDetection: 0
+  m_ImportantGI: 0
+  m_StitchLightmapSeams: 1
+  m_SelectedEditorRenderState: 3
+  m_MinimumChartSize: 4
+  m_AutoUVMaxDistance: 0.5
+  m_AutoUVMaxAngle: 89
+  m_LightmapParameters: {fileID: 0}
+  m_GlobalIlluminationMeshLod: 0
+  m_SortingLayerID: 0
+  m_SortingLayer: 0
+  m_SortingOrder: 0
+  m_MaskInteraction: 0
+  m_AdditionalVertexStreams: {fileID: 0}
+--- !u!33 &952106056
+MeshFilter:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 952106052}
+  m_Mesh: {fileID: 10202, guid: 0000000000000000e000000000000000, type: 0}
+--- !u!4 &952106057
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 952106052}
+  serializedVersion: 2
+  m_LocalRotation: {x: -0, y: -0.105674826, z: -0, w: 0.99440074}
+  m_LocalPosition: {x: -43.9, y: 12.57, z: -28.19}
+  m_LocalScale: {x: 1.4419, y: 0.14344442, z: 12.2897415}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_LocalEulerAnglesHint: {x: 0, y: -12.132, z: 0}
 --- !u!1001 &955708496
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -16168,13 +16388,13 @@ PrefabInstance:
       addedObject: {fileID: 1136504342}
     - targetCorrespondingSourceObject: {fileID: 8851700339338715181, guid: e79215faa8360c744928b23959817778, type: 3}
       insertIndex: -1
-      addedObject: {fileID: 1021709093}
-    - targetCorrespondingSourceObject: {fileID: 8851700339338715181, guid: e79215faa8360c744928b23959817778, type: 3}
-      insertIndex: -1
       addedObject: {fileID: 1021709092}
     - targetCorrespondingSourceObject: {fileID: 8851700339338715181, guid: e79215faa8360c744928b23959817778, type: 3}
       insertIndex: -1
       addedObject: {fileID: 1021709091}
+    - targetCorrespondingSourceObject: {fileID: 8851700339338715181, guid: e79215faa8360c744928b23959817778, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 1021709099}
     - targetCorrespondingSourceObject: {fileID: -4412120476598703733, guid: e79215faa8360c744928b23959817778, type: 3}
       insertIndex: -1
       addedObject: {fileID: 1643494932}
@@ -16186,13 +16406,13 @@ PrefabInstance:
       addedObject: {fileID: 1643494930}
     - targetCorrespondingSourceObject: {fileID: -3055541268065232265, guid: e79215faa8360c744928b23959817778, type: 3}
       insertIndex: -1
-      addedObject: {fileID: 1021709090}
-    - targetCorrespondingSourceObject: {fileID: -3055541268065232265, guid: e79215faa8360c744928b23959817778, type: 3}
-      insertIndex: -1
       addedObject: {fileID: 1021709089}
     - targetCorrespondingSourceObject: {fileID: -3055541268065232265, guid: e79215faa8360c744928b23959817778, type: 3}
       insertIndex: -1
       addedObject: {fileID: 1021709088}
+    - targetCorrespondingSourceObject: {fileID: -3055541268065232265, guid: e79215faa8360c744928b23959817778, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 1021709100}
   m_SourcePrefab: {fileID: 100100000, guid: e79215faa8360c744928b23959817778, type: 3}
 --- !u!4 &1021709082 stripped
 Transform:
@@ -16264,28 +16484,6 @@ MonoBehaviour:
   precomputeOutline: 0
   bakeKeys: []
   bakeValues: []
---- !u!114 &1021709090
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1021709083}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 59f417392c809fb47a72f2b01f920e21, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: Assembly-CSharp::Openable
-  requiredFlag: 
-  requiredItemId: 
-  lockedMessage: 
-  flagToSetOnLocked: 
-  pivot: {fileID: 0}
-  animationType: 1
-  rotationOffset: {x: 0, y: 0, z: 0}
-  slideOffset: {x: 0, y: 0, z: 1}
-  openDuration: 0.3
-  outline: {fileID: 1021709089}
 --- !u!64 &1021709091
 MeshCollider:
   m_ObjectHideFlags: 0
@@ -16326,7 +16524,7 @@ MonoBehaviour:
   precomputeOutline: 0
   bakeKeys: []
   bakeValues: []
---- !u!114 &1021709093
+--- !u!114 &1021709099
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -16335,7 +16533,7 @@ MonoBehaviour:
   m_GameObject: {fileID: 1021709086}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 59f417392c809fb47a72f2b01f920e21, type: 3}
+  m_Script: {fileID: 11500000, guid: a3403a904f4a98440ae30622837736ae, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::Openable
   requiredFlag: 
@@ -16344,10 +16542,32 @@ MonoBehaviour:
   flagToSetOnLocked: 
   pivot: {fileID: 0}
   animationType: 1
-  rotationOffset: {x: 0, y: 0, z: 0}
+  rotationOffset: {x: 0, y: 0, z: 90}
   slideOffset: {x: 0, y: 0, z: 1}
-  openDuration: 0.3
+  openDuration: 0.6
   outline: {fileID: 1021709092}
+--- !u!114 &1021709100
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1021709083}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: a3403a904f4a98440ae30622837736ae, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::Openable
+  requiredFlag: 
+  requiredItemId: 
+  lockedMessage: 
+  flagToSetOnLocked: 
+  pivot: {fileID: 0}
+  animationType: 1
+  rotationOffset: {x: 0, y: 0, z: 90}
+  slideOffset: {x: 0, y: 0, z: 1}
+  openDuration: 0.6
+  outline: {fileID: 1021709089}
 --- !u!1 &1021852227
 GameObject:
   m_ObjectHideFlags: 0
@@ -16584,7 +16804,7 @@ SpriteRenderer:
   m_Size: {x: 19.2, y: 10.8}
   m_AdaptiveModeThreshold: 0.5
   m_SpriteTileMode: 0
-  m_WasSpriteAssigned: 0
+  m_WasSpriteAssigned: 1
   m_SpriteSortPoint: 0
 --- !u!114 &1026974396
 MonoBehaviour:
@@ -17274,13 +17494,13 @@ PrefabInstance:
     m_AddedComponents:
     - targetCorrespondingSourceObject: {fileID: 919132149155446097, guid: 7eb089fb30cb287429f7161a15805269, type: 3}
       insertIndex: -1
-      addedObject: {fileID: 1082709408}
-    - targetCorrespondingSourceObject: {fileID: 919132149155446097, guid: 7eb089fb30cb287429f7161a15805269, type: 3}
-      insertIndex: -1
       addedObject: {fileID: 1082709407}
     - targetCorrespondingSourceObject: {fileID: 919132149155446097, guid: 7eb089fb30cb287429f7161a15805269, type: 3}
       insertIndex: -1
       addedObject: {fileID: 1082709409}
+    - targetCorrespondingSourceObject: {fileID: 919132149155446097, guid: 7eb089fb30cb287429f7161a15805269, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 1082709410}
   m_SourcePrefab: {fileID: 100100000, guid: 7eb089fb30cb287429f7161a15805269, type: 3}
 --- !u!1 &1082709405 stripped
 GameObject:
@@ -17310,28 +17530,6 @@ MonoBehaviour:
   precomputeOutline: 0
   bakeKeys: []
   bakeValues: []
---- !u!114 &1082709408
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1082709405}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 59f417392c809fb47a72f2b01f920e21, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: Assembly-CSharp::Openable
-  requiredFlag: medication_ready
-  requiredItemId: son_key (borrar esto para que funcione)
-  lockedMessage: Esta cerrada... creo que tengo una llave en alguna parte de mi habitacion.
-  flagToSetOnLocked: backpack_hint_given
-  pivot: {fileID: 0}
-  animationType: 0
-  rotationOffset: {x: 0, y: 90, z: 0}
-  slideOffset: {x: 0, y: 0, z: 0.4}
-  openDuration: 0.6
-  outline: {fileID: 1082709407}
 --- !u!65 &1082709409
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -17353,6 +17551,28 @@ BoxCollider:
   serializedVersion: 3
   m_Size: {x: 0.7914885, y: 1.4682251, z: 0.120600015}
   m_Center: {x: -1.2040356, y: 0.64905316, z: -3.4900706}
+--- !u!114 &1082709410
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1082709405}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: a3403a904f4a98440ae30622837736ae, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::Openable
+  requiredFlag: 
+  requiredItemId: son_key (borrar esto para que funcione)
+  lockedMessage: Esta cerrada... creo que tengo una llave en alguna parte de mi habitacion.
+  flagToSetOnLocked: door_Interaction
+  pivot: {fileID: 0}
+  animationType: 0
+  rotationOffset: {x: 0, y: 0, z: 90}
+  slideOffset: {x: 0, y: 0, z: 0.4}
+  openDuration: 0.6
+  outline: {fileID: 1082709407}
 --- !u!1001 &1095498568
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -17705,8 +17925,8 @@ MonoBehaviour:
       m_Calls: []
   m_text: 0
   m_isRightToLeft: 0
-  m_fontAsset: {fileID: 11400000, guid: 9a80eaff267ac5c45921eb84943b2095, type: 2}
-  m_sharedMaterial: {fileID: -4913511322303963329, guid: 9a80eaff267ac5c45921eb84943b2095, type: 2}
+  m_fontAsset: {fileID: 11400000, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
+  m_sharedMaterial: {fileID: 2180264, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
   m_fontSharedMaterials: []
   m_fontMaterial: {fileID: 0}
   m_fontMaterials: []
@@ -19395,6 +19615,81 @@ Transform:
   m_Children: []
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!1 &1197946297
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1197946298}
+  - component: {fileID: 1197946300}
+  - component: {fileID: 1197946299}
+  m_Layer: 5
+  m_Name: Image
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!224 &1197946298
+RectTransform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1197946297}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 50}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 1686616190}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+  m_AnchorMin: {x: 0, y: 0}
+  m_AnchorMax: {x: 1, y: 1}
+  m_AnchoredPosition: {x: 0, y: 0}
+  m_SizeDelta: {x: 0, y: 0}
+  m_Pivot: {x: 0.5, y: 0.5}
+--- !u!114 &1197946299
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1197946297}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: fe87c0e1cc204ed48ad3b37840f39efc, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: UnityEngine.UI::UnityEngine.UI.Image
+  m_Material: {fileID: 0}
+  m_Color: {r: 1, g: 1, b: 1, a: 1}
+  m_RaycastTarget: 1
+  m_RaycastPadding: {x: 0, y: 0, z: 0, w: 0}
+  m_Maskable: 1
+  m_OnCullStateChanged:
+    m_PersistentCalls:
+      m_Calls: []
+  m_Sprite: {fileID: 0}
+  m_Type: 0
+  m_PreserveAspect: 0
+  m_FillCenter: 1
+  m_FillMethod: 4
+  m_FillAmount: 1
+  m_FillClockwise: 1
+  m_FillOrigin: 0
+  m_UseSpriteMesh: 0
+  m_PixelsPerUnitMultiplier: 1
+--- !u!222 &1197946300
+CanvasRenderer:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1197946297}
+  m_CullTransparentMesh: 1
 --- !u!1001 &1204734376
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -22129,6 +22424,7 @@ MonoBehaviour:
   itemId: full_glass
   requiredFlag: medication_collected
   placementPointToActivate: {fileID: 0}
+  flagToSetOnPickup: medication_ready
   outline: {fileID: 1364343150}
 --- !u!4 &1364343149 stripped
 Transform:
@@ -22206,6 +22502,7 @@ Transform:
   - {fileID: 330959404}
   - {fileID: 2007079567}
   - {fileID: 1986513049}
+  - {fileID: 410002548}
   - {fileID: 92697158}
   - {fileID: 32462622}
   - {fileID: 811424568}
@@ -22282,8 +22579,8 @@ MonoBehaviour:
       m_Calls: []
   m_text: 0
   m_isRightToLeft: 0
-  m_fontAsset: {fileID: 11400000, guid: 9a80eaff267ac5c45921eb84943b2095, type: 2}
-  m_sharedMaterial: {fileID: -4913511322303963329, guid: 9a80eaff267ac5c45921eb84943b2095, type: 2}
+  m_fontAsset: {fileID: 11400000, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
+  m_sharedMaterial: {fileID: 2180264, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
   m_fontSharedMaterials: []
   m_fontMaterial: {fileID: 0}
   m_fontMaterials: []
@@ -24207,15 +24504,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 59f417392c809fb47a72f2b01f920e21, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::Openable
-  requiredFlag: medication_ready
   requiredItemId: son_key (borrar esto para que funcione)
   lockedMessage: Esta cerrada... creo que tengo una llave en alguna parte de mi habitacion.
-  flagToSetOnLocked: backpack_hint_given
-  pivot: {fileID: 0}
-  animationType: 0
-  rotationOffset: {x: 0, y: 90, z: 0}
-  slideOffset: {x: 0, y: 0, z: 0.4}
-  openDuration: 0.6
+  drawerAnimator: {fileID: 0}
+  openTriggerName: Open
   outline: {fileID: 1501496303}
 --- !u!1 &1504260149
 GameObject:
@@ -24276,8 +24568,8 @@ MonoBehaviour:
       m_Calls: []
   m_text: / 3    Posible Combustible
   m_isRightToLeft: 0
-  m_fontAsset: {fileID: 11400000, guid: 9a80eaff267ac5c45921eb84943b2095, type: 2}
-  m_sharedMaterial: {fileID: -4913511322303963329, guid: 9a80eaff267ac5c45921eb84943b2095, type: 2}
+  m_fontAsset: {fileID: 11400000, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
+  m_sharedMaterial: {fileID: 2180264, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
   m_fontSharedMaterials: []
   m_fontMaterial: {fileID: 0}
   m_fontMaterials: []
@@ -25109,8 +25401,8 @@ MonoBehaviour:
   m_text: "Para cambiar al dron cuando este desplegado, precionar [TAB]\n\n\nUna
     vez tengas los recursos, haz click para avazar en la misi\xF3n\n"
   m_isRightToLeft: 0
-  m_fontAsset: {fileID: 11400000, guid: 9a80eaff267ac5c45921eb84943b2095, type: 2}
-  m_sharedMaterial: {fileID: -4913511322303963329, guid: 9a80eaff267ac5c45921eb84943b2095, type: 2}
+  m_fontAsset: {fileID: 11400000, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
+  m_sharedMaterial: {fileID: 2180264, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
   m_fontSharedMaterials: []
   m_fontMaterial: {fileID: 0}
   m_fontMaterials: []
@@ -25251,9 +25543,9 @@ GameObject:
   - component: {fileID: 1557115086}
   - component: {fileID: 1557115091}
   - component: {fileID: 1557115090}
-  - component: {fileID: 1557115089}
   - component: {fileID: 1557115088}
   - component: {fileID: 1557115087}
+  - component: {fileID: 1557115092}
   m_Layer: 10
   m_Name: Cajon1
   m_TagString: Item
@@ -25316,28 +25608,6 @@ MonoBehaviour:
   precomputeOutline: 0
   bakeKeys: []
   bakeValues: []
---- !u!114 &1557115089
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1557115085}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 59f417392c809fb47a72f2b01f920e21, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: Assembly-CSharp::LockedDrawer
-  requiredFlag: backpack_hint_given
-  requiredItemId: red_key
-  lockedMessage: Esta cerrado, creo que la llave la deje en la mochila.
-  flagToSetOnLocked: 
-  pivot: {fileID: 0}
-  animationType: 1
-  rotationOffset: {x: 0, y: 90, z: 0}
-  slideOffset: {x: 0, y: 0, z: 1.15}
-  openDuration: 0.3
-  outline: {fileID: 1557115088}
 --- !u!23 &1557115090
 MeshRenderer:
   m_ObjectHideFlags: 0
@@ -25395,6 +25665,28 @@ MeshFilter:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1557115085}
   m_Mesh: {fileID: -2404782951621905322, guid: 3af2d387690a5e64db47dc9c13794e5f, type: 3}
+--- !u!114 &1557115092
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1557115085}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: a3403a904f4a98440ae30622837736ae, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::Openable
+  requiredFlag: door_Interaction
+  requiredItemId: red_key
+  lockedMessage: Esta cerrado, creo que la llave la deje en la mochila.
+  flagToSetOnLocked: backpack_hint_given
+  pivot: {fileID: 0}
+  animationType: 1
+  rotationOffset: {x: 0, y: 0, z: 90}
+  slideOffset: {x: 0, y: 0, z: 1}
+  openDuration: 0.6
+  outline: {fileID: 1557115088}
 --- !u!1 &1557711137
 GameObject:
   m_ObjectHideFlags: 0
@@ -26438,15 +26730,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 59f417392c809fb47a72f2b01f920e21, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::Openable
-  requiredFlag: 
   requiredItemId: closed
   lockedMessage: Esta roto
-  flagToSetOnLocked: 
-  pivot: {fileID: 0}
-  animationType: 0
-  rotationOffset: {x: 0, y: 0, z: 90}
-  slideOffset: {x: 0, y: 0, z: 0.4}
-  openDuration: 0.6
+  drawerAnimator: {fileID: 0}
+  openTriggerName: Open
   outline: {fileID: 1643494931}
 --- !u!1 &1651292606
 GameObject:
@@ -26624,6 +26911,7 @@ RectTransform:
   - {fileID: 512073686}
   - {fileID: 851492696}
   - {fileID: 1900806264}
+  - {fileID: 300747981}
   m_Father: {fileID: 92881368}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
@@ -27257,11 +27545,15 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 3eaf570332dacff4b9dd71be4860995f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: '::'
+  playerMovement: {fileID: 1676664704}
+  HUD: {fileID: 183082931}
   fog: {fileID: 695360875}
   blur: {fileID: 730943616}
   blurFadeInDuration: 3
   blurFadeOutDuration: 8
   doorAnimator: {fileID: 651006636}
+  shipDoor: {fileID: 255171496}
+  houseDoor: {fileID: 480289929}
   Eyes: {fileID: 485038398}
 --- !u!1001 &1677973202
 PrefabInstance:
@@ -27408,6 +27700,7 @@ RectTransform:
   m_ConstrainProportionsScale: 0
   m_Children:
   - {fileID: 1293689353}
+  - {fileID: 1197946298}
   m_Father: {fileID: 1654381879}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 1}
@@ -27866,6 +28159,7 @@ MonoBehaviour:
   itemId: empty_glass
   requiredFlag: medication_collected
   placementPointToActivate: {fileID: 0}
+  flagToSetOnPickup: 
   outline: {fileID: 1697332903}
 --- !u!4 &1697332907 stripped
 Transform:
@@ -34316,8 +34610,8 @@ MonoBehaviour:
       m_Calls: []
   m_text: "/ 3    Insumos electr\xF3nicos"
   m_isRightToLeft: 0
-  m_fontAsset: {fileID: 11400000, guid: 9a80eaff267ac5c45921eb84943b2095, type: 2}
-  m_sharedMaterial: {fileID: -4913511322303963329, guid: 9a80eaff267ac5c45921eb84943b2095, type: 2}
+  m_fontAsset: {fileID: 11400000, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
+  m_sharedMaterial: {fileID: 2180264, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
   m_fontSharedMaterials: []
   m_fontMaterial: {fileID: 0}
   m_fontMaterials: []
@@ -34968,7 +35262,6 @@ Transform:
   - {fileID: 1676664701}
   - {fileID: 1269244742}
   - {fileID: 175973783}
-  - {fileID: 410002548}
   - {fileID: 1856332400}
   - {fileID: 375457954}
   - {fileID: 352735109}
@@ -35276,7 +35569,7 @@ MonoBehaviour:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1848855169}
-  m_Enabled: 1
+  m_Enabled: 0
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 1a435331055d4b14bab3bd56cbed2b67, type: 3}
   m_Name: 
@@ -35372,7 +35665,10 @@ PrefabInstance:
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
-    m_AddedComponents: []
+    m_AddedComponents:
+    - targetCorrespondingSourceObject: {fileID: 919132149155446097, guid: 874ebd5c371c19147a3c39b3c3364e90, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 403286031}
   m_SourcePrefab: {fileID: 100100000, guid: 874ebd5c371c19147a3c39b3c3364e90, type: 3}
 --- !u!1 &1856332399
 GameObject:
@@ -36143,8 +36439,8 @@ MonoBehaviour:
       m_Calls: []
   m_text: / 4    Piezas de Metal
   m_isRightToLeft: 0
-  m_fontAsset: {fileID: 11400000, guid: 9a80eaff267ac5c45921eb84943b2095, type: 2}
-  m_sharedMaterial: {fileID: -4913511322303963329, guid: 9a80eaff267ac5c45921eb84943b2095, type: 2}
+  m_fontAsset: {fileID: 11400000, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
+  m_sharedMaterial: {fileID: 2180264, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
   m_fontSharedMaterials: []
   m_fontMaterial: {fileID: 0}
   m_fontMaterials: []
@@ -37586,7 +37882,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 4a90e2fe1274d8747b96e1862baa92fc, type: 3}
   m_Name: 
   m_EditorClassIdentifier: '::'
-  viewpoint: {fileID: 1043906954}
+  viewpoint: {fileID: 410002548}
   playerMovement: {fileID: 1676664704}
   playerCameraTransform: {fileID: 1043906954}
   mouseSensitivity: 2
@@ -39885,8 +40181,8 @@ MonoBehaviour:
       m_Calls: []
   m_text: "Durante el descenso, la nave recibi\xF3 da\xF1o, para repararla se necesita:"
   m_isRightToLeft: 0
-  m_fontAsset: {fileID: 11400000, guid: 9a80eaff267ac5c45921eb84943b2095, type: 2}
-  m_sharedMaterial: {fileID: -4913511322303963329, guid: 9a80eaff267ac5c45921eb84943b2095, type: 2}
+  m_fontAsset: {fileID: 11400000, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
+  m_sharedMaterial: {fileID: 2180264, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
   m_fontSharedMaterials: []
   m_fontMaterial: {fileID: 0}
   m_fontMaterials: []
@@ -40479,15 +40775,15 @@ PrefabInstance:
       objectReference: {fileID: 1702232900}
     - target: {fileID: 9213038347397199300, guid: 1c7b76fe5892dc849b8a26bdda20a0c2, type: 3}
       propertyPath: m_LocalPosition.x
-      value: 52.98
+      value: 59.227
       objectReference: {fileID: 0}
     - target: {fileID: 9213038347397199300, guid: 1c7b76fe5892dc849b8a26bdda20a0c2, type: 3}
       propertyPath: m_LocalPosition.y
-      value: 8.63
+      value: 18.39
       objectReference: {fileID: 0}
     - target: {fileID: 9213038347397199300, guid: 1c7b76fe5892dc849b8a26bdda20a0c2, type: 3}
       propertyPath: m_LocalPosition.z
-      value: 27.11
+      value: -31.276
       objectReference: {fileID: 0}
     - target: {fileID: 9213038347397199300, guid: 1c7b76fe5892dc849b8a26bdda20a0c2, type: 3}
       propertyPath: m_LocalRotation.w
@@ -41945,3 +42241,4 @@ SceneRoots:
   - {fileID: 480289928}
   - {fileID: 622720768}
   - {fileID: 1509988740}
+  - {fileID: 952106057}
