@@ -1,0 +1,6 @@
+<ui:UXML xmlns:ui="UnityEngine.UIElements" editor-extension-mode="False">
+    <Style src="project://database/Assets/UI%20Toolkit/Style/glitch.uss?fileID=7433441132597879392&amp;guid=fd05613e037444943896902664f9b3d6&amp;type=3#glitch"/>
+    <ui:VisualElement name="DroneHUDContainer" style="flex-grow: 1; width: 1920px; height: 1080px;">
+        <ui:VisualElement name="GlitchOverlay" class="drone-crt-overlay glitch-overlay" style="width: 1920px; height: 1080px;"/>
+    </ui:VisualElement>
+</ui:UXML>

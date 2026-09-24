@@ -16,6 +16,9 @@ public class DroneController : MonoBehaviour
     [SerializeField] private float stabilityDamper = 2f;    
     [SerializeField] private Vector3 customCenterOfMass = new Vector3(0, -0.6f, 0);
 
+    [Header("UI Glitch Transition")]
+    [SerializeField] private CRTGlitchTransitionController glitchController;
+
     private Rigidbody rb;
     [SerializeField] private LayerMask groundLayer;
     private Vector2 inputMove;
@@ -28,6 +31,12 @@ public class DroneController : MonoBehaviour
 
         rb.centerOfMass = customCenterOfMass;
         originalConstraints = rb.constraints;
+
+        // Si no está asignado en el Inspector, busca el componente en la escena
+        if (glitchController == null)
+        {
+            glitchController = FindFirstObjectByType<CRTGlitchTransitionController>();
+        }
     }
 
     void Update()
@@ -41,6 +50,12 @@ public class DroneController : MonoBehaviour
         if (Keyboard.current.aKey.isPressed) turn = -1;
 
         inputMove = new Vector2(turn, forward);
+
+        // Disparar la transición de Glitch al presionar la tecla G
+        if (Keyboard.current.gKey.wasPressedThisFrame)
+        {
+            TriggerGlitchTransition();
+        }
     }
 
     void FixedUpdate()
@@ -96,5 +111,27 @@ public class DroneController : MonoBehaviour
 
         
         rb.angularVelocity = Vector3.ClampMagnitude(rb.angularVelocity, 4f);
+    }
+    /// <summary>
+    /// Dispara la transición de glitch. En el punto máximo de la interferencia congela el dron brevemente.
+    /// </summary>
+    public void TriggerGlitchTransition()
+    {
+        if (glitchController != null)
+        {
+            // Congelar controles/físicas antes de romper la pantalla
+            FreezeDrone();
+
+            glitchController.TriggerGlitchTransition(() =>
+            {
+                Debug.Log("Pico del glitch: Cambiando estado o vista del dron.");
+                // Restablecer movimiento en el momento cumbre de la transición
+                UnfreezeDrone();
+            });
+        }
+        else
+        {
+            Debug.LogWarning("CRTGlitchTransitionController no está asignado en DroneController.");
+        }
     }
 }
