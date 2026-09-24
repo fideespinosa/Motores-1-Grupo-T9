@@ -1,12 +1,17 @@
 using UnityEngine;
 using UnityEngine.UIElements;
 using System.Collections;
+using UnityEditor.ShaderGraph;
 
 public class CRTGlitchTransitionController : MonoBehaviour
 {
     private UIDocument uiDocument;
     private VisualElement glitchOverlay;
+    private VisualElement camDroneUI;
     [SerializeField] private Material glitchMaterial;
+
+    [SerializeField] private Light lightDron;
+
     private Coroutine glitchRoutine;
 
     private void OnEnable()
@@ -24,7 +29,8 @@ public class CRTGlitchTransitionController : MonoBehaviour
         {
             // Intenta buscar el elemento con el nombre exacto que le pusiste en el UXML
             glitchOverlay = root.Q<VisualElement>("GlitchOverlay");
-
+            camDroneUI = root.Q<VisualElement>("DronCam");
+            
             if (glitchOverlay == null)
             {
                 Debug.LogError("¡ATENCIÓN! No se encontró ningún VisualElement llamado 'GlitchOverlay' en el UXML.");
@@ -49,11 +55,15 @@ public class CRTGlitchTransitionController : MonoBehaviour
         if (glitchOverlay == null) yield break;
 
         // 1. Mostrar el overlay
+        camDroneUI.style.display = DisplayStyle.None;
         glitchOverlay.style.display = DisplayStyle.Flex;
 
         // 2. Efecto de parpadeo de estática analógica (Flicker) como en el video
         float timer = 0f;
         float totalDuration = 0.5f;
+
+        lightDron.color = Color.HSVToRGB(0f, 0f, 0f);
+        Debug.Log("cambie la luz del dron");
 
         while (timer < totalDuration)
         {
@@ -90,9 +100,15 @@ public class CRTGlitchTransitionController : MonoBehaviour
             glitchOverlay.style.opacity = Mathf.Lerp(1f, 0f, timer / fadeOutDuration);
             yield return null;
         }
+        
 
         // Ocultar al finalizar
         glitchOverlay.style.opacity = 0f;
         glitchOverlay.style.display = DisplayStyle.None;
+        camDroneUI.style.display = DisplayStyle.Flex;
+
+        lightDron.color = new Color(255f / 255f, 244f / 255f, 214f / 255f);
+        lightDron.intensity = 6f;
+        Debug.Log("llegue a cambiar la luz del dron nuevamente");
     }
 }
