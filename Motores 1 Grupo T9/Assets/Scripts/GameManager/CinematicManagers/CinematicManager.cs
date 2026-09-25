@@ -11,7 +11,7 @@ public class CinematicManager : MonoBehaviour
     [SerializeField] float zoomDuration = 0.01f;
     [SerializeField] float monsterViewTime = 1.5f;
 
-    [SerializeField] private DroneController dronScript;
+    [SerializeField] private PlayerMovement PlayScript;
 
     private CameraController cameraController;
     private bool cinematicPlaying = false;
@@ -32,7 +32,7 @@ public class CinematicManager : MonoBehaviour
 
     IEnumerator MonsterSequence()
     {
-        dronScript.FreezeDrone();
+        PlayScript.enabled = false;
         cinematicPlaying = true;
 
         if (cameraController != null)
@@ -88,7 +88,7 @@ public class CinematicManager : MonoBehaviour
 
         if (cameraController != null)
             cameraController.enabled = true;
-        dronScript.UnfreezeDrone();
+        PlayScript.enabled = true;
         enemy.StartRunning();
 
         cinematicPlaying = false;

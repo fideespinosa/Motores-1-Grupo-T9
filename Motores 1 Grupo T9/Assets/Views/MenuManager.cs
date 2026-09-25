@@ -23,4 +23,5 @@ public class MenuManager : MonoBehaviour
         string lastScene = PlayerPrefs.GetString("LastScene", "Level0");
         SceneManager.LoadScene(lastScene);
     }
+
 }
