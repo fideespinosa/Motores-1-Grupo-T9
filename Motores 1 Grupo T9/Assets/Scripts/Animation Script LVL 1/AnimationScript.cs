@@ -7,6 +7,7 @@ public class AnimationScript : MonoBehaviour
 
     [SerializeField] private PlayerMovement playerMovement;
     [SerializeField] private GameObject HUD;
+    [SerializeField] private GameObject PreviousHUD;
 
     [Header("Fog")]
     [SerializeField] private GameObject fog;
@@ -33,6 +34,7 @@ public class AnimationScript : MonoBehaviour
     {
         playerMovement.enabled = false;
         HUD.SetActive(false);
+        PreviousHUD.SetActive(false);
         Debug.Log("asdasdsad");
     }
 
