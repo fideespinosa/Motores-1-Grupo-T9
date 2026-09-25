@@ -19,6 +19,7 @@ public class AnimationScript : MonoBehaviour
 
     [Header("Puerta")]
     [SerializeField] private Animator doorAnimator;
+    [SerializeField] private Animator childHouseDoor;
     [SerializeField] private GameObject shipDoor;
     [SerializeField] private GameObject houseDoor;
 
@@ -93,6 +94,13 @@ public class AnimationScript : MonoBehaviour
         }
     }
 
+    public void OpenDoor()
+    {
+        if (childHouseDoor != null)
+        {
+            childHouseDoor.SetTrigger("Play");
+        }
+    }
     public void FadeOutBlur()
     {
         if (blur != null)

@@ -196,7 +196,7 @@ AnimationClip:
         outWeight: {x: 0.33333334, y: 0.33333334, z: 0.33333334}
       - serializedVersion: 3
         time: 9.216666
-        value: {x: 45.12155, y: 9.647222, z: 36.34039}
+        value: {x: 46.714954, y: 9.647222, z: 36.34039}
         inSlope: {x: 0, y: 0, z: 0}
         outSlope: {x: 0, y: 0, z: 0}
         tangentMode: 0
@@ -214,7 +214,7 @@ AnimationClip:
         outWeight: {x: 0.33333334, y: 0.33333334, z: 0.33333334}
       - serializedVersion: 3
         time: 24.65
-        value: {x: 51.285732, y: 9.647222, z: 36.32239}
+        value: {x: 54.7346, y: 9.647222, z: 36.32239}
         inSlope: {x: 0, y: 0, z: 0}
         outSlope: {x: 0, y: 0, z: 0}
         tangentMode: 0
@@ -299,7 +299,7 @@ AnimationClip:
         outWeight: 0.33333334
       - serializedVersion: 3
         time: 9.216666
-        value: 45.12155
+        value: 46.714954
         inSlope: 0
         outSlope: 0
         tangentMode: 136
@@ -317,7 +317,7 @@ AnimationClip:
         outWeight: 0.33333334
       - serializedVersion: 3
         time: 24.65
-        value: 51.285732
+        value: 54.7346
         inSlope: 0
         outSlope: 0
         tangentMode: 136
@@ -1037,6 +1037,13 @@ AnimationClip:
   m_Events:
   - time: 18.916666
     functionName: TriggerEyesClose
+    data: 
+    objectReferenceParameter: {fileID: 0}
+    floatParameter: 0
+    intParameter: 0
+    messageOptions: 0
+  - time: 19.316668
+    functionName: OpenDoor
     data: 
     objectReferenceParameter: {fileID: 0}
     floatParameter: 0

@@ -9203,29 +9203,6 @@ Transform:
   m_CorrespondingSourceObject: {fileID: 8819938413317568671, guid: 5227ce862db5983408320603d259fb44, type: 3}
   m_PrefabInstance: {fileID: 921519558}
   m_PrefabAsset: {fileID: 0}
---- !u!114 &467610045
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 467610042}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 3eaf570332dacff4b9dd71be4860995f, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: '::'
-  playerMovement: {fileID: 467610043}
-  HUD: {fileID: 752597371}
-  PreviousHUD: {fileID: 0}
-  fog: {fileID: 0}
-  blur: {fileID: 1937408449}
-  blurFadeInDuration: 3
-  blurFadeOutDuration: 8
-  doorAnimator: {fileID: 0}
-  shipDoor: {fileID: 0}
-  houseDoor: {fileID: 0}
-  Eyes: {fileID: 0}
 --- !u!114 &467610046
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -9240,32 +9217,22 @@ MonoBehaviour:
   m_EditorClassIdentifier: '::'
   HUD: {fileID: 248665310}
   playerMovement: {fileID: 467610043}
-  cameraAnimator: {fileID: 467610047}
+  cameraAnimator: {fileID: 0}
   eyelidsAnimator: {fileID: 0}
   playTriggerName: Play
   sceneToLoad: Level2 Final scene
---- !u!95 &467610047
-Animator:
-  serializedVersion: 7
+--- !u!114 &467610052
+MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 467610042}
-  m_Enabled: 0
-  m_Avatar: {fileID: 0}
-  m_Controller: {fileID: 9100000, guid: 506edd8e10ee22148b15efdeae5b1446, type: 2}
-  m_CullingMode: 0
-  m_UpdateMode: 0
-  m_ApplyRootMotion: 1
-  m_LinearVelocityBlending: 0
-  m_StabilizeFeet: 0
-  m_AnimatePhysics: 0
-  m_WarningMessage: 
-  m_HasTransformHierarchy: 1
-  m_AllowConstantClipSamplingOptimization: 1
-  m_KeepAnimatorStateOnDisable: 0
-  m_WriteDefaultValuesOnDisable: 0
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 497131d9d76bf8a48828ae596de2f250, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: '::'
 --- !u!1001 &479510042
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -13602,13 +13569,10 @@ PrefabInstance:
     m_AddedComponents:
     - targetCorrespondingSourceObject: {fileID: 7704503355901849607, guid: 5227ce862db5983408320603d259fb44, type: 3}
       insertIndex: -1
-      addedObject: {fileID: 467610047}
-    - targetCorrespondingSourceObject: {fileID: 7704503355901849607, guid: 5227ce862db5983408320603d259fb44, type: 3}
-      insertIndex: -1
       addedObject: {fileID: 467610046}
     - targetCorrespondingSourceObject: {fileID: 7704503355901849607, guid: 5227ce862db5983408320603d259fb44, type: 3}
       insertIndex: -1
-      addedObject: {fileID: 467610045}
+      addedObject: {fileID: 467610052}
     - targetCorrespondingSourceObject: {fileID: 3807680751067314880, guid: 5227ce862db5983408320603d259fb44, type: 3}
       insertIndex: -1
       addedObject: {fileID: 1267714808}
