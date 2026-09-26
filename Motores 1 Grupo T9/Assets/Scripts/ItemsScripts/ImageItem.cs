@@ -17,6 +17,10 @@ public class ImageItem : MonoBehaviour, IInteractable
     [Tooltip("Script de outline del objeto. Se activa al mirarlo y se desactiva al dejar de mirarlo.")]
     [SerializeField] private Outline outline;
 
+    [SerializeField] private AudioSource audioSource;
+    [SerializeField] private AudioClip paperOn;
+    [SerializeField] private AudioClip paperOff;
+
     private bool IsUnlocked()
     {
         if (string.IsNullOrEmpty(requiredFlag)) return true;
@@ -38,6 +42,8 @@ public class ImageItem : MonoBehaviour, IInteractable
         if (ImagePanelManager.Instance != null)
         {
             ImagePanelManager.Instance.ShowImage(imageToShow);
+            audioSource.PlayOneShot(paperOn);
+
         }
         else
         {
@@ -47,6 +53,7 @@ public class ImageItem : MonoBehaviour, IInteractable
         if (disableOnInteract)
         {
             gameObject.SetActive(false);
+            audioSource.PlayOneShot(paperOff);
         }
     }
 

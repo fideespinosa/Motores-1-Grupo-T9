@@ -1,32 +1,38 @@
 using UnityEngine;
 using System.Collections;
-using Unity.VisualScripting;
 
 public class RadioAudioController : MonoBehaviour
 {
-    [Header("Fuente de intereferencia")]
+    [Header("Fuente de interferencia")]
     [SerializeField] private AudioSource radioInterference;
 
     [Header("Fuente de spots")]
     [SerializeField] private AudioSource radioSpots;
     [SerializeField] private AudioClip[] spotClips;
-    [Header("Minimos y maximos entre clips")]
+
+    [Header("Mínimos y máximos entre clips")]
     [SerializeField] private float minTimeSpots;
     [SerializeField] private float maxTimeSpots;
 
+    private int currentIndex = 0;
+    private bool isRadioActive = false;
 
-    void Start()
+    private void OnTriggerEnter(Collider other)
     {
-        if (radioInterference != null && !radioInterference.isPlaying)
+        if (other.CompareTag("Player") && !isRadioActive)
         {
-            radioInterference.loop = true;
-            radioInterference.Play();
+            isRadioActive = true;
 
-        }
+            if (radioInterference != null && !radioInterference.isPlaying)
+            {
+                radioInterference.loop = true;
+                radioInterference.Play();
+            }
 
-        if (spotClips.Length>0 && radioSpots != null)
-        {
-            StartCoroutine(PlaybackRoutine());
+            if (spotClips.Length > 0 && radioSpots != null)
+            {
+                StartCoroutine(PlaybackRoutine());
+            }
         }
     }
 
@@ -34,17 +40,16 @@ public class RadioAudioController : MonoBehaviour
     {
         while (true)
         {
-            float waitTime = Random.Range(minTimeSpots, maxTimeSpots);
-            yield return new WaitForSeconds(waitTime);
-
-            int altIndex = Random.Range(0, spotClips.Length);
-            AudioClip actualSpot = spotClips[altIndex];
-
+            AudioClip actualSpot = spotClips[currentIndex];
             radioSpots.clip = actualSpot;
             radioSpots.Play();
 
             yield return new WaitForSeconds(actualSpot.length);
+
+            currentIndex = (currentIndex + 1) % spotClips.Length;
+
+            float waitTime = Random.Range(minTimeSpots, maxTimeSpots);
+            yield return new WaitForSeconds(waitTime);
         }
     }
-   
 }

@@ -11,6 +11,8 @@ public class AudioAmbienceController : MonoBehaviour
     [Header("Posición Actual")]
     public AmbienceZone currentZone;
 
+    public bool isInsideHouse = false;
+
     [SerializeField] private Transform shipPlayerTransform;
     [SerializeField] private Transform droneTransform;
 
@@ -36,6 +38,8 @@ public class AudioAmbienceController : MonoBehaviour
 
     private Coroutine sweetenerRoutine;
     private Coroutine fadeRoutine;
+
+    private float storedBedVolume = 1f;
 
     void Awake()
     {
@@ -71,6 +75,10 @@ public class AudioAmbienceController : MonoBehaviour
         if (currentZone == newZone && (bedSourceA.isPlaying || bedSourceB.isPlaying) && !forceInstant) return;
 
         currentZone = newZone;
+
+
+        if (isInsideHouse) isInsideHouse = false;
+
         AudioClip nuevoClip = (newZone == AmbienceZone.Cave) ? caveBedClip : shipBedClip;
 
         float tiempoTransicion = forceInstant ? 0.01f : crossfadeTime;
@@ -127,19 +135,88 @@ public class AudioAmbienceController : MonoBehaviour
         fadeOut.Stop();
     }
 
+
+
+    public void EnterHouseZone()
+    {
+        if (isInsideHouse) return;
+        isInsideHouse = true;
+
+        if (sweetenerRoutine != null)
+        {
+            StopCoroutine(sweetenerRoutine);
+            sweetenerRoutine = null;
+        }
+
+        AudioSource activeBed = bedSourceA.isPlaying ? bedSourceA : bedSourceB;
+        if (activeBed != null)
+        {
+            storedBedVolume = activeBed.volume;
+            if (fadeRoutine != null) StopCoroutine(fadeRoutine);
+            fadeRoutine = StartCoroutine(FadeHouseVol(activeBed, 0f, 1.5f));
+        }
+    }
+
+    public void ExitHouseZone()
+    {
+        if (!isInsideHouse) return;
+        isInsideHouse = false;
+
+
+        if (sweetenerRoutine == null)
+        {
+            sweetenerRoutine = StartCoroutine(RoutineSweeteners());
+        }
+
+      
+        AudioSource activeBed = bedSourceA.isPlaying ? bedSourceA : bedSourceB;
+        if (activeBed != null)
+        {
+            if (fadeRoutine != null) StopCoroutine(fadeRoutine);
+            fadeRoutine = StartCoroutine(FadeHouseVol(activeBed, storedBedVolume, 1.5f));
+        }
+    }
+
+    private IEnumerator FadeHouseVol(AudioSource source, float targetVol, float duration)
+    {
+        float startVol = source.volume;
+        float time = 0;
+
+        while (time < duration)
+        {
+            time += Time.unscaledDeltaTime;
+            source.volume = Mathf.Lerp(startVol, targetVol, time / duration);
+            yield return null;
+        }
+        source.volume = targetVol;
+    }
+
+
     private IEnumerator RoutineSweeteners()
     {
         while (true)
         {
-            float waitTime = Random.Range(minTimeBetweenSweeteners, maxTimeBetweenSweeteners);
-            yield return new WaitForSeconds(waitTime);
+    
+            if (!isInsideHouse)
+            {
+                float waitTime = Random.Range(minTimeBetweenSweeteners, maxTimeBetweenSweeteners);
+                yield return new WaitForSeconds(waitTime);
 
-            PlaySweets();
+                PlaySweets();
+            }
+            else
+            {
+                
+                yield return new WaitForSeconds(1f);
+            }
         }
     }
 
     private void PlaySweets()
     {
+      
+        if (isInsideHouse) return;
+
         Transform activeTransform;
         AudioClip[] arrayActual;
 
