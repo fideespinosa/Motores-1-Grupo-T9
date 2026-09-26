@@ -7,15 +7,27 @@ public class CollectibleItem : MonoBehaviour, IInteractable
     [SerializeField] private string itemId;
 
     [Header("On Pickup")]
-    [Tooltip("Texto opcional que dice el protagonista al agarrarlo. Dejalo vacío si no querés comentario")]
+    [Tooltip("Texto opcional que dice el protagonista al agarrarlo. Dejalo vacío si no querés comentario.")]
     [TextArea]
     [SerializeField] private string pickupComment;
     [SerializeField] private bool disableOnPickup = true;
-    [Tooltip("GameObjects que se activan al agarrar este item")]
+    [Tooltip("GameObjects que se activan al agarrar este item (ej. un trigger de cinemática).")]
     [SerializeField] private GameObject[] objectsToActivate;
+
+    [Header("Requirement")]
+    [SerializeField] private string requiredFlag;
+
+    [Header("Story Flag")]
+    [SerializeField] private string flagToSetOnPickup;
 
     [Header("Outline")]
     [SerializeField] private Outline outline;
+
+    private bool IsUnlocked()
+    {
+        if (string.IsNullOrEmpty(requiredFlag)) return true;
+        return StoryFlagManager.Instance != null && StoryFlagManager.Instance.HasFlag(requiredFlag);
+    }
 
     private void Awake()
     {
@@ -27,6 +39,8 @@ public class CollectibleItem : MonoBehaviour, IInteractable
 
     public void Action()
     {
+        if (!IsUnlocked()) return;
+
         if (InventoryManager.Instance != null)
         {
             InventoryManager.Instance.AddItem(itemId);
@@ -48,6 +62,11 @@ public class CollectibleItem : MonoBehaviour, IInteractable
             }
         }
 
+        if (!string.IsNullOrEmpty(flagToSetOnPickup) && StoryFlagManager.Instance != null)
+        {
+            StoryFlagManager.Instance.SetFlag(flagToSetOnPickup);
+        }
+
         if (disableOnPickup)
         {
             gameObject.SetActive(false);
@@ -56,6 +75,8 @@ public class CollectibleItem : MonoBehaviour, IInteractable
 
     public void OnHoverEnter()
     {
+        if (!IsUnlocked()) return;
+
         if (outline != null)
         {
             outline.enabled = true;

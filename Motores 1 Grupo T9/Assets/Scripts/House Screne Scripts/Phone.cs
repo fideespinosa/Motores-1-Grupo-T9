@@ -8,23 +8,19 @@ public class Phone : MonoBehaviour, IInteractable
         Idle,
         Ringing,
         Answering,
-        WaitingToMoveAway,
         Finished
     }
 
-    [Header("First Call")]
-    [Tooltip("Duración en segundos del primer mensaje grabado. La cámara y el movimiento quedan congelados hasta que termine.")]
-    [SerializeField] private float firstMessageDuration = 5f;
-
-    [Header("Second Call")]
-    [Tooltip("Duración en segundos del segundo mensaje grabado.")]
-    [SerializeField] private float secondMessageDuration = 5f;
-    [Tooltip("Qué tan lejos tiene que alejarse el jugador del teléfono después de la primera llamada para que suene de nuevo.")]
-    [SerializeField] private float moveAwayDistance = 4f;
+    [Header("Call")]
+    [Tooltip("Duración en segundos del mensaje grabado. La cámara y el movimiento quedan congelados hasta que termine.")]
+    [SerializeField] private float messageDuration = 5f;
 
     [Header("Final Dialogue")]
     [TextArea]
     [SerializeField] private string finalDialogueText;
+
+    [Header("Story Flag")]
+    [SerializeField] private string flagToSetOnFinish;
 
     [Header("Player References")]
     [SerializeField] private PlayerMovement playerMovement;
@@ -35,25 +31,12 @@ public class Phone : MonoBehaviour, IInteractable
     [SerializeField] private Outline outline;
 
     private PhoneState state = PhoneState.Idle;
-    private bool isSecondCall = false;
 
     private void Awake()
     {
         if (outline != null)
         {
             outline.enabled = false;
-        }
-    }
-
-    private void Update()
-    {
-        if (state != PhoneState.WaitingToMoveAway) return;
-        if (playerMovement == null) return;
-
-        float distance = Vector3.Distance(playerMovement.transform.position, transform.position);
-        if (distance >= moveAwayDistance)
-        {
-            StartRinging();
         }
     }
 
@@ -82,8 +65,7 @@ public class Phone : MonoBehaviour, IInteractable
 
         StartCoroutine(TurnCameraToPhone());
 
-        float messageDuration = isSecondCall ? secondMessageDuration : firstMessageDuration;
-        Debug.Log(isSecondCall ? "Reproduciendo segunda grabación..." : "Reproduciendo primera grabación...");
+        Debug.Log("Reproduciendo grabación...");
 
         StartCoroutine(WaitForMessageEnd(messageDuration));
     }
@@ -120,19 +102,16 @@ public class Phone : MonoBehaviour, IInteractable
             playerMovement.enabled = true;
         }
 
-        if (!isSecondCall)
-        {
-            isSecondCall = true;
-            state = PhoneState.WaitingToMoveAway;
-        }
-        else
-        {
-            state = PhoneState.Finished;
+        state = PhoneState.Finished;
 
-            if (!string.IsNullOrEmpty(finalDialogueText) && TextPanelManager.Instance != null)
-            {
-                TextPanelManager.Instance.ShowText(finalDialogueText);
-            }
+        if (!string.IsNullOrEmpty(finalDialogueText) && TextPanelManager.Instance != null)
+        {
+            TextPanelManager.Instance.ShowText(finalDialogueText);
+        }
+
+        if (!string.IsNullOrEmpty(flagToSetOnFinish) && StoryFlagManager.Instance != null)
+        {
+            StoryFlagManager.Instance.SetFlag(flagToSetOnFinish);
         }
     }
 

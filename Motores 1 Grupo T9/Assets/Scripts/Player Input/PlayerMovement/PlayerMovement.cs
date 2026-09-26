@@ -3,36 +3,42 @@ using UnityEngine;
 [RequireComponent(typeof(CharacterController))]
 public class PlayerMovement : MonoBehaviour
 {
-    [Header("Referencias")]
+    [Header("References")]
     [Tooltip("Transform de la cámara, hija del jugador.")]
     [SerializeField] private Transform cameraTransform;
 
-    [Header("Movimiento")]
+    [Header("Movement")]
     [SerializeField] private float walkSpeed = 3f;
     [SerializeField] private float gravity = -9.81f;
+    [Tooltip("Si está activo, se puede correr manteniendo Shift.")]
+    [SerializeField] private bool enableRunning = false;
+    [SerializeField] private float runSpeed = 6f;
+    [SerializeField] private KeyCode runKey = KeyCode.LeftShift;
 
     [Header("Mouse Look")]
     [SerializeField] private float mouseSensitivity = 2f;
-    [SerializeField] private float limiteAnguloVertical = 85f;
-    [SerializeField] private bool invertirEjeY = false;
+    [SerializeField] private float verticalAngleLimit = 85f;
+    [SerializeField] private bool invertYAxis = false;
 
-    [Header("Head Bob (cabeceo)")]
+    [Header("Head Bob")]
     [Tooltip("Activa o desactiva el efecto de cabeceo al caminar.")]
-    [SerializeField] private bool habilitarHeadBob = true;
+    [SerializeField] private bool enableHeadBob = true;
     [Tooltip("Qué tan rápido oscila la cabeza (más alto = pasos más rápidos).")]
-    [SerializeField] private float bobFrecuencia = 6f;
+    [SerializeField] private float bobFrequency = 6f;
     [Tooltip("Qué tan fuerte es el desplazamiento vertical del cabeceo.")]
-    [SerializeField] private float bobAmplitudVertical = 0.04f;
+    [SerializeField] private float bobVerticalAmplitude = 0.04f;
     [Tooltip("Qué tan fuerte es el desplazamiento horizontal del cabeceo (efecto lateral leve).")]
-    [SerializeField] private float bobAmplitudHorizontal = 0.02f;
+    [SerializeField] private float bobHorizontalAmplitude = 0.02f;
     [Tooltip("Velocidad con la que la cámara vuelve a su posición al frenar.")]
-    [SerializeField] private float bobSuavizado = 8f;
+    [SerializeField] private float bobSmoothing = 8f;
+    [Tooltip("Multiplica la frecuencia y amplitud del cabeceo mientras se está corriendo.")]
+    [SerializeField] private float runBobMultiplier = 1.6f;
 
     private CharacterController controller;
-    private Vector3 velocidad;
-    private float rotacionX = 0f;
+    private Vector3 velocity;
+    private float rotationX = 0f;
 
-    private Vector3 posicionInicialCamara;
+    private Vector3 initialCameraPosition;
     private float bobTimer = 0f;
 
     private void Awake()
@@ -46,7 +52,7 @@ public class PlayerMovement : MonoBehaviour
 
         if (cameraTransform != null)
         {
-            posicionInicialCamara = cameraTransform.localPosition;
+            initialCameraPosition = cameraTransform.localPosition;
         }
     }
 
@@ -58,78 +64,83 @@ public class PlayerMovement : MonoBehaviour
 
     private void Update()
     {
-        ManejarMouseLook();
-        ManejarMovimiento();
+        HandleMouseLook();
+        HandleMovement();
     }
 
-    private void ManejarMouseLook()
+    private void HandleMouseLook()
     {
         float mouseX = Input.GetAxis("Mouse X") * mouseSensitivity;
-        float mouseY = Input.GetAxis("Mouse Y") * mouseSensitivity * (invertirEjeY ? 1f : -1f);
+        float mouseY = Input.GetAxis("Mouse Y") * mouseSensitivity * (invertYAxis ? 1f : -1f);
 
         transform.Rotate(Vector3.up * mouseX);
 
-        rotacionX += mouseY;
-        rotacionX = Mathf.Clamp(rotacionX, -limiteAnguloVertical, limiteAnguloVertical);
+        rotationX += mouseY;
+        rotationX = Mathf.Clamp(rotationX, -verticalAngleLimit, verticalAngleLimit);
 
         if (cameraTransform != null)
         {
-            cameraTransform.localRotation = Quaternion.Euler(rotacionX, 0f, 0f);
+            cameraTransform.localRotation = Quaternion.Euler(rotationX, 0f, 0f);
         }
     }
 
-    private void ManejarMovimiento()
+    private void HandleMovement()
     {
-        bool enElSuelo = controller.isGrounded;
+        bool isGrounded = controller.isGrounded;
 
-        if (enElSuelo && velocidad.y < 0f)
+        if (isGrounded && velocity.y < 0f)
         {
-            velocidad.y = -2f;
+            velocity.y = -2f;
         }
 
         float horizontal = Input.GetAxis("Horizontal");
         float vertical = Input.GetAxis("Vertical");
 
-        Vector3 direccion = transform.right * horizontal + transform.forward * vertical;
-        direccion = Vector3.ClampMagnitude(direccion, 1f);
+        Vector3 direction = transform.right * horizontal + transform.forward * vertical;
+        direction = Vector3.ClampMagnitude(direction, 1f);
 
-        controller.Move(direccion * walkSpeed * Time.deltaTime);
+        bool isRunning = enableRunning && Input.GetKey(runKey) && direction.magnitude > 0.1f;
+        float currentSpeed = isRunning ? runSpeed : walkSpeed;
 
-        velocidad.y += gravity * Time.deltaTime;
-        controller.Move(velocidad * Time.deltaTime);
+        controller.Move(direction * currentSpeed * Time.deltaTime);
 
-        AplicarHeadBob(direccion.magnitude, enElSuelo);
+        velocity.y += gravity * Time.deltaTime;
+        controller.Move(velocity * Time.deltaTime);
+
+        ApplyHeadBob(direction.magnitude, isGrounded, isRunning);
     }
 
-    private void AplicarHeadBob(float inputMagnitud, bool enElSuelo)
+    private void ApplyHeadBob(float inputMagnitude, bool isGrounded, bool isRunning)
     {
         if (cameraTransform == null) return;
 
-        if (!habilitarHeadBob)
+        if (!enableHeadBob)
         {
             cameraTransform.localPosition = Vector3.Lerp(
-                cameraTransform.localPosition, posicionInicialCamara, Time.deltaTime * bobSuavizado);
+                cameraTransform.localPosition, initialCameraPosition, Time.deltaTime * bobSmoothing);
             return;
         }
 
-        bool estaCaminando = inputMagnitud > 0.1f && enElSuelo;
+        bool isWalking = inputMagnitude > 0.1f && isGrounded;
 
-        if (estaCaminando)
+        if (isWalking)
         {
-            bobTimer += Time.deltaTime * bobFrecuencia;
+            float bobMultiplier = isRunning ? runBobMultiplier : 1f;
 
-            float offsetY = Mathf.Sin(bobTimer) * bobAmplitudVertical;
-            float offsetX = Mathf.Cos(bobTimer * 0.5f) * bobAmplitudHorizontal;
+            bobTimer += Time.deltaTime * bobFrequency * bobMultiplier;
 
-            Vector3 posicionObjetivo = posicionInicialCamara + new Vector3(offsetX, offsetY, 0f);
+            float offsetY = Mathf.Sin(bobTimer) * bobVerticalAmplitude * bobMultiplier;
+            float offsetX = Mathf.Cos(bobTimer * 0.5f) * bobHorizontalAmplitude * bobMultiplier;
+
+            Vector3 targetPosition = initialCameraPosition + new Vector3(offsetX, offsetY, 0f);
             cameraTransform.localPosition = Vector3.Lerp(
-                cameraTransform.localPosition, posicionObjetivo, Time.deltaTime * bobSuavizado);
+                cameraTransform.localPosition, targetPosition, Time.deltaTime * bobSmoothing);
         }
         else
         {
             bobTimer = 0f;
             cameraTransform.localPosition = Vector3.Lerp(
-                cameraTransform.localPosition, posicionInicialCamara, Time.deltaTime * bobSuavizado);
+                cameraTransform.localPosition, initialCameraPosition, Time.deltaTime * bobSmoothing);
         }
     }
 }

@@ -8,6 +8,7 @@ public class PhoneRingTrigger : MonoBehaviour
     [Tooltip("Segundos de espera desde que el jugador toca el collider hasta que el teléfono empieza a sonar.")]
     [SerializeField] private float delayBeforeRinging = 3f;
     [SerializeField] private Phone phone;
+    [SerializeField] private string flagToSet;
 
     private bool triggered = false;
 
@@ -32,6 +33,11 @@ public class PhoneRingTrigger : MonoBehaviour
         if (phone != null)
         {
             phone.StartRingingSequence();
+        }
+
+        if (!string.IsNullOrEmpty(flagToSet) && StoryFlagManager.Instance != null)
+        {
+            StoryFlagManager.Instance.SetFlag(flagToSet);
         }
     }
 }
