@@ -4,6 +4,7 @@ using UnityEngine;
 using UnityEngine.UI;
 using UnityEngine.SceneManagement;
 using System.Collections.Generic;
+using System.Collections;
 
 public class PlayerInventory : MonoBehaviour
 {
@@ -25,6 +26,8 @@ public class PlayerInventory : MonoBehaviour
     [Header("Anomalía - se activa al completar todos los recursos")]
     [SerializeField] private GameObject anomalyObject;
     [SerializeField] private bool anomalyTriggered = false;
+    [SerializeField] private float anomalyDelay = 3f;
+
 
     [Header("Siguiente Nivel")]
     [SerializeField] public string nextLevel;
@@ -63,6 +66,7 @@ public class PlayerInventory : MonoBehaviour
         }
 
         CheckSpawnTriggers(type);
+        CheckVictory();
     }
 
     private int GetCollectedAmount(resourcesManager.ResourceType type)
@@ -112,12 +116,13 @@ public class PlayerInventory : MonoBehaviour
 
     public void CheckVictory()
     {
-        Debug.Log("Chequea");
+        Debug.Log($"[CheckVictory] metal={metalCollected}/{metalNeeded}, combustible={combustibleCollected}/{combustibleNeeded}, insumos={insumosCollected}/{insumosNeeded}");
 
         if (metalCollected >= metalNeeded &&
             combustibleCollected >= combustibleNeeded &&
             insumosCollected >= insumosNeeded)
         {
+            Debug.Log("[CheckVictory] condición cumplida, llamando TriggerAnomaly");
             TriggerAnomaly();
             return;
         }
@@ -127,19 +132,26 @@ public class PlayerInventory : MonoBehaviour
 
     private void TriggerAnomaly()
     {
+        Debug.Log($"[TriggerAnomaly] anomalyTriggered={anomalyTriggered}, anomalyObject={(anomalyObject != null ? anomalyObject.name : "NULL")}");
+
         if (anomalyTriggered) return;
 
         if (anomalyObject == null)
         {
-            Debug.LogWarning("anomalyObject no asignado.");
+            Debug.LogWarning("[TriggerAnomaly] anomalyObject no asignado.");
             return;
         }
 
-        Debug.Log("Anomalía activada.");
-        anomalyObject.SetActive(true);
         anomalyTriggered = true;
+        StartCoroutine(ActivateAnomalyAfterDelay());
     }
 
+    private IEnumerator ActivateAnomalyAfterDelay()
+    {
+        yield return new WaitForSeconds(anomalyDelay);
+        Debug.Log("[TriggerAnomaly] Anomalía activada, SetActive(true) ejecutado.");
+        anomalyObject.SetActive(true);
+    }
     public void LevelUp()
     {
     }
