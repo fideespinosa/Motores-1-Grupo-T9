@@ -17,6 +17,8 @@ public class TransitionWithTimerScript : MonoBehaviour
 
     private void Start()
     {
+       //Cursor.lockState = CursorLockMode.None;
+        Cursor.visible = false;
         StartCoroutine(SceneTransitionRoutine());
     }
 

@@ -9,6 +9,7 @@ public class CaveToHouseScript : MonoBehaviour
     [SerializeField] GameObject Panel;
     [SerializeField] DroneController droneController;
     [SerializeField] PlayerSwitcher playerSwitcher;
+    [SerializeField] GameObject alarmLight;
 
     [Header("Transition")]
     [SerializeField] string SceneName;

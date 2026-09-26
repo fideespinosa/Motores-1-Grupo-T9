@@ -14678,7 +14678,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: / 3  Posible Combustible
+  m_text: / 1  Posible Combustible
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 9a80eaff267ac5c45921eb84943b2095, type: 2}
   m_sharedMaterial: {fileID: -4913511322303963329, guid: 9a80eaff267ac5c45921eb84943b2095, type: 2}
@@ -18468,7 +18468,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!4 &940589765
 Transform:
   m_ObjectHideFlags: 0
@@ -18593,6 +18593,7 @@ MonoBehaviour:
   Panel: {fileID: 300747980}
   droneController: {fileID: 8898654158852840253}
   playerSwitcher: {fileID: 1213029919}
+  alarmLight: {fileID: 0}
   SceneName: HouseScene 1
   FadeDuration: 4
 --- !u!65 &952106054
@@ -18623,7 +18624,7 @@ MeshRenderer:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 952106052}
-  m_Enabled: 0
+  m_Enabled: 1
   m_CastShadows: 1
   m_ReceiveShadows: 1
   m_DynamicOccludee: 1
@@ -22875,7 +22876,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 7704503355901849607, guid: 5227ce862db5983408320603d259fb44, type: 3}
       propertyPath: m_IsActive
-      value: 1
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 8487528487423235571, guid: 5227ce862db5983408320603d259fb44, type: 3}
       propertyPath: far clip plane
@@ -25154,7 +25155,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 7270620107919773639, guid: bb128355a4591534f9f1e4410938f472, type: 3}
       propertyPath: m_LocalPosition.x
-      value: 3.14
+      value: -5.849
       objectReference: {fileID: 0}
     - target: {fileID: 7270620107919773639, guid: bb128355a4591534f9f1e4410938f472, type: 3}
       propertyPath: m_LocalPosition.y
@@ -25162,23 +25163,23 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 7270620107919773639, guid: bb128355a4591534f9f1e4410938f472, type: 3}
       propertyPath: m_LocalPosition.z
-      value: -43.49
+      value: -43.203
       objectReference: {fileID: 0}
     - target: {fileID: 7270620107919773639, guid: bb128355a4591534f9f1e4410938f472, type: 3}
       propertyPath: m_LocalRotation.w
-      value: 0.5870189
+      value: 0.5589514
       objectReference: {fileID: 0}
     - target: {fileID: 7270620107919773639, guid: bb128355a4591534f9f1e4410938f472, type: 3}
       propertyPath: m_LocalRotation.x
-      value: -0.49340004
+      value: -0.46764636
       objectReference: {fileID: 0}
     - target: {fileID: 7270620107919773639, guid: bb128355a4591534f9f1e4410938f472, type: 3}
       propertyPath: m_LocalRotation.y
-      value: 0.47228235
+      value: 0.50518835
       objectReference: {fileID: 0}
     - target: {fileID: 7270620107919773639, guid: bb128355a4591534f9f1e4410938f472, type: 3}
       propertyPath: m_LocalRotation.z
-      value: 0.4346431
+      value: 0.4622391
       objectReference: {fileID: 0}
     - target: {fileID: 7270620107919773639, guid: bb128355a4591534f9f1e4410938f472, type: 3}
       propertyPath: m_LocalEulerAnglesHint.x
@@ -25186,7 +25187,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 7270620107919773639, guid: bb128355a4591534f9f1e4410938f472, type: 3}
       propertyPath: m_LocalEulerAnglesHint.y
-      value: 61.913
+      value: 68.492
       objectReference: {fileID: 0}
     - target: {fileID: 7270620107919773639, guid: bb128355a4591534f9f1e4410938f472, type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
@@ -28749,7 +28750,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!136 &1474393658
 CapsuleCollider:
   m_ObjectHideFlags: 0
@@ -29819,7 +29820,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: "/ 3  Insumos Electr\xF3nicos"
+  m_text: "/ 1  Insumos Electr\xF3nicos"
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 9a80eaff267ac5c45921eb84943b2095, type: 2}
   m_sharedMaterial: {fileID: -4913511322303963329, guid: 9a80eaff267ac5c45921eb84943b2095, type: 2}
@@ -45364,7 +45365,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: / 4  Piezas de Metal
+  m_text: / 1  Piezas de Metal
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 9a80eaff267ac5c45921eb84943b2095, type: 2}
   m_sharedMaterial: {fileID: -4913511322303963329, guid: 9a80eaff267ac5c45921eb84943b2095, type: 2}
