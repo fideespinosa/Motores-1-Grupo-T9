@@ -17,6 +17,9 @@ public class MedicationPill : MonoBehaviour, IInteractable
     [Tooltip("Flag que debe estar activo para poder ver e interactuar con esta pastilla. Dejar vacío si no aplica.")]
     [SerializeField] private string requiredFlag = "medication_task_started";
 
+    [SerializeField] private AudioSource audioSource;
+    [SerializeField] private AudioClip[] clipList; 
+
     private bool IsUnlocked()
     {
         if (string.IsNullOrEmpty(requiredFlag)) return true;
@@ -31,6 +34,16 @@ public class MedicationPill : MonoBehaviour, IInteractable
         }
     }
 
+    private void PlayRandomPillSound()
+    {
+        if (clipList.Length == 0) return;
+
+        int indexAlt = Random.Range(0, clipList.Length);
+
+        AudioSource.PlayClipAtPoint(clipList[indexAlt], transform.position);
+
+    }
+
     public void Action()
     {
         if (!IsUnlocked()) return;
@@ -38,8 +51,10 @@ public class MedicationPill : MonoBehaviour, IInteractable
 
         bool wasCollected = MedicationManager.Instance.TryCollect(medicationId);
 
+      
         if (wasCollected)
         {
+            PlayRandomPillSound();
             gameObject.SetActive(false);
         }
     }

@@ -17,6 +17,9 @@ public class LockedDrawer : MonoBehaviour, IInteractable
     [Header("Outline")]
     [SerializeField] private Outline outline;
 
+    [SerializeField] private AudioSource audioSource;
+    [SerializeField] private AudioClip closedDoor;
+
     private bool isOpen = false;
 
     private void Awake()
@@ -39,6 +42,7 @@ public class LockedDrawer : MonoBehaviour, IInteractable
         }
         else if (TextPanelManager.Instance != null)
         {
+            audioSource.PlayOneShot(closedDoor);
             TextPanelManager.Instance.ShowText(lockedMessage);
         }
     }

@@ -30,6 +30,11 @@ public class Phone : MonoBehaviour, IInteractable
     [Header("Outline")]
     [SerializeField] private Outline outline;
 
+    [SerializeField] private AudioSource audioSource;
+    [SerializeField] private AudioClip phoneRing;
+    [SerializeField] private AudioClip debtCall;
+
+
     private PhoneState state = PhoneState.Idle;
 
     private void Awake()
@@ -49,6 +54,7 @@ public class Phone : MonoBehaviour, IInteractable
     private void StartRinging()
     {
         state = PhoneState.Ringing;
+        audioSource.PlayOneShot(phoneRing);
         Debug.Log("Sonando...");
     }
 
@@ -66,6 +72,12 @@ public class Phone : MonoBehaviour, IInteractable
         StartCoroutine(TurnCameraToPhone());
 
         Debug.Log("Reproduciendo grabación...");
+
+        audioSource.Stop();
+
+        audioSource.clip = debtCall;
+
+        audioSource.Play();
 
         StartCoroutine(WaitForMessageEnd(messageDuration));
     }

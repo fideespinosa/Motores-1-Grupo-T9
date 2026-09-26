@@ -29,6 +29,9 @@ public class PlacementPoint : MonoBehaviour, IInteractable
     [Header("Outline")]
     [SerializeField] private Outline outline;
 
+    [SerializeField] private AudioSource audioSource;
+    [SerializeField] private AudioClip waterClip;
+
     private bool isFilled = false;
 
     private void Awake()
@@ -54,6 +57,8 @@ public class PlacementPoint : MonoBehaviour, IInteractable
         if (success)
         {
             isFilled = true;
+
+            audioSource.PlayOneShot(waterClip);
 
             Debug.Log("Sonido de objeto colocado");
 

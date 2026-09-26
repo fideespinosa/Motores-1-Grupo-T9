@@ -38,6 +38,12 @@ public class Openable : MonoBehaviour, IInteractable
     [Header("Outline")]
     [SerializeField] private Outline outline;
 
+    [SerializeField] private AudioSource audioSource;
+    [SerializeField] private AudioClip keyUnlock;
+    [SerializeField] private AudioClip keyLock;
+    [SerializeField] private AudioClip closeDoor;
+    [SerializeField] private AudioClip openDoor;
+
     private bool isUnlocked = false;
     private bool isOpen = false;
     private Coroutine animationCoroutine;
@@ -83,6 +89,7 @@ public class Openable : MonoBehaviour, IInteractable
         if (!FlagSatisfied)
         {
             Debug.Log("Sonido de puerta cerrada");
+            audioSource.PlayOneShot(keyLock);
             return;
         }
 
@@ -99,11 +106,16 @@ public class Openable : MonoBehaviour, IInteractable
         {
             isUnlocked = true;
             Debug.Log("Sonido de llave utilizada");
+            audioSource.PlayOneShot(keyUnlock);
             Open();
         }
         else
         {
             Debug.Log("Sonido de puerta cerrada");
+
+            audioSource.Stop();
+            audioSource.clip = keyLock;
+            audioSource.Play();
 
             if (!string.IsNullOrEmpty(flagToSetOnLocked) && StoryFlagManager.Instance != null)
             {
@@ -120,6 +132,8 @@ public class Openable : MonoBehaviour, IInteractable
     private void Open()
     {
         Debug.Log("Sonido de puerta abriendose");
+        audioSource.PlayOneShot(openDoor);
+
         isOpen = true;
 
         if (animationCoroutine != null)
@@ -132,6 +146,7 @@ public class Openable : MonoBehaviour, IInteractable
     private void Close()
     {
         isOpen = false;
+        audioSource.PlayOneShot(closeDoor);
 
         Debug.Log("Sonido de puerta cerrándose");
 

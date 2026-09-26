@@ -23,6 +23,10 @@ public class CollectibleItem : MonoBehaviour, IInteractable
     [Header("Outline")]
     [SerializeField] private Outline outline;
 
+    [SerializeField] private AudioSource audioSource;
+    [SerializeField] private AudioClip pickedObj;
+  
+
     private bool IsUnlocked()
     {
         if (string.IsNullOrEmpty(requiredFlag)) return true;
@@ -44,6 +48,7 @@ public class CollectibleItem : MonoBehaviour, IInteractable
         if (InventoryManager.Instance != null)
         {
             InventoryManager.Instance.AddItem(itemId);
+            audioSource.PlayOneShot(pickedObj);
         }
 
         if (!string.IsNullOrEmpty(pickupComment) && TextPanelManager.Instance != null)

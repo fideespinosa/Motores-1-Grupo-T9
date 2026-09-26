@@ -21,6 +21,10 @@ public class PlaceableItem : MonoBehaviour, IInteractable
     [Header("Outline")]
     [SerializeField] private Outline outline;
 
+    [SerializeField] private AudioSource audioSource;
+    [SerializeField] private AudioClip moveObj;
+    [SerializeField] private AudioClip pickObj;
+
     private bool IsUnlocked()
     {
         if (string.IsNullOrEmpty(requiredFlag)) return true;
@@ -42,6 +46,8 @@ public class PlaceableItem : MonoBehaviour, IInteractable
 
         Debug.Log("Sonido de objeto recogido");
 
+        audioSource.PlayOneShot(pickObj);
+
         PlacementManager.Instance.PickUp(itemId);
 
         if (placementPointToActivate != null)
@@ -52,6 +58,10 @@ public class PlaceableItem : MonoBehaviour, IInteractable
         if (!string.IsNullOrEmpty(flagToSetOnPickup) && StoryFlagManager.Instance != null)
         {
             StoryFlagManager.Instance.SetFlag(flagToSetOnPickup);
+
+            audioSource.Stop();
+            audioSource.clip = moveObj;
+            audioSource.Play();
         }
 
         gameObject.SetActive(false);
