@@ -40,6 +40,8 @@ public class CinematicManager : MonoBehaviour
 
         enemy.StartScreaming();
 
+        Debug.Log("llega?");
+
         float t = 0f;
 
         Vector3 startPos = playerCamera.transform.position;
