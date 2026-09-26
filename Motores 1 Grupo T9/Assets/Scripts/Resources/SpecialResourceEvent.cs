@@ -2,7 +2,6 @@ using UnityEngine;
 using TMPro;
 public class SpecialResourceEvent : MonoBehaviour
 {
-    [SerializeField] private TMPro.TextMeshProUGUI text;
     [SerializeField] GameObject enemy;
     bool isTaken = false;
    // [SerializeField] GameObject particles;
@@ -21,7 +20,6 @@ public class SpecialResourceEvent : MonoBehaviour
     {
         if (other.gameObject.CompareTag("Player"))
         {
-            text.text = "1";
             isTaken = true; 
            gameObject.SetActive(false);
            enemy.SetActive(true);
@@ -29,7 +27,7 @@ public class SpecialResourceEvent : MonoBehaviour
     }
 
     public bool GetStatus()
-    {
+    { 
         return isTaken;
     }
 
