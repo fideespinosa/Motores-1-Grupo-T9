@@ -8,6 +8,8 @@ public class CRTGlitchTransitionController : MonoBehaviour
     private UIDocument uiDocument;
     private VisualElement glitchOverlay;
     private VisualElement camDroneUI;
+    private VisualElement shakeContainer;
+    private VisualElement screenBlack;
     [SerializeField] private Material glitchMaterial;
 
     [SerializeField] private Light lightDron;
@@ -30,7 +32,9 @@ public class CRTGlitchTransitionController : MonoBehaviour
             // Intenta buscar el elemento con el nombre exacto que le pusiste en el UXML
             glitchOverlay = root.Q<VisualElement>("GlitchOverlay");
             camDroneUI = root.Q<VisualElement>("DronCam");
-            
+            shakeContainer = root.Q<VisualElement>("ShakeContainer");
+            screenBlack = root.Q<VisualElement>("ScreenBlack");
+
             if (glitchOverlay == null)
             {
                 Debug.LogError("¡ATENCIÓN! No se encontró ningún VisualElement llamado 'GlitchOverlay' en el UXML.");
@@ -40,6 +44,9 @@ public class CRTGlitchTransitionController : MonoBehaviour
                 Debug.Log("GlitchOverlay encontrado con éxito en el UI Document.");
                 glitchOverlay.style.display = DisplayStyle.None;
                 glitchOverlay.style.opacity = 0f;
+
+                shakeContainer.style.display = DisplayStyle.None;
+                screenBlack.style.display = DisplayStyle.None;
             }
         }
     }
@@ -57,6 +64,9 @@ public class CRTGlitchTransitionController : MonoBehaviour
         // 1. Mostrar el overlay
         camDroneUI.style.display = DisplayStyle.None;
         glitchOverlay.style.display = DisplayStyle.Flex;
+
+        // TEMBLOR ANTES DEL GLITCH
+        yield return StartCoroutine(ShakeUI());
 
         // 2. Efecto de parpadeo de estática analógica (Flicker) como en el video
         float timer = 0f;
@@ -110,5 +120,29 @@ public class CRTGlitchTransitionController : MonoBehaviour
         lightDron.color = new Color(255f / 255f, 244f / 255f, 214f / 255f);
         lightDron.intensity = 6f;
         Debug.Log("llegue a cambiar la luz del dron nuevamente");
+    }
+    private IEnumerator ShakeUI()
+    {
+        if (shakeContainer == null)
+            yield break;
+
+        float duration = 0.15f;
+        float elapsed = 0f;
+
+        while (elapsed < duration)
+        {
+            elapsed += Time.deltaTime;
+
+            float strength = Mathf.Lerp(2f, 12f, elapsed / duration);
+
+            shakeContainer.style.translate = new Translate(
+                Random.Range(-strength, strength),
+                Random.Range(-strength, strength)
+             );
+
+            yield return null;
+        }
+
+        shakeContainer.style.translate = new Translate(0, 0);
     }
 }

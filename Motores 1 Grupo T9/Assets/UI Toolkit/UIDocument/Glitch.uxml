@@ -1,10 +1,12 @@
 <ui:UXML xmlns:ui="UnityEngine.UIElements" editor-extension-mode="False">
     <Style src="project://database/Assets/UI%20Toolkit/Style/glitch.uss?fileID=7433441132597879392&amp;guid=fd05613e037444943896902664f9b3d6&amp;type=3#glitch"/>
     <ui:VisualElement name="DroneHUDContainer" style="flex-grow: 1; width: 1920px; height: 1080px; display: flex;">
-        <ui:VisualElement name="GlitchOverlay" class="drone-crt-overlay glitch-overlay" style="width: 1920px; height: 1080px; display: flex;"/>
         <ui:VisualElement name="DronCam" style="flex-grow: 1; width: 1920px; height: 1080px; background-image: url(&quot;project://database/Assets/Views/HUD%20-%20Dron%201.png?fileID=21300000&amp;guid=b8c88044ee4d6d34082f0333addd3047&amp;type=3#HUD - Dron 1&quot;); flex-direction: row; display: none;">
             <ui:Label text="Label" name="ResourcesLbl" style="position: absolute; font-size: 31px; -unity-font-definition: url(&quot;project://database/Assets/UI%20Toolkit/Font/Rajdhani-Bold.ttf?fileID=12800000&amp;guid=585eb9b5ee4ddb84e987fe35c590e8e5&amp;type=3#Rajdhani-Bold&quot;); color: rgb(185, 176, 176); top: 900px; left: 1392px; width: 249px;"/>
             <ui:Label text="Label" name="QResourceLbl" style="position: absolute; font-size: 31px; -unity-font-definition: url(&quot;project://database/Assets/UI%20Toolkit/Font/Rajdhani-Bold.ttf?fileID=12800000&amp;guid=585eb9b5ee4ddb84e987fe35c590e8e5&amp;type=3#Rajdhani-Bold&quot;); color: rgb(185, 176, 176); top: 900px; left: 1692px; width: 109px;"/>
         </ui:VisualElement>
+        <ui:VisualElement name="GlitchOverlay" class="drone-crt-overlay glitch-overlay" style="width: 1920px; height: 1080px; display: flex;"/>
+        <ui:VisualElement name="ShakeContainer" style="flex-grow: 1; display: none;"/>
+        <ui:VisualElement name="ScreenBlack" style="flex-grow: 1;"/>
     </ui:VisualElement>
 </ui:UXML>
