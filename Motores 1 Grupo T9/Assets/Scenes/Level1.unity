@@ -7008,10 +7008,27 @@ PrefabInstance:
       propertyPath: m_Name
       value: BookBajarEsLoPeor
       objectReference: {fileID: 0}
+    - target: {fileID: 919132149155446097, guid: e0e8949bb36b59344bf0d08e3b57eb0a, type: 3}
+      propertyPath: m_Layer
+      value: 10
+      objectReference: {fileID: 0}
+    - target: {fileID: 919132149155446097, guid: e0e8949bb36b59344bf0d08e3b57eb0a, type: 3}
+      propertyPath: m_TagString
+      value: Item
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
-    m_AddedComponents: []
+    m_AddedComponents:
+    - targetCorrespondingSourceObject: {fileID: 919132149155446097, guid: e0e8949bb36b59344bf0d08e3b57eb0a, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 1811051732}
+    - targetCorrespondingSourceObject: {fileID: 919132149155446097, guid: e0e8949bb36b59344bf0d08e3b57eb0a, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 1811051731}
+    - targetCorrespondingSourceObject: {fileID: 919132149155446097, guid: e0e8949bb36b59344bf0d08e3b57eb0a, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 1811051735}
   m_SourcePrefab: {fileID: 100100000, guid: e0e8949bb36b59344bf0d08e3b57eb0a, type: 3}
 --- !u!1 &325592539
 GameObject:
@@ -22002,7 +22019,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 4099a0f7ad8cc5645972150a8733e062, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::Phone
-  messageDuration: 5
+  messageDuration: 60
   finalDialogueText: "...est\xE1n llamando otra vez... estoy harto de esto."
   flagToSetOnFinish: ladder_unlocked
   playerMovement: {fileID: 1676664704}
@@ -24897,6 +24914,65 @@ Transform:
   m_CorrespondingSourceObject: {fileID: -8679921383154817045, guid: 64752fe10ff945a4e9d6b47f0c659973, type: 3}
   m_PrefabInstance: {fileID: 1987971232}
   m_PrefabAsset: {fileID: 0}
+--- !u!1 &1320813796 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 919132149155446097, guid: a6fb9d8a79b2c2e4cb4c62860ac8f151, type: 3}
+  m_PrefabInstance: {fileID: 1836250405}
+  m_PrefabAsset: {fileID: 0}
+--- !u!114 &1320813797
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1320813796}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 5fea29bb7c508c244a1f805a5fd3fc4d, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::Outline
+  outlineMode: 0
+  outlineColor: {r: 1, g: 1, b: 1, a: 1}
+  outlineWidth: 2
+  precomputeOutline: 0
+  bakeKeys: []
+  bakeValues: []
+--- !u!114 &1320813798
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1320813796}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 1f10877ceb460714bad4c6cfb080d14a, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::TextItem
+  commentText: "\"F\xE1cilmente aceptamos la realidad, acaso porque intuimos que
+    nada es real.\""
+  outline: {fileID: 1320813797}
+--- !u!65 &1320813801
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1320813796}
+  m_Material: {fileID: 0}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_LayerOverridePriority: 0
+  m_IsTrigger: 0
+  m_ProvidesContacts: 0
+  m_Enabled: 1
+  serializedVersion: 3
+  m_Size: {x: 0.013580999, y: 0.02, z: 0.0030836295}
+  m_Center: {x: 0.0000001193365, y: -1.5873626e-10, z: 0.0015870539}
 --- !u!1 &1325601099
 GameObject:
   m_ObjectHideFlags: 0
@@ -26622,9 +26698,9 @@ MonoBehaviour:
   placementPointToActivate: {fileID: 0}
   flagToSetOnPickup: medication_ready
   outline: {fileID: 1364343150}
-  audioSource: {fileID: 0}
-  moveObj: {fileID: 0}
-  pickObj: {fileID: 0}
+  audioSource: {fileID: 771744694}
+  moveObj: {fileID: 8300000, guid: f393fd2975d1cda4c8b1e8caaa559873, type: 3}
+  pickObj: {fileID: 8300000, guid: ad6d50f4202876f47af722d657ab027c, type: 3}
 --- !u!4 &1364343149 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: -8679921383154817045, guid: a4030cd0c160e9547b6b5f1ad1ac7a0b, type: 3}
@@ -41124,6 +41200,65 @@ Transform:
   m_Children: []
   m_Father: {fileID: 1833043486}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!1 &1811051730 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 919132149155446097, guid: e0e8949bb36b59344bf0d08e3b57eb0a, type: 3}
+  m_PrefabInstance: {fileID: 324915664}
+  m_PrefabAsset: {fileID: 0}
+--- !u!114 &1811051731
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1811051730}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 1f10877ceb460714bad4c6cfb080d14a, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::TextItem
+  commentText: "\"Lo sab\xEDa. Puedo reconocerte en cualquier lado, Facun. En una
+    multitud ser\xEDas el \xFAnico al que ver\xEDa.\""
+  outline: {fileID: 1811051732}
+--- !u!114 &1811051732
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1811051730}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 5fea29bb7c508c244a1f805a5fd3fc4d, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::Outline
+  outlineMode: 0
+  outlineColor: {r: 1, g: 1, b: 1, a: 1}
+  outlineWidth: 2
+  precomputeOutline: 0
+  bakeKeys: []
+  bakeValues: []
+--- !u!65 &1811051735
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1811051730}
+  m_Material: {fileID: 0}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_LayerOverridePriority: 0
+  m_IsTrigger: 0
+  m_ProvidesContacts: 0
+  m_Enabled: 1
+  serializedVersion: 3
+  m_Size: {x: 0.013580995, y: 0.02, z: 0.0030836281}
+  m_Center: {x: 2.0717166e-11, y: -7.3824585e-11, z: 0.0015870541}
 --- !u!1 &1822920250
 GameObject:
   m_ObjectHideFlags: 0
@@ -41894,10 +42029,27 @@ PrefabInstance:
       propertyPath: m_Name
       value: BookElAleph
       objectReference: {fileID: 0}
+    - target: {fileID: 919132149155446097, guid: a6fb9d8a79b2c2e4cb4c62860ac8f151, type: 3}
+      propertyPath: m_Layer
+      value: 10
+      objectReference: {fileID: 0}
+    - target: {fileID: 919132149155446097, guid: a6fb9d8a79b2c2e4cb4c62860ac8f151, type: 3}
+      propertyPath: m_TagString
+      value: Item
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
-    m_AddedComponents: []
+    m_AddedComponents:
+    - targetCorrespondingSourceObject: {fileID: 919132149155446097, guid: a6fb9d8a79b2c2e4cb4c62860ac8f151, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 1320813798}
+    - targetCorrespondingSourceObject: {fileID: 919132149155446097, guid: a6fb9d8a79b2c2e4cb4c62860ac8f151, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 1320813797}
+    - targetCorrespondingSourceObject: {fileID: 919132149155446097, guid: a6fb9d8a79b2c2e4cb4c62860ac8f151, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 1320813801}
   m_SourcePrefab: {fileID: 100100000, guid: a6fb9d8a79b2c2e4cb4c62860ac8f151, type: 3}
 --- !u!1 &1837130710
 GameObject:
