@@ -13,6 +13,9 @@ public class ImageItem : MonoBehaviour, IInteractable
     [Tooltip("Flag que debe estar activo para poder interactuar con este objeto. Dejar vacío si no aplica.")]
     [SerializeField] private string requiredFlag;
 
+    [Header("Story Flag")]
+    [SerializeField] private string flagToSetOnInteract;
+
     [Header("Outline")]
     [Tooltip("Script de outline del objeto. Se activa al mirarlo y se desactiva al dejar de mirarlo.")]
     [SerializeField] private Outline outline;
@@ -48,6 +51,11 @@ public class ImageItem : MonoBehaviour, IInteractable
         else
         {
             Debug.LogWarning("No se encontró un ImagePanelManager en la escena");
+        }
+
+        if (!string.IsNullOrEmpty(flagToSetOnInteract) && StoryFlagManager.Instance != null)
+        {
+            StoryFlagManager.Instance.SetFlag(flagToSetOnInteract);
         }
 
         if (disableOnInteract)

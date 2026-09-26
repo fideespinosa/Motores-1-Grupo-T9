@@ -2324,6 +2324,7 @@ MonoBehaviour:
   imageToShow: {fileID: 21300000, guid: eac6a323c68c7ae43bf9395721f7884b, type: 3}
   disableOnInteract: 0
   requiredFlag: 
+  flagToSetOnInteract: 
   outline: {fileID: 90292880}
   audioSource: {fileID: 90292887}
   paperOn: {fileID: 8300000, guid: 8a219fd6640980545b6ea215b4dc3335, type: 3}
@@ -6758,9 +6759,12 @@ MonoBehaviour:
   panelCanvasGroup: {fileID: 597675704}
   missionText: {fileID: 1732184003}
   missions:
-  - flag: medication_task_started
-    missionText: Buscar receta y preparar remedio.
+  - flag: search_recipe
+    missionText: Busca la receta en la heladera.
     delayBeforeAppearing: 13
+  - flag: medication_task_started
+    missionText: Busca la medicina y prepara el remedio.
+    delayBeforeAppearing: 3
   - flag: medication_collected
     missionText: Buscar un vaso con agua.
     delayBeforeAppearing: 7
@@ -14829,6 +14833,7 @@ MonoBehaviour:
   imageToShow: {fileID: 21300000, guid: b7c5aa01d56bf364f9678e1662766d22, type: 3}
   disableOnInteract: 0
   requiredFlag: 
+  flagToSetOnInteract: medication_task_started
   outline: {fileID: 686240785}
   audioSource: {fileID: 686240790}
   paperOn: {fileID: 8300000, guid: 8a219fd6640980545b6ea215b4dc3335, type: 3}
@@ -15729,6 +15734,7 @@ MonoBehaviour:
   imageToShow: {fileID: 21300000, guid: c112c64ea705edb428157455c45a6832, type: 3}
   disableOnInteract: 1
   requiredFlag: ObjectsReadyToPickUp
+  flagToSetOnInteract: 
   outline: {fileID: 741920026}
   audioSource: {fileID: 741920033}
   paperOn: {fileID: 8300000, guid: 8a219fd6640980545b6ea215b4dc3335, type: 3}
@@ -18044,7 +18050,7 @@ MonoBehaviour:
   playerTag: Player
   triggerText: "Tengo que prepararle el remedio a mi hijo para cuando vuelva. Cada
     vez empeora mas... La receta deber\xEDa estar en la heladera."
-  flagToSet: medication_task_started
+  flagToSet: search_recipe
   oneShot: 1
 --- !u!65 &926312301
 BoxCollider:
