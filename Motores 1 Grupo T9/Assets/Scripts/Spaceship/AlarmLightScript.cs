@@ -6,6 +6,9 @@ public class AlarmLightScript : MonoBehaviour
     [SerializeField] Light alarmLight;
     [SerializeField] Light normalLight;
 
+    [SerializeField] private AudioSource audioSource;
+    [SerializeField] private AudioClip alarmClip;
+
     [SerializeField] float minIntensity = 0f;
     [SerializeField] float maxIntensity = 8f;
     [SerializeField] float blinkSpeed = 8f;
@@ -26,6 +29,7 @@ public class AlarmLightScript : MonoBehaviour
     {
         enabled = true;
         alarmLight.enabled = true;
+        audioSource.PlayOneShot(alarmClip);
     }
 
     public void DeactivateAlarm()
@@ -33,6 +37,8 @@ public class AlarmLightScript : MonoBehaviour
         enabled = false;
         alarmLight.enabled = false;
         normalLight.enabled = true;
+        audioSource.clip = alarmClip;
+        audioSource.Stop();
     }
 
     private void OnEnable()
