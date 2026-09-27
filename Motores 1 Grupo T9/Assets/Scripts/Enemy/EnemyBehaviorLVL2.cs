@@ -1,7 +1,9 @@
+using System.Collections;
 using UnityEngine;
 using UnityEngine.AI;
 using UnityEngine.SceneManagement;
 using UnityEngine.Audio;
+
 public class EnemyBehaviorLVL2 : MonoBehaviour
 {
     NavMeshAgent agent;
@@ -10,7 +12,7 @@ public class EnemyBehaviorLVL2 : MonoBehaviour
     [SerializeField] Animator animator;
     [SerializeField] GameObject staticImage;
     [SerializeField] MonsterAudioController audioController;
-
+    [SerializeField] float screamDuration = 2f; // ajustá este valor a lo que quieras
 
     bool run = false;
 
@@ -38,6 +40,7 @@ public class EnemyBehaviorLVL2 : MonoBehaviour
             SceneManager.LoadScene("Game Over - Dron");
         }
     }
+
     public void StartRunning()
     {
         animator.SetBool("StartRun", true);
@@ -46,7 +49,7 @@ public class EnemyBehaviorLVL2 : MonoBehaviour
     public void StartScreaming()
     {
         animator.SetBool("StartScreaming", true);
-        
+
         if (audioController != null)
         {
             audioController.PlayRoar();
@@ -55,14 +58,21 @@ public class EnemyBehaviorLVL2 : MonoBehaviour
         if (GameMusicManager.Instance != null)
         {
             GameMusicManager.Instance.SetCombatState(true);
-         
         }
+
+        StartCoroutine(RunAfterDelay(screamDuration));
+    }
+
+    private IEnumerator RunAfterDelay(float delay)
+    {
+        yield return new WaitForSeconds(delay);
+        Run();
     }
 
     public void Run()
     {
         staticImage.SetActive(true);
-         run = true; 
+        run = true;
         ActivateObstacles();
     }
 
