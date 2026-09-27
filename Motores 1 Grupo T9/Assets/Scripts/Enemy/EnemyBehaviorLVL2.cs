@@ -98,6 +98,9 @@ public class EnemyBehaviorLVL2 : MonoBehaviour
         {
             cameraController.ReturnToPlayer(cameraReturnDuration);
         }
+        
+        animator.SetBool("StartRun", true);
+
 
         Run();
 
@@ -106,6 +109,8 @@ public class EnemyBehaviorLVL2 : MonoBehaviour
 
     public void Run()
     {
+        
+
         staticImage.SetActive(true);
         run = true;
         agent.isStopped = false;
