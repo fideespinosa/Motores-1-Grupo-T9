@@ -4,19 +4,8 @@ public class SpecialResourceEvent : MonoBehaviour
 {
     [SerializeField] GameObject enemy;
 
-
     bool isTaken = false;
-   // [SerializeField] GameObject particles;
-    void Start()
-    {
-        
-    }
-
-    // Update is called once per frame
-    void Update()
-    {
-        
-    }
+    // [SerializeField] GameObject particles;
 
     private void OnTriggerEnter(Collider other)
     {
@@ -25,20 +14,17 @@ public class SpecialResourceEvent : MonoBehaviour
             isTaken = true;
             gameObject.SetActive(false);
             enemy.SetActive(true);
-            
 
             EnemyBehaviorLVL2 enemyScript = enemy.GetComponent<EnemyBehaviorLVL2>();
             if (enemyScript != null)
             {
                 enemyScript.StartScreaming();
-                enemyScript.Run();
             }
         }
     }
 
     public bool GetStatus()
-    { 
+    {
         return isTaken;
     }
-
 }
