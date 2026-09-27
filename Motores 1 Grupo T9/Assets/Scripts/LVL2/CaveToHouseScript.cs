@@ -74,6 +74,8 @@ public class CaveToHouseScript : MonoBehaviour
         color.a = 1f;
         panelImage.color = color;
 
-        SceneManager.LoadScene(SceneName);
+        alarmLight.SetActive(true);
+
+        // SceneManager.LoadScene(SceneName);
     }
 }
