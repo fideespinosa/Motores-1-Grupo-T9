@@ -22565,7 +22565,7 @@ AudioSource:
   m_PlayOnAwake: 1
   m_Volume: 1
   m_Pitch: 1
-  Loop: 0
+  Loop: 1
   Mute: 0
   Spatialize: 0
   SpatializePostEffects: 0
@@ -22607,7 +22607,7 @@ AudioSource:
     m_Curve:
     - serializedVersion: 3
       time: 0
-      value: 1
+      value: 0.704
       inSlope: 0
       outSlope: 0
       tangentMode: 0
@@ -22663,7 +22663,7 @@ MonoBehaviour:
   panel: {fileID: 235684793}
   panelCanvasGroup: {fileID: 235684795}
   subtitles:
-  - text: '"<smallcaps>COMUNICADO OFICIAL: </smallcaps>"'
+  - text: '"<smallcaps>COMUNICADO INICIANDO: </smallcaps>"'
     displayDuration: 4
   - text: "\"Saludos ciudadano N\xB0 49H02, inquilino de la unidad J5113.\""
     displayDuration: 5.8
