@@ -11,6 +11,6 @@ public class EyesEventsTrigger : MonoBehaviour
     {
 
         Blur.SetActive(true);
-        DronHud.SetActive(true);
+      //  DronHud.SetActive(true);
     }
 }

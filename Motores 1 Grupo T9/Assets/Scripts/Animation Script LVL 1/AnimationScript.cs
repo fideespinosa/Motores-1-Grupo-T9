@@ -8,6 +8,7 @@ public class AnimationScript : MonoBehaviour
     [SerializeField] private PlayerMovement playerMovement;
     [SerializeField] private GameObject HUD;
     [SerializeField] private GameObject PreviousHUD;
+    [SerializeField] private GameObject brokenDron;
 
     [Header("Fog")]
     [SerializeField] private GameObject fog;
@@ -100,6 +101,11 @@ public class AnimationScript : MonoBehaviour
         {
             childHouseDoor.SetTrigger("Play");
         }
+    }
+
+    public void SpawnDron()
+    {
+        brokenDron.SetActive(true);
     }
     public void FadeOutBlur()
     {
