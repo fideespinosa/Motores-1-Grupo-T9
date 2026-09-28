@@ -5,6 +5,7 @@ using UnityEngine.SceneManagement;
 public class TransitionToCave : MonoBehaviour
 {
     [SerializeField] GameObject HUD;
+    [SerializeField] GameObject MissionPanel;
     [Header("Player Detection")]
     [SerializeField] private PlayerMovement playerMovement;
 
@@ -29,11 +30,13 @@ public class TransitionToCave : MonoBehaviour
         triggered = true;
 
         HUD.SetActive(false);
+        MissionPanel.SetActive(false);
 
         if (playerMovement != null)
         {
             Debug.Log("asd");
             playerMovement.enabled = false;
+            
         }
 
         if (cameraAnimator != null)

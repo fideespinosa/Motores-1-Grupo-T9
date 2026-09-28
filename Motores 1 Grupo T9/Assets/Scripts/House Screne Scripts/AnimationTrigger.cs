@@ -13,5 +13,12 @@ public class AnimationTrigger : MonoBehaviour
         }
 
     }
+    public void DisableHud()
+    {
+        /*playerMovement.enabled = false;
+        HUD.SetActive(false);
+        PreviousHUD.SetActive(false);
+        Debug.Log("asdasdsad");*/
+    }
 
 }
