@@ -2211,7 +2211,7 @@ Transform:
   m_GameObject: {fileID: 89648989}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0.7071068, z: 0, w: 0.7071068}
-  m_LocalPosition: {x: -18.111, y: 2.923, z: -6.547}
+  m_LocalPosition: {x: -17.957, y: 2.923, z: -6.55}
   m_LocalScale: {x: 1.1238, y: 1.1238, z: 0.08719565}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -5170,7 +5170,7 @@ RectTransform:
   m_AnchorMin: {x: 0.5, y: 0}
   m_AnchorMax: {x: 0.5, y: 0}
   m_AnchoredPosition: {x: 0, y: 0}
-  m_SizeDelta: {x: 1920, y: 131.9164}
+  m_SizeDelta: {x: 1920, y: 110.691}
   m_Pivot: {x: 0.5, y: 0}
 --- !u!225 &235684795
 CanvasGroup:
@@ -6006,15 +6006,15 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 7270620107919773639, guid: bb128355a4591534f9f1e4410938f472, type: 3}
       propertyPath: m_LocalPosition.x
-      value: -24.48
+      value: 25.68
       objectReference: {fileID: 0}
     - target: {fileID: 7270620107919773639, guid: bb128355a4591534f9f1e4410938f472, type: 3}
       propertyPath: m_LocalPosition.y
-      value: 2.79
+      value: 2.616
       objectReference: {fileID: 0}
     - target: {fileID: 7270620107919773639, guid: bb128355a4591534f9f1e4410938f472, type: 3}
       propertyPath: m_LocalPosition.z
-      value: -54.6
+      value: -51.14
       objectReference: {fileID: 0}
     - target: {fileID: 7270620107919773639, guid: bb128355a4591534f9f1e4410938f472, type: 3}
       propertyPath: m_LocalRotation.w
@@ -9824,7 +9824,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: '::'
   Blur: {fileID: 730943616}
-  DronHud: {fileID: 921813171}
 --- !u!4 &485038400
 Transform:
   m_ObjectHideFlags: 0
@@ -11931,7 +11930,7 @@ Transform:
   m_GameObject: {fileID: 561953969}
   serializedVersion: 2
   m_LocalRotation: {x: 0.7071068, y: 0, z: 0, w: 0.7071068}
-  m_LocalPosition: {x: -1.7780018, y: 4.866001, z: 33.039}
+  m_LocalPosition: {x: -1.7780018, y: 4.866001, z: 33.059}
   m_LocalScale: {x: 0.3478299, y: 0.58163, z: 0.18717252}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -14084,7 +14083,7 @@ MonoBehaviour:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 651006634}
-  m_Enabled: 1
+  m_Enabled: 0
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 5fea29bb7c508c244a1f805a5fd3fc4d, type: 3}
   m_Name: 
@@ -14112,7 +14111,7 @@ BoxCollider:
   m_LayerOverridePriority: 0
   m_IsTrigger: 1
   m_ProvidesContacts: 0
-  m_Enabled: 1
+  m_Enabled: 0
   serializedVersion: 3
   m_Size: {x: 3.0044582, y: 5.6458855, z: 0.59619904}
   m_Center: {x: -0.004853606, y: 2.8590832, z: 6.978092}
@@ -15055,7 +15054,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d2e61ee742e1f4f4ba52cba351731c5e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::ImageItem
-  imageToShow: {fileID: 21300000, guid: b7c5aa01d56bf364f9678e1662766d22, type: 3}
+  imageToShow: {fileID: 21300000, guid: fa6648419caf3bc449a0b865985010b7, type: 3}
   disableOnInteract: 0
   requiredFlag: 
   flagToSetOnInteract: medication_task_started
@@ -18617,7 +18616,7 @@ Transform:
   m_GameObject: {fileID: 940589764}
   serializedVersion: 2
   m_LocalRotation: {x: -0, y: 0.71365726, z: -0, w: -0.7004951}
-  m_LocalPosition: {x: -33.11, y: 13.243, z: -25.6}
+  m_LocalPosition: {x: 55.5, y: 20.28, z: -27.71}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -18734,6 +18733,7 @@ MonoBehaviour:
   playerSwitcher: {fileID: 1213029919}
   alarmLight: {fileID: 2008631539}
   triggerText: Algo rompio el dron... voy a tener que salir a repararlo.
+  shipDoor: {fileID: 651006634}
   SceneName: HouseScene 1
   FadeDuration: 1
 --- !u!65 &952106054
@@ -18764,7 +18764,7 @@ MeshRenderer:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 952106052}
-  m_Enabled: 1
+  m_Enabled: 0
   m_CastShadows: 1
   m_ReceiveShadows: 1
   m_DynamicOccludee: 1
@@ -22207,7 +22207,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!4 &1153168029
 Transform:
   m_ObjectHideFlags: 0
@@ -25486,7 +25486,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!114 &1303351817
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -26633,7 +26633,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!4 &1340707253
 Transform:
   m_ObjectHideFlags: 0
@@ -26982,7 +26982,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: 92079d50eeefcd0408e62f8185455350, type: 3}
       propertyPath: m_LocalPosition.z
-      value: -84.236435
+      value: -84.508
       objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: 92079d50eeefcd0408e62f8185455350, type: 3}
       propertyPath: m_LocalRotation.w
@@ -27015,11 +27015,11 @@ PrefabInstance:
     - target: {fileID: -7511558181221131132, guid: 92079d50eeefcd0408e62f8185455350, type: 3}
       propertyPath: 'm_Materials.Array.data[0]'
       value: 
-      objectReference: {fileID: 2100000, guid: f80c54e803a9a8e4f81b423abe4ed598, type: 2}
+      objectReference: {fileID: 2100000, guid: ded7192de7274e24bae3dc1ea0414655, type: 2}
     - target: {fileID: -7511558181221131132, guid: 92079d50eeefcd0408e62f8185455350, type: 3}
       propertyPath: 'm_Materials.Array.data[1]'
       value: 
-      objectReference: {fileID: 2100000, guid: f80c54e803a9a8e4f81b423abe4ed598, type: 2}
+      objectReference: {fileID: 2100000, guid: ded7192de7274e24bae3dc1ea0414655, type: 2}
     - target: {fileID: 919132149155446097, guid: 92079d50eeefcd0408e62f8185455350, type: 3}
       propertyPath: m_Name
       value: Receta
@@ -30459,7 +30459,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: / 3    Posible Combustible
+  m_text: / 1    Posible Combustible
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
   m_sharedMaterial: {fileID: 2180264, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
@@ -31498,8 +31498,14 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: "Para cambiar al dron cuando este desplegado, precionar [TAB]\n\n\nUna
-    vez tengas los recursos, haz click para avazar en la misi\xF3n\n"
+  m_text: 'Para cambiar al dron cuando este desplegado, precionar [TAB]
+
+
+
+    Consigue
+    todos los recursos.
+
+'
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
   m_sharedMaterial: {fileID: 2180264, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
@@ -32546,7 +32552,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!4 &1592791190
 Transform:
   m_ObjectHideFlags: 0
@@ -32603,7 +32609,7 @@ MeshRenderer:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1592791189}
-  m_Enabled: 1
+  m_Enabled: 0
   m_CastShadows: 1
   m_ReceiveShadows: 1
   m_DynamicOccludee: 1
@@ -41827,7 +41833,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: "/ 3    Insumos electr\xF3nicos"
+  m_text: "/ 1    Insumos electr\xF3nicos"
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
   m_sharedMaterial: {fileID: 2180264, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
@@ -43489,6 +43495,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: CasaFlashback
       objectReference: {fileID: 0}
+    - target: {fileID: 919132149155446097, guid: 874ebd5c371c19147a3c39b3c3364e90, type: 3}
+      propertyPath: m_Layer
+      value: 11
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
@@ -44518,7 +44528,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: / 4    Piezas de Metal
+  m_text: / 1    Piezas de Metal
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
   m_sharedMaterial: {fileID: 2180264, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
@@ -45274,23 +45284,23 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 7270620107919773639, guid: bb128355a4591534f9f1e4410938f472, type: 3}
       propertyPath: m_LocalPosition.x
-      value: -24.19
+      value: 53.43
       objectReference: {fileID: 0}
     - target: {fileID: 7270620107919773639, guid: bb128355a4591534f9f1e4410938f472, type: 3}
       propertyPath: m_LocalPosition.y
-      value: 2.75
+      value: 6.353
       objectReference: {fileID: 0}
     - target: {fileID: 7270620107919773639, guid: bb128355a4591534f9f1e4410938f472, type: 3}
       propertyPath: m_LocalPosition.z
-      value: -50.86
+      value: -49.38
       objectReference: {fileID: 0}
     - target: {fileID: 7270620107919773639, guid: bb128355a4591534f9f1e4410938f472, type: 3}
       propertyPath: m_LocalRotation.w
-      value: 1
+      value: 0.99548674
       objectReference: {fileID: 0}
     - target: {fileID: 7270620107919773639, guid: bb128355a4591534f9f1e4410938f472, type: 3}
       propertyPath: m_LocalRotation.x
-      value: -0
+      value: 0.0949008
       objectReference: {fileID: 0}
     - target: {fileID: 7270620107919773639, guid: bb128355a4591534f9f1e4410938f472, type: 3}
       propertyPath: m_LocalRotation.y
@@ -45302,7 +45312,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 7270620107919773639, guid: bb128355a4591534f9f1e4410938f472, type: 3}
       propertyPath: m_LocalEulerAnglesHint.x
-      value: 0
+      value: 10.891
       objectReference: {fileID: 0}
     - target: {fileID: 7270620107919773639, guid: bb128355a4591534f9f1e4410938f472, type: 3}
       propertyPath: m_LocalEulerAnglesHint.y
@@ -48569,8 +48579,8 @@ MonoBehaviour:
   m_faceColor:
     serializedVersion: 2
     rgba: 4294967295
-  m_fontSize: 28
-  m_fontSizeBase: 28
+  m_fontSize: 26
+  m_fontSizeBase: 26
   m_fontWeight: 400
   m_enableAutoSizing: 0
   m_fontSizeMin: 18

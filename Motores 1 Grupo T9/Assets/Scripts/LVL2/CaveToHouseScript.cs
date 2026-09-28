@@ -1,3 +1,4 @@
+using System;
 using System.Collections;
 using UnityEngine;
 using UnityEngine.SceneManagement;
@@ -11,6 +12,7 @@ public class CaveToHouseScript : MonoBehaviour
     [SerializeField] PlayerSwitcher playerSwitcher;
     [SerializeField] GameObject alarmLight;
     [SerializeField] private string triggerText;
+    [SerializeField] private GameObject shipDoor;
 
     [Header("Transition")]
     [SerializeField] string SceneName;
@@ -35,6 +37,8 @@ public class CaveToHouseScript : MonoBehaviour
         if (other.CompareTag("Player") && !transitioning)
         {
             StartTransition();
+            shipDoor.GetComponent<BoxCollider>().enabled = true;
+            shipDoor.GetComponent<Outline>().enabled = true;
         }
     }
 

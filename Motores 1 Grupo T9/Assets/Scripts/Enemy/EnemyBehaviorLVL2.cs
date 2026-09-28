@@ -176,6 +176,6 @@ public class EnemyBehaviorLVL2 : MonoBehaviour
 
         PlayerPrefs.SetString("LastScene", SceneManager.GetActiveScene().name);
         PlayerPrefs.Save();
-        SceneManager.LoadScene("Game Over - Dron");
+        SceneManager.LoadScene("Gracias por jugar escena");
     }
 }
