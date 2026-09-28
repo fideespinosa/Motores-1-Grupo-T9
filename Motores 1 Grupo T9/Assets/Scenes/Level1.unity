@@ -18686,7 +18686,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!4 &940589765
 Transform:
   m_ObjectHideFlags: 0
@@ -29123,7 +29123,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!136 &1474393658
 CapsuleCollider:
   m_ObjectHideFlags: 0
@@ -32786,6 +32786,10 @@ PrefabInstance:
     - target: {fileID: 919132149155446097, guid: 574bd1770952d7b4895c9facc38a88d8, type: 3}
       propertyPath: m_Name
       value: Level2Map2 (1)
+      objectReference: {fileID: 0}
+    - target: {fileID: 919132149155446097, guid: 574bd1770952d7b4895c9facc38a88d8, type: 3}
+      propertyPath: m_Layer
+      value: 6
       objectReference: {fileID: 0}
     - target: {fileID: 919132149155446097, guid: 574bd1770952d7b4895c9facc38a88d8, type: 3}
       propertyPath: m_IsActive
@@ -48748,7 +48752,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 3616541212683491864, guid: 1c7b76fe5892dc849b8a26bdda20a0c2, type: 3}
       propertyPath: m_IsActive
-      value: 1
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 3712935618957416116, guid: 1c7b76fe5892dc849b8a26bdda20a0c2, type: 3}
       propertyPath: m_Enabled
