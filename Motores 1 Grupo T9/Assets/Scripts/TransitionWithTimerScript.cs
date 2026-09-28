@@ -8,35 +8,39 @@ public class TransitionWithTimerScript : MonoBehaviour
     [SerializeField] private string sceneToLoad;
 
     [Header("Tiempos")]
-    [SerializeField] private float initialFadeDuration = 1.5f;
+    [SerializeField] private float delayBeforeFade = 3f;
+    [SerializeField] private float fadeOutDuration = 1.5f;
     [SerializeField] private float waitTime = 3f;
-    [SerializeField] private float finalFadeDuration = 1.5f;
+    [SerializeField] private float fadeInDuration = 1.5f;
 
     [Header("Panel negro")]
     [SerializeField] private CanvasGroup fadePanel;
 
     private void Start()
     {
-       //Cursor.lockState = CursorLockMode.None;
         Cursor.visible = false;
         StartCoroutine(SceneTransitionRoutine());
     }
 
     private IEnumerator SceneTransitionRoutine()
     {
+
         fadePanel.alpha = 1f;
         fadePanel.blocksRaycasts = true;
 
+        yield return new WaitForSeconds(delayBeforeFade);
+
+
         float elapsed = 0f;
 
-        while (elapsed < initialFadeDuration)
+        while (elapsed < fadeOutDuration)
         {
             elapsed += Time.deltaTime;
 
             fadePanel.alpha = Mathf.Lerp(
                 1f,
                 0f,
-                elapsed / initialFadeDuration
+                elapsed / fadeOutDuration
             );
 
             yield return null;
@@ -51,14 +55,14 @@ public class TransitionWithTimerScript : MonoBehaviour
 
         elapsed = 0f;
 
-        while (elapsed < finalFadeDuration)
+        while (elapsed < fadeInDuration)
         {
             elapsed += Time.deltaTime;
 
             fadePanel.alpha = Mathf.Lerp(
                 0f,
                 1f,
-                elapsed / finalFadeDuration
+                elapsed / fadeInDuration
             );
 
             yield return null;

@@ -6,6 +6,7 @@ public class TransitionToCave : MonoBehaviour
 {
     [SerializeField] GameObject HUD;
     [SerializeField] GameObject MissionPanel;
+    [SerializeField] GameObject fadePanel;
     [Header("Player Detection")]
     [SerializeField] private PlayerMovement playerMovement;
 
@@ -61,5 +62,10 @@ public class TransitionToCave : MonoBehaviour
     public void OnCinematicFinished()
     {
         SceneManager.LoadScene(sceneToLoad);
+    }
+
+    void FadeInPanel( GameObject _fadePanel)
+    {
+        
     }
 }

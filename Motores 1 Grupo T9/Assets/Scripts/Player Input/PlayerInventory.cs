@@ -25,6 +25,8 @@ public class PlayerInventory : MonoBehaviour
 
     [Header("Anomalía - se activa al completar todos los recursos")]
     [SerializeField] private GameObject anomalyObject;
+    [SerializeField] private GameObject anomalyTrigger;
+    [SerializeField] private GameObject enemies;
     [SerializeField] private bool anomalyTriggered = false;
     [SerializeField] private float anomalyDelay = 3f;
 
@@ -151,6 +153,9 @@ public class PlayerInventory : MonoBehaviour
         yield return new WaitForSeconds(anomalyDelay);
         Debug.Log("[TriggerAnomaly] Anomalía activada, SetActive(true) ejecutado.");
         anomalyObject.SetActive(true);
+        anomalyTrigger.SetActive(true);
+        enemies.SetActive(false);
+
     }
     public void LevelUp()
     {
