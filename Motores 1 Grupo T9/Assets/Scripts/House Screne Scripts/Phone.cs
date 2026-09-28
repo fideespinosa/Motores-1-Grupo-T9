@@ -15,6 +15,10 @@ public class Phone : MonoBehaviour, IInteractable
     [Tooltip("Duración en segundos del mensaje grabado. La cámara y el movimiento quedan congelados hasta que termine.")]
     [SerializeField] private float messageDuration = 5f;
 
+    [Header("Subtitle script")]
+    [SerializeField] private SubtitleSequencePlayer subtitles;
+    [SerializeField] private float subtitlePlayDelay = 0f;
+
     [Header("Final Dialogue")]
     [TextArea]
     [SerializeField] private string finalDialogueText;
@@ -33,7 +37,6 @@ public class Phone : MonoBehaviour, IInteractable
     [SerializeField] private AudioSource audioSource;
     [SerializeField] private AudioClip phoneRing;
     [SerializeField] private AudioClip debtCall;
-
 
     private PhoneState state = PhoneState.Idle;
 
@@ -70,6 +73,7 @@ public class Phone : MonoBehaviour, IInteractable
         }
 
         StartCoroutine(TurnCameraToPhone());
+        StartCoroutine(PlaySubtitlesWithDelay());
 
         Debug.Log("Reproduciendo grabación...");
 
@@ -80,6 +84,16 @@ public class Phone : MonoBehaviour, IInteractable
         audioSource.Play();
 
         StartCoroutine(WaitForMessageEnd(messageDuration));
+    }
+
+    private IEnumerator PlaySubtitlesWithDelay()
+    {
+        yield return new WaitForSeconds(subtitlePlayDelay);
+
+        if (subtitles != null)
+        {
+            subtitles.Play();
+        }
     }
 
     private IEnumerator TurnCameraToPhone()

@@ -60,6 +60,7 @@ public class SubtitleSequencePlayer : MonoBehaviour
         panel.SetActive(false);
 
         Debug.Log("termino textooo");
+        displayedText.enabled = false;
     }
 
     private IEnumerator FadeText(float from, float to, float duration)
