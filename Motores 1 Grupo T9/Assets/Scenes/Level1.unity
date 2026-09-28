@@ -23059,6 +23059,110 @@ PrefabInstance:
       propertyPath: m_Center.z
       value: -0.01998237
       objectReference: {fileID: 0}
+    - target: {fileID: 1184105521633047381, guid: 5227ce862db5983408320603d259fb44, type: 3}
+      propertyPath: speedThreshold
+      value: 0.1
+      objectReference: {fileID: 0}
+    - target: {fileID: 1184105521633047381, guid: 5227ce862db5983408320603d259fb44, type: 3}
+      propertyPath: mudClips.Array.size
+      value: 13
+      objectReference: {fileID: 0}
+    - target: {fileID: 1184105521633047381, guid: 5227ce862db5983408320603d259fb44, type: 3}
+      propertyPath: woodClips.Array.size
+      value: 9
+      objectReference: {fileID: 0}
+    - target: {fileID: 1184105521633047381, guid: 5227ce862db5983408320603d259fb44, type: 3}
+      propertyPath: floorLayerMask.m_Bits
+      value: 2112
+      objectReference: {fileID: 0}
+    - target: {fileID: 1184105521633047381, guid: 5227ce862db5983408320603d259fb44, type: 3}
+      propertyPath: 'mudClips.Array.data[0]'
+      value: 
+      objectReference: {fileID: 8300000, guid: c619560cd6feb614c904f2906f888aff, type: 3}
+    - target: {fileID: 1184105521633047381, guid: 5227ce862db5983408320603d259fb44, type: 3}
+      propertyPath: 'mudClips.Array.data[1]'
+      value: 
+      objectReference: {fileID: 8300000, guid: 1dfb54483043f414aab59708668765b2, type: 3}
+    - target: {fileID: 1184105521633047381, guid: 5227ce862db5983408320603d259fb44, type: 3}
+      propertyPath: 'mudClips.Array.data[2]'
+      value: 
+      objectReference: {fileID: 8300000, guid: 90c3f2ae329bf5c41a46ab0bcfe871f0, type: 3}
+    - target: {fileID: 1184105521633047381, guid: 5227ce862db5983408320603d259fb44, type: 3}
+      propertyPath: 'mudClips.Array.data[3]'
+      value: 
+      objectReference: {fileID: 8300000, guid: 02c447abf452e494aaf843f4d334282a, type: 3}
+    - target: {fileID: 1184105521633047381, guid: 5227ce862db5983408320603d259fb44, type: 3}
+      propertyPath: 'mudClips.Array.data[4]'
+      value: 
+      objectReference: {fileID: 8300000, guid: 515e1af53e8254a40808651ff3e0547e, type: 3}
+    - target: {fileID: 1184105521633047381, guid: 5227ce862db5983408320603d259fb44, type: 3}
+      propertyPath: 'mudClips.Array.data[5]'
+      value: 
+      objectReference: {fileID: 8300000, guid: 1ca885a8443075c4a8c851abdb715df7, type: 3}
+    - target: {fileID: 1184105521633047381, guid: 5227ce862db5983408320603d259fb44, type: 3}
+      propertyPath: 'mudClips.Array.data[6]'
+      value: 
+      objectReference: {fileID: 8300000, guid: 1824df0f0348c994f82ea37506aa5919, type: 3}
+    - target: {fileID: 1184105521633047381, guid: 5227ce862db5983408320603d259fb44, type: 3}
+      propertyPath: 'mudClips.Array.data[7]'
+      value: 
+      objectReference: {fileID: 8300000, guid: 2a38f7ff8fe584d428d7a55b3dec59fa, type: 3}
+    - target: {fileID: 1184105521633047381, guid: 5227ce862db5983408320603d259fb44, type: 3}
+      propertyPath: 'mudClips.Array.data[8]'
+      value: 
+      objectReference: {fileID: 8300000, guid: 5fdb3c2eb0f553a4fabb0decfaef3b99, type: 3}
+    - target: {fileID: 1184105521633047381, guid: 5227ce862db5983408320603d259fb44, type: 3}
+      propertyPath: 'mudClips.Array.data[9]'
+      value: 
+      objectReference: {fileID: 8300000, guid: b26d1740e9d275f49b89f4348d5cce08, type: 3}
+    - target: {fileID: 1184105521633047381, guid: 5227ce862db5983408320603d259fb44, type: 3}
+      propertyPath: 'mudClips.Array.data[10]'
+      value: 
+      objectReference: {fileID: 8300000, guid: c1b69076ab4054945a77bd23a1d52ee6, type: 3}
+    - target: {fileID: 1184105521633047381, guid: 5227ce862db5983408320603d259fb44, type: 3}
+      propertyPath: 'mudClips.Array.data[11]'
+      value: 
+      objectReference: {fileID: 8300000, guid: 825c1904c751da54b93bf669bf3c8a43, type: 3}
+    - target: {fileID: 1184105521633047381, guid: 5227ce862db5983408320603d259fb44, type: 3}
+      propertyPath: 'mudClips.Array.data[12]'
+      value: 
+      objectReference: {fileID: 8300000, guid: 36b3d34fb14ad474da886d90439b7e4e, type: 3}
+    - target: {fileID: 1184105521633047381, guid: 5227ce862db5983408320603d259fb44, type: 3}
+      propertyPath: 'woodClips.Array.data[0]'
+      value: 
+      objectReference: {fileID: 8300000, guid: 210ebff7ae856224da010003b32033c3, type: 3}
+    - target: {fileID: 1184105521633047381, guid: 5227ce862db5983408320603d259fb44, type: 3}
+      propertyPath: 'woodClips.Array.data[1]'
+      value: 
+      objectReference: {fileID: 8300000, guid: 3d3e0285c67dd634ca4850bc69463a42, type: 3}
+    - target: {fileID: 1184105521633047381, guid: 5227ce862db5983408320603d259fb44, type: 3}
+      propertyPath: 'woodClips.Array.data[2]'
+      value: 
+      objectReference: {fileID: 8300000, guid: 3a8e0761942ee3846896ef92a5068257, type: 3}
+    - target: {fileID: 1184105521633047381, guid: 5227ce862db5983408320603d259fb44, type: 3}
+      propertyPath: 'woodClips.Array.data[3]'
+      value: 
+      objectReference: {fileID: 8300000, guid: 07f103363b00652438a9a6573637bdba, type: 3}
+    - target: {fileID: 1184105521633047381, guid: 5227ce862db5983408320603d259fb44, type: 3}
+      propertyPath: 'woodClips.Array.data[4]'
+      value: 
+      objectReference: {fileID: 8300000, guid: 99e3e044ce4c3e04bbe6329183a4ef1a, type: 3}
+    - target: {fileID: 1184105521633047381, guid: 5227ce862db5983408320603d259fb44, type: 3}
+      propertyPath: 'woodClips.Array.data[5]'
+      value: 
+      objectReference: {fileID: 8300000, guid: 0d3b1b9a88336a64d92ff9b45377c75e, type: 3}
+    - target: {fileID: 1184105521633047381, guid: 5227ce862db5983408320603d259fb44, type: 3}
+      propertyPath: 'woodClips.Array.data[6]'
+      value: 
+      objectReference: {fileID: 8300000, guid: 84c9fe79a1ee9b441b9e89ce4dece431, type: 3}
+    - target: {fileID: 1184105521633047381, guid: 5227ce862db5983408320603d259fb44, type: 3}
+      propertyPath: 'woodClips.Array.data[7]'
+      value: 
+      objectReference: {fileID: 8300000, guid: 72187dab2b3854543aa29eb3415770fa, type: 3}
+    - target: {fileID: 1184105521633047381, guid: 5227ce862db5983408320603d259fb44, type: 3}
+      propertyPath: 'woodClips.Array.data[8]'
+      value: 
+      objectReference: {fileID: 8300000, guid: bdbba40b5db8fd340b38bd4b6856307a, type: 3}
     - target: {fileID: 6552281682301257898, guid: 5227ce862db5983408320603d259fb44, type: 3}
       propertyPath: m_LocalPosition.y
       value: 0.055

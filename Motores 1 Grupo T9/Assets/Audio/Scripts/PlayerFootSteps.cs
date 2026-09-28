@@ -1,4 +1,3 @@
-using Unity.VisualScripting;
 using System.Collections;
 using UnityEngine;
 
@@ -6,18 +5,20 @@ public class PlayerFootSteps : MonoBehaviour
 {
     [Header("Audio Config")]
     [SerializeField] private AudioSource footstepSource;
-    [SerializeField] private AudioClip[] footstepsClips;
+    [SerializeField] private AudioClip[] woodClips;
+    [SerializeField] private AudioClip[] mudClips;
+
+    [Header("Detección de Suelo")]
+    [SerializeField] private float rayDistance = 1.2f;
+    [SerializeField] private LayerMask floorLayerMask;
+    [SerializeField] private string caveLayerName = "Cave";
 
     [Header("Fisicas")]
     [SerializeField] private CharacterController characterController;
-
-    [Tooltip("A partir de esta velocidad se considera caminando")]
     [SerializeField] private float speedThreshold;
 
     [Header("Ritmica")]
-    [Tooltip("Segundos entre pasos")]
     [SerializeField] private float stepRate;
-    private float stepTimer;
 
     private Vector3 lastPosition;
     private Coroutine footstepCoroutine;
@@ -28,11 +29,9 @@ public class PlayerFootSteps : MonoBehaviour
         lastPosition = transform.position;
     }
 
-
-    // Update is called once per frame
     void Update()
     {
-        if (characterController == null || footstepSource == null || footstepsClips.Length == 0) return;
+        if (characterController == null || footstepSource == null) return;
 
         Vector3 currentHorizontalPos = new Vector3(transform.position.x, 0f, transform.position.z);
         Vector3 lastHorizontalPos = new Vector3(lastPosition.x, 0f, lastPosition.z);
@@ -40,15 +39,14 @@ public class PlayerFootSteps : MonoBehaviour
         lastPosition = transform.position;
 
         bool currentlyWalking = manualSpeed > speedThreshold;
+
         if (currentlyWalking && !isWalking)
         {
-            // Arrancó a caminar
             isWalking = true;
             footstepCoroutine = StartCoroutine(FootstepRoutine());
         }
         else if (!currentlyWalking && isWalking)
         {
-            // Frenó
             isWalking = false;
             if (footstepCoroutine != null)
             {
@@ -56,30 +54,38 @@ public class PlayerFootSteps : MonoBehaviour
                 footstepCoroutine = null;
             }
         }
-
     }
 
     private IEnumerator FootstepRoutine()
     {
-        
         while (isWalking)
         {
             PlayFootSteps();
-
-          
             yield return new WaitForSeconds(stepRate);
         }
     }
 
     private void PlayFootSteps()
-
     {
-        int randomIndex = Random.Range(0, footstepsClips.Length);
-        AudioClip clipToPlay = footstepsClips[randomIndex];
+        if (Physics.Raycast(transform.position, Vector3.down, out RaycastHit hit, rayDistance, floorLayerMask))
+        {
+            AudioClip[] currentClips = woodClips;
 
-        footstepSource.pitch = Random.Range(0.9f, 1.1f);
-        footstepSource.volume = Random.Range(0.8f, 1.0f);
+            if (hit.collider.gameObject.layer == LayerMask.NameToLayer(caveLayerName))
+            {
+                currentClips = mudClips;
+            }
 
-        footstepSource.PlayOneShot(clipToPlay);
+            if (currentClips != null && currentClips.Length > 0)
+            {
+                int randomIndex = Random.Range(0, currentClips.Length);
+                AudioClip clipToPlay = currentClips[randomIndex];
+
+                footstepSource.pitch = Random.Range(0.9f, 1.1f);
+                footstepSource.volume = Random.Range(0.8f, 1.0f);
+
+                footstepSource.PlayOneShot(clipToPlay);
+            }
+        }
     }
 }
