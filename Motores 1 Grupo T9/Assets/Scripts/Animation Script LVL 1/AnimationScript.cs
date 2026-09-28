@@ -21,16 +21,15 @@ public class AnimationScript : MonoBehaviour
     [Header("Puerta")]
     [SerializeField] private Animator doorAnimator;
     [SerializeField] private Animator childHouseDoor;
-    [SerializeField] private GameObject shipDoor;
+    [SerializeField] private GameObject ship;
     [SerializeField] private GameObject houseDoor;
 
     [Header("Ojos")]
     [SerializeField] private Animator Eyes;
-
     public void ChangeDoor()
     {
         houseDoor.SetActive(true);
-        shipDoor.SetActive(false);
+        ship.SetActive(false);
     }
     public void DisableMovement()
     {

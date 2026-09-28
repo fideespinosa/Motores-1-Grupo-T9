@@ -9,7 +9,7 @@ public class CrosshairRaycast : MonoBehaviour
     [SerializeField] LayerMask layerMask;
 
     [SerializeField] MinigamesManager minigamesManager;
-    [SerializeField] TransitionToCave transitionToCave;
+    [SerializeField] PlayerTransitionToHouse animationToHouseScript;
 
 
 
@@ -69,7 +69,7 @@ public class CrosshairRaycast : MonoBehaviour
 
                     if (hit.collider.gameObject.CompareTag("Exit-door"))
                     {
-                        transitionToCave.BlackFadeIn();
+                        animationToHouseScript.StartAnimation();
                     }
 
                     if (hit.collider.gameObject.CompareTag("NextLvl") && !minigamesManager.isAlarmActive)
