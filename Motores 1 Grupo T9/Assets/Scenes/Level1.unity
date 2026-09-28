@@ -864,7 +864,7 @@ MonoBehaviour:
   pickupComment: 'Llave encontrada '
   disableOnPickup: 1
   objectsToActivate: []
-  requiredFlag: ObjectsReadyToPickUp
+  requiredFlag: ObjectsReadyToPickUp2
   flagToSetOnPickup: red_key_picked_up
   outline: {fileID: 32462625}
   audioSource: {fileID: 32462627}
@@ -3830,8 +3830,9 @@ MonoBehaviour:
   placedVisual: {fileID: 1986513050}
   wrongItemMessage: 
   successMessage: 
-  flagToSet: ObjectsReadyToPickUp
-  objectsToActivate: []
+  flagToSet: PhoneRinging
+  objectsToActivate:
+  - {fileID: 1340707252}
   disableOnSuccess: 1
   outline: {fileID: 169338640}
   audioSource: {fileID: 0}
@@ -6790,12 +6791,12 @@ MonoBehaviour:
   - flag: medication_ready
     missionText: "Dejarle la medicaci\xF3n en la habitaci\xF3n a tu hijo."
     delayBeforeAppearing: 7
-  - flag: PhoneRinging
-    missionText: Atender.
-    delayBeforeAppearing: 4
   - flag: ladder_unlocked
     missionText: "Dejarle la medicaci\xF3n en la habitaci\xF3n a tu hijo."
     delayBeforeAppearing: 3
+  - flag: PhoneRinging
+    missionText: Atender.
+    delayBeforeAppearing: 0
   - flag: door_Interaction
     missionText: "Buscar llave en la habitaci\xF3n."
     delayBeforeAppearing: 7
@@ -14111,7 +14112,7 @@ BoxCollider:
   m_LayerOverridePriority: 0
   m_IsTrigger: 1
   m_ProvidesContacts: 0
-  m_Enabled: 0
+  m_Enabled: 1
   serializedVersion: 3
   m_Size: {x: 3.0044582, y: 5.6458855, z: 0.59619904}
   m_Center: {x: -0.004853606, y: 2.8590832, z: 6.978092}
@@ -15958,7 +15959,7 @@ MonoBehaviour:
   imageToShow: {fileID: 21300000, guid: c112c64ea705edb428157455c45a6832, type: 3}
   disableOnInteract: 1
   requiredFlag: ObjectsReadyToPickUp
-  flagToSetOnInteract: 
+  flagToSetOnInteract: ObjectsReadyToPickUp2
   outline: {fileID: 741920026}
   audioSource: {fileID: 741920033}
   paperOn: {fileID: 8300000, guid: 8a219fd6640980545b6ea215b4dc3335, type: 3}
@@ -22386,7 +22387,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::Phone
   messageDuration: 60
   finalDialogueText: "...est\xE1n llamando otra vez... estoy harto de esto."
-  flagToSetOnFinish: ladder_unlocked
+  flagToSetOnFinish: ObjectsReadyToPickUp
   playerMovement: {fileID: 1676664704}
   playerCameraTransform: {fileID: 1043906954}
   cameraTurnDuration: 0.6
@@ -26643,8 +26644,8 @@ Transform:
   m_GameObject: {fileID: 1340707252}
   serializedVersion: 2
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: -23.129, y: 1.969, z: -3.267}
-  m_LocalScale: {x: 1.312, y: 0.07988365, z: 1}
+  m_LocalPosition: {x: -22.374, y: 1.274, z: 2.176}
+  m_LocalScale: {x: 5.238184, y: 0.047529224, z: 4.731736}
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 352735109}
@@ -26662,7 +26663,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::PhoneRingTrigger
   playerTag: Player
-  delayBeforeRinging: 3
+  delayBeforeRinging: 0
   phone: {fileID: 1157656189}
   flagToSet: PhoneRinging
 --- !u!65 &1340707255
@@ -26693,7 +26694,7 @@ MeshRenderer:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1340707252}
-  m_Enabled: 1
+  m_Enabled: 0
   m_CastShadows: 1
   m_ReceiveShadows: 1
   m_DynamicOccludee: 1
@@ -46111,6 +46112,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: '::'
   viewpoint: {fileID: 410002548}
+  requiredFlag: ObjectsReadyToPickUp
   playerMovement: {fileID: 1676664704}
   playerCameraTransform: {fileID: 1043906954}
   mouseSensitivity: 2

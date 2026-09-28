@@ -6,6 +6,10 @@ public class LadderViewpoint : MonoBehaviour, IInteractable
     [Tooltip("Empty GameObject posicionado y rotado donde la cámara debe pararse.")]
     [SerializeField] private Transform viewpoint;
 
+    [Header("Requirement")]
+    [Tooltip("Flag que debe estar activo para poder interactuar con este objeto. Dejar vacío si no aplica.")]
+    [SerializeField] private string requiredFlag;
+
     [Header("Player References")]
     [SerializeField] private PlayerMovement playerMovement;
     [SerializeField] private Transform playerCameraTransform;
@@ -54,8 +58,14 @@ public class LadderViewpoint : MonoBehaviour, IInteractable
         playerCameraTransform.rotation = viewpoint.rotation * Quaternion.Euler(currentPitch, currentYaw, 0f);
     }
 
+    private bool IsUnlocked()
+    {
+        if (string.IsNullOrEmpty(requiredFlag)) return true;
+        return StoryFlagManager.Instance != null && StoryFlagManager.Instance.HasFlag(requiredFlag);
+    }
     public void Action()
     {
+        if (!IsUnlocked()) return;
         if (isActive) return;
         if (viewpoint == null || playerCameraTransform == null) return;
 

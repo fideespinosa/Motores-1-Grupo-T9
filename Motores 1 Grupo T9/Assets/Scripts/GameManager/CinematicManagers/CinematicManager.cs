@@ -94,5 +94,8 @@ public class CinematicManager : MonoBehaviour
         enemy.StartRunning();
 
         cinematicPlaying = false;
+
+
+        //panel de hud shift para correr
     }
 }
