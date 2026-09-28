@@ -10,6 +10,7 @@ public class CaveToHouseScript : MonoBehaviour
     [SerializeField] DroneController droneController;
     [SerializeField] PlayerSwitcher playerSwitcher;
     [SerializeField] GameObject alarmLight;
+    [SerializeField] private string triggerText;
 
     [Header("Transition")]
     [SerializeField] string SceneName;
@@ -75,7 +76,12 @@ public class CaveToHouseScript : MonoBehaviour
         panelImage.color = color;
 
         alarmLight.SetActive(true);
+        playerSwitcher.SetControl(false);
 
+        if (!string.IsNullOrEmpty(triggerText) && TextPanelManager.Instance != null)
+        {
+            TextPanelManager.Instance.ShowText(triggerText);
+        }
         // SceneManager.LoadScene(SceneName);
     }
 }

@@ -14038,9 +14038,11 @@ GameObject:
   m_Component:
   - component: {fileID: 651006635}
   - component: {fileID: 651006636}
-  m_Layer: 0
+  - component: {fileID: 651006637}
+  - component: {fileID: 651006638}
+  m_Layer: 8
   m_Name: Openable Door
-  m_TagString: Untagged
+  m_TagString: Exit-door
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -14084,6 +14086,45 @@ Animator:
   m_AllowConstantClipSamplingOptimization: 1
   m_KeepAnimatorStateOnDisable: 0
   m_WriteDefaultValuesOnDisable: 0
+--- !u!114 &651006637
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 651006634}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 5fea29bb7c508c244a1f805a5fd3fc4d, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::Outline
+  outlineMode: 0
+  outlineColor: {r: 1, g: 1, b: 1, a: 1}
+  outlineWidth: 2
+  precomputeOutline: 0
+  bakeKeys: []
+  bakeValues: []
+--- !u!65 &651006638
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 651006634}
+  m_Material: {fileID: 0}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_LayerOverridePriority: 0
+  m_IsTrigger: 0
+  m_ProvidesContacts: 0
+  m_Enabled: 1
+  serializedVersion: 3
+  m_Size: {x: 3.0044582, y: 5.6458855, z: 0.59619904}
+  m_Center: {x: -0.004853606, y: 2.8590832, z: 6.978092}
 --- !u!1001 &653678375
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -18645,7 +18686,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!4 &940589765
 Transform:
   m_ObjectHideFlags: 0
@@ -18655,7 +18696,7 @@ Transform:
   m_GameObject: {fileID: 940589764}
   serializedVersion: 2
   m_LocalRotation: {x: -0, y: 0.71365726, z: -0, w: -0.7004951}
-  m_LocalPosition: {x: 56.703, y: 19.22, z: -28.141}
+  m_LocalPosition: {x: -44.019, y: 13.81, z: -28.147}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -18771,6 +18812,7 @@ MonoBehaviour:
   droneController: {fileID: 8898654158852840253}
   playerSwitcher: {fileID: 1213029919}
   alarmLight: {fileID: 2008631539}
+  triggerText: Algo rompio el dron... voy a tener que salir a repararlo.
   SceneName: HouseScene 1
   FadeDuration: 4
 --- !u!65 &952106054
@@ -23201,7 +23243,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 7704503355901849607, guid: 5227ce862db5983408320603d259fb44, type: 3}
       propertyPath: m_IsActive
-      value: 1
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 8487528487423235571, guid: 5227ce862db5983408320603d259fb44, type: 3}
       propertyPath: far clip plane
@@ -25480,15 +25522,15 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 7270620107919773639, guid: bb128355a4591534f9f1e4410938f472, type: 3}
       propertyPath: m_LocalPosition.x
-      value: -5.849
+      value: -5.708
       objectReference: {fileID: 0}
     - target: {fileID: 7270620107919773639, guid: bb128355a4591534f9f1e4410938f472, type: 3}
       propertyPath: m_LocalPosition.y
-      value: 2.13
+      value: 2.786
       objectReference: {fileID: 0}
     - target: {fileID: 7270620107919773639, guid: bb128355a4591534f9f1e4410938f472, type: 3}
       propertyPath: m_LocalPosition.z
-      value: -43.203
+      value: -44.119
       objectReference: {fileID: 0}
     - target: {fileID: 7270620107919773639, guid: bb128355a4591534f9f1e4410938f472, type: 3}
       propertyPath: m_LocalRotation.w
@@ -28417,6 +28459,7 @@ MonoBehaviour:
     serializedVersion: 2
     m_Bits: 928
   minigamesManager: {fileID: 1827134378}
+  transitionToCave: {fileID: 0}
   crosshairImage: {fileID: 1595621970}
   defaultSprite: {fileID: 21300000, guid: d2186a5d7887d9d4a9758d47787e4178, type: 3}
   interactSprite: {fileID: 21300000, guid: 22bbd37d8c4947141ae76554ec0f48c8, type: 3}
@@ -29080,7 +29123,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!136 &1474393658
 CapsuleCollider:
   m_ObjectHideFlags: 0
@@ -33540,7 +33583,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: '::'
   HUD: {fileID: 62206203}
-  MissionPanel: {fileID: 0}
+  MissionPanel: {fileID: 597675700}
   playerMovement: {fileID: 1676664704}
   cameraAnimator: {fileID: 1676664703}
   eyelidsAnimator: {fileID: 485038398}
@@ -48705,7 +48748,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 3616541212683491864, guid: 1c7b76fe5892dc849b8a26bdda20a0c2, type: 3}
       propertyPath: m_IsActive
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 3712935618957416116, guid: 1c7b76fe5892dc849b8a26bdda20a0c2, type: 3}
       propertyPath: m_Enabled
@@ -49707,7 +49750,7 @@ GameObject:
   - component: {fileID: 7678938985608335194}
   - component: {fileID: 2266456529541715765}
   - component: {fileID: 3389940755037629448}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: detallePuerta
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -50469,7 +50512,7 @@ GameObject:
   - component: {fileID: 3349423204351963937}
   - component: {fileID: 2368210231725435610}
   - component: {fileID: 1653690052777004445}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: PuertaLadoDerecho
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -51438,7 +51481,7 @@ GameObject:
   - component: {fileID: 8456207180021330242}
   - component: {fileID: 3438489595505716739}
   - component: {fileID: 7740232367514575162}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: PuertaLadoIzquierdo
   m_TagString: Untagged
   m_Icon: {fileID: 0}

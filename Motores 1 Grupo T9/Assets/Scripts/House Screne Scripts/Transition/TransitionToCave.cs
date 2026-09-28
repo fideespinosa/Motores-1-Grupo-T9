@@ -24,6 +24,10 @@ public class TransitionToCave : MonoBehaviour
         GetComponent<Collider>().isTrigger = true;
     }
 
+    public void BlackFadeIn()
+    {
+        StartAnimation();
+    }
     public void StartAnimation()
     {
         if (triggered) return;

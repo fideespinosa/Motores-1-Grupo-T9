@@ -9,6 +9,9 @@ public class CrosshairRaycast : MonoBehaviour
     [SerializeField] LayerMask layerMask;
 
     [SerializeField] MinigamesManager minigamesManager;
+    [SerializeField] TransitionToCave transitionToCave;
+
+
 
     [Header("Crosshair")]
     [SerializeField] Image crosshairImage;
@@ -64,7 +67,12 @@ public class CrosshairRaycast : MonoBehaviour
                     screensManager.DeployDron();
                 }
 
-                if (hit.collider.gameObject.CompareTag("NextLvl") && !minigamesManager.isAlarmActive)
+                    if (hit.collider.gameObject.CompareTag("Exit-door"))
+                    {
+                        transitionToCave.BlackFadeIn();
+                    }
+
+                    if (hit.collider.gameObject.CompareTag("NextLvl") && !minigamesManager.isAlarmActive)
                 {
                     playerInventory.CheckVictory(); 
                 }
