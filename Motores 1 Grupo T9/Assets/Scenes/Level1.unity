@@ -49765,6 +49765,10 @@ PrefabInstance:
       propertyPath: motorForce
       value: 220
       objectReference: {fileID: 0}
+    - target: {fileID: 4022250697099637990, guid: 1c7b76fe5892dc849b8a26bdda20a0c2, type: 3}
+      propertyPath: colliderToggle
+      value: 
+      objectReference: {fileID: 8898654158852840269}
     - target: {fileID: 5933045433369117976, guid: 1c7b76fe5892dc849b8a26bdda20a0c2, type: 3}
       propertyPath: enemies
       value: 
@@ -49948,7 +49952,10 @@ PrefabInstance:
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
-    m_AddedComponents: []
+    m_AddedComponents:
+    - targetCorrespondingSourceObject: {fileID: 3616541212683491864, guid: 1c7b76fe5892dc849b8a26bdda20a0c2, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 8898654158852840269}
   m_SourcePrefab: {fileID: 100100000, guid: 1c7b76fe5892dc849b8a26bdda20a0c2, type: 3}
 --- !u!4 &140609878550196267
 Transform:
@@ -53742,6 +53749,18 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 3955be25ec8ca1042ba220d2f8f9f8a6, type: 3}
   m_Name: 
   m_EditorClassIdentifier: '::'
+--- !u!114 &8898654158852840269
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6891182721162927388}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: bbee5f30498fc8b419b1d61da54928f9, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::DroneColliderToggle
 --- !u!1 &9070380034605624250
 GameObject:
   m_ObjectHideFlags: 0
