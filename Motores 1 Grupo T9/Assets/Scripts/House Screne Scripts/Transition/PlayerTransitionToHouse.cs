@@ -11,6 +11,7 @@ public class PlayerTransitionToHouse : MonoBehaviour
 
     [Header("Players")]
     [SerializeField] private GameObject oldPlayer;
+    [SerializeField] private GameObject oldPlayerCamera;
     [SerializeField] private GameObject newPlayer;
 
     [Header("Drone")]
@@ -24,6 +25,9 @@ public class PlayerTransitionToHouse : MonoBehaviour
 
     public void StartAnimation()
     {
+        oldPlayer.GetComponent<FPS_OldInput>().enabled = false;
+        oldPlayerCamera.GetComponent<CrosshairRaycast>().enabled = false;
+        newPlayer.GetComponent<PlayerMovement>().enabled = false;
         if (oldPlayer != null)
             oldPlayer.SetActive(false);
 
