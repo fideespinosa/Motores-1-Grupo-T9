@@ -57,7 +57,10 @@ public class Phone : MonoBehaviour, IInteractable
     private void StartRinging()
     {
         state = PhoneState.Ringing;
-        audioSource.PlayOneShot(phoneRing);
+        audioSource.clip = phoneRing;
+        audioSource.loop = true;
+        audioSource.Play();
+
         Debug.Log("Sonando...");
     }
 
@@ -78,7 +81,7 @@ public class Phone : MonoBehaviour, IInteractable
         Debug.Log("Reproduciendo grabación...");
 
         audioSource.Stop();
-
+        audioSource.loop = false;
         audioSource.clip = debtCall;
 
         audioSource.Play();
