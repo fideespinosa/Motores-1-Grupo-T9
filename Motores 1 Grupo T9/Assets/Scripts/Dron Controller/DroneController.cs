@@ -6,8 +6,9 @@ public class DroneController : MonoBehaviour
     
     public RoverWheel[] leftWheels;
     public RoverWheel[] rightWheels;
+    private Collider[] colliders;
 
-   
+
     public float motorForce = 300f;
     public float turnForce = 150f;
 
@@ -28,6 +29,7 @@ public class DroneController : MonoBehaviour
     void Start()
     {
         rb = GetComponent<Rigidbody>();
+        colliders = GetComponentsInChildren<Collider>();
 
         rb.centerOfMass = customCenterOfMass;
         originalConstraints = rb.constraints;
@@ -72,33 +74,40 @@ public class DroneController : MonoBehaviour
         rb.linearVelocity = Vector3.zero;
         rb.angularVelocity = Vector3.zero;
         rb.constraints = RigidbodyConstraints.FreezeAll;
+        SetColliders(false);
     }
 
     public void UnfreezeDrone()
     {
         rb.constraints = originalConstraints;
+        SetColliders(true);
     }
     private void ApplyGiroscopicStabiliy()
     {
-        
+
         Vector3 targetUp = Vector3.up;
 
-        
+
         RaycastHit hit;
         if (Physics.Raycast(transform.position, -transform.up, out hit, 2f, groundLayer))
         {
-            
+
             targetUp = hit.normal;
         }
 
-        
+
         Vector3 predictedUp = Quaternion.AngleAxis(rb.angularVelocity.magnitude * Mathf.Rad2Deg * stabilityDamper / stabilityStrength, rb.angularVelocity) * transform.up;
         Vector3 torqueVector = Vector3.Cross(predictedUp, targetUp);
 
-        
+
         rb.AddTorque(torqueVector * (stabilityStrength * stabilityStrength), ForceMode.Acceleration);
 
-        
+
         rb.angularVelocity = Vector3.ClampMagnitude(rb.angularVelocity, 4f);
+    }
+    private void SetColliders(bool state)
+    {
+        foreach (var c in colliders)
+            c.enabled = state;
     }
 }

@@ -9,6 +9,7 @@ public class EnemyMovement : MonoBehaviour
     public float moveSpeed = 2.5f;
     public float waypointTolerance = 0.6f;
     public float waitAtWaypoint = 1f;
+    [Range(0f, 1f)] public float stoppingDistanceFactor = 0.5f;
 
     [Header("El FOV")]
     public float detectionRange = 10f;
@@ -39,6 +40,7 @@ public class EnemyMovement : MonoBehaviour
     void Start()
     {
         agent = GetComponent<NavMeshAgent>();
+        agent.stoppingDistance = waypointTolerance * stoppingDistanceFactor;
 
         if (agent != null)
         {
@@ -141,6 +143,12 @@ public class EnemyMovement : MonoBehaviour
         PatrolBehaviour();
     }
 
+    float FlatDistance(Vector3 a, Vector3 b)
+    {
+        a.y = 0f; b.y = 0f;
+        return Vector3.Distance(a, b);
+    }
+
     void PatrolBehaviour()
     {
         if (waypoints.Length == 0)
@@ -148,7 +156,7 @@ public class EnemyMovement : MonoBehaviour
 
         Transform wp = waypoints[nowWaypoint];
 
-        float dist = Vector3.Distance(transform.position, wp.position);
+        float dist = FlatDistance(transform.position, wp.position);
 
         bool isCorner = (nowWaypoint == 0 || nowWaypoint == waypoints.Length - 1);
 

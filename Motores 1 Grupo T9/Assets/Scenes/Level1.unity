@@ -27466,7 +27466,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 8897093224900880590, guid: 4679fb2268162274b8b0edf79bad90e1, type: 3}
       propertyPath: m_LocalPosition.x
-      value: 54.356
+      value: 54.818
       objectReference: {fileID: 0}
     - target: {fileID: 8897093224900880590, guid: 4679fb2268162274b8b0edf79bad90e1, type: 3}
       propertyPath: m_LocalPosition.y
@@ -27474,7 +27474,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 8897093224900880590, guid: 4679fb2268162274b8b0edf79bad90e1, type: 3}
       propertyPath: m_LocalPosition.z
-      value: -111.52
+      value: -112.283
       objectReference: {fileID: 0}
     - target: {fileID: 8897093224900880590, guid: 4679fb2268162274b8b0edf79bad90e1, type: 3}
       propertyPath: m_LocalRotation.w
@@ -34254,7 +34254,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!114 &1664567812
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -51556,6 +51556,7 @@ MonoBehaviour:
   moveSpeed: 1.5
   waypointTolerance: 1
   waitAtWaypoint: 0.15
+  stoppingDistanceFactor: 0.5
   detectionRange: 5
   hearDetectionRange: 4
   fieldOfViewAngle: 51
@@ -52565,6 +52566,7 @@ MonoBehaviour:
   moveSpeed: 3.5
   waypointTolerance: 1
   waitAtWaypoint: 0.5
+  stoppingDistanceFactor: 0.5
   detectionRange: 10
   hearDetectionRange: 4
   fieldOfViewAngle: 51
