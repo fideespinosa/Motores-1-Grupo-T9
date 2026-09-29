@@ -33,9 +33,9 @@ public class AnimationScript : MonoBehaviour
     }
     public void DisableMovement()
     {
-        playerMovement.enabled = false;
-        HUD.SetActive(false);
-        PreviousHUD.SetActive(false);
+        //playerMovement.enabled = false;
+        //HUD.SetActive(false);
+       // PreviousHUD.SetActive(false);
         Debug.Log("asdasdsad");
     }
 

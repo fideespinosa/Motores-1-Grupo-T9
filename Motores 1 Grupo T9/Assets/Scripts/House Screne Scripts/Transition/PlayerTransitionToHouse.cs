@@ -19,29 +19,25 @@ public class PlayerTransitionToHouse : MonoBehaviour
 
     [Header("Deactivate")]
     [SerializeField] private GameObject Ship;
+    [SerializeField] private GameObject HUD;
+    [SerializeField] private GameObject PreviousHUD;
 
     [Header("Activate")]
     [SerializeField] private GameObject Canvas;
 
     public void StartAnimation()
     {
+        HUD.SetActive(false);
+        PreviousHUD.SetActive(false);
         oldPlayer.GetComponent<FPS_OldInput>().enabled = false;
         oldPlayerCamera.GetComponent<CrosshairRaycast>().enabled = false;
         newPlayer.GetComponent<PlayerMovement>().enabled = false;
-        if (oldPlayer != null)
-            oldPlayer.SetActive(false);
 
-            Canvas.SetActive(true);
-
-        if (newPlayer != null)
-            newPlayer.SetActive(true);
-
-        if (drone != null)
-            drone.SetActive(false);
-
+        fadePanel.alpha = 1f;
+        fadePanel.blocksRaycasts = true;
         if (fadePanel != null)
         {
-            fadePanel.alpha = 2f;
+            fadePanel.alpha = 0f;
             fadePanel.blocksRaycasts = true;
 
             StartCoroutine(FadeRoutine());
@@ -50,6 +46,7 @@ public class PlayerTransitionToHouse : MonoBehaviour
 
     private IEnumerator FadeRoutine()
     {
+        Debug.Log("eeeeeeeeee");
         float time = 0f;
 
         while (time < fadeInDuration)
@@ -60,6 +57,18 @@ public class PlayerTransitionToHouse : MonoBehaviour
         }
 
         fadePanel.alpha = 1f;
+
+        if (oldPlayer != null)
+            oldPlayer.SetActive(false);
+
+        if (Canvas != null)
+            Canvas.SetActive(true);
+
+        if (newPlayer != null)
+            newPlayer.SetActive(true);
+
+        if (drone != null)
+            drone.SetActive(false);
 
         yield return new WaitForSeconds(blackScreenDuration);
 
