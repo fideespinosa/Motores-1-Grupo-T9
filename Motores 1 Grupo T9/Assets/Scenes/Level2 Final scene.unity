@@ -2216,7 +2216,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: 4814d04a659592f47b677166ad3ab3fc, type: 3}
       propertyPath: m_LocalPosition.x
-      value: 33.29
+      value: 35.168
       objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: 4814d04a659592f47b677166ad3ab3fc, type: 3}
       propertyPath: m_LocalPosition.y
@@ -3831,7 +3831,7 @@ Transform:
   m_GameObject: {fileID: 360489030}
   serializedVersion: 2
   m_LocalRotation: {x: -0, y: 0.7100279, z: -0, w: -0.7041736}
-  m_LocalPosition: {x: 21.99, y: 0.63, z: -57.01}
+  m_LocalPosition: {x: 23.867998, y: 0.63, z: -57.01}
   m_LocalScale: {x: 4.5001297, y: 4.05718, z: 4.5001297}
   m_ConstrainProportionsScale: 0
   m_Children:
@@ -10202,13 +10202,15 @@ GameObject:
   - component: {fileID: 485196425}
   - component: {fileID: 485196427}
   - component: {fileID: 485196426}
+  - component: {fileID: 485196428}
+  - component: {fileID: 485196430}
   m_Layer: 5
   m_Name: ShiftToRunPanel
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!224 &485196425
 RectTransform:
   m_ObjectHideFlags: 0
@@ -10221,8 +10223,8 @@ RectTransform:
   m_LocalScale: {x: 1.0236, y: 1.0236, z: 1.0236}
   m_ConstrainProportionsScale: 0
   m_Children:
-  - {fileID: 1643665922}
   - {fileID: 1487854415}
+  - {fileID: 1643665922}
   m_Father: {fileID: 752597375}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
@@ -10268,6 +10270,34 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 485196424}
   m_CullTransparentMesh: 1
+--- !u!225 &485196428
+CanvasGroup:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 485196424}
+  m_Enabled: 1
+  m_Alpha: 0
+  m_Interactable: 1
+  m_BlocksRaycasts: 1
+  m_IgnoreParentGroups: 0
+--- !u!114 &485196430
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 485196424}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 7360a9c99288e6d4b84ebeb4c0740dfb, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::FadeBehaviorScript
+  panel: {fileID: 485196428}
+  fadeInDuration: 2
+  waitDuration: 6
+  fadeOutDuration: 2
 --- !u!1001 &511546781
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -11131,7 +11161,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: 27c70984b9f4990489d83faa91f41371, type: 3}
       propertyPath: m_LocalPosition.x
-      value: 22.8
+      value: 19.88
       objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: 27c70984b9f4990489d83faa91f41371, type: 3}
       propertyPath: m_LocalPosition.y
@@ -11139,7 +11169,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: 27c70984b9f4990489d83faa91f41371, type: 3}
       propertyPath: m_LocalPosition.z
-      value: -63
+      value: -66.81
       objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: 27c70984b9f4990489d83faa91f41371, type: 3}
       propertyPath: m_LocalRotation.w
@@ -14695,7 +14725,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 8819938413317568671, guid: 5227ce862db5983408320603d259fb44, type: 3}
       propertyPath: m_LocalPosition.x
-      value: 32.082
+      value: 33.96
       objectReference: {fileID: 0}
     - target: {fileID: 8819938413317568671, guid: 5227ce862db5983408320603d259fb44, type: 3}
       propertyPath: m_LocalPosition.y
@@ -17114,12 +17144,13 @@ MonoBehaviour:
   animator: {fileID: 1189110819}
   staticImage: {fileID: 112534483}
   audioController: {fileID: 1189110827}
+  panelFadeScript: {fileID: 485196424}
   viewPoint: {fileID: 1732133017}
   playerObject: {fileID: 313023389}
   cameraController: {fileID: 635409871}
-  cameraMoveDuration: 1.5
-  cameraReturnDuration: 1.5
-  cameraLookSpeed: 10
+  cameraMoveDuration: 1
+  cameraReturnDuration: 1
+  cameraLookSpeed: 15
 --- !u!82 &1189110825
 AudioSource:
   m_ObjectHideFlags: 0
@@ -17379,6 +17410,7 @@ MonoBehaviour:
   playerCamera: {fileID: 1267714813}
   monsterViewPoint: {fileID: 1732133017}
   enemy: {fileID: 1189110824}
+  panelScript: {fileID: 0}
   zoomDuration: 0.2
   monsterViewTime: 1.5
   PlayScript: {fileID: 467610043}
@@ -19216,7 +19248,7 @@ RectTransform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1487854414}
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
@@ -19225,8 +19257,8 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: 0, y: 0}
-  m_SizeDelta: {x: 200, y: 50}
+  m_AnchoredPosition: {x: -661, y: -76}
+  m_SizeDelta: {x: 319.7147, y: 262.2681}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1487854416
 MonoBehaviour:
@@ -19248,7 +19280,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: Presiona [SHIFT] para correr
+  m_text: '[SHIFT] <smallcaps>para correr</smallcaps>'
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
   m_sharedMaterial: {fileID: 2180264, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
@@ -19275,15 +19307,15 @@ MonoBehaviour:
   m_faceColor:
     serializedVersion: 2
     rgba: 4294967295
-  m_fontSize: 36
-  m_fontSizeBase: 36
+  m_fontSize: 30
+  m_fontSizeBase: 30
   m_fontWeight: 400
   m_enableAutoSizing: 0
   m_fontSizeMin: 18
   m_fontSizeMax: 72
-  m_fontStyle: 0
-  m_HorizontalAlignment: 1
-  m_VerticalAlignment: 256
+  m_fontStyle: 1
+  m_HorizontalAlignment: 2
+  m_VerticalAlignment: 512
   m_textAlignment: 65535
   m_characterSpacing: 0
   m_characterHorizontalScale: 1
@@ -19637,7 +19669,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: 091fdd0391f062d4cae9f79c30c770e9, type: 3}
       propertyPath: m_LocalPosition.y
-      value: -3.2040534
+      value: -2.109
       objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: 091fdd0391f062d4cae9f79c30c770e9, type: 3}
       propertyPath: m_LocalPosition.z
@@ -20528,7 +20560,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!224 &1643665922
 RectTransform:
   m_ObjectHideFlags: 0

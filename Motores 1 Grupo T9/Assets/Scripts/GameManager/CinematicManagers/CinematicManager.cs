@@ -7,6 +7,7 @@ public class CinematicManager : MonoBehaviour
     [SerializeField] Camera playerCamera;
     [SerializeField] Transform monsterViewPoint;
     [SerializeField] EnemyBehaviorLVL2 enemy;
+    [SerializeField] FadeBehaviorScript panelScript;
 
     [SerializeField] float zoomDuration = 0.01f;
     [SerializeField] float monsterViewTime = 1.5f;
@@ -65,6 +66,8 @@ public class CinematicManager : MonoBehaviour
         }
 
         yield return new WaitForSeconds(monsterViewTime);
+        panelScript.StartFade();
+        Debug.Log("fade del shift");
 
         t = 0f;
 
@@ -96,6 +99,5 @@ public class CinematicManager : MonoBehaviour
         cinematicPlaying = false;
 
 
-        //panel de hud shift para correr
     }
 }

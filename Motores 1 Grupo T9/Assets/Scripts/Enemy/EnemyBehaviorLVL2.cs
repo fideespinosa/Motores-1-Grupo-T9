@@ -13,6 +13,7 @@ public class EnemyBehaviorLVL2 : MonoBehaviour
     [SerializeField] Animator animator;
     [SerializeField] GameObject staticImage;
     [SerializeField] MonsterAudioController audioController;
+    [SerializeField] GameObject panelFadeScript;
 
     [Header("Viewpoint")]
     [SerializeField] private Transform viewPoint;
@@ -101,6 +102,8 @@ public class EnemyBehaviorLVL2 : MonoBehaviour
         
         animator.SetBool("StartRun", true);
 
+        // panel que activa shift para correr!!
+        panelFadeScript.SetActive(true);
 
         Run();
 
