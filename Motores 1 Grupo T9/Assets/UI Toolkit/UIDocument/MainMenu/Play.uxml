@@ -1,0 +1,8 @@
+<ui:UXML xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:ui="UnityEngine.UIElements" xmlns:uie="UnityEditor.UIElements" noNamespaceSchemaLocation="../../../../UIElementsSchema/UIElements.xsd" editor-extension-mode="False">
+    <Style src="project://database/Assets/UI%20Toolkit/Style/ButtonMenu.uss?fileID=7433441132597879392&amp;guid=95c23b62ca0790742a2542e60935a46f&amp;type=3#ButtonMenu"/>
+    <ui:VisualElement style="flex-grow: 1;">
+        <ui:VisualElement name="PlayVE" style="flex-grow: 1;">
+            <ui:Button text="JUGAR" name="PlayButton" class="selected"/>
+        </ui:VisualElement>
+    </ui:VisualElement>
+</ui:UXML>

@@ -1,0 +1,22 @@
+.selected {
+    -unity-font-definition: url("project://database/Assets/UI%20Toolkit/Font/Rajdhani-Bold.ttf?fileID=12800000&guid=585eb9b5ee4ddb84e987fe35c590e8e5&type=3#Rajdhani-Bold");
+    font-size: 45px;
+    background-color: rgba(0, 0, 0, 0.67);
+    color: rgb(195, 195, 195);
+    position: absolute;
+    transition-duration: 0.25s;
+}
+
+.selected:focus {
+    background-color: rgba(0, 0, 0, 0.57);
+}
+
+.selected:hover {
+    background-color: rgba(0, 0, 0, 0.57);
+}
+
+.labelName {
+    position: absolute;
+    -unity-font-definition: url("project://database/Assets/UI%20Toolkit/Font/Rajdhani-Bold.ttf?fileID=12800000&guid=585eb9b5ee4ddb84e987fe35c590e8e5&type=3#Rajdhani-Bold");
+    font-size: 88px;
+}
