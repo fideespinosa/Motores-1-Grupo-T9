@@ -45,7 +45,6 @@ public class CameraPointSwitcher : MonoBehaviour
 
     public void SwitchCamera()
     {
-        if (!enableEscapeToggle) return;
         if (isMoving) return;
 
         StartCoroutine(MoveTo(pointB, false));
@@ -56,7 +55,7 @@ public class CameraPointSwitcher : MonoBehaviour
     {
         if (Input.GetKeyDown(KeyCode.Escape) || Input.GetMouseButtonDown(0))
         {
-            if (!isAtPointA)
+            if (!isAtPointA & enableEscapeToggle)
             {
                 StartCoroutine(MoveTo(pointA, true));
             }
@@ -69,32 +68,31 @@ public class CameraPointSwitcher : MonoBehaviour
     {
         if (target == null) yield break;
 
+        if (fpsOldInput != null)
+            fpsOldInput.enabled = willBeAtPointA;
+
         isMoving = true;
 
         Vector3 startPos = transform.position;
         Quaternion startRot = transform.rotation;
-        Vector3 endPos = target.position;
-        Quaternion endRot = target.rotation;
 
         float elapsed = 0f;
+
         while (elapsed < moveDuration)
         {
             elapsed += Time.deltaTime;
             float t = Mathf.SmoothStep(0f, 1f, elapsed / moveDuration);
-            transform.position = Vector3.Lerp(startPos, endPos, t);
-            transform.rotation = Quaternion.Slerp(startRot, endRot, t);
+
+            transform.position = Vector3.Lerp(startPos, target.position, t);
+            transform.rotation = Quaternion.Slerp(startRot, target.rotation, t);
+
             yield return null;
         }
 
-        transform.position = endPos;
-        transform.rotation = endRot;
+        transform.position = target.position;
+        transform.rotation = target.rotation;
 
         isAtPointA = willBeAtPointA;
         isMoving = false;
-
-        if (fpsOldInput != null)
-        {
-            fpsOldInput.enabled = isAtPointA;
-        }
     }
 }

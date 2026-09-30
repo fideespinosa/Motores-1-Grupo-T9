@@ -1698,7 +1698,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!224 &62206204
 RectTransform:
   m_ObjectHideFlags: 0
@@ -2391,11 +2391,11 @@ PrefabInstance:
     - target: {fileID: -7511558181221131132, guid: d8f49205bcaea52478fff95cbf29b7a0, type: 3}
       propertyPath: 'm_Materials.Array.data[0]'
       value: 
-      objectReference: {fileID: 2100000, guid: 1c2910013fa970b49956befa457856db, type: 2}
+      objectReference: {fileID: 2100000, guid: be7844e903dc33342bd75d6b9782377d, type: 2}
     - target: {fileID: -7511558181221131132, guid: d8f49205bcaea52478fff95cbf29b7a0, type: 3}
       propertyPath: 'm_Materials.Array.data[1]'
       value: 
-      objectReference: {fileID: 2100000, guid: 1c2910013fa970b49956befa457856db, type: 2}
+      objectReference: {fileID: 2100000, guid: be7844e903dc33342bd75d6b9782377d, type: 2}
     - target: {fileID: 919132149155446097, guid: d8f49205bcaea52478fff95cbf29b7a0, type: 3}
       propertyPath: m_Name
       value: Carta de Deuda
@@ -2481,7 +2481,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d2e61ee742e1f4f4ba52cba351731c5e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::ImageItem
-  imageToShow: {fileID: 21300000, guid: 4deb8a6289d14b24c882f79499f1f100, type: 3}
+  imageToShow: {fileID: 21300000, guid: eac6a323c68c7ae43bf9395721f7884b, type: 3}
   disableOnInteract: 0
   requiredFlag: 
   flagToSetOnInteract: test
@@ -26983,6 +26983,7 @@ Transform:
   m_LocalScale: {x: 0.89545393, y: 0.594, z: 0.1025}
   m_ConstrainProportionsScale: 0
   m_Children:
+  - {fileID: 1994975266}
   - {fileID: 780548150}
   m_Father: {fileID: 278130804}
   m_LocalEulerAnglesHint: {x: -24.65, y: 0, z: 0}
@@ -29068,7 +29069,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 180, z: 0}
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 1, y: 1}
-  m_AnchoredPosition: {x: 1.314, y: 0.212}
+  m_AnchoredPosition: {x: 1.348, y: 0.212}
   m_SizeDelta: {x: -9.3141, y: -0.81159997}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1339799093
@@ -32340,7 +32341,6 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
-  - {fileID: 1994975266}
   - {fileID: 1034942941}
   - {fileID: 1434242617}
   m_Father: {fileID: 0}
@@ -49702,13 +49702,13 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1994975265}
   serializedVersion: 2
-  m_LocalRotation: {x: 0.13685691, y: 0.0060535176, z: 0.018754857, w: 0.9903948}
-  m_LocalPosition: {x: -0.014, y: 0.344, z: 1.065}
-  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_LocalRotation: {x: -0.0011676605, y: -0.99687064, z: -0.07760643, w: 0.014998839}
+  m_LocalPosition: {x: 0.036, y: -0.068, z: 7.99}
+  m_LocalScale: {x: 0.49629766, y: 1.4286182, z: 5.854632}
   m_ConstrainProportionsScale: 0
   m_Children: []
-  m_Father: {fileID: 1474393661}
-  m_LocalEulerAnglesHint: {x: 15.715, y: 1.019, z: 2.31}
+  m_Father: {fileID: 1252350351}
+  m_LocalEulerAnglesHint: {x: -8.903, y: -178.276, z: 0}
 --- !u!4 &1996033211 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 4153228210669751475, guid: bf320a0f2ae261a4a904f81424fe86d2, type: 3}
