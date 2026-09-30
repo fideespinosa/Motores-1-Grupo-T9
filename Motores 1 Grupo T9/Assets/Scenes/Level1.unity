@@ -2476,7 +2476,7 @@ MonoBehaviour:
   imageToShow: {fileID: 21300000, guid: eac6a323c68c7ae43bf9395721f7884b, type: 3}
   disableOnInteract: 0
   requiredFlag: 
-  flagToSetOnInteract: 
+  flagToSetOnInteract: test
   outline: {fileID: 90292880}
   audioSource: {fileID: 90292887}
   paperOn: {fileID: 8300000, guid: 8a219fd6640980545b6ea215b4dc3335, type: 3}
@@ -22619,8 +22619,8 @@ BoxCollider:
   m_ProvidesContacts: 0
   m_Enabled: 1
   serializedVersion: 3
-  m_Size: {x: 4.896785, y: 3.631652, z: 2.6272292}
-  m_Center: {x: 0.048588157, y: 1.3158256, z: 0.06479291}
+  m_Size: {x: 4.896785, y: 3.4984632, z: 2.6272292}
+  m_Center: {x: 0.04858816, y: 1.2492311, z: 0.064792864}
 --- !u!1 &1149648187
 GameObject:
   m_ObjectHideFlags: 0
@@ -42189,6 +42189,10 @@ PrefabInstance:
     - target: {fileID: 919132149155446097, guid: 9aaab6561c9cd6a4b9cbf19791133172, type: 3}
       propertyPath: m_Name
       value: Fridge
+      objectReference: {fileID: 0}
+    - target: {fileID: 919132149155446097, guid: 9aaab6561c9cd6a4b9cbf19791133172, type: 3}
+      propertyPath: m_Layer
+      value: 11
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
