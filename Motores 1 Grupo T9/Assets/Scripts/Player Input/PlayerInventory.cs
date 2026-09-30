@@ -111,8 +111,8 @@ public class PlayerInventory : MonoBehaviour
 
             enemy.SetActive(true);
 
-            var entry = enemy.AddComponent<EnemyWallEntry>();
-            entry.Init(trigger.navMeshEntryPoint.position);
+          //  var entry = enemy.AddComponent<EnemyWallEntry>();
+          //  entry.Init(trigger.navMeshEntryPoint.position);
         }
     }
 
