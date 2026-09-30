@@ -2388,6 +2388,14 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 19.268
       objectReference: {fileID: 0}
+    - target: {fileID: -7511558181221131132, guid: d8f49205bcaea52478fff95cbf29b7a0, type: 3}
+      propertyPath: 'm_Materials.Array.data[0]'
+      value: 
+      objectReference: {fileID: 2100000, guid: 1c2910013fa970b49956befa457856db, type: 2}
+    - target: {fileID: -7511558181221131132, guid: d8f49205bcaea52478fff95cbf29b7a0, type: 3}
+      propertyPath: 'm_Materials.Array.data[1]'
+      value: 
+      objectReference: {fileID: 2100000, guid: 1c2910013fa970b49956befa457856db, type: 2}
     - target: {fileID: 919132149155446097, guid: d8f49205bcaea52478fff95cbf29b7a0, type: 3}
       propertyPath: m_Name
       value: Carta de Deuda
@@ -2473,7 +2481,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d2e61ee742e1f4f4ba52cba351731c5e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::ImageItem
-  imageToShow: {fileID: 21300000, guid: eac6a323c68c7ae43bf9395721f7884b, type: 3}
+  imageToShow: {fileID: 21300000, guid: 4deb8a6289d14b24c882f79499f1f100, type: 3}
   disableOnInteract: 0
   requiredFlag: 
   flagToSetOnInteract: test
@@ -16813,11 +16821,11 @@ PrefabInstance:
     - target: {fileID: -7511558181221131132, guid: 8cdec9f17d27fa34ea81193285c39a37, type: 3}
       propertyPath: 'm_Materials.Array.data[0]'
       value: 
-      objectReference: {fileID: 2100000, guid: 22c08adaae2379d48bae38f64b5919c0, type: 2}
+      objectReference: {fileID: 2100000, guid: 96fe543b0fd1b9f49af7d0352426b195, type: 2}
     - target: {fileID: -7511558181221131132, guid: 8cdec9f17d27fa34ea81193285c39a37, type: 3}
       propertyPath: 'm_Materials.Array.data[1]'
       value: 
-      objectReference: {fileID: 2100000, guid: 22c08adaae2379d48bae38f64b5919c0, type: 2}
+      objectReference: {fileID: 2100000, guid: 96fe543b0fd1b9f49af7d0352426b195, type: 2}
     - target: {fileID: 919132149155446097, guid: 8cdec9f17d27fa34ea81193285c39a37, type: 3}
       propertyPath: m_Name
       value: Carta de despido
@@ -16903,7 +16911,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d2e61ee742e1f4f4ba52cba351731c5e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::ImageItem
-  imageToShow: {fileID: 21300000, guid: c112c64ea705edb428157455c45a6832, type: 3}
+  imageToShow: {fileID: 21300000, guid: 14198563b5fc9e242b232c99ea618a44, type: 3}
   disableOnInteract: 1
   requiredFlag: ObjectsReadyToPickUp
   flagToSetOnInteract: ObjectsReadyToPickUp2
@@ -22006,6 +22014,37 @@ GameObject:
   m_CorrespondingSourceObject: {fileID: 919132149155446097, guid: d34858b16a242c44190676f4564ce89a, type: 3}
   m_PrefabInstance: {fileID: 1412420436}
   m_PrefabAsset: {fileID: 0}
+--- !u!1 &1034942940
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1034942941}
+  m_Layer: 0
+  m_Name: Point A
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &1034942941
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1034942940}
+  serializedVersion: 2
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalPosition: {x: 0, y: 0.79999924, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 1474393661}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &1038652385
 GameObject:
   m_ObjectHideFlags: 0
@@ -25340,6 +25379,10 @@ PrefabInstance:
       propertyPath: far clip plane
       value: 100
       objectReference: {fileID: 0}
+    - target: {fileID: 8533327034055291051, guid: 5227ce862db5983408320603d259fb44, type: 3}
+      propertyPath: m_Enabled
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 8819938413317568671, guid: 5227ce862db5983408320603d259fb44, type: 3}
       propertyPath: m_LocalScale.y
       value: 2.095215
@@ -26920,9 +26963,9 @@ GameObject:
   - component: {fileID: 1252350354}
   - component: {fileID: 1252350353}
   - component: {fileID: 1252350352}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: Terminal  Screen
-  m_TagString: Untagged
+  m_TagString: Terminal Screen
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -31376,6 +31419,7 @@ GameObject:
   - component: {fileID: 1434242618}
   - component: {fileID: 1434242621}
   - component: {fileID: 1434242622}
+  - component: {fileID: 1434242623}
   m_Layer: 0
   m_Name: MainCamera
   m_TagString: Untagged
@@ -31514,6 +31558,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::CrosshairRaycast
   screensManager: {fileID: 932023463}
+  cameraSwitcher: {fileID: 1434242623}
   rayDistance: 30
   layerMask:
     serializedVersion: 2
@@ -31540,6 +31585,24 @@ MonoBehaviour:
     serializedVersion: 2
     m_Bits: 4294967295
   m_MaxRayIntersections: 0
+--- !u!114 &1434242623
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1434242616}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 9667aeb8a5d992a43aac5b40ae4cf420, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: '::'
+  pointA: {fileID: 1034942941}
+  pointB: {fileID: 1994975266}
+  startingPoint: 0
+  moveDuration: 0.4
+  enableEscapeToggle: 1
+  fpsOldInput: {fileID: 1474393664}
 --- !u!1 &1439033731
 GameObject:
   m_ObjectHideFlags: 0
@@ -32277,6 +32340,8 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
+  - {fileID: 1994975266}
+  - {fileID: 1034942941}
   - {fileID: 1434242617}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 186.4, z: 0}
@@ -32318,6 +32383,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::CameraLookOnly
   playerCamera: {fileID: 1434242617}
+  PointA: {fileID: 1034942941}
   lookSpeed: 2
   lookXLimit: 85
 --- !u!1 &1480438651
@@ -49612,6 +49678,37 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: dd702d70e731c204f97da6d88922559c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: '::'
+--- !u!1 &1994975265
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1994975266}
+  m_Layer: 0
+  m_Name: Point B
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &1994975266
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1994975265}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0.13685691, y: 0.0060535176, z: 0.018754857, w: 0.9903948}
+  m_LocalPosition: {x: -0.014, y: 0.344, z: 1.065}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 1474393661}
+  m_LocalEulerAnglesHint: {x: 15.715, y: 1.019, z: 2.31}
 --- !u!4 &1996033211 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 4153228210669751475, guid: bf320a0f2ae261a4a904f81424fe86d2, type: 3}
@@ -51621,7 +51718,7 @@ BoxCollider:
     serializedVersion: 2
     m_Bits: 0
   m_LayerOverridePriority: 0
-  m_IsTrigger: 0
+  m_IsTrigger: 1
   m_ProvidesContacts: 0
   m_Enabled: 1
   serializedVersion: 3
@@ -51642,7 +51739,7 @@ BoxCollider:
     serializedVersion: 2
     m_Bits: 0
   m_LayerOverridePriority: 0
-  m_IsTrigger: 0
+  m_IsTrigger: 1
   m_ProvidesContacts: 0
   m_Enabled: 1
   serializedVersion: 3
@@ -51663,7 +51760,7 @@ BoxCollider:
     serializedVersion: 2
     m_Bits: 0
   m_LayerOverridePriority: 0
-  m_IsTrigger: 0
+  m_IsTrigger: 1
   m_ProvidesContacts: 0
   m_Enabled: 1
   serializedVersion: 3

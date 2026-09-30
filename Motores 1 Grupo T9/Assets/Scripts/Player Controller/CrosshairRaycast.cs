@@ -4,7 +4,7 @@ using UnityEngine.UI;
 public class CrosshairRaycast : MonoBehaviour
 {
     [SerializeField] ScreensManagerScript screensManager;
-
+    [SerializeField] CameraPointSwitcher cameraSwitcher;
     [SerializeField] float rayDistance;
     [SerializeField] LayerMask layerMask;
 
@@ -66,6 +66,12 @@ public class CrosshairRaycast : MonoBehaviour
                 {
                     screensManager.DeployDron();
                 }
+
+                    if (hit.collider.gameObject.CompareTag("Terminal Screen"))
+                    {
+                        Debug.Log("cambio de camara");
+                        cameraSwitcher.SwitchCamera();
+                    }
 
                     if (hit.collider.gameObject.CompareTag("Exit-door"))
                     {
