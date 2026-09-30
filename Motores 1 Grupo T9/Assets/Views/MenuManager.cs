@@ -20,8 +20,9 @@ public class MenuManager : MonoBehaviour
 
     public void EnterLastLevel()
     {
-        string lastScene = PlayerPrefs.GetString("LastScene", "Level0");
-        SceneManager.LoadScene(lastScene);
+        /*string lastScene = PlayerPrefs.GetString("LastScene", "Level0");
+        SceneManager.LoadScene(lastScene);*/
+        SceneManager.LoadScene("Terminal Introduction Scene");
     }
 
 }
