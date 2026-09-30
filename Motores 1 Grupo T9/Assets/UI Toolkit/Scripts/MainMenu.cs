@@ -59,6 +59,11 @@ public class MainMenu : MonoBehaviour
 
     private void OnPlayClicked(ClickEvent evt)
     {
+        if (MenuMusicManager.Instance != null)
+        {
+            MenuMusicManager.Instance.FadeOutAndDestroy(15f);
+        }
+
         Debug.Log("Cargando juego...");
         UnityEngine.SceneManagement.SceneManager.LoadScene("Terminal Introduction Scene");
     }
