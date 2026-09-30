@@ -1,0 +1,8 @@
+<ui:UXML xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:ui="UnityEngine.UIElements" xmlns:uie="UnityEditor.UIElements" noNamespaceSchemaLocation="../../../../UIElementsSchema/UIElements.xsd" editor-extension-mode="False">
+    <Style src="project://database/Assets/UI%20Toolkit/Style/LabelNameGame.uss?fileID=7433441132597879392&amp;guid=25700671c317d6c4793af227153b0973&amp;type=3#LabelNameGame"/>
+    <Style src="project://database/Assets/UI%20Toolkit/Style/LabelNameStyle.uss?fileID=7433441132597879392&amp;guid=e8ca6d0f0a41e53499c89b310483062c&amp;type=3#LabelNameStyle"/>
+    <ui:VisualElement class="logo-container" style="flex-grow: 1; flex-direction: row;">
+        <ui:Label text="P" name="LabelP" class="p-letter pharus-text"/>
+        <ui:Label text="harus" name="LabelHarus" class="harus-text" style="width: 365px; bottom: -16px;"/>
+    </ui:VisualElement>
+</ui:UXML>
