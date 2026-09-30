@@ -60,7 +60,7 @@ public class MainMenu : MonoBehaviour
     private void OnPlayClicked(ClickEvent evt)
     {
         Debug.Log("Cargando juego...");
-        // UnityEngine.SceneManagement.SceneManager.LoadScene("GameScene");
+        UnityEngine.SceneManagement.SceneManager.LoadScene("Terminal Introduction Scene");
     }
 
     private void OnOptionsClicked(ClickEvent evt)
