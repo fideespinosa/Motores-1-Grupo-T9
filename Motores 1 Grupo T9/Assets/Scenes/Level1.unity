@@ -32247,7 +32247,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!136 &1474393658
 CapsuleCollider:
   m_ObjectHideFlags: 0
@@ -55507,6 +55507,10 @@ MonoBehaviour:
   obstacles:
     serializedVersion: 2
     m_Bits: 0
+  chaseSpeed: 4
+  proximityChaseRange: 5
+  attackRange: 2.5
+  patrolDuringMinigame: 1
   switcher: {fileID: 1213029919}
   minigamesManager: {fileID: 1827134378}
   spawnPoint: {fileID: 210786495}
@@ -56747,6 +56751,10 @@ MonoBehaviour:
   obstacles:
     serializedVersion: 2
     m_Bits: 0
+  chaseSpeed: 4
+  proximityChaseRange: 5
+  attackRange: 2.5
+  patrolDuringMinigame: 1
   switcher: {fileID: 0}
   minigamesManager: {fileID: 0}
   spawnPoint: {fileID: 0}
@@ -56980,6 +56988,18 @@ PrefabInstance:
       value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 1879880888123117387, guid: 3e9e2ba5946970b4c8fbda2b57b61011, type: 3}
+      propertyPath: moveSpeed
+      value: 0.7
+      objectReference: {fileID: 0}
+    - target: {fileID: 1879880888123117387, guid: 3e9e2ba5946970b4c8fbda2b57b61011, type: 3}
+      propertyPath: chaseSpeed
+      value: 2.3
+      objectReference: {fileID: 0}
+    - target: {fileID: 1879880888123117387, guid: 3e9e2ba5946970b4c8fbda2b57b61011, type: 3}
+      propertyPath: attackRange
+      value: 1.5
+      objectReference: {fileID: 0}
+    - target: {fileID: 1879880888123117387, guid: 3e9e2ba5946970b4c8fbda2b57b61011, type: 3}
       propertyPath: minigamesManager
       value: 
       objectReference: {fileID: 1827134378}
@@ -57136,9 +57156,21 @@ PrefabInstance:
       value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 142897721970386874, guid: f5e5faac4f0f8be4fa5fb31698c5cb72, type: 3}
+      propertyPath: chaseSpeed
+      value: 2.3
+      objectReference: {fileID: 0}
+    - target: {fileID: 142897721970386874, guid: f5e5faac4f0f8be4fa5fb31698c5cb72, type: 3}
+      propertyPath: attackRange
+      value: 1.5
+      objectReference: {fileID: 0}
+    - target: {fileID: 142897721970386874, guid: f5e5faac4f0f8be4fa5fb31698c5cb72, type: 3}
       propertyPath: minigamesManager
       value: 
       objectReference: {fileID: 1827134378}
+    - target: {fileID: 142897721970386874, guid: f5e5faac4f0f8be4fa5fb31698c5cb72, type: 3}
+      propertyPath: hearDetectionRange
+      value: 5
+      objectReference: {fileID: 0}
     - target: {fileID: 142897721970386874, guid: f5e5faac4f0f8be4fa5fb31698c5cb72, type: 3}
       propertyPath: 'waypoints.Array.data[0]'
       value: 

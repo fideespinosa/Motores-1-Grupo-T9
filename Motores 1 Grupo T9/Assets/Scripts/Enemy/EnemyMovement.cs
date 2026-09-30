@@ -19,15 +19,19 @@ public class EnemyMovement : MonoBehaviour
     public float fieldOfViewAngle = 90f;
     public LayerMask obstacles;
 
+    [Header("Persecucion / Ataque")]
+    public float chaseSpeed = 4f;
+    public float proximityChaseRange = 5f;
+    public float attackRange = 2.5f;
+    public bool patrolDuringMinigame = true;
+
     [Header("Referencias de Eventos")]
     public PlayerSwitcher switcher;
     public MinigamesManager minigamesManager;
     [SerializeField] private Transform spawnPoint;
 
+    // Estado compartido
     private bool playerDead = false;
-    private int nowWaypoint = 0;
-    private int waypointDirection = 1; // 1 = avanzando, -1 = retrocediendo (ping-pong)
-    private float waitTimer = 0f;
     private Transform player;
     private NavMeshAgent agent;
     private bool isAttacking = false;
@@ -35,12 +39,22 @@ public class EnemyMovement : MonoBehaviour
     private float resetCooldown = 0f;
     private const float resetCooldownTime = 5f;
     private MonsterAudioController audioController;
-    private bool wasChasing = false;
+
+    // Maquina de estados
+    private EnemyStateMachine stateMachine;
+    public PatrolState PatrolState { get; private set; }
+    public ChaseState ChaseState { get; private set; }
+    public AttackState AttackState { get; private set; }
+
+    // Acceso para los estados
+    public NavMeshAgent Agent => agent;
+    public Transform Player => player;
+    public bool IsAttacking => isAttacking;
+    public bool MinigameActive => minigameActive;
 
     void Start()
     {
         agent = GetComponent<NavMeshAgent>();
-        agent.stoppingDistance = waypointTolerance * stoppingDistanceFactor;
 
         if (agent != null)
         {
@@ -66,6 +80,14 @@ public class EnemyMovement : MonoBehaviour
         {
             switcher = Object.FindFirstObjectByType<PlayerSwitcher>();
         }
+
+        // Estados
+        stateMachine = new EnemyStateMachine();
+        PatrolState = new PatrolState(this);
+        ChaseState = new ChaseState(this);
+        AttackState = new AttackState(this);
+
+        stateMachine.ChangeState(PatrolState);
     }
 
     void Update()
@@ -75,141 +97,84 @@ public class EnemyMovement : MonoBehaviour
         if (resetCooldown > 0f)
         {
             resetCooldown -= Time.deltaTime;
-            PatrolBehaviour();
-            return;
         }
 
         if (player == null)
         {
             GameObject p = GameObject.FindGameObjectWithTag("Player");
-            if (p)
-            {
-                player = p.transform;
-            }
-            else
-            {
-                PatrolBehaviour();
-                return;
-            }
+            if (p) player = p.transform;
         }
 
-        bool canSee = CanSeePlayer();
-        bool canHear = CanHearPlayerNearby();
-        float distToPlayer = Vector3.Distance(transform.position, player.position);
-
-        bool shouldChase = !minigameActive && (canSee || canHear || (distToPlayer <= 5f && !isAttacking));
-
-        if (audioController != null)
-        {
-            if (shouldChase && !wasChasing)
-            {
-                audioController.PlayRoar();
-                GameMusicManager.Instance.SetCombatState(true);
-            }
-            else if (!shouldChase && wasChasing)
-            {
-                GameMusicManager.Instance.SetCombatState(false);
-            }
-        }
-
-        wasChasing = shouldChase;
-
-        if (shouldChase)
-        {
-            if (distToPlayer <= 2.5f && !isAttacking)
-            {
-                if (audioController != null)
-                    audioController.PlayAttackSound();
-
-                isAttacking = true;
-
-                if (agent != null)
-                {
-                    agent.ResetPath();
-                }
-
-                Debug.Log("Dron interceptado. Iniciando minijuego...");
-                Die();
-                return;
-            }
-
-            if (!isAttacking && !minigameActive)
-            {
-                MoveTowards(player.position);
-                return;
-            }
-        }
-
-        PatrolBehaviour();
+        stateMachine.Tick();
     }
 
-    float FlatDistance(Vector3 a, Vector3 b)
+    public void ChangeState(EnemyState next)
+    {
+        stateMachine.ChangeState(next);
+    }
+
+    // ---------- Decision de persecucion (misma condicion que antes) ----------
+
+    public bool ShouldChase()
+    {
+        if (player == null || minigameActive || resetCooldown > 0f)
+            return false;
+
+        return CanSeePlayer()
+            || CanHearPlayerNearby()
+            || (DistanceToPlayer() <= proximityChaseRange && !isAttacking);
+    }
+
+    public float DistanceToPlayer()
+    {
+        if (player == null) return float.MaxValue;
+        return Vector3.Distance(transform.position, player.position);
+    }
+
+    // ---------- Eventos de estado (audio / musica) ----------
+
+    public void OnChaseStarted()
+    {
+        if (audioController != null)
+        {
+            audioController.PlayRoar();
+            GameMusicManager.Instance.SetCombatState(true);
+        }
+    }
+
+    public void OnChaseEnded()
+    {
+        if (audioController != null)
+        {
+            GameMusicManager.Instance.SetCombatState(false);
+        }
+    }
+
+    public void TriggerAttack()
+    {
+        if (audioController != null)
+            audioController.PlayAttackSound();
+
+        isAttacking = true;
+
+        if (agent != null)
+        {
+            agent.ResetPath();
+        }
+
+        Debug.Log("Dron interceptado. Iniciando minijuego...");
+        Die();
+    }
+
+    // ---------- Utilidades compartidas ----------
+
+    public float FlatDistance(Vector3 a, Vector3 b)
     {
         a.y = 0f; b.y = 0f;
         return Vector3.Distance(a, b);
     }
 
-    void PatrolBehaviour()
-    {
-        if (waypoints.Length == 0)
-            return;
-
-        Transform wp = waypoints[nowWaypoint];
-
-        float dist = FlatDistance(transform.position, wp.position);
-
-        bool isCorner = (nowWaypoint == 0 || nowWaypoint == waypoints.Length - 1);
-
-        if (dist <= waypointTolerance)
-        {
-            if (!isCorner)
-            {
-                AdvanceWaypointPingPong();
-            }
-            else if (waitTimer <= 0f)
-            {
-                waitTimer = waitAtWaypoint;
-
-                if (agent != null)
-                {
-                    agent.ResetPath();
-                }
-            }
-            else
-            {
-                waitTimer -= Time.deltaTime;
-
-                if (waitTimer <= 0f)
-                {
-                    AdvanceWaypointPingPong();
-                }
-            }
-        }
-        else
-        {
-            MoveTowards(wp.position);
-        }
-    }
-
-    void AdvanceWaypointPingPong()
-    {
-        if (waypoints.Length <= 1)
-            return;
-
-        // Si estamos en un extremo, invertimos la direccion antes de avanzar
-        if (nowWaypoint == waypoints.Length - 1)
-        {
-            waypointDirection = -1;
-        }
-        else if (nowWaypoint == 0)
-        {
-            waypointDirection = 1;
-        }
-
-        nowWaypoint += waypointDirection;
-    }
-
-    bool CanSeePlayer()
+    public bool CanSeePlayer()
     {
         if (player == null) return false;
 
@@ -235,27 +200,32 @@ public class EnemyMovement : MonoBehaviour
         return true;
     }
 
-    void MoveTowards(Vector3 target)
-    {
-        if (agent == null)
-            return;
-
-        agent.speed = moveSpeed;
-        agent.SetDestination(target);
-
-        if (agent.velocity.sqrMagnitude > 0.1f)
-        {
-            FaceTarget(transform.position + agent.velocity);
-        }
-    }
-
-    bool CanHearPlayerNearby()
+    public bool CanHearPlayerNearby()
     {
         if (player == null)
             return false;
 
         float distance = Vector3.Distance(transform.position, player.position);
         return distance <= hearDetectionRange;
+    }
+
+    public void MoveTowards(Vector3 target)
+    {
+        MoveTowards(target, moveSpeed);
+    }
+
+    public void MoveTowards(Vector3 target, float speed)
+    {
+        if (agent == null)
+            return;
+
+        agent.speed = speed;
+        agent.SetDestination(target);
+
+        if (agent.velocity.sqrMagnitude > 0.1f)
+        {
+            FaceTarget(transform.position + agent.velocity);
+        }
     }
 
     void FaceTarget(Vector3 target)
@@ -269,6 +239,8 @@ public class EnemyMovement : MonoBehaviour
             transform.rotation = Quaternion.Slerp(transform.rotation, targetRot, 10f * Time.deltaTime);
         }
     }
+
+    // ---------- Minijuego / reset ----------
 
     void Die()
     {
@@ -292,7 +264,7 @@ public class EnemyMovement : MonoBehaviour
         minigameActive = false;
         resetCooldown = resetCooldownTime;
 
-        wasChasing = false;
+        stateMachine.ChangeState(PatrolState);
     }
 
     public void RestartPatrol()
@@ -306,9 +278,7 @@ public class EnemyMovement : MonoBehaviour
         transform.position = spawnPoint.position;
         transform.rotation = spawnPoint.rotation;
 
-        nowWaypoint = 0;
-        waypointDirection = 1;
-        waitTimer = 0f;
+        PatrolState.ResetPatrol();
     }
 
     void OnDrawGizmosSelected()
