@@ -4,16 +4,20 @@ using UnityEngine.SceneManagement;
 [RequireComponent(typeof(CharacterController))]
 public class PlayerMovement : MonoBehaviour
 {
+
+    private float currentWalkSpeed = 3f;
+    private float currentRunSpeed = 6f;
+
     [Header("References")]
     [Tooltip("Transform de la cámara, hija del jugador.")]
     [SerializeField] private Transform cameraTransform;
 
     [Header("Movement")]
+    [Tooltip("Si está activo, se puede correr manteniendo Shift.")]
+    [SerializeField] private float runSpeed = 6f;
     [SerializeField] private float walkSpeed = 3f;
     [SerializeField] private float gravity = -9.81f;
-    [Tooltip("Si está activo, se puede correr manteniendo Shift.")]
     [SerializeField] private bool enableRunning = false;
-    [SerializeField] private float runSpeed = 6f;
     [SerializeField] private KeyCode runKey = KeyCode.LeftShift;
 
     [Header("Mouse Look")]
@@ -44,6 +48,9 @@ public class PlayerMovement : MonoBehaviour
 
     private void Awake()
     {
+        currentWalkSpeed = walkSpeed;
+        currentRunSpeed = runSpeed;
+
         controller = GetComponent<CharacterController>();
 
         if (cameraTransform == null && Camera.main != null)
@@ -101,7 +108,7 @@ public class PlayerMovement : MonoBehaviour
         direction = Vector3.ClampMagnitude(direction, 1f);
 
         bool isRunning = enableRunning && Input.GetKey(runKey) && direction.magnitude > 0.1f;
-        float currentSpeed = isRunning ? runSpeed : walkSpeed;
+        float currentSpeed = isRunning ? currentRunSpeed : currentWalkSpeed;
 
         controller.Move(direction * currentSpeed * Time.deltaTime);
 
@@ -143,5 +150,17 @@ public class PlayerMovement : MonoBehaviour
             cameraTransform.localPosition = Vector3.Lerp(
                 cameraTransform.localPosition, initialCameraPosition, Time.deltaTime * bobSmoothing);
         }
+    }
+
+    public void setSpeed(float _walkSpeed, float _runSpeed)
+    {
+        currentWalkSpeed = _walkSpeed;
+        currentRunSpeed = _runSpeed;
+    }
+
+    public void resetSpeed()
+    {
+        currentWalkSpeed = walkSpeed;
+        currentRunSpeed = runSpeed;
     }
 }
