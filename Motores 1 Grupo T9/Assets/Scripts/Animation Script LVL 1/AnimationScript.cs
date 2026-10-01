@@ -6,6 +6,7 @@ public class AnimationScript : MonoBehaviour
 {
 
     [SerializeField] private PlayerMovement playerMovement;
+    [SerializeField] private Outline outline;
     [SerializeField] private GameObject HUD;
     [SerializeField] private GameObject PreviousHUD;
     [SerializeField] private GameObject brokenDron;
@@ -37,6 +38,11 @@ public class AnimationScript : MonoBehaviour
         //HUD.SetActive(false);
        // PreviousHUD.SetActive(false);
         Debug.Log("asdasdsad");
+    }
+    public void DisableOutline()
+    {
+
+        outline.enabled = false;
     }
 
     public void EnableMovement()
