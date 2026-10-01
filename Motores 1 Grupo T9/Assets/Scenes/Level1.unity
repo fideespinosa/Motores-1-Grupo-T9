@@ -6601,11 +6601,11 @@ MonoBehaviour:
   slideOffset: {x: 2.5, y: 0, z: 0}
   openDuration: 0.6
   outline: {fileID: 283588615}
-  audioSource: {fileID: 0}
+  audioSource: {fileID: 347714281}
   keyUnlock: {fileID: 0}
   keyLock: {fileID: 0}
-  closeDoor: {fileID: 0}
-  openDoor: {fileID: 0}
+  closeDoor: {fileID: 8300000, guid: c870bcf9547391349ad90c6acc3d4cef, type: 3}
+  openDoor: {fileID: 8300000, guid: e9fb8947d78da2e48b8a57af07411b63, type: 3}
 --- !u!65 &283588620
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -10245,11 +10245,11 @@ RectTransform:
   m_Children: []
   m_Father: {fileID: 102945625}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
-  m_AnchorMin: {x: 0.5, y: 0}
-  m_AnchorMax: {x: 0.5, y: 0}
-  m_AnchoredPosition: {x: 11.444272, y: 115}
+  m_AnchorMin: {x: 0.5, y: 0.5}
+  m_AnchorMax: {x: 0.5, y: 0.5}
+  m_AnchoredPosition: {x: 11.444272, y: -511}
   m_SizeDelta: {x: 465.2179, y: 50}
-  m_Pivot: {x: 0.5, y: 0}
+  m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &478904797
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -35263,7 +35263,7 @@ MonoBehaviour:
   pivot: {fileID: 0}
   animationType: 1
   rotationOffset: {x: 0, y: 0, z: 0}
-  slideOffset: {x: -1, y: 0, z: 0}
+  slideOffset: {x: -1, y: 0, z: 0.1}
   openDuration: 0.6
   outline: {fileID: 1557115088}
   audioSource: {fileID: 1557115093}
@@ -58785,11 +58785,11 @@ MonoBehaviour:
   slideOffset: {x: 0, y: 0, z: 0.4}
   openDuration: 0.6
   outline: {fileID: 8769756862922266490}
-  audioSource: {fileID: 0}
+  audioSource: {fileID: 347714281}
   keyUnlock: {fileID: 0}
   keyLock: {fileID: 0}
-  closeDoor: {fileID: 0}
-  openDoor: {fileID: 0}
+  closeDoor: {fileID: 8300000, guid: c870bcf9547391349ad90c6acc3d4cef, type: 3}
+  openDoor: {fileID: 8300000, guid: e9fb8947d78da2e48b8a57af07411b63, type: 3}
 --- !u!65 &8769756862922266492
 BoxCollider:
   m_ObjectHideFlags: 0
