@@ -53,7 +53,7 @@ public class MainMenu : MonoBehaviour
         camTransform.position = new Vector3(268.36f, 4.81f, 820.34f);
         camTransform.rotation = Quaternion.Euler(9.681f, -68.312f, 3.826f);
 
-        btnPlay.Focus();
+        //btnPlay.Focus();
     }
 
 

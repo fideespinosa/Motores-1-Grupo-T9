@@ -588,10 +588,16 @@ AudioMixerController:
     name: MyExposedParam
   - guid: 7f1a3eed9bbe3544bbb920940befff11
     name: MyExposedParam 2
+  - guid: a6b5ceca0dc92f84f99db905fd175049
+    name: VolMusic
   - guid: 9b3fc994f9166c0478d4b0645b882791
     name: MyExposedParam 4
+  - guid: 70a2e114c73bbd8489c072cc9a094993
+    name: VolMaster
   - guid: 8e0a5e97965ad1c4794dc82f2975f9d2
     name: MyExposedParam 1
+  - guid: badc73f800d63b948b8bdcfd1912c17b
+    name: VolFX
   m_AudioMixerGroupViews:
   - guids:
     - 0529944f7093f944b9c7252490130e99
@@ -614,7 +620,7 @@ AudioMixerController:
     - fc29a64e85ce51640913b51bc6a421f5
     name: View
   m_CurrentViewIndex: 0
-  m_TargetSnapshot: {fileID: 2265206388458865384}
+  m_TargetSnapshot: {fileID: 24500006}
 --- !u!243 &24300002
 AudioMixerGroupController:
   m_ObjectHideFlags: 0
