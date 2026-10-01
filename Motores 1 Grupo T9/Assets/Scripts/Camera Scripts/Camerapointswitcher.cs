@@ -12,6 +12,7 @@ public class CameraPointSwitcher : MonoBehaviour
     [Header("Points")]
     [SerializeField] private Transform pointA;
     [SerializeField] private Transform pointB;
+    [SerializeField] private Transform pointC;
     [SerializeField] private StartPoint startingPoint = StartPoint.PointA;
 
     [Header("Movement")]
@@ -22,15 +23,27 @@ public class CameraPointSwitcher : MonoBehaviour
 
     [Header("References")]
     [SerializeField] private MonoBehaviour fpsOldInput;
+    [SerializeField] private SubtitleSequencePlayer subScript;
+
+    [Header("Initial Point B Sequence")]
+    [SerializeField] private float waitAtPointB = 3f;
+    [SerializeField] private float waitAtPointC = 3f;
+    [SerializeField] private CanvasGroup continuePanel;
+    [SerializeField] private GameObject hud;
+
+    [Header("Panel Fade")]
+    [SerializeField] private float panelFadeDuration = 1f;
 
     private bool isAtPointA;
     private bool isMoving = false;
+    private bool sequenceRunning = false;
 
     private void Start()
     {
         isAtPointA = startingPoint == StartPoint.PointA;
 
         Transform target = isAtPointA ? pointA : pointB;
+
         if (target != null)
         {
             transform.position = target.position;
@@ -38,30 +51,90 @@ public class CameraPointSwitcher : MonoBehaviour
         }
 
         if (fpsOldInput != null)
-        {
             fpsOldInput.enabled = isAtPointA;
+
+        if (hud != null)
+            hud.SetActive(isAtPointA);
+
+        if (continuePanel != null)
+        {
+            continuePanel.alpha = 0f;
+            continuePanel.gameObject.SetActive(false);
         }
+
+        if (startingPoint == StartPoint.PointB)
+            StartCoroutine(PointBSequence());
     }
 
     public void SwitchCamera()
     {
-        if (isMoving) return;
+        if (isMoving || sequenceRunning) return;
 
         StartCoroutine(MoveTo(pointB, false));
-
     }
 
     private void Update()
     {
         if (Input.GetKeyDown(KeyCode.Escape) || Input.GetMouseButtonDown(0))
         {
-            if (!isAtPointA & enableEscapeToggle)
+            if (!isAtPointA && enableEscapeToggle && !sequenceRunning)
             {
                 StartCoroutine(MoveTo(pointA, true));
             }
-
         }
-        
+    }
+
+    private IEnumerator PointBSequence()
+    {
+        sequenceRunning = true;
+
+        yield return new WaitForSeconds(waitAtPointB);
+
+        if (continuePanel != null)
+        {
+            continuePanel.gameObject.SetActive(true);
+            continuePanel.alpha = 0f;
+
+            float elapsed = 0f;
+
+            while (elapsed < panelFadeDuration)
+            {
+                elapsed += Time.deltaTime;
+                continuePanel.alpha = Mathf.Lerp(0f, 1f, elapsed / panelFadeDuration);
+                yield return null;
+            }
+
+            continuePanel.alpha = 1f;
+        }
+
+        yield return new WaitUntil(() => Input.GetKeyDown(KeyCode.Space));
+
+        if (continuePanel != null)
+        {
+            float elapsed = 0f;
+
+            while (elapsed < panelFadeDuration)
+            {
+                elapsed += Time.deltaTime;
+                continuePanel.alpha = Mathf.Lerp(1f, 0f, elapsed / panelFadeDuration);
+                yield return null;
+            }
+
+            continuePanel.alpha = 0f;
+            continuePanel.gameObject.SetActive(false);
+        }
+
+        yield return StartCoroutine(MoveTo(pointC, false));
+        subScript.Play();
+
+        yield return new WaitForSeconds(waitAtPointC);
+
+        yield return StartCoroutine(MoveTo(pointA, true));
+      
+        enableEscapeToggle = !enableEscapeToggle;
+        moveDuration = 0.4f;
+
+        sequenceRunning = false;
     }
 
     private IEnumerator MoveTo(Transform target, bool willBeAtPointA)
@@ -70,6 +143,9 @@ public class CameraPointSwitcher : MonoBehaviour
 
         if (fpsOldInput != null)
             fpsOldInput.enabled = willBeAtPointA;
+
+        if (hud != null)
+            hud.SetActive(willBeAtPointA);
 
         isMoving = true;
 
