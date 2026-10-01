@@ -28,6 +28,7 @@ public class SubtitleSequencePlayer : MonoBehaviour
     // y llamar al metodp play();
     public void Play()
     {
+        displayedText.enabled = true;
         StartCoroutine(PlaySequence());
     }
 
@@ -60,6 +61,7 @@ public class SubtitleSequencePlayer : MonoBehaviour
         panel.SetActive(false);
 
         Debug.Log("termino textooo");
+        displayedText.text = "";
         displayedText.enabled = false;
     }
 
