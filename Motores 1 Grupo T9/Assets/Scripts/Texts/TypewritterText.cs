@@ -44,6 +44,7 @@ public class TypewriterText : MonoBehaviour
 
             currentText += letter;
             text.text = currentText;
+            //sonido de teclado por cada letra :)
 
             if (letter == ',')
             {

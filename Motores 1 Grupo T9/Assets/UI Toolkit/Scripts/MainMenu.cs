@@ -1,6 +1,6 @@
 using UnityEngine;
 using UnityEngine.UIElements;
-
+using System.Collections;
 public class MainMenu : MonoBehaviour
 {
     [Header("UI World Space (Mesa)")]
@@ -15,6 +15,10 @@ public class MainMenu : MonoBehaviour
 
     [Header("Camara")]
     [SerializeField] private Transform camTransform;
+
+    [Header("Panel para el fade in")]
+    [SerializeField] private CanvasGroup panel;
+    [SerializeField] private float fadeDuration = 3f;
 
     private Button btnPlay;
     private Button btnOptions;
@@ -68,9 +72,24 @@ public class MainMenu : MonoBehaviour
         }
 
         Debug.Log("Cargando juego...");
-        UnityEngine.SceneManagement.SceneManager.LoadScene("Terminal Introduction Scene");
+        StartCoroutine(FadeInCoroutine());
     }
 
+    private IEnumerator FadeInCoroutine()
+    {
+        float time = 0f;
+        panel.alpha = 0f;
+
+        while (time < fadeDuration)
+        {
+            time += Time.deltaTime;
+            panel.alpha = Mathf.Lerp(0f, 1f, time / fadeDuration);
+            yield return null;
+        }
+
+        panel.alpha = 1f;
+        UnityEngine.SceneManagement.SceneManager.LoadScene("Level1");
+    }
     private void OnOptionsClicked(ClickEvent evt)
     {
         btnPlay.style.display = DisplayStyle.None;
