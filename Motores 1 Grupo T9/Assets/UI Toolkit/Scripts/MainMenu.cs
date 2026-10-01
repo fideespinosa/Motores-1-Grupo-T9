@@ -15,6 +15,7 @@ public class MainMenu : MonoBehaviour
 
     [Header("Camara")]
     [SerializeField] private Transform camTransform;
+    [SerializeField] CameraSwitcherMainMenu camScript;
 
     [Header("Panel para el fade in")]
     [SerializeField] private CanvasGroup panel;
@@ -99,14 +100,17 @@ public class MainMenu : MonoBehaviour
         //mainMenuWorldGroup.SetActive(false);
         SetOptionsMenuVisible(true);
 
-        camTransform.position = new Vector3(265.284f, 5.448f, 821.479f);
-        camTransform.rotation = Quaternion.Euler(9.681f, -68.312f, 3.826f);
+        camScript.GoToOptions();
+
+       // camTransform.position = new Vector3(265.284f, 5.448f, 821.479f);
+       //camTransform.rotation = Quaternion.Euler(9.681f, -68.312f, 3.826f);
 
         nameDocument.position = new Vector3(261.24f, 4.11f, 823.01f);
     }
 
     private void OnBackFromOptionsClicked(ClickEvent evt)
     {
+        camScript.ReturnToMain();
         // Ocultar opciones 2D y restaurar botones 3D de la mesa
         SetOptionsMenuVisible(false);
         //mainMenuWorldGroup.SetActive(true);
@@ -114,9 +118,10 @@ public class MainMenu : MonoBehaviour
         btnPlay.style.display = DisplayStyle.Flex;
         btnOptions.style.display = DisplayStyle.Flex;
         btnQuit.style.display = DisplayStyle.Flex;
+        /*
+                camTransform.position = new Vector3(268.36f, 4.81f, 820.34f);
+                camTransform.rotation = Quaternion.Euler(9.681f, -68.312f, 3.826f);*/
 
-        camTransform.position = new Vector3(268.36f, 4.81f, 820.34f);
-        camTransform.rotation = Quaternion.Euler(9.681f, -68.312f, 3.826f);
 
         nameDocument.position = new Vector3(261.24f, 6.02f, 819.06f);
     }
