@@ -1798,6 +1798,9 @@ PrefabInstance:
     - targetCorrespondingSourceObject: {fileID: 2654713335656134247, guid: cd02bdc1bf6a8c14280876e04925bf99, type: 3}
       insertIndex: -1
       addedObject: {fileID: 1715456542}
+    - targetCorrespondingSourceObject: {fileID: 2654713335656134247, guid: cd02bdc1bf6a8c14280876e04925bf99, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 1715456546}
   m_SourcePrefab: {fileID: 100100000, guid: cd02bdc1bf6a8c14280876e04925bf99, type: 3}
 --- !u!1 &1715456541 stripped
 GameObject:
@@ -1903,6 +1906,22 @@ Transform:
   m_CorrespondingSourceObject: {fileID: -8679921383154817045, guid: cd02bdc1bf6a8c14280876e04925bf99, type: 3}
   m_PrefabInstance: {fileID: 1715456540}
   m_PrefabAsset: {fileID: 0}
+--- !u!114 &1715456546
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1715456541}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 8d0743713c8d84a4d8a8b6b67674bd02, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::LightFlicker
+  minIntensity: 3
+  maxIntensity: 9.39
+  flickerSpeed: 12
+  smooth: 0
 --- !u!1001 &1724789012
 PrefabInstance:
   m_ObjectHideFlags: 0
