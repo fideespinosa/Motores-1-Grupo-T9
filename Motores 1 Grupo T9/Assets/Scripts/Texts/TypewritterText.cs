@@ -1,25 +1,115 @@
 using System.Collections;
+using System.Collections.Generic;
 using TMPro;
 using UnityEngine;
 
-public class TypewriterText : MonoBehaviour
+public class TypewritterText : MonoBehaviour
 {
-    [SerializeField] private TextMeshProUGUI text;
-    [SerializeField] private float typingSpeed = 0.05f;
-    [SerializeField] private float pauseDuration = 0.5f;
-    [SerializeField] private float dotPause = 0.8f;
+    [Header("Pause Between Texts")]
+    [SerializeField] private float pauseAfterText = 1f;
 
-    private string fullText;
+    [Header("Date")]
+    [SerializeField] private TextMeshProUGUI dateText;
+    [SerializeField] private float dateTypingSpeed = 0.12f;
+
+    [Header("Alert Blink")]
+    [SerializeField] private TextMeshProUGUI alertLabel;
+    [SerializeField] private float blinkInterval = 0.15f;
+    [SerializeField] private float blinkDuration = 1f;
+    [SerializeField] private float delayAfterBlink = 1f;
+
+    [Header("Alert Text")]
+    [SerializeField] private TextMeshProUGUI alertText;
+
+    [Header("Fast Typing Speed")]
+    [Tooltip("Usada para el texto de alerta, el título del log, y los textos de sistema.")]
+    [SerializeField] private float fastTypingSpeed = 0.02f;
+
+    [Header("Log")]
+    [SerializeField] private TextMeshProUGUI logTitleText;
+    [SerializeField] private TextMeshProUGUI logBodyText;
+    [SerializeField] private float logTypingSpeed = 0.05f;
+    [SerializeField] private float logPauseDuration = 0.5f;
+    [SerializeField] private float logDotPause = 0.8f;
+
+    [Header("System Texts")]
+    [SerializeField] private List<TextMeshProUGUI> systemTexts;
+
+    private string dateFullText;
+    private string alertFullText;
+    private string logTitleFullText;
+    private string logBodyFullText;
+    private List<string> systemFullTexts = new List<string>();
+
+    private void Awake()
+    {
+        dateFullText = dateText.text;
+        dateText.text = "";
+
+        alertFullText = alertText.text;
+        alertText.text = "";
+
+        logTitleFullText = logTitleText.text;
+        logTitleText.text = "";
+
+        logBodyFullText = logBodyText.text;
+        logBodyText.text = "";
+
+        if (alertLabel != null)
+        {
+            alertLabel.enabled = false;
+        }
+
+        foreach (TextMeshProUGUI t in systemTexts)
+        {
+            systemFullTexts.Add(t.text);
+            t.text = "";
+        }
+    }
 
     private void Start()
     {
-        fullText = text.text;
-        text.text = "";
-
-        StartCoroutine(TypeText());
+        StartCoroutine(RunSequence());
     }
 
-    private IEnumerator TypeText()
+    private IEnumerator RunSequence()
+    {
+        yield return TypeOut(dateText, dateFullText, dateTypingSpeed, false, 0f, 0f);
+
+        yield return BlinkLabel(alertLabel, blinkInterval, blinkDuration);
+        yield return new WaitForSeconds(delayAfterBlink);
+
+        yield return TypeOut(alertText, alertFullText, fastTypingSpeed, false, 0f, 0f);
+        yield return new WaitForSeconds(pauseAfterText);
+
+        yield return TypeOut(logTitleText, logTitleFullText, fastTypingSpeed, false, 0f, 0f);
+        yield return new WaitForSeconds(pauseAfterText);
+
+        yield return TypeOut(logBodyText, logBodyFullText, logTypingSpeed, true, logPauseDuration, logDotPause);
+        yield return new WaitForSeconds(pauseAfterText);
+
+        for (int i = 0; i < systemTexts.Count; i++)
+        {
+            yield return TypeOut(systemTexts[i], systemFullTexts[i], fastTypingSpeed, false, 0f, 0f);
+        }
+    }
+
+    private IEnumerator BlinkLabel(TextMeshProUGUI target, float interval, float duration)
+    {
+        if (target == null) yield break;
+
+        float elapsed = 0f;
+        while (elapsed < duration)
+        {
+            target.enabled = !target.enabled;
+            yield return new WaitForSeconds(interval);
+            elapsed += interval;
+        }
+
+        target.enabled = true;
+    }
+
+    private IEnumerator TypeOut(TextMeshProUGUI target, string fullText, float speed, bool usePunctuationPauses, float commaPause, float dotPause)
     {
         string currentText = "";
 
@@ -33,7 +123,7 @@ public class TypewriterText : MonoBehaviour
                 {
                     string tag = fullText.Substring(i, tagEnd - i + 1);
                     currentText += tag;
-                    text.text = currentText;
+                    target.text = currentText;
 
                     i = tagEnd;
                     continue;
@@ -43,20 +133,19 @@ public class TypewriterText : MonoBehaviour
             char letter = fullText[i];
 
             currentText += letter;
-            text.text = currentText;
-            //sonido de teclado por cada letra :)
+            target.text = currentText;
 
-            if (letter == ',')
+            if (usePunctuationPauses && letter == ',')
             {
-                yield return new WaitForSeconds(pauseDuration);
+                yield return new WaitForSeconds(commaPause);
             }
-            else if (letter == '.' || letter == ';' || letter == ':')
+            else if (usePunctuationPauses && (letter == '.' || letter == ';' || letter == ':'))
             {
                 yield return new WaitForSeconds(dotPause);
             }
             else
             {
-                yield return new WaitForSeconds(typingSpeed);
+                yield return new WaitForSeconds(speed);
             }
         }
     }
