@@ -17,7 +17,7 @@ public class PanelManager : MonoBehaviour
 
     private List<PanelButton> pressedButtons = new();
 
-    private void Start()
+    public void StartMemoryMinigame()
     {
         RandomizeOrder();
     }
@@ -55,6 +55,10 @@ public class PanelManager : MonoBehaviour
     {
         if (puzzleCompleted)
             return;
+        if(button  == null)
+        {
+            Debug.Log("el boton es nuloooo");
+        }
 
         int buttonNumber = button.GetButtonNumber();
 

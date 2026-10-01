@@ -18,7 +18,7 @@ public class InterceptorScript : MonoBehaviour
     private Coroutine attackRoutine;
     private Coroutine attackTimerRoutine;
 
-    private void OnEnable()
+/*    private void OnEnable()
     {
         TryStartAppearCycle();
     }
@@ -26,9 +26,9 @@ public class InterceptorScript : MonoBehaviour
     private void OnDisable()
     {
         StopAllLocalCoroutines();
-    }
+    }*/
 
-    private void TryStartAppearCycle()
+    public void TryStartAppearCycle()
     {
         if (GameStatusScript.Instance != null && GameStatusScript.Instance.minigameRunning)
             return;
@@ -57,16 +57,16 @@ public class InterceptorScript : MonoBehaviour
 
         while (timer > 0f)
         {
-            if (GameStatusScript.Instance != null && GameStatusScript.Instance.minigameRunning)
-            {
-                attackRoutine = null;
-                yield break;
-            }
 
             timer -= Time.deltaTime;
             yield return null;
         }
 
+        if (GameStatusScript.Instance != null && GameStatusScript.Instance.minigameRunning)
+            {
+                attackRoutine = null;
+                yield break;
+            }
         AttackPerceptor();
     }
 
@@ -118,7 +118,7 @@ public class InterceptorScript : MonoBehaviour
 
         StopAllLocalCoroutines();
 
-        TryStartAppearCycle();
+        //TryStartAppearCycle();
     }
 
     private void ActivateZone()

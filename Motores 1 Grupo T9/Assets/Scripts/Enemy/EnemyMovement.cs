@@ -4,6 +4,7 @@ using UnityEngine.AI;
 
 public class EnemyMovement : MonoBehaviour
 {
+    [SerializeField] enemiesAmountOfAttacks amountOfAttacks;
     [Header("Patrulla")]
     public Transform[] waypoints;
     public float moveSpeed = 2.5f;
@@ -28,6 +29,7 @@ public class EnemyMovement : MonoBehaviour
     [Header("Referencias de Eventos")]
     public PlayerSwitcher switcher;
     public MinigamesManager minigamesManager;
+    [SerializeField] InterceptorScript interceptorScript;
     [SerializeField] private Transform spawnPoint;
 
     // Estado compartido
@@ -251,11 +253,25 @@ public class EnemyMovement : MonoBehaviour
 
     void TriggerDroneFailure()
     {
-        if (minigamesManager != null)
+        amountOfAttacks.setAmount(amountOfAttacks.getAmount() + 1);
+
+        if (amountOfAttacks.getAmount() == 1)
         {
-            minigameActive = true;
-            minigamesManager.DronFailure();
+            if (minigamesManager != null)
+            {
+                minigameActive = true;
+                minigamesManager.DronFailure();
+            }
         }
+        else
+        {
+
+            //el otro minijuego
+            Debug.Log("segundo minijuegoooo");
+            interceptorScript.TryStartAppearCycle();
+
+        }
+
     }
 
     public void ResetEnemy()

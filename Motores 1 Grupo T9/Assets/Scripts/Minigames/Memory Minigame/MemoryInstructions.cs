@@ -4,6 +4,7 @@ public class MemoryInstructions : MonoBehaviour
 {
     [SerializeField] private GameObject zone;
     [SerializeField] private MinigamesManager minigamesManager;
+    [SerializeField] private PanelManager panelManager;
     private void OnEnable()
     {
         minigamesManager.FreezeGame();
@@ -15,6 +16,7 @@ public class MemoryInstructions : MonoBehaviour
     {
         Time.timeScale = 1f;
 
+        panelManager.StartMemoryMinigame();
         gameObject.SetActive(false);
         minigamesManager.UnfreezeGame();
     }
