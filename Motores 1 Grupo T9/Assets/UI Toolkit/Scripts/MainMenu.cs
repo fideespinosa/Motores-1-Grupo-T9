@@ -8,6 +8,7 @@ public class MainMenu : MonoBehaviour
     [SerializeField] private UIDocument playDocument;       // UIDocument sobre la Radio
     [SerializeField] private UIDocument optionsDocument;    // UIDocument sobre el Teléfono
     [SerializeField] private UIDocument quitDocument;       // UIDocument sobre la Mochila
+    [SerializeField] private Transform nameDocument;       // UIDocument del nombre del juego
 
     [Header("UI Screen Space (Opciones 2D)")]
     [SerializeField] private UIDocument optionsMenu2D;
@@ -36,6 +37,7 @@ public class MainMenu : MonoBehaviour
         if (optionsMenu2D != null)
             btnBackFromOptions = optionsMenu2D.rootVisualElement.Q<Button>("BackButton");
 
+        
         btnPlay.style.display = DisplayStyle.Flex;
         btnOptions.style.display = DisplayStyle.Flex;
         btnQuit.style.display = DisplayStyle.Flex;
@@ -53,6 +55,7 @@ public class MainMenu : MonoBehaviour
         camTransform.position = new Vector3(268.36f, 4.81f, 820.34f);
         camTransform.rotation = Quaternion.Euler(9.681f, -68.312f, 3.826f);
 
+        nameDocument.position = new Vector3(261.24f, 6.02f, 819.06f);
         //btnPlay.Focus();
     }
 
@@ -79,6 +82,8 @@ public class MainMenu : MonoBehaviour
 
         camTransform.position = new Vector3(265.284f, 5.448f, 821.479f);
         camTransform.rotation = Quaternion.Euler(9.681f, -68.312f, 3.826f);
+
+        nameDocument.position = new Vector3(261.24f, 4.11f, 823.01f);
     }
 
     private void OnBackFromOptionsClicked(ClickEvent evt)
@@ -93,6 +98,8 @@ public class MainMenu : MonoBehaviour
 
         camTransform.position = new Vector3(268.36f, 4.81f, 820.34f);
         camTransform.rotation = Quaternion.Euler(9.681f, -68.312f, 3.826f);
+
+        nameDocument.position = new Vector3(261.24f, 6.02f, 819.06f);
     }
 
     private void OnQuitClicked(ClickEvent evt)
