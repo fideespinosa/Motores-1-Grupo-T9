@@ -1,6 +1,7 @@
 ﻿using UnityEngine;
 using UnityEngine.SceneManagement;
 using UnityEngine.AI;
+using UnityEngine.Events;
 
 public class EnemyMovement : MonoBehaviour
 {
@@ -31,6 +32,10 @@ public class EnemyMovement : MonoBehaviour
     public MinigamesManager minigamesManager;
     [SerializeField] InterceptorScript interceptorScript;
     [SerializeField] private Transform spawnPoint;
+
+    [Header("Minijuegos")]
+    [SerializeField] UnityEvent[] minigames;
+    private int lastMinigame = -1;
 
     // Estado compartido
     private bool playerDead = false;
@@ -122,6 +127,9 @@ public class EnemyMovement : MonoBehaviour
         if (player == null || minigameActive || resetCooldown > 0f)
             return false;
 
+        if (GameStatusScript.Instance != null && GameStatusScript.Instance.minigameRunning)
+            return false;
+
         return CanSeePlayer()
             || CanHearPlayerNearby()
             || (DistanceToPlayer() <= proximityChaseRange && !isAttacking);
@@ -157,12 +165,7 @@ public class EnemyMovement : MonoBehaviour
         if (audioController != null)
             audioController.PlayAttackSound();
 
-        isAttacking = true;
-
-        if (agent != null)
-        {
-            agent.ResetPath();
-        }
+        resetCooldown = 15f; //bien hardcodeado
 
         Debug.Log("Dron interceptado. Iniciando minijuego...");
         Die();
@@ -242,8 +245,6 @@ public class EnemyMovement : MonoBehaviour
         }
     }
 
-    // ---------- Minijuego / reset ----------
-
     void Die()
     {
         if (playerDead) return;
@@ -254,24 +255,18 @@ public class EnemyMovement : MonoBehaviour
     void TriggerDroneFailure()
     {
         amountOfAttacks.setAmount(amountOfAttacks.getAmount() + 1);
+        Debug.Log("ATAQUE nro " + amountOfAttacks.getAmount());
 
         if (amountOfAttacks.getAmount() == 1)
         {
             if (minigamesManager != null)
-            {
-                minigameActive = true;
                 minigamesManager.DronFailure();
-            }
         }
         else
         {
-
-            //el otro minijuego
-            Debug.Log("segundo minijuegoooo");
-            interceptorScript.TryStartAppearCycle();
-
+            if (interceptorScript != null)
+                interceptorScript.TryStartAppearCycle();
         }
-
     }
 
     public void ResetEnemy()
@@ -279,6 +274,12 @@ public class EnemyMovement : MonoBehaviour
         isAttacking = false;
         minigameActive = false;
         resetCooldown = resetCooldownTime;
+
+        if (agent != null)
+        {
+            agent.isStopped = false;
+            agent.ResetPath();
+        }
 
         stateMachine.ChangeState(PatrolState);
     }

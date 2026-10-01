@@ -4,14 +4,10 @@ public class AttackState : EnemyState
 
     public override void Enter()
     {
-        enemy.TriggerAttack(); // sonido, ResetPath, Die() -> minijuego
+        enemy.PatrolState.SkipToNextWaypoint(); // sigue hacia el proximo waypoint
+        enemy.TriggerAttack();                  // sonido + contador + minijuego
+        enemy.ChangeState(enemy.PatrolState);   // vuelve a patrullar ya
     }
 
-    public override void Tick()
-    {
-        if (enemy.patrolDuringMinigame)
-        {
-            enemy.PatrolState.Patrol();
-        }
-    }
+    public override void Tick() { }
 }

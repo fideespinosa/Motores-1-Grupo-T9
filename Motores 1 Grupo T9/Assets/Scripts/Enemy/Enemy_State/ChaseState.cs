@@ -12,12 +12,10 @@ public class ChaseState : EnemyState
         // Perdio al jugador -> vuelve a patrullar
         if (!enemy.ShouldChase())
         {
-            enemy.OnChaseEnded(); // apaga musica de combate
             enemy.ChangeState(enemy.PatrolState);
             return;
         }
 
-        // Lo alcanzo -> ataca
         if (enemy.DistanceToPlayer() <= enemy.attackRange && !enemy.IsAttacking)
         {
             enemy.ChangeState(enemy.AttackState);
@@ -28,5 +26,10 @@ public class ChaseState : EnemyState
         {
             enemy.MoveTowards(enemy.Player.position, enemy.chaseSpeed);
         }
+    }
+
+    public override void Exit()
+    {
+        enemy.OnChaseEnded();
     }
 }

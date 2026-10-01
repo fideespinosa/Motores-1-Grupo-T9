@@ -4,6 +4,9 @@ using UnityEngine.SceneManagement;
 
 public class InterceptorScript : MonoBehaviour
 {
+    [SerializeField] private DroneController drone;
+
+
     [SerializeField] private float minSeconds = 1f; //180f son 3 minutos
     [SerializeField] private float maxSeconds = 4f; //420f son 7 minutos
     [SerializeField] private float timeWhileAttacking = 10f;
@@ -88,6 +91,7 @@ public class InterceptorScript : MonoBehaviour
         animatorScript.StartAnimation();
 
         attackTimerRoutine = StartCoroutine(AttackTimer());
+        if (drone != null) drone.FreezeDrone();
     }
 
     private IEnumerator AttackTimer()
@@ -117,6 +121,8 @@ public class InterceptorScript : MonoBehaviour
         alarmLight.SetActive(false);
 
         StopAllLocalCoroutines();
+
+        if (drone != null) drone.UnfreezeDrone();
 
         //TryStartAppearCycle();
     }

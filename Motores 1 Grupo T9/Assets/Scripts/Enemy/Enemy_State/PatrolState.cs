@@ -90,4 +90,11 @@ public class PatrolState : EnemyState
 
         nowWaypoint += waypointDirection;
     }
+    public int CurrentIndex => nowWaypoint;
+
+    public void SkipToNextWaypoint()
+    {
+        waitTimer = 0f;
+        AdvanceWaypointPingPong();
+    }
 }
