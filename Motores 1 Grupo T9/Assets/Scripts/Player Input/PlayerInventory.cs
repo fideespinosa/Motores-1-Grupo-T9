@@ -43,6 +43,7 @@ public class PlayerInventory : MonoBehaviour
     [SerializeField] private TextMeshProUGUI textPMetal;
     [SerializeField] private TextMeshProUGUI textPCombustible;
     [SerializeField] private TextMeshProUGUI textPInsumos;
+    [SerializeField] private CamDroneUI camDrone;
 
     public void CollectResource(resourcesManager.ResourceType type)
     {
@@ -50,20 +51,26 @@ public class PlayerInventory : MonoBehaviour
         {
             case resourcesManager.ResourceType.Metal:
                 metalCollected++;
-                textMetal.text = metalCollected.ToString();
-                textPMetal.text = metalCollected.ToString();
+                //textMetal.text = metalCollected.ToString();
+                camDrone.resources1Lbl.text = $"/ " +  metalCollected.ToString() + "  Piezas de Metal";
+                //textPMetal.text = metalCollected.ToString();
+                camDrone.qResources1Lbl.text = metalCollected.ToString();
                 break;
 
             case resourcesManager.ResourceType.Combustible:
                 combustibleCollected++;
-                textCombustible.text = combustibleCollected.ToString();
-                textPCombustible.text = combustibleCollected.ToString();
+                //textCombustible.text = combustibleCollected.ToString();
+                camDrone.resources2Lbl.text = $"/" + metalCollected.ToString() + "  Posible Combustible";
+                //textPCombustible.text = combustibleCollected.ToString();
+                camDrone.qResources2Lbl.text = metalCollected.ToString();
                 break;
 
             case resourcesManager.ResourceType.InsumosElectronicos:
                 insumosCollected++;
-                textInsumos.text = insumosCollected.ToString();
-                textPInsumos.text = insumosCollected.ToString();
+                //textInsumos.text = insumosCollected.ToString();
+                camDrone.resources3Lbl.text = $"/" + metalCollected.ToString() + "  Insumos Electrónicos";
+                //textPInsumos.text = insumosCollected.ToString();
+                camDrone.qResources3Lbl.text = metalCollected.ToString();
                 break;
         }
 

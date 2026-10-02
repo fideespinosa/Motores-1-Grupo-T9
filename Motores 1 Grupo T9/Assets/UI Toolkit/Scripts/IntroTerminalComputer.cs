@@ -1,5 +1,6 @@
 using System;
 using System.Collections;
+using UnityEditor;
 using UnityEngine;
 using UnityEngine.InputSystem;
 using UnityEngine.InputSystem.Utilities;
@@ -16,7 +17,7 @@ public class IntroTerminalComputer : MonoBehaviour
     private Label detailLbl;
     private Image logoImg;
 
-    private string nextSceneName = "MainMenu"; //Corregir con el nombre correcto!
+    [SerializeField] private string nextSceneName = "MainMenu"; //Corregir con el nombre correcto!
     private bool canContinue = false;
     private AsyncOperation sceneAsyncOp;
     private IDisposable inputEventListener;
@@ -31,6 +32,9 @@ public class IntroTerminalComputer : MonoBehaviour
         logoImg = root.Q<Image>("LogoImg");
         nameLbl = root.Q<Label>("NameLbl");
         detailLbl = root.Q<Label>("DetailLbl");
+
+        nameLbl.text = "PROYECTO PHARUS";
+        detailLbl.text = "MUCHAS GRACIAS POR JUGAR\n\n" + "SEGUINOS Y ENTERATE CUANDO SALGA LA VERSION FINAL\n\n" + "@TERMINAL9GAMES";
 
         StartCoroutine(PrecargarEscenaRutinaria());
         StartCoroutine(ActivarInputSeguro());
