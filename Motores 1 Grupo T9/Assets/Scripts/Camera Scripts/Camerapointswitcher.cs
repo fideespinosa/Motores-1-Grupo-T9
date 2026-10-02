@@ -90,6 +90,8 @@ public class CameraPointSwitcher : MonoBehaviour
 
         yield return new WaitForSeconds(waitAtPointB);
 
+        bool spacePressed = false;
+
         if (continuePanel != null)
         {
             continuePanel.gameObject.SetActive(true);
@@ -101,22 +103,36 @@ public class CameraPointSwitcher : MonoBehaviour
             {
                 elapsed += Time.deltaTime;
                 continuePanel.alpha = Mathf.Lerp(0f, 1f, elapsed / panelFadeDuration);
+
+                if (Input.GetKeyDown(KeyCode.Space))
+                {
+                    spacePressed = true;
+                    break;
+                }
+
                 yield return null;
             }
 
-            continuePanel.alpha = 1f;
+            if (!spacePressed)
+            {
+                continuePanel.alpha = 1f;
+            }
         }
 
-        yield return new WaitUntil(() => Input.GetKeyDown(KeyCode.Space));
+        if (!spacePressed)
+        {
+            yield return new WaitUntil(() => Input.GetKeyDown(KeyCode.Space));
+        }
 
         if (continuePanel != null)
         {
             float elapsed = 0f;
+            float startAlpha = continuePanel.alpha;
 
             while (elapsed < panelFadeDuration)
             {
                 elapsed += Time.deltaTime;
-                continuePanel.alpha = Mathf.Lerp(1f, 0f, elapsed / panelFadeDuration);
+                continuePanel.alpha = Mathf.Lerp(startAlpha, 0f, elapsed / panelFadeDuration);
                 yield return null;
             }
 
@@ -130,7 +146,7 @@ public class CameraPointSwitcher : MonoBehaviour
         yield return new WaitForSeconds(waitAtPointC);
 
         yield return StartCoroutine(MoveTo(pointA, true));
-      
+
         enableEscapeToggle = !enableEscapeToggle;
         moveDuration = 0.4f;
 
