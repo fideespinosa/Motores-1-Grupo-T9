@@ -2,6 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using TMPro;
 using UnityEngine;
+using UnityEngine.Events;
 
 public class TypewritterText : MonoBehaviour
 {
@@ -34,6 +35,18 @@ public class TypewritterText : MonoBehaviour
 
     [Header("System Texts")]
     [SerializeField] private List<TextMeshProUGUI> systemTexts;
+
+    [Header("Audio")]
+    [SerializeField] private AudioSource typingAudioSource;
+    [SerializeField] private AudioClip cyberTypingClip;
+    [SerializeField] private AudioClip humanTypingClip;
+    private bool muteTypingAudio = false;
+
+    [Header("Tutorial IA")]
+    public GameObject iaTutorialObject;
+
+    [Header("Evento para disparar IA tuto")]
+    public UnityEvent onSequenceFinishedKeycap;
 
     private string dateFullText;
     private string alertFullText;
@@ -92,6 +105,11 @@ public class TypewritterText : MonoBehaviour
         {
             yield return TypeOut(systemTexts[i], systemFullTexts[i], fastTypingSpeed, false, 0f, 0f);
         }
+
+       if (!muteTypingAudio && onSequenceFinishedKeycap != null)
+        {
+            onSequenceFinishedKeycap.Invoke();
+        }
     }
 
     private IEnumerator BlinkLabel(TextMeshProUGUI target, float interval, float duration)
@@ -112,6 +130,13 @@ public class TypewritterText : MonoBehaviour
     private IEnumerator TypeOut(TextMeshProUGUI target, string fullText, float speed, bool usePunctuationPauses, float commaPause, float dotPause)
     {
         string currentText = "";
+
+        if (typingAudioSource != null && !muteTypingAudio)
+        {
+            typingAudioSource.clip = (target == logBodyText) ? humanTypingClip : cyberTypingClip;
+            typingAudioSource.loop = true;
+            typingAudioSource.Play();
+        }
 
         for (int i = 0; i < fullText.Length; i++)
         {
@@ -137,16 +162,41 @@ public class TypewritterText : MonoBehaviour
 
             if (usePunctuationPauses && letter == ',')
             {
+                if (typingAudioSource != null) typingAudioSource.Pause();
                 yield return new WaitForSeconds(commaPause);
+                if (typingAudioSource != null && !muteTypingAudio) typingAudioSource.Play();
             }
             else if (usePunctuationPauses && (letter == '.' || letter == ';' || letter == ':'))
             {
+                if (typingAudioSource != null) typingAudioSource.Pause();
                 yield return new WaitForSeconds(dotPause);
+                if (typingAudioSource != null && !muteTypingAudio) typingAudioSource.Play();
             }
             else
             {
                 yield return new WaitForSeconds(speed);
             }
         }
+
+        if (typingAudioSource != null) typingAudioSource.Stop();
     }
+
+    public void ForceStopAndFinish()
+    {
+        if (muteTypingAudio) return;
+
+        muteTypingAudio = true; 
+
+        if (typingAudioSource != null)
+        {
+            typingAudioSource.Stop(); 
+        }
+
+        
+        if (onSequenceFinishedKeycap != null)
+        {
+            onSequenceFinishedKeycap.Invoke();
+        }
+    }
+
 }

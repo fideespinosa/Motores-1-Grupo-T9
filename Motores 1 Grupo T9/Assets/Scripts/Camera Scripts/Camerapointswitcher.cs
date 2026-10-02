@@ -106,6 +106,7 @@ public class CameraPointSwitcher : MonoBehaviour
 
                 if (Input.GetKeyDown(KeyCode.Space))
                 {
+                    FindFirstObjectByType<TypewritterText>().ForceStopAndFinish();
                     spacePressed = true;
                     break;
                 }
@@ -121,7 +122,9 @@ public class CameraPointSwitcher : MonoBehaviour
 
         if (!spacePressed)
         {
+            
             yield return new WaitUntil(() => Input.GetKeyDown(KeyCode.Space));
+            FindFirstObjectByType<TypewritterText>().ForceStopAndFinish();
         }
 
         if (continuePanel != null)

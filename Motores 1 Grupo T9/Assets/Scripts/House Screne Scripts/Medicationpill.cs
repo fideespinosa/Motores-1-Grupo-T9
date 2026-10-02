@@ -36,6 +36,7 @@ public class MedicationPill : MonoBehaviour, IInteractable
 
     private void PlayRandomPillSound()
     {
+        audioSource.enabled = true;
         if (clipList.Length == 0) return;
 
         int indexAlt = Random.Range(0, clipList.Length);
