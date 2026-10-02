@@ -88,7 +88,7 @@ public class MinigamesManager : MonoBehaviour
             if (SFXManager.Instance.Alarm != null) SFXManager.Instance.Alarm.SetAlarmState(false);
             if (SFXManager.Instance.Minigame != null) SFXManager.Instance.Minigame.PlayFeedback(true);
         }
-        if (drone != null) drone.UnfreezeDrone();
+        if (drone != null) drone.UnfreezeOnTab();
     }
 
     public void UnfreezeGame()

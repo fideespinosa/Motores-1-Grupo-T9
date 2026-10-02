@@ -36,6 +36,7 @@ public class EnemyMovement : MonoBehaviour
     [Header("Minijuegos")]
     [SerializeField] UnityEvent[] minigames;
     private int lastMinigame = -1;
+    [SerializeField] DroneHitSequence hitSequence;
 
     // Estado compartido
     private bool playerDead = false;
@@ -254,19 +255,26 @@ public class EnemyMovement : MonoBehaviour
 
     void TriggerDroneFailure()
     {
-        amountOfAttacks.setAmount(amountOfAttacks.getAmount() + 1);
-        Debug.Log("ATAQUE nro " + amountOfAttacks.getAmount());
+        if (hitSequence != null && hitSequence.IsPlaying) return;
 
-        if (amountOfAttacks.getAmount() == 1)
+        amountOfAttacks.setAmount(amountOfAttacks.getAmount() + 1);
+        int count = amountOfAttacks.getAmount();
+        Debug.Log("ATAQUE nro " + count);
+
+        System.Action startMinigame = () =>
         {
-            if (minigamesManager != null)
-                minigamesManager.DronFailure();
-        }
-        else
-        {
-            if (interceptorScript != null)
-                interceptorScript.TryStartAppearCycle();
-        }
+            if (count == 1)
+            {
+                if (minigamesManager != null) minigamesManager.DronFailure();
+            }
+            else
+            {
+                if (interceptorScript != null) interceptorScript.TryStartAppearCycle();
+            }
+        };
+
+        if (hitSequence != null) hitSequence.Play(startMinigame);
+        else startMinigame();
     }
 
     public void ResetEnemy()

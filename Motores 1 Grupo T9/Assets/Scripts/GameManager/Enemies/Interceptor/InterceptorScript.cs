@@ -114,8 +114,10 @@ public class InterceptorScript : MonoBehaviour
         Debug.Log("bicho se fue");
 
         if (GameStatusScript.Instance != null)
+        {
             Debug.Log("minijuego apagado");
-        GameStatusScript.Instance.EndMinigame();
+            GameStatusScript.Instance.EndMinigame();
+        }
 
         animatorScript.EndAnimation();
 
@@ -125,7 +127,7 @@ public class InterceptorScript : MonoBehaviour
 
         StopAllLocalCoroutines();
 
-        if (drone != null) drone.UnfreezeDrone();
+        if (drone != null) drone.UnfreezeOnTab();
 
         if (countdownBar != null) countdownBar.ResetBar();
 

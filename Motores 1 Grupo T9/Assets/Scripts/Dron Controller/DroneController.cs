@@ -1,4 +1,5 @@
 using UnityEngine;
+using System.Collections;
 using UnityEngine.InputSystem;
 
 public class DroneController : MonoBehaviour
@@ -22,6 +23,8 @@ public class DroneController : MonoBehaviour
     private Rigidbody rb;
     [SerializeField] private LayerMask groundLayer;
     private Vector2 inputMove;
+    private Coroutine unfreezeRoutine;
+    [SerializeField] private DroneHitSequence hitSequence;
 
     RigidbodyConstraints originalConstraints;
 
@@ -76,10 +79,12 @@ public class DroneController : MonoBehaviour
 
     public void UnfreezeDrone()
     {
+        if (unfreezeRoutine != null) { StopCoroutine(unfreezeRoutine); unfreezeRoutine = null; }
         rb.constraints = originalConstraints;
 
         if (colliderToggle != null)
             colliderToggle.SetColliders(true);
+        if (hitSequence != null) hitSequence.ResetCamera();
     }
 
     private void ApplyGiroscopicStabiliy()
@@ -98,5 +103,20 @@ public class DroneController : MonoBehaviour
         rb.AddTorque(torqueVector * (stabilityStrength * stabilityStrength), ForceMode.Acceleration);
 
         rb.angularVelocity = Vector3.ClampMagnitude(rb.angularVelocity, 4f);
+    }
+    public void UnfreezeOnTab()
+    {
+        if (unfreezeRoutine != null) StopCoroutine(unfreezeRoutine);
+        unfreezeRoutine = StartCoroutine(WaitForTab());
+    }
+    private IEnumerator WaitForTab()
+    {
+        yield return null; // ignora un TAB del mismo frame en que termino el minijuego
+
+        while (Keyboard.current == null || !Keyboard.current.tabKey.wasPressedThisFrame)
+            yield return null;
+
+        UnfreezeDrone();
+        unfreezeRoutine = null;
     }
 }
