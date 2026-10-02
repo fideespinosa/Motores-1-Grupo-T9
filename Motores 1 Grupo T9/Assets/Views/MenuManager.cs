@@ -22,7 +22,7 @@ public class MenuManager : MonoBehaviour
     {
         /*string lastScene = PlayerPrefs.GetString("LastScene", "Level0");
         SceneManager.LoadScene(lastScene);*/
-        SceneManager.LoadScene("Terminal Introduction Scene");
+        SceneManager.LoadScene("Level1");
     }
 
 }
