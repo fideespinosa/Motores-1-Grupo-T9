@@ -8,6 +8,8 @@ public class CameraPointSwitcher : MonoBehaviour
         PointA,
         PointB
     }
+    [Header("Image")]
+    [SerializeField] private TVImageSequence imageScript;
 
     [Header("Points")]
     [SerializeField] private Transform pointA;
@@ -144,7 +146,10 @@ public class CameraPointSwitcher : MonoBehaviour
         }
 
         yield return StartCoroutine(MoveTo(pointC, false));
+        
+        // aca poner audio de la ia
         subScript.Play();
+        imageScript.StartSequence();
 
         yield return new WaitForSeconds(waitAtPointC);
 
