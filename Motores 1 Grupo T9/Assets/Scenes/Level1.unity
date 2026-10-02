@@ -3735,7 +3735,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!114 &144469980
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -3767,12 +3767,12 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 144469979}
   serializedVersion: 2
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 22.11004, y: 16.87201, z: -24.9151}
+  m_LocalRotation: {x: 0.000000029802322, y: 0.8271787, z: -0.000000029802326, w: 0.56193906}
+  m_LocalPosition: {x: 13.701021, y: -1.5179907, z: 30.647987}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
-  m_Father: {fileID: 0}
+  m_Father: {fileID: 2434151236373737278}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1001 &147212584
 PrefabInstance:
@@ -12590,7 +12590,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!224 &512073686
 RectTransform:
   m_ObjectHideFlags: 0
@@ -17085,7 +17085,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!224 &702719999
 RectTransform:
   m_ObjectHideFlags: 0
@@ -18038,7 +18038,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!224 &762324077
 RectTransform:
   m_ObjectHideFlags: 0
@@ -24204,6 +24204,78 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1105655984}
   m_CullTransparentMesh: 1
+--- !u!1 &1105742294
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1105742295}
+  - component: {fileID: 1105742297}
+  - component: {fileID: 1105742296}
+  m_Layer: 5
+  m_Name: DronHUD_UIDocument
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!224 &1105742295
+RectTransform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1105742294}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 1654381879}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+  m_AnchorMin: {x: 0.5, y: 0.5}
+  m_AnchorMax: {x: 0.5, y: 0.5}
+  m_AnchoredPosition: {x: 0, y: 0}
+  m_SizeDelta: {x: 100, y: 100}
+  m_Pivot: {x: 0.5, y: 0.5}
+--- !u!114 &1105742296
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1105742294}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ed0a10686b20d82458b5cd788740ae5d, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::CamDroneUI
+--- !u!114 &1105742297
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1105742294}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 19102, guid: 0000000000000000e000000000000000, type: 0}
+  m_Name: 
+  m_EditorClassIdentifier: UnityEngine.dll::UnityEngine.UIElements.UIDocument
+  m_PanelSettings: {fileID: 11400000, guid: 2683fe21675b1874b892a417cd8c5f8c, type: 2}
+  m_ParentUI: {fileID: 0}
+  sourceAsset: {fileID: 9197481963319205126, guid: 08d4ef9720844a04cb3846279bfabc62, type: 3}
+  m_SortingOrder: 0
+  m_Position: 0
+  m_WorldSpaceSizeMode: 1
+  m_WorldSpaceWidth: 1920
+  m_WorldSpaceHeight: 1080
+  m_PivotReferenceSize: 0
+  m_Pivot: 0
+  m_WorldSpaceCollider: {fileID: 0}
 --- !u!1001 &1113666436
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -37449,6 +37521,7 @@ RectTransform:
   - {fileID: 851492696}
   - {fileID: 1900806264}
   - {fileID: 300747981}
+  - {fileID: 1105742295}
   m_Father: {fileID: 92881368}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
@@ -54173,6 +54246,10 @@ PrefabInstance:
       value: 
       objectReference: {fileID: 5416648970753834900}
     - target: {fileID: 5933045433369117976, guid: 1c7b76fe5892dc849b8a26bdda20a0c2, type: 3}
+      propertyPath: camDrone
+      value: 
+      objectReference: {fileID: 1105742296}
+    - target: {fileID: 5933045433369117976, guid: 1c7b76fe5892dc849b8a26bdda20a0c2, type: 3}
       propertyPath: textMetal
       value: 
       objectReference: {fileID: 1119007703}
@@ -54350,7 +54427,10 @@ PrefabInstance:
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
-    m_AddedGameObjects: []
+    m_AddedGameObjects:
+    - targetCorrespondingSourceObject: {fileID: 9213038347397199300, guid: 1c7b76fe5892dc849b8a26bdda20a0c2, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 144469981}
     m_AddedComponents:
     - targetCorrespondingSourceObject: {fileID: 3616541212683491864, guid: 1c7b76fe5892dc849b8a26bdda20a0c2, type: 3}
       insertIndex: -1
@@ -59584,7 +59664,7 @@ MonoBehaviour:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 6891182721162927388}
-  m_Enabled: 0
+  m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 0ee7b2411e8233f4c83c7256926afb6c, type: 3}
   m_Name: 
@@ -59607,6 +59687,7 @@ MonoBehaviour:
   drone: {fileID: 8898654158852840253}
   glitch: {fileID: 8898654158852840280}
   camController: {fileID: 5326829191275646101}
+  dronHud: {fileID: 1105742294}
   useShake: 1
   shakeDuration: 0.45
   shakePosIntensity: 0.01
@@ -59830,4 +59911,3 @@ SceneRoots:
   - {fileID: 824410712}
   - {fileID: 787077203}
   - {fileID: 405214168}
-  - {fileID: 144469981}

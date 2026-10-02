@@ -9,6 +9,7 @@ public class DroneHitSequence : MonoBehaviour
     [SerializeField] DroneController drone;
     [SerializeField] CRTGlitchTransitionController glitch;
     [SerializeField] CameraController camController;
+    [SerializeField] GameObject dronHud;
 
     [Header("1. Shake")]
     public bool useShake = true;
@@ -61,6 +62,7 @@ public class DroneHitSequence : MonoBehaviour
         if (cameraPivot == null) return;
         cameraPivot.localPosition = originPos;
         cameraPivot.localRotation = originRot;
+        dronHud.SetActive(true);
     }
 
     IEnumerator Sequence(Action onFinished)
@@ -77,6 +79,8 @@ public class DroneHitSequence : MonoBehaviour
             yield return new WaitForSeconds(delayBeforeFall);
             yield return Fall();
         }
+
+        dronHud.SetActive(false);
 
         yield return new WaitForSeconds(delayAfterFall);
 
