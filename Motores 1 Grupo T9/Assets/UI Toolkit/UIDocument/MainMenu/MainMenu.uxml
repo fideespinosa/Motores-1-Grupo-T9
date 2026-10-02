@@ -10,7 +10,7 @@
         </ui:VisualElement>
         <ui:VisualElement name="ScreenVE" style="flex-grow: 1; width: 960px; min-width: 960px; max-width: 960px;">
             <ui:Label text="Pantalla" class="labelName" style="top: 423px; left: 135px; border-bottom-width: 2px;"/>
-            <ui:Slider label="Brillo" value="42" high-value="100" low-value="-80" name="BrilloSlider" style="position: absolute; top: 682px; left: 130px; -unity-font-definition: url(&quot;project://database/Assets/UI%20Toolkit/Font/Rajdhani-Bold.ttf?fileID=12800000&amp;guid=585eb9b5ee4ddb84e987fe35c590e8e5&amp;type=3#Rajdhani-Bold&quot;); font-size: 62px; width: 477px; color: rgb(183, 183, 183);"/>
+            <ui:Slider label="Brillo" value="42" high-value="100" low-value="-80" name="brightnessSlider" style="position: absolute; top: 682px; left: 130px; -unity-font-definition: url(&quot;project://database/Assets/UI%20Toolkit/Font/Rajdhani-Bold.ttf?fileID=12800000&amp;guid=585eb9b5ee4ddb84e987fe35c590e8e5&amp;type=3#Rajdhani-Bold&quot;); font-size: 62px; width: 477px; color: rgb(183, 183, 183);"/>
         </ui:VisualElement>
     </ui:VisualElement>
 </ui:UXML>

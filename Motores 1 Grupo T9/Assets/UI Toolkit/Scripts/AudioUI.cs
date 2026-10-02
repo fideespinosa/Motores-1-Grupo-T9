@@ -7,7 +7,6 @@ public class AudioUI : MonoBehaviour
     private UIDocument uIDocument;
     private Slider musicSlider;
     private Slider fxSlider;
-    private Slider brilloSlider;
     private Toggle musicToggle;
     private Button btnBackFromOptions;
 
@@ -28,7 +27,6 @@ public class AudioUI : MonoBehaviour
 
         musicSlider = root.Q<Slider>("MusicSlider");
         fxSlider = root.Q<Slider>("FXSlider");
-        brilloSlider = root.Q<Slider>("BrilloSlider");
         musicToggle = root.Q<Toggle>("MuteToggle");
         btnBackFromOptions = root.Q<Button>("BackButton");
 
