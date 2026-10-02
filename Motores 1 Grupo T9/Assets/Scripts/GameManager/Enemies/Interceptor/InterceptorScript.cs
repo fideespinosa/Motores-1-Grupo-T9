@@ -17,19 +17,20 @@ public class InterceptorScript : MonoBehaviour
     [SerializeField] private AlarmLightScript alarmLightScript;
 
     [SerializeField] private GameObject zone;
+    [SerializeField] private CountdownBar countdownBar;
 
     private Coroutine attackRoutine;
     private Coroutine attackTimerRoutine;
 
-/*    private void OnEnable()
-    {
-        TryStartAppearCycle();
-    }
+    /*    private void OnEnable()
+        {
+            TryStartAppearCycle();
+        }
 
-    private void OnDisable()
-    {
-        StopAllLocalCoroutines();
-    }*/
+        private void OnDisable()
+        {
+            StopAllLocalCoroutines();
+        }*/
 
     public void TryStartAppearCycle()
     {
@@ -66,10 +67,10 @@ public class InterceptorScript : MonoBehaviour
         }
 
         if (GameStatusScript.Instance != null && GameStatusScript.Instance.minigameRunning)
-            {
-                attackRoutine = null;
-                yield break;
-            }
+        {
+            attackRoutine = null;
+            yield break;
+        }
         AttackPerceptor();
     }
 
@@ -92,6 +93,8 @@ public class InterceptorScript : MonoBehaviour
 
         attackTimerRoutine = StartCoroutine(AttackTimer());
         if (drone != null) drone.FreezeDrone();
+
+        if (countdownBar != null) countdownBar.StartCountdown(timeWhileAttacking);
     }
 
     private IEnumerator AttackTimer()
@@ -111,8 +114,8 @@ public class InterceptorScript : MonoBehaviour
         Debug.Log("bicho se fue");
 
         if (GameStatusScript.Instance != null)
-        Debug.Log("minijuego apagado");
-            GameStatusScript.Instance.EndMinigame();
+            Debug.Log("minijuego apagado");
+        GameStatusScript.Instance.EndMinigame();
 
         animatorScript.EndAnimation();
 
@@ -123,6 +126,8 @@ public class InterceptorScript : MonoBehaviour
         StopAllLocalCoroutines();
 
         if (drone != null) drone.UnfreezeDrone();
+
+        if (countdownBar != null) countdownBar.ResetBar();
 
         //TryStartAppearCycle();
     }
