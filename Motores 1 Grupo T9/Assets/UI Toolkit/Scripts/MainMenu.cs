@@ -8,7 +8,8 @@ public class MainMenu : MonoBehaviour
     [SerializeField] private UIDocument playDocument;       // UIDocument sobre la Radio
     [SerializeField] private UIDocument optionsDocument;    // UIDocument sobre el Teléfono
     [SerializeField] private UIDocument quitDocument;       // UIDocument sobre la Mochila
-    [SerializeField] private Transform nameDocument;       // UIDocument del nombre del juego
+    [SerializeField] private GameObject nameDocument;       // UIDocument del nombre del juego
+    [SerializeField] private GameObject nameDocument2;       // UIDocument del nombre del juego2
 
     [Header("UI Screen Space (Opciones 2D)")]
     [SerializeField] private UIDocument optionsMenu2D;
@@ -28,6 +29,7 @@ public class MainMenu : MonoBehaviour
 
     private void OnEnable()
     {
+        nameDocument2.SetActive(false);
         // 1. Vincular botones del Menú 3D (World Space)
         if (playDocument != null)
             btnPlay = playDocument.rootVisualElement.Q<Button>("PlayButton");
@@ -57,10 +59,10 @@ public class MainMenu : MonoBehaviour
         // Estado Inicial: Opciones ocultas
         SetOptionsMenuVisible(false);
 
-        camTransform.position = new Vector3(268.36f, 4.81f, 820.34f);
-        camTransform.rotation = Quaternion.Euler(9.681f, -68.312f, 3.826f);
+       // camTransform.position = new Vector3(268.36f, 4.81f, 820.34f);
+      //  camTransform.rotation = Quaternion.Euler(9.681f, -68.312f, 3.826f);
 
-        nameDocument.position = new Vector3(261.24f, 6.02f, 819.06f);
+      //  nameDocument.position = new Vector3(261.24f, 6.02f, 819.06f);
         //btnPlay.Focus();
     }
 
@@ -102,10 +104,11 @@ public class MainMenu : MonoBehaviour
 
         camScript.GoToOptions();
 
-       // camTransform.position = new Vector3(265.284f, 5.448f, 821.479f);
-       //camTransform.rotation = Quaternion.Euler(9.681f, -68.312f, 3.826f);
+        // camTransform.position = new Vector3(265.284f, 5.448f, 821.479f);
+        //camTransform.rotation = Quaternion.Euler(9.681f, -68.312f, 3.826f);
 
-        nameDocument.position = new Vector3(261.24f, 4.11f, 823.01f);
+        nameDocument.SetActive(false);
+        nameDocument2.SetActive(true);
     }
 
     private void OnBackFromOptionsClicked(ClickEvent evt)
@@ -123,7 +126,9 @@ public class MainMenu : MonoBehaviour
                 camTransform.rotation = Quaternion.Euler(9.681f, -68.312f, 3.826f);*/
 
 
-        nameDocument.position = new Vector3(261.24f, 6.02f, 819.06f);
+        //  nameDocument.position = new Vector3(261.24f, 6.02f, 819.06f);
+        nameDocument.SetActive(true);
+        nameDocument2.SetActive(false);
     }
 
     private void OnQuitClicked(ClickEvent evt)
