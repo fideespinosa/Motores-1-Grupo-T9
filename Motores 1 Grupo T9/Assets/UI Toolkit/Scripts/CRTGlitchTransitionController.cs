@@ -18,7 +18,8 @@ public class CRTGlitchTransitionController : MonoBehaviour
 
     private void OnEnable()
     {
-        uiDocument = GetComponent<UIDocument>();
+        uiDocument = FindFirstObjectByType<UIDocument>(); 
+            //GetComponent<UIDocument>();
 
         if (uiDocument == null)
         {

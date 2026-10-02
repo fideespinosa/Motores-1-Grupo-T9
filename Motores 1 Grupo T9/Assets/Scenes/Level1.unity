@@ -32545,7 +32545,7 @@ MonoBehaviour:
   fpsOldInput: {fileID: 1474393664}
   subScript: {fileID: 1434242624}
   waitAtPointB: 8
-  waitAtPointC: 10
+  waitAtPointC: 5
   continuePanel: {fileID: 102945626}
   hud: {fileID: 519435143}
   panelFadeDuration: 1
@@ -32565,10 +32565,27 @@ MonoBehaviour:
   panel: {fileID: 235684793}
   panelCanvasGroup: {fileID: 235684795}
   subtitles:
-  - text: Bienvenido, esto es una prueba
-    displayDuration: 3
-  - text: Desplega el dron con la pantalla derecha
+  - text: '"Bienvenido de nuevo. Tripulante <u>49H02</u>."'
+    displayDuration: 3.5
+  - text: "\"Escaneo geol\xF3gico: completado.\""
+    displayDuration: 1.8
+  - text: "\"He localizado <mark>recursos cr\xEDticos</mark> en este sector... que
+      permitir\xE1n continuar las reparaciones.\""
     displayDuration: 4
+  - text: '"Despliega el Dron de reconocimiento en <mark>la pantalla derecha</mark>."'
+    displayDuration: 2
+  - text: "\"Ver\xE1s la funcionalidad en tu <mark>monitor izquierdo</mark>.\""
+    displayDuration: 2
+  - text: "\"Una vez en la superficie... podr\xE1s mover la unidad utilizando las
+      teclas <mark>W, A ,S D</mark> del teclado.\""
+    displayDuration: 7.7
+  - text: '"Recuerda la prioridad: asegurar el sector. Restaurar los sitemas de la
+      nave. Y evaluar la viabilidad de la colonia."'
+    displayDuration: 7.7
+  - text: '"La Tierra... no tiene <s>margen de error</s>."'
+    displayDuration: 2.3
+  - text: '"Evita riesgos innecesarios. <u>Cuidado ahi afuera<u>."'
+    displayDuration: 3.2
   fadeInDuration: 0.5
   fadeOutDuration: 0.5
 --- !u!1 &1439033731
@@ -59567,7 +59584,7 @@ MonoBehaviour:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 6891182721162927388}
-  m_Enabled: 1
+  m_Enabled: 0
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 0ee7b2411e8233f4c83c7256926afb6c, type: 3}
   m_Name: 
