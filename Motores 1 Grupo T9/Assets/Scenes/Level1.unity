@@ -7423,16 +7423,16 @@ MonoBehaviour:
   missionText: {fileID: 1732184003}
   missions:
   - flag: search_recipe
-    missionText: Busca la receta en la heladera.
+    missionText: Revisa la receta pegada en la heladera.
     delayBeforeAppearing: 13
   - flag: medication_task_started
-    missionText: Busca la medicina y prepara el remedio.
+    missionText: Busca los remedios indicados por el doctor.
     delayBeforeAppearing: 3
   - flag: medication_collected
     missionText: Buscar un vaso con agua.
     delayBeforeAppearing: 7
   - flag: medication_ready
-    missionText: "Dejarle la medicaci\xF3n en la habitaci\xF3n a tu hijo."
+    missionText: "Llevar los medicamentos a la habitaci\xF3n de tu hijo."
     delayBeforeAppearing: 7
   - flag: door_Interaction
     missionText: "Buscar llave en la habitaci\xF3n."
@@ -20942,7 +20942,7 @@ MonoBehaviour:
   droneController: {fileID: 8898654158852840253}
   playerSwitcher: {fileID: 1213029919}
   alarmLight: {fileID: 2008631539}
-  triggerText: Algo rompio el dron... voy a tener que salir a repararlo.
+  triggerText: "El dron est\xE1 roto....voy a tener que salir a arreglarlo"
   shipDoor: {fileID: 651006634}
   SceneName: HouseScene 1
   FadeDuration: 1
@@ -53774,7 +53774,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 4022250697099637990, guid: 1c7b76fe5892dc849b8a26bdda20a0c2, type: 3}
       propertyPath: motorForce
-      value: 220
+      value: 200
       objectReference: {fileID: 0}
     - target: {fileID: 4022250697099637990, guid: 1c7b76fe5892dc849b8a26bdda20a0c2, type: 3}
       propertyPath: colliderToggle
