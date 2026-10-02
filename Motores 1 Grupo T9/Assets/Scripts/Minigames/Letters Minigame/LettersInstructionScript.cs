@@ -6,6 +6,12 @@ public class LettersInstructionScript : InstructionsScript
 
     [SerializeField] MinigamesManager minigameManager;
     // Start is called once before the first execution of Update after the MonoBehaviour is created
+
+    private void Update()
+    {
+        Cursor.visible = true;
+        Cursor.lockState = CursorLockMode.None;
+    }
     void Start()
     {
         minigameManager = minigameManager.GetComponent<MinigamesManager>();
