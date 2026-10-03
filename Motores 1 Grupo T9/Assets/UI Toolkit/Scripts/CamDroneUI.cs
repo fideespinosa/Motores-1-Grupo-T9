@@ -2,6 +2,7 @@ using System;
 using System.Collections;
 using UnityEngine;
 using UnityEngine.UIElements;
+using static TMPro.SpriteAssetUtilities.TexturePacker_JsonArray;
 
 public class CamDroneUI : MonoBehaviour
 {
@@ -151,5 +152,23 @@ public class CamDroneUI : MonoBehaviour
 
         //yield return new WaitForSeconds(4f);
         //signalLbl.text = "Señal : 70 %";
+    }
+    public void SetHudDroneVisible(bool visible, int metal, int combustible, int insumos)
+    {
+        if (camDroneUI == null) return;
+
+        //VisualElement root = optionsMenu2D.rootVisualElement;
+        camDroneUI.style.display = visible ? DisplayStyle.Flex : DisplayStyle.None;
+        //btnBackFromOptions.style.display = DisplayStyle.Flex;
+        if (visible)
+        {
+            UpdateResources(metal, combustible, insumos);
+        }
+    }
+    public void UpdateResources(int metal, int combustible, int insumos)
+    {
+        qResources1Lbl.text = metal.ToString();
+        qResources2Lbl.text = combustible.ToString();
+        qResources3Lbl.text = insumos.ToString();
     }
 }

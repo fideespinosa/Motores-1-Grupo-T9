@@ -11,6 +11,7 @@ public class DroneHitSequence : MonoBehaviour
     [SerializeField] CameraController camController;
     [SerializeField] GameObject dronHud;
     [SerializeField] GameObject glitchObject;
+    [SerializeField] CamDroneUI droneUI;
 
     [Header("1. Shake")]
     public bool useShake = true;
@@ -65,7 +66,11 @@ public class DroneHitSequence : MonoBehaviour
         if (cameraPivot == null) return;
         cameraPivot.localPosition = originPos;
         cameraPivot.localRotation = originRot;
-        dronHud.SetActive(true);
+        //dronHud.SetActive(true);
+        droneUI.SetHudDroneVisible(true,
+    drone.GetComponent<PlayerInventory>().metalCollected,
+    drone.GetComponent<PlayerInventory>().combustibleCollected,
+    drone.GetComponent<PlayerInventory>().insumosCollected);
     }
 
     IEnumerator Sequence(Action onFinished)
@@ -86,7 +91,8 @@ public class DroneHitSequence : MonoBehaviour
             yield return Fall();
         }
 
-        dronHud.SetActive(false);
+        //dronHud.SetActive(false);
+        droneUI.SetHudDroneVisible(false, 0, 0, 0);
 
         yield return new WaitForSeconds(delayAfterFall);
 
