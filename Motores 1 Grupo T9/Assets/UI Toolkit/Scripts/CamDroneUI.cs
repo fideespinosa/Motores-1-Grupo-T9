@@ -44,12 +44,12 @@ public class CamDroneUI : MonoBehaviour
         signal = 80f;
         signalLbl.text = $"Señal : {signal:F2} %";
 
-        resources1Lbl.text = "/ 1  Piezas de Metal";
+        /*resources1Lbl.text = "/ 1  Piezas de Metal";
         resources2Lbl.text = "/ 1  Posible Combustible";
         resources3Lbl.text = "/ 1  Insumos Electrónicos";
         qResources1Lbl.text = "0";
         qResources2Lbl.text = "0";
-        qResources3Lbl.text = "0";
+        qResources3Lbl.text = "0";*/
         //resources1Lbl.style.display = DisplayStyle.None;
         //qResources1Lbl.style.display = DisplayStyle.None;
     }
@@ -74,13 +74,13 @@ public class CamDroneUI : MonoBehaviour
     {
         //resources1Lbl.style.display = DisplayStyle.Flex;
         //qResources1Lbl.style.display = DisplayStyle.Flex;
-
+/*
         resources1Lbl.text = "Recurso1 :";
         qResources1Lbl.text = "0";
         resources2Lbl.text = "Recurso2 :";
         qResources2Lbl.text = "0";
         resources3Lbl.text = "Recurso3 :";
-        qResources3Lbl.text = "0";
+        qResources3Lbl.text = "0";*/
     }
     public void ObjetivesList(string objectivo)
     {
