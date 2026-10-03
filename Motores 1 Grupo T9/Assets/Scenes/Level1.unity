@@ -686,7 +686,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: '::'
   voiceSource: {fileID: 25603273}
-  introTutorialClip: {fileID: 8300000, guid: 399815d5484ef624ea1cf0ccff8babb7, type: 3}
+  introTutorialClip: {fileID: 8300000, guid: 68d4b1b90ced6524987cc0db019503c4, type: 3}
   playIntroOnStart: 1
   delayBeforeIntro: 0.5
 --- !u!1 &31049044 stripped
@@ -2486,7 +2486,7 @@ MonoBehaviour:
   requiredFlag: 
   flagToSetOnInteract: test
   outline: {fileID: 90292880}
-  audioSource: {fileID: 90292887}
+  audioSource: {fileID: 1676664710}
   paperOn: {fileID: 8300000, guid: 8a219fd6640980545b6ea215b4dc3335, type: 3}
   paperOff: {fileID: 8300000, guid: 2c30066b2ea54684f922ab6fb526f35e, type: 3}
 --- !u!4 &90292884 stripped
@@ -2501,7 +2501,7 @@ AudioSource:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 90292878}
-  m_Enabled: 1
+  m_Enabled: 0
   serializedVersion: 4
   OutputAudioMixerGroup: {fileID: 8285214626755014582, guid: 8ae6de4a4ce8e8c44a52514f69fa1e82, type: 2}
   m_audioClip: {fileID: 0}
@@ -17019,6 +17019,9 @@ MonoBehaviour:
   - medicationId: espironolactona
     displayName: Espironolactona
     requiredAmount: 1
+  audioSource: {fileID: 1676664710}
+  notOkClip: {fileID: 8300000, guid: d909187221526b142888d2e556f2fcdf, type: 3}
+  doneClip: {fileID: 8300000, guid: 36950f6efffa8e344a5347886414a8dd, type: 3}
   completedFlag: medication_collected
 --- !u!1 &686240783 stripped
 GameObject:
@@ -18019,9 +18022,6 @@ PrefabInstance:
     - targetCorrespondingSourceObject: {fileID: 919132149155446097, guid: 8cdec9f17d27fa34ea81193285c39a37, type: 3}
       insertIndex: -1
       addedObject: {fileID: 741920025}
-    - targetCorrespondingSourceObject: {fileID: 919132149155446097, guid: 8cdec9f17d27fa34ea81193285c39a37, type: 3}
-      insertIndex: -1
-      addedObject: {fileID: 741920033}
   m_SourcePrefab: {fileID: 100100000, guid: 8cdec9f17d27fa34ea81193285c39a37, type: 3}
 --- !u!1 &741920024 stripped
 GameObject:
@@ -18084,7 +18084,7 @@ MonoBehaviour:
   requiredFlag: ObjectsReadyToPickUp
   flagToSetOnInteract: ObjectsReadyToPickUp2
   outline: {fileID: 741920026}
-  audioSource: {fileID: 741920033}
+  audioSource: {fileID: 1676664710}
   paperOn: {fileID: 8300000, guid: 8a219fd6640980545b6ea215b4dc3335, type: 3}
   paperOff: {fileID: 8300000, guid: 2c30066b2ea54684f922ab6fb526f35e, type: 3}
 --- !u!4 &741920030 stripped
@@ -18092,103 +18092,6 @@ Transform:
   m_CorrespondingSourceObject: {fileID: -8679921383154817045, guid: 8cdec9f17d27fa34ea81193285c39a37, type: 3}
   m_PrefabInstance: {fileID: 741920023}
   m_PrefabAsset: {fileID: 0}
---- !u!82 &741920033
-AudioSource:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 741920024}
-  m_Enabled: 1
-  serializedVersion: 4
-  OutputAudioMixerGroup: {fileID: 8285214626755014582, guid: 8ae6de4a4ce8e8c44a52514f69fa1e82, type: 2}
-  m_audioClip: {fileID: 0}
-  m_Resource: {fileID: 0}
-  m_PlayOnAwake: 1
-  m_Volume: 1
-  m_Pitch: 1
-  Loop: 0
-  Mute: 0
-  Spatialize: 0
-  SpatializePostEffects: 0
-  Priority: 128
-  DopplerLevel: 1
-  MinDistance: 1
-  MaxDistance: 5
-  Pan2D: 0
-  rolloffMode: 0
-  BypassEffects: 0
-  BypassListenerEffects: 0
-  BypassReverbZones: 0
-  rolloffCustomCurve:
-    serializedVersion: 2
-    m_Curve:
-    - serializedVersion: 3
-      time: 0
-      value: 1
-      inSlope: 0
-      outSlope: 0
-      tangentMode: 0
-      weightedMode: 0
-      inWeight: 0.33333334
-      outWeight: 0.33333334
-    - serializedVersion: 3
-      time: 1
-      value: 0
-      inSlope: 0
-      outSlope: 0
-      tangentMode: 0
-      weightedMode: 0
-      inWeight: 0.33333334
-      outWeight: 0.33333334
-    m_PreInfinity: 2
-    m_PostInfinity: 2
-    m_RotationOrder: 4
-  panLevelCustomCurve:
-    serializedVersion: 2
-    m_Curve:
-    - serializedVersion: 3
-      time: 0
-      value: 1
-      inSlope: 0
-      outSlope: 0
-      tangentMode: 0
-      weightedMode: 0
-      inWeight: 0.33333334
-      outWeight: 0.33333334
-    m_PreInfinity: 2
-    m_PostInfinity: 2
-    m_RotationOrder: 4
-  spreadCustomCurve:
-    serializedVersion: 2
-    m_Curve:
-    - serializedVersion: 3
-      time: 0
-      value: 0
-      inSlope: 0
-      outSlope: 0
-      tangentMode: 0
-      weightedMode: 0
-      inWeight: 0.33333334
-      outWeight: 0.33333334
-    m_PreInfinity: 2
-    m_PostInfinity: 2
-    m_RotationOrder: 4
-  reverbZoneMixCustomCurve:
-    serializedVersion: 2
-    m_Curve:
-    - serializedVersion: 3
-      time: 0
-      value: 1
-      inSlope: 0
-      outSlope: 0
-      tangentMode: 0
-      weightedMode: 0
-      inWeight: 0.33333334
-      outWeight: 0.33333334
-    m_PreInfinity: 2
-    m_PostInfinity: 2
-    m_RotationOrder: 4
 --- !u!1 &753705377
 GameObject:
   m_ObjectHideFlags: 0
@@ -23161,7 +23064,7 @@ GameObject:
   m_Layer: 0
   m_Name: Audio Folder
   m_TagString: Untagged
-  m_Icon: {fileID: 0}
+  m_Icon: {fileID: 2974397684917235467, guid: 0000000000000000d000000000000000, type: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
@@ -31641,7 +31544,7 @@ MonoBehaviour:
   placementPointToActivate: {fileID: 0}
   flagToSetOnPickup: medication_ready
   outline: {fileID: 1364343150}
-  audioSource: {fileID: 771744694}
+  audioSource: {fileID: 1676664710}
   moveObj: {fileID: 8300000, guid: f393fd2975d1cda4c8b1e8caaa559873, type: 3}
   pickObj: {fileID: 8300000, guid: ad6d50f4202876f47af722d657ab027c, type: 3}
 --- !u!4 &1364343149 stripped
@@ -38716,6 +38619,11 @@ MonoBehaviour:
   ship: {fileID: 54591578}
   houseDoor: {fileID: 480289929}
   Eyes: {fileID: 485038398}
+--- !u!82 &1676664710 stripped
+AudioSource:
+  m_CorrespondingSourceObject: {fileID: 187246157701615057, guid: 5227ce862db5983408320603d259fb44, type: 3}
+  m_PrefabInstance: {fileID: 1182718928}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1001 &1677973202
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -39326,7 +39234,7 @@ MonoBehaviour:
   placementPointToActivate: {fileID: 0}
   flagToSetOnPickup: 
   outline: {fileID: 1697332903}
-  audioSource: {fileID: 1095498576}
+  audioSource: {fileID: 1676664710}
   moveObj: {fileID: 8300000, guid: ad6d50f4202876f47af722d657ab027c, type: 3}
   pickObj: {fileID: 8300000, guid: f393fd2975d1cda4c8b1e8caaa559873, type: 3}
 --- !u!4 &1697332907 stripped

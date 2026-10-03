@@ -47,8 +47,9 @@ public class CollectibleItem : MonoBehaviour, IInteractable
 
         if (InventoryManager.Instance != null)
         {
-            InventoryManager.Instance.AddItem(itemId);
             audioSource.PlayOneShot(pickedObj);
+            InventoryManager.Instance.AddItem(itemId);
+          
         }
 
         if (!string.IsNullOrEmpty(pickupComment) && TextPanelManager.Instance != null)

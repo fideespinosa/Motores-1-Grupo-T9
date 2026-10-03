@@ -44,8 +44,9 @@ public class ImageItem : MonoBehaviour, IInteractable
 
         if (ImagePanelManager.Instance != null)
         {
-            ImagePanelManager.Instance.ShowImage(imageToShow);
             audioSource.PlayOneShot(paperOn);
+            ImagePanelManager.Instance.ShowImage(imageToShow);
+            
 
         }
         else
@@ -60,8 +61,9 @@ public class ImageItem : MonoBehaviour, IInteractable
 
         if (disableOnInteract)
         {
-            gameObject.SetActive(false);
             audioSource.PlayOneShot(paperOff);
+            gameObject.SetActive(false);
+           
         }
     }
 

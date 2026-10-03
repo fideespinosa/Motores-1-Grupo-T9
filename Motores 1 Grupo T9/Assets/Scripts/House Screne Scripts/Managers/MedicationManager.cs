@@ -17,6 +17,11 @@ public class MedicationManager : MonoBehaviour
     [Header("Recipe")]
     [SerializeField] private List<MedicationRequirement> requirements;
 
+    [Header("Audio Feedback")]
+    [SerializeField] private AudioSource audioSource;
+    [SerializeField] private AudioClip notOkClip;
+    [SerializeField] private AudioClip doneClip;
+
     [Header("Story Flag")]
     [SerializeField] private string completedFlag = "medication_collected";
 
@@ -45,9 +50,14 @@ public class MedicationManager : MonoBehaviour
     {
         if (!requiredAmounts.ContainsKey(medicationId))
         {
+            audioSource.clip = notOkClip;
+            audioSource.loop = false;
+            audioSource.Play(); 
             ShowMessage("No, esto no es lo que busco.");
             return false;
         }
+     
+
 
         if (collectedAmounts[medicationId] >= requiredAmounts[medicationId])
         {
@@ -64,6 +74,11 @@ public class MedicationManager : MonoBehaviour
                 StoryFlagManager.Instance.SetFlag(completedFlag);
             }
             ShowMessage("Ya tengo todos los remedios que necesito. Deberia dejarle tambien un vaso con agua.");
+            
+            audioSource.clip = doneClip;
+            audioSource.loop = false;
+            audioSource.Play();
+
         }
         else
         {
