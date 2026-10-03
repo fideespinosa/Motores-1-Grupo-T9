@@ -4189,8 +4189,8 @@ BoxCollider:
   m_ProvidesContacts: 0
   m_Enabled: 1
   serializedVersion: 3
-  m_Size: {x: 0.020000007, y: 0.019999998, z: 0.0015274371}
-  m_Center: {x: 0.01, y: 0.00017908099, z: 0.00046116518}
+  m_Size: {x: 0.19321482, y: 0.019999998, z: 0.0015274371}
+  m_Center: {x: -0.02457925, y: 0.00017908099, z: 0.00046120305}
 --- !u!23 &362671057
 MeshRenderer:
   m_ObjectHideFlags: 0
@@ -14076,6 +14076,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: '::'
   screensManager: {fileID: 1976800636}
   player: {fileID: 1073564834}
+  drone: {fileID: 0}
   lettersGame: {fileID: 447597125}
   lettersPanel: {fileID: 686177594}
   instructionsPanel: {fileID: 1750626837}
@@ -22478,6 +22479,7 @@ MonoBehaviour:
   textPMetal: {fileID: 0}
   textPCombustible: {fileID: 0}
   textPInsumos: {fileID: 0}
+  camDrone: {fileID: 0}
 --- !u!114 &1882600046
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -22506,6 +22508,7 @@ MonoBehaviour:
   groundLayer:
     serializedVersion: 2
     m_Bits: 0
+  hitSequence: {fileID: 0}
 --- !u!54 &1882600047
 Rigidbody:
   m_ObjectHideFlags: 0
