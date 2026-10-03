@@ -106,10 +106,10 @@ public class TypewritterText : MonoBehaviour
             yield return TypeOut(systemTexts[i], systemFullTexts[i], fastTypingSpeed, false, 0f, 0f);
         }
 
-       if (!muteTypingAudio && onSequenceFinishedKeycap != null)
-        {
-            onSequenceFinishedKeycap.Invoke();
-        }
+       //if (!muteTypingAudio && onSequenceFinishedKeycap != null)
+       // {
+        //    onSequenceFinishedKeycap.Invoke();
+      //  }
     }
 
     private IEnumerator BlinkLabel(TextMeshProUGUI target, float interval, float duration)

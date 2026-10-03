@@ -1,4 +1,3 @@
-using System.Collections;
 using UnityEngine;
 
 public class PlayerFootSteps : MonoBehaviour
@@ -16,10 +15,8 @@ public class PlayerFootSteps : MonoBehaviour
     [SerializeField] private float stepRate;
 
     private Vector3 lastPosition;
-    private Coroutine footstepCoroutine;
-    private bool isWalking = false;
+    private float stepTimer = 0f;
 
-   
     public bool isInsideHouse = false;
 
     private void Start()
@@ -38,34 +35,20 @@ public class PlayerFootSteps : MonoBehaviour
 
         bool currentlyWalking = manualSpeed > speedThreshold;
 
-        if (currentlyWalking && !isWalking)
+        if (stepTimer > 0f)
         {
-            isWalking = true;
-            footstepCoroutine = StartCoroutine(FootstepRoutine());
+            stepTimer -= Time.deltaTime;
         }
-        else if (!currentlyWalking && isWalking)
-        {
-            isWalking = false;
-            if (footstepCoroutine != null)
-            {
-                StopCoroutine(footstepCoroutine);
-                footstepCoroutine = null;
-            }
-        }
-    }
 
-    private IEnumerator FootstepRoutine()
-    {
-        while (isWalking)
+        if (currentlyWalking && stepTimer <= 0f)
         {
             PlayFootSteps();
-            yield return new WaitForSeconds(stepRate);
+            stepTimer = stepRate;
         }
     }
 
     private void PlayFootSteps()
     {
-        
         AudioClip[] currentClips = isInsideHouse ? woodClips : mudClips;
 
         if (currentClips != null && currentClips.Length > 0)
