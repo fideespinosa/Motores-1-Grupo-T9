@@ -45,6 +45,19 @@ public class PlayerInventory : MonoBehaviour
     [SerializeField] private TextMeshProUGUI textPInsumos;
     [SerializeField] private CamDroneUI camDrone;
 
+    [Header("Linterna del dron")]
+    [SerializeField] private Light droneFlashlight;
+    [SerializeField] private float flickerDuration = 2.5f;
+    [SerializeField] private Vector2 flickerInterval = new Vector2(0.03f, 0.15f);
+    private Coroutine flickerRoutine;
+    private float baseIntensity;
+
+    private void Awake()
+    {
+        if (droneFlashlight != null)
+            baseIntensity = droneFlashlight.intensity;
+    }
+
     public void CollectResource(resourcesManager.ResourceType type)
     {
         switch (type)
@@ -115,12 +128,10 @@ public class PlayerInventory : MonoBehaviour
         foreach (var enemy in trigger.enemiesToActivate)
         {
             if (enemy == null) continue;
-
             enemy.SetActive(true);
-
-          //  var entry = enemy.AddComponent<EnemyWallEntry>();
-          //  entry.Init(trigger.navMeshEntryPoint.position);
         }
+
+        FlickerFlashlight();
     }
 
     public void CheckVictory()
@@ -162,8 +173,37 @@ public class PlayerInventory : MonoBehaviour
         anomalyObject.SetActive(true);
         anomalyTrigger.SetActive(true);
         enemies.SetActive(false);
-
     }
+
+    public void FlickerFlashlight()
+    {
+        if (droneFlashlight == null) return;
+
+        if (flickerRoutine != null)
+        {
+            StopCoroutine(flickerRoutine);
+            droneFlashlight.intensity = baseIntensity;
+        }
+
+        flickerRoutine = StartCoroutine(FlickerRoutine());
+    }
+
+    private IEnumerator FlickerRoutine()
+    {
+        float timer = 0f;
+
+        while (timer < flickerDuration)
+        {
+            float wait = Random.Range(flickerInterval.x, flickerInterval.y);
+            droneFlashlight.intensity = Random.value > 0.5f ? baseIntensity : baseIntensity * Random.Range(0f, 0.2f);
+            yield return new WaitForSeconds(wait);
+            timer += wait;
+        }
+
+        droneFlashlight.intensity = baseIntensity;
+        flickerRoutine = null;
+    }
+
     public void LevelUp()
     {
     }
