@@ -9292,7 +9292,7 @@ MeshCollider:
   serializedVersion: 5
   m_Convex: 0
   m_CookingOptions: 30
-  m_Mesh: {fileID: 0}
+  m_Mesh: {fileID: 2151515227523668204, guid: 53da4167ba958ce4b8d339dd72f94f91, type: 3}
 --- !u!1 &403286028 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: 919132149155446097, guid: 874ebd5c371c19147a3c39b3c3364e90, type: 3}
@@ -19799,6 +19799,37 @@ PrefabInstance:
       insertIndex: -1
       addedObject: {fileID: 1088509939}
   m_SourcePrefab: {fileID: 100100000, guid: 8e546252c8dc4b1478dfc6bdd3141bc8, type: 3}
+--- !u!1 &805413459
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 805413460}
+  m_Layer: 0
+  m_Name: SpawnTrigger
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &805413460
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 805413459}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: -1.71, y: 3.451, z: -89.8}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 84742751501287777}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1001 &824410712
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -25299,6 +25330,10 @@ PrefabInstance:
       propertyPath: m_Layer
       value: 6
       objectReference: {fileID: 0}
+    - target: {fileID: 919132149155446097, guid: 83cca6d7c7344d3439de001f46476700, type: 3}
+      propertyPath: m_IsActive
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 931374398000576807, guid: 83cca6d7c7344d3439de001f46476700, type: 3}
       propertyPath: 'm_Materials.Array.data[0]'
       value: 
@@ -27610,6 +27645,14 @@ PrefabInstance:
     - target: {fileID: 919132149155446097, guid: 53da4167ba958ce4b8d339dd72f94f91, type: 3}
       propertyPath: m_Name
       value: CaveNEWCollider
+      objectReference: {fileID: 0}
+    - target: {fileID: 919132149155446097, guid: 53da4167ba958ce4b8d339dd72f94f91, type: 3}
+      propertyPath: m_Layer
+      value: 6
+      objectReference: {fileID: 0}
+    - target: {fileID: 919132149155446097, guid: 53da4167ba958ce4b8d339dd72f94f91, type: 3}
+      propertyPath: m_IsActive
+      value: 1
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
@@ -39697,7 +39740,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!114 &1664567812
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -56221,6 +56264,7 @@ Transform:
   - {fileID: 3844838069063010968}
   - {fileID: 270027362955750369}
   - {fileID: 1360484344}
+  - {fileID: 805413460}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1001 &136500877654796543
@@ -56394,11 +56438,11 @@ PrefabInstance:
     - target: {fileID: 5933045433369117976, guid: 1c7b76fe5892dc849b8a26bdda20a0c2, type: 3}
       propertyPath: spawnTriggers.Array.data[0].navMeshEntryPoint
       value: 
-      objectReference: {fileID: 0}
+      objectReference: {fileID: 5152721974352860531}
     - target: {fileID: 5933045433369117976, guid: 1c7b76fe5892dc849b8a26bdda20a0c2, type: 3}
       propertyPath: spawnTriggers.Array.data[1].navMeshEntryPoint
       value: 
-      objectReference: {fileID: 0}
+      objectReference: {fileID: 423239408447383036}
     - target: {fileID: 5933045433369117976, guid: 1c7b76fe5892dc849b8a26bdda20a0c2, type: 3}
       propertyPath: spawnTriggers.Array.data[0].enemiesToSpawn.Array.size
       value: 1
