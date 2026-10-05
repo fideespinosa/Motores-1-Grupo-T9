@@ -1,6 +1,6 @@
+using System.Collections;
 using UnityEngine;
 using UnityEngine.UIElements;
-using System.Collections;
 public class MainMenu : MonoBehaviour
 {
     [Header("UI World Space (Mesa)")]
@@ -22,6 +22,11 @@ public class MainMenu : MonoBehaviour
     [SerializeField] private CanvasGroup panel;
     [SerializeField] private float fadeDuration = 3f;
 
+    [Header("Overlay")]
+    [SerializeField] private TurnOff tvOverlay;
+
+    private VisualElement screenVE;
+    private VisualElement audioVE;
     private Button btnPlay;
     private Button btnOptions;
     private Button btnQuit;
@@ -42,13 +47,19 @@ public class MainMenu : MonoBehaviour
 
         // 2. Vincular botón Volver del menú de Opciones 2D
         if (optionsMenu2D != null)
+        { 
             btnBackFromOptions = optionsMenu2D.rootVisualElement.Q<Button>("BackButton");
+            screenVE = optionsMenu2D.rootVisualElement.Q<VisualElement>("ScreenVE");
+            audioVE = optionsMenu2D.rootVisualElement.Q<VisualElement>("AudioVE");
+        }
 
         
         btnPlay.style.display = DisplayStyle.Flex;
         btnOptions.style.display = DisplayStyle.Flex;
         btnQuit.style.display = DisplayStyle.Flex;
         btnBackFromOptions.style.display = DisplayStyle.None;
+        screenVE.style.display = DisplayStyle.None;
+        audioVE.style.display = DisplayStyle.None;
 
         // Suscribir eventos
         btnPlay?.RegisterCallback<ClickEvent>(OnPlayClicked);
@@ -96,6 +107,7 @@ public class MainMenu : MonoBehaviour
     }
     private void OnOptionsClicked(ClickEvent evt)
     {
+        tvOverlay.TriggerOverlay(false);
         btnPlay.style.display = DisplayStyle.None;
         btnOptions.style.display = DisplayStyle.None;
         btnQuit.style.display = DisplayStyle.None;
@@ -113,8 +125,9 @@ public class MainMenu : MonoBehaviour
     }
 
     private void OnBackFromOptionsClicked(ClickEvent evt)
-    {
+    {     
         camScript.ReturnToMain();
+        tvOverlay.TriggerOverlay(true);
         // Ocultar opciones 2D y restaurar botones 3D de la mesa
         SetOptionsMenuVisible(false);
         //mainMenuWorldGroup.SetActive(true);
@@ -141,8 +154,9 @@ public class MainMenu : MonoBehaviour
     {
         if (optionsMenu2D == null) return;
 
-        VisualElement root = optionsMenu2D.rootVisualElement;
-        root.style.display = visible ? DisplayStyle.Flex : DisplayStyle.None;
+        //VisualElement root = optionsMenu2D.rootVisualElement;
+        screenVE.style.display = visible ? DisplayStyle.Flex : DisplayStyle.None;
+        audioVE.style.display = visible ? DisplayStyle.Flex : DisplayStyle.None;
         btnBackFromOptions.style.display = DisplayStyle.Flex;
     }
 }
