@@ -1,5 +1,6 @@
 using System;
 using System.Collections;
+using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UIElements;
 using static TMPro.SpriteAssetUtilities.TexturePacker_JsonArray;
@@ -14,10 +15,10 @@ public class CamDroneUI : MonoBehaviour
     public Label qResources2Lbl;
     public Label resources3Lbl;
     public Label qResources3Lbl;
-    private Label listObjetiveLbl;
     private Label objectiveLbl;
     private Label timeLbl;
     private Label signalLbl;
+    private Image redImg;
 
     [SerializeField] private DateTime date = new DateTime(2103, 3, 9);
     private float time = 0f;
@@ -37,22 +38,22 @@ public class CamDroneUI : MonoBehaviour
         qResources2Lbl = root.Q<Label>("QResource2Lbl");
         resources3Lbl = root.Q<Label>("Resources3Lbl");
         qResources3Lbl = root.Q<Label>("QResource3Lbl");
-        listObjetiveLbl = root.Q<Label>("ListObjetivesLbl");
         objectiveLbl = root.Q<Label>("ObjetivesLbl");
         timeLbl = root.Q<Label>("TimeLbl");
         signalLbl = root.Q<Label>("SignalLbl");
 
+        redImg = root.Q<Image>("RedImg");
+
         signal = 80f;
         signalLbl.text = $"Señal : {signal:F2} %";
 
-        /*resources1Lbl.text = "/ 1  Piezas de Metal";
-        resources2Lbl.text = "/ 1  Posible Combustible";
-        resources3Lbl.text = "/ 1  Insumos Electrónicos";
-        qResources1Lbl.text = "0";
-        qResources2Lbl.text = "0";
-        qResources3Lbl.text = "0";*/
-        //resources1Lbl.style.display = DisplayStyle.None;
-        //qResources1Lbl.style.display = DisplayStyle.None;
+        // Configuramos la transición por código para que el desvanecimiento sea suave
+        redImg.style.transitionDuration = new StyleList<TimeValue>(new List<TimeValue> { new TimeValue(0.5f, TimeUnit.Second) });
+        redImg.style.transitionProperty = new StyleList<StylePropertyName>(new List<StylePropertyName> { new StylePropertyName("opacity") });
+
+        // Iniciamos el latido continuo
+        BeatImage();
+
     }
     private void Start()
     {
@@ -71,22 +72,7 @@ public class CamDroneUI : MonoBehaviour
         ActualizeTime(100f);
         Signal();
     }
-    public void FindResource()
-    {
-        //resources1Lbl.style.display = DisplayStyle.Flex;
-        //qResources1Lbl.style.display = DisplayStyle.Flex;
-/*
-        resources1Lbl.text = "Recurso1 :";
-        qResources1Lbl.text = "0";
-        resources2Lbl.text = "Recurso2 :";
-        qResources2Lbl.text = "0";
-        resources3Lbl.text = "Recurso3 :";
-        qResources3Lbl.text = "0";*/
-    }
-    public void ObjetivesList(string objectivo)
-    {
-        listObjetiveLbl.text = objectivo;
-    }
+    
     public void ActualizeTime(float tiempoEnSegundos)
     {
         if (tiempoEnSegundos < 0f) tiempoEnSegundos = 0f;
@@ -144,14 +130,6 @@ public class CamDroneUI : MonoBehaviour
         signal = signalNew;
         signalLbl.text = $"Señal : {signal:F2} %";
 
-
-        //signalLbl.text = "Señal : 80 %";
-
-        //yield return new WaitForSeconds(3f);
-        //signalLbl.text = "Señal : 90 %";
-
-        //yield return new WaitForSeconds(4f);
-        //signalLbl.text = "Señal : 70 %";
     }
     public void SetHudDroneVisible(bool visible, int metal, int combustible, int insumos)
     {
@@ -170,5 +148,21 @@ public class CamDroneUI : MonoBehaviour
         qResources1Lbl.text = metal.ToString();
         qResources2Lbl.text = combustible.ToString();
         qResources3Lbl.text = insumos.ToString();
+    }
+    private void BeatImage()
+    {
+        // Programamos una tarea repetitiva cada 1000 milisegundos (1 segundo)
+        redImg.schedule.Execute(() =>
+        {
+            // Si la opacidad actual es cercana a 1 (visible), la bajamos a 0. Sino, a 1.
+            if (redImg.style.opacity.value > 0.5f)
+            {
+                redImg.style.opacity = 0f;
+            }
+            else
+            {
+                redImg.style.opacity = 1f;
+            }
+        }).Every(1000); // Se ejecuta continuamente cada 1 segundo
     }
 }
