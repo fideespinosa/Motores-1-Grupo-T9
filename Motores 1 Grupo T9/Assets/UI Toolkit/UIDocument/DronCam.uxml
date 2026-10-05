@@ -2,10 +2,6 @@
     <Style src="project://database/Assets/UI%20Toolkit/Style/LabelDronUI.uss?fileID=7433441132597879392&amp;guid=786868eb0f89c15469158837babacb6b&amp;type=3#LabelDronUI"/>
     <ui:VisualElement style="flex-grow: 1;">
         <ui:VisualElement name="DronCam" style="flex-grow: 1; width: auto; height: auto; flex-direction: row; display: flex; background-image: url(&quot;project://database/Assets/UI%20Toolkit/Texture/Marco%20Camara.png?fileID=2800000&amp;guid=542f3a8eba2afc64fadc7aefe6a90bcb&amp;type=3#Marco Camara&quot;);">
-            <ui:VisualElement style="flex-grow: 1; width: 384px; height: 246px; position: absolute; top: 155px; left: 1482px; border-left-color: rgb(192, 188, 188); border-right-color: rgb(192, 188, 188); border-top-color: rgb(192, 188, 188); border-bottom-color: rgb(192, 188, 188); border-top-width: 3px; border-right-width: 3px; border-bottom-width: 3px; border-left-width: 3px; display: none;">
-                <ui:Label text="Label" name="ListObjetivesLbl" class="LabelEnable" style="position: absolute; top: 10px; left: 52px; width: 298px; height: 213px;"/>
-                <ui:Label text="Label" name="NumberLbl" class="LabelEnable" style="position: absolute; top: 10px; left: 0; width: 41px; height: 213px;"/>
-            </ui:VisualElement>
             <ui:VisualElement name="ResourcesVE" style="flex-grow: 1; width: 506px; height: 152px; position: absolute; top: 114px; left: 33px; border-left-color: rgb(192, 188, 188); border-right-color: rgb(192, 188, 188); border-top-color: rgb(192, 188, 188); border-bottom-color: rgb(192, 188, 188); border-top-width: 3px; border-right-width: 3px; border-bottom-width: 3px; border-left-width: 3px; flex-direction: row; flex-wrap: wrap;">
                 <ui:Label text="0" name="QResource1Lbl" class="LabelEnable" style="position: relative; -unity-font-definition: url(&quot;project://database/Assets/UI%20Toolkit/Font/Rajdhani-Bold.ttf?fileID=12800000&amp;guid=585eb9b5ee4ddb84e987fe35c590e8e5&amp;type=3#Rajdhani-Bold&quot;); top: 0; left: 0; width: 55px; -unity-text-align: upper-right; height: 40px;"/>
                 <ui:Label text="/ 1  Piezas de Metal" name="Resources1Lbl" class="LabelEnable" style="top: 0; left: 0; height: 40px; position: relative; width: 426px; flex-wrap: wrap;"/>
@@ -14,10 +10,13 @@
                 <ui:Label text="0" name="QResource3Lbl" enable-rich-text="true" class="LabelEnable" style="position: relative; -unity-font-definition: url(&quot;project://database/Assets/UI%20Toolkit/Font/Rajdhani-Bold.ttf?fileID=12800000&amp;guid=585eb9b5ee4ddb84e987fe35c590e8e5&amp;type=3#Rajdhani-Bold&quot;); top: 105px; left: 0; width: 55px; -unity-text-align: upper-right; height: 40px;"/>
                 <ui:Label text="/ 1  Insumos Electrónicos" name="Resources3Lbl" class="LabelEnable" style="top: 105px; left: 0; height: 40px; width: 426px; position: relative;"/>
             </ui:VisualElement>
-            <ui:Label text="Bateria : 63 %" name="BateryLbl" class="LabelEnable" style="position: absolute; top: 1015px; left: 1426px;"/>
+            <ui:Label text="Bateria : 63 %" name="BateryLbl" class="LabelEnable" style="position: absolute; top: 980px; left: 1426px;"/>
             <ui:Label text="Label" name="TimeLbl" class="LabelEnable" style="position: absolute; top: 56px; left: 1393px;"/>
             <ui:Label text="Objetivos" name="ObjetivesLbl" style="position: absolute; top: 44px; left: 42px; font-size: 43px; color: rgb(185, 176, 176); -unity-font-definition: url(&quot;project://database/Assets/UI%20Toolkit/Font/Rajdhani-Bold.ttf?fileID=12800000&amp;guid=585eb9b5ee4ddb84e987fe35c590e8e5&amp;type=3#Rajdhani-Bold&quot;); border-bottom-width: 2px; border-left-color: rgb(185, 176, 176); border-right-color: rgb(185, 176, 176); border-top-color: rgb(185, 176, 176); border-bottom-color: rgb(185, 176, 176); -unity-text-outline-color: rgba(0, 0, 0, 0.96); -unity-text-outline-width: 1px; text-shadow: 1111183px 0 0 rgba(0, 0, 0, 0.83);"/>
-            <ui:Label text="Señal : 100 %" name="SignalLbl" class="LabelEnable" style="position: absolute; top: 1013px; left: 1228px;"/>
+            <ui:Label text="Señal : 100 %" name="SignalLbl" class="LabelEnable" style="position: absolute; top: 980px; left: 1228px;"/>
+            <ui:Label text="REC&#10;" name="RecLbl" class="LabelEnable" style="position: relative; top: 56px; height: 40px; left: 1794px; width: 50px;"/>
+            <ui:Image name="RedImg" style="width: 30px; height: 30px; left: 1706px; top: 61px; background-color: rgba(255, 0, 0, 0.82); background-repeat: no-repeat no-repeat; border-top-left-radius: 25px; border-top-right-radius: 25px; border-bottom-right-radius: 25px; border-bottom-left-radius: 25px;"/>
+            <ui:VisualElement name="VHSVE" style="flex-grow: 1; -unity-material: url(&quot;project://database/Assets/UI%20Toolkit/Shader%20Graph/M_DroneVHS.mat?fileID=2100000&amp;guid=28d39fc7501bf4d4caa51677d1dc186c&amp;type=2#M_DroneVHS&quot;); background-color: rgb(0, 0, 0); position: relative; top: -4px; left: -24px;"/>
         </ui:VisualElement>
     </ui:VisualElement>
 </ui:UXML>
