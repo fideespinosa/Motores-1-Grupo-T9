@@ -73,7 +73,8 @@ public class MainMenu : MonoBehaviour
         {
             MenuMusicManager.Instance.FadeOutAndDestroy(15f);
         }
-
+        UnityEngine.Cursor.visible = false;
+        UnityEngine.Cursor.lockState = CursorLockMode.Locked;
         Debug.Log("Cargando juego...");
         StartCoroutine(FadeInCoroutine());
     }
