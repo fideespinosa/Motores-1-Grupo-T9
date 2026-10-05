@@ -1,16 +1,17 @@
 <ui:UXML xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:ui="UnityEngine.UIElements" xmlns:uie="UnityEditor.UIElements" noNamespaceSchemaLocation="../../../UIElementsSchema/UIElements.xsd" editor-extension-mode="False">
     <Style src="project://database/Assets/UI%20Toolkit/Style/ButtonMenu.uss?fileID=7433441132597879392&amp;guid=95c23b62ca0790742a2542e60935a46f&amp;type=3#ButtonMenu"/>
-    <ui:VisualElement style="flex-grow: 1; flex-direction: row;">
-        <ui:VisualElement name="AudioVE" style="flex-grow: 1; width: 960px; min-width: 960px; max-width: 960px;">
+    <ui:VisualElement style="flex-grow: 1; flex-direction: row; display: flex;">
+        <ui:VisualElement name="AudioVE" style="flex-grow: 1; width: 960px; min-width: 960px; max-width: 960px; display: flex;">
             <ui:Label text="Audio" class="labelName" style="top: 423px; left: 135px; border-bottom-width: 2px;"/>
             <ui:Slider label="Musica" value="42" high-value="20" low-value="-80" name="MusicSlider" style="position: absolute; top: 550px; left: 130px; -unity-font-definition: url(&quot;project://database/Assets/UI%20Toolkit/Font/Rajdhani-Bold.ttf?fileID=12800000&amp;guid=585eb9b5ee4ddb84e987fe35c590e8e5&amp;type=3#Rajdhani-Bold&quot;); font-size: 62px; width: 490px; color: rgb(183, 183, 183);"/>
             <ui:Slider label="FX&#10;" value="42" high-value="20" low-value="-80" name="FXSlider" style="position: absolute; top: 682px; left: 130px; -unity-font-definition: url(&quot;project://database/Assets/UI%20Toolkit/Font/Rajdhani-Bold.ttf?fileID=12800000&amp;guid=585eb9b5ee4ddb84e987fe35c590e8e5&amp;type=3#Rajdhani-Bold&quot;); font-size: 62px; width: 477px; color: rgb(183, 183, 183);"/>
             <ui:Toggle label="Silenciar  " name="MuteToggle" style="position: absolute; font-size: 62px; -unity-font-definition: url(&quot;project://database/Assets/UI%20Toolkit/Font/Rajdhani-Bold.ttf?fileID=12800000&amp;guid=585eb9b5ee4ddb84e987fe35c590e8e5&amp;type=3#Rajdhani-Bold&quot;); left: 130px; top: 810px; color: rgb(183, 183, 183);"/>
             <ui:Button text="Salir" name="BackButton" class="selected" style="top: 940px; left: 768px; font-size: 74px;"/>
         </ui:VisualElement>
-        <ui:VisualElement name="ScreenVE" style="flex-grow: 1; width: 960px; min-width: 960px; max-width: 960px;">
+        <ui:VisualElement name="ScreenVE" style="flex-grow: 1; width: 960px; min-width: 960px; max-width: 960px; display: flex;">
             <ui:Label text="Pantalla" class="labelName" style="top: 423px; left: 135px; border-bottom-width: 2px;"/>
             <ui:Slider label="Brillo" value="42" high-value="100" low-value="-80" name="brightnessSlider" style="position: absolute; top: 682px; left: 130px; -unity-font-definition: url(&quot;project://database/Assets/UI%20Toolkit/Font/Rajdhani-Bold.ttf?fileID=12800000&amp;guid=585eb9b5ee4ddb84e987fe35c590e8e5&amp;type=3#Rajdhani-Bold&quot;); font-size: 62px; width: 477px; color: rgb(183, 183, 183);"/>
         </ui:VisualElement>
+        <ui:VisualElement name="TurnOffVE" style="flex-grow: 1; -unity-material: url(&quot;project://database/Assets/UI%20Toolkit/Shader%20Graph/M_Overlay.mat?fileID=2100000&amp;guid=54ef99df3c8c1fe40b67a87c8357ef2c&amp;type=2#M_Overlay&quot;); background-color: rgb(0, 0, 0); width: 1920px; height: 50px; min-height: 50px; max-height: 50px; top: 506px;"/>
     </ui:VisualElement>
 </ui:UXML>
