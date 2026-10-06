@@ -58992,6 +58992,7 @@ MonoBehaviour:
   waypointTolerance: 1
   waitAtWaypoint: 0.15
   stoppingDistanceFactor: 0.5
+  animator: {fileID: 0}
   detectionRange: 5
   hearDetectionRange: 4
   fieldOfViewAngle: 51
@@ -60307,6 +60308,7 @@ MonoBehaviour:
   waypointTolerance: 1
   waitAtWaypoint: 0.5
   stoppingDistanceFactor: 0.5
+  animator: {fileID: 0}
   detectionRange: 10
   hearDetectionRange: 4
   fieldOfViewAngle: 51
@@ -60549,22 +60551,6 @@ PrefabInstance:
       value: 
       objectReference: {fileID: 1213029919}
     - target: {fileID: 1879880888123117387, guid: 3e9e2ba5946970b4c8fbda2b57b61011, type: 3}
-      propertyPath: m_Enabled
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 1879880888123117387, guid: 3e9e2ba5946970b4c8fbda2b57b61011, type: 3}
-      propertyPath: moveSpeed
-      value: 0.7
-      objectReference: {fileID: 0}
-    - target: {fileID: 1879880888123117387, guid: 3e9e2ba5946970b4c8fbda2b57b61011, type: 3}
-      propertyPath: chaseSpeed
-      value: 2.3
-      objectReference: {fileID: 0}
-    - target: {fileID: 1879880888123117387, guid: 3e9e2ba5946970b4c8fbda2b57b61011, type: 3}
-      propertyPath: attackRange
-      value: 1.5
-      objectReference: {fileID: 0}
-    - target: {fileID: 1879880888123117387, guid: 3e9e2ba5946970b4c8fbda2b57b61011, type: 3}
       propertyPath: hitSequence
       value: 
       objectReference: {fileID: 8898654158852840281}
@@ -60577,21 +60563,9 @@ PrefabInstance:
       value: 
       objectReference: {fileID: 1827134378}
     - target: {fileID: 1879880888123117387, guid: 3e9e2ba5946970b4c8fbda2b57b61011, type: 3}
-      propertyPath: obstacles.m_Bits
-      value: 64
-      objectReference: {fileID: 0}
-    - target: {fileID: 1879880888123117387, guid: 3e9e2ba5946970b4c8fbda2b57b61011, type: 3}
       propertyPath: interceptorScript
       value: 
       objectReference: {fileID: 434469996}
-    - target: {fileID: 1879880888123117387, guid: 3e9e2ba5946970b4c8fbda2b57b61011, type: 3}
-      propertyPath: minigames.Array.size
-      value: 2
-      objectReference: {fileID: 0}
-    - target: {fileID: 1879880888123117387, guid: 3e9e2ba5946970b4c8fbda2b57b61011, type: 3}
-      propertyPath: waypoints.Array.size
-      value: 11
-      objectReference: {fileID: 0}
     - target: {fileID: 1879880888123117387, guid: 3e9e2ba5946970b4c8fbda2b57b61011, type: 3}
       propertyPath: 'waypoints.Array.data[0]'
       value: 
@@ -60637,22 +60611,6 @@ PrefabInstance:
       value: 
       objectReference: {fileID: 4691269248026100678}
     - target: {fileID: 1879880888123117387, guid: 3e9e2ba5946970b4c8fbda2b57b61011, type: 3}
-      propertyPath: minigames.Array.data[0].m_PersistentCalls.m_Calls.Array.size
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 1879880888123117387, guid: 3e9e2ba5946970b4c8fbda2b57b61011, type: 3}
-      propertyPath: minigames.Array.data[1].m_PersistentCalls.m_Calls.Array.size
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 1879880888123117387, guid: 3e9e2ba5946970b4c8fbda2b57b61011, type: 3}
-      propertyPath: minigames.Array.data[0].m_PersistentCalls.m_Calls.Array.data[0].m_Mode
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 1879880888123117387, guid: 3e9e2ba5946970b4c8fbda2b57b61011, type: 3}
-      propertyPath: minigames.Array.data[1].m_PersistentCalls.m_Calls.Array.data[0].m_Mode
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 1879880888123117387, guid: 3e9e2ba5946970b4c8fbda2b57b61011, type: 3}
       propertyPath: minigames.Array.data[0].m_PersistentCalls.m_Calls.Array.data[0].m_Target
       value: 
       objectReference: {fileID: 1827134378}
@@ -60660,53 +60618,9 @@ PrefabInstance:
       propertyPath: minigames.Array.data[1].m_PersistentCalls.m_Calls.Array.data[0].m_Target
       value: 
       objectReference: {fileID: 434469996}
-    - target: {fileID: 1879880888123117387, guid: 3e9e2ba5946970b4c8fbda2b57b61011, type: 3}
-      propertyPath: minigames.Array.data[0].m_PersistentCalls.m_Calls.Array.data[0].m_CallState
-      value: 2
-      objectReference: {fileID: 0}
-    - target: {fileID: 1879880888123117387, guid: 3e9e2ba5946970b4c8fbda2b57b61011, type: 3}
-      propertyPath: minigames.Array.data[1].m_PersistentCalls.m_Calls.Array.data[0].m_CallState
-      value: 2
-      objectReference: {fileID: 0}
-    - target: {fileID: 1879880888123117387, guid: 3e9e2ba5946970b4c8fbda2b57b61011, type: 3}
-      propertyPath: minigames.Array.data[0].m_PersistentCalls.m_Calls.Array.data[0].m_MethodName
-      value: DronFailure
-      objectReference: {fileID: 0}
-    - target: {fileID: 1879880888123117387, guid: 3e9e2ba5946970b4c8fbda2b57b61011, type: 3}
-      propertyPath: minigames.Array.data[1].m_PersistentCalls.m_Calls.Array.data[0].m_MethodName
-      value: TryStartAppearCycle
-      objectReference: {fileID: 0}
-    - target: {fileID: 1879880888123117387, guid: 3e9e2ba5946970b4c8fbda2b57b61011, type: 3}
-      propertyPath: minigames.Array.data[0].m_PersistentCalls.m_Calls.Array.data[0].m_TargetAssemblyTypeName
-      value: MinigamesManager, Assembly-CSharp
-      objectReference: {fileID: 0}
-    - target: {fileID: 1879880888123117387, guid: 3e9e2ba5946970b4c8fbda2b57b61011, type: 3}
-      propertyPath: minigames.Array.data[1].m_PersistentCalls.m_Calls.Array.data[0].m_TargetAssemblyTypeName
-      value: InterceptorScript, Assembly-CSharp
-      objectReference: {fileID: 0}
-    - target: {fileID: 1879880888123117387, guid: 3e9e2ba5946970b4c8fbda2b57b61011, type: 3}
-      propertyPath: minigames.Array.data[0].m_PersistentCalls.m_Calls.Array.data[0].m_Arguments.m_ObjectArgumentAssemblyTypeName
-      value: UnityEngine.Object, UnityEngine
-      objectReference: {fileID: 0}
-    - target: {fileID: 1879880888123117387, guid: 3e9e2ba5946970b4c8fbda2b57b61011, type: 3}
-      propertyPath: minigames.Array.data[1].m_PersistentCalls.m_Calls.Array.data[0].m_Arguments.m_ObjectArgumentAssemblyTypeName
-      value: UnityEngine.Object, UnityEngine
-      objectReference: {fileID: 0}
-    - target: {fileID: 3881406585012574437, guid: 3e9e2ba5946970b4c8fbda2b57b61011, type: 3}
-      propertyPath: m_Radius
-      value: 0.7000001
-      objectReference: {fileID: 0}
-    - target: {fileID: 3881406585012574437, guid: 3e9e2ba5946970b4c8fbda2b57b61011, type: 3}
-      propertyPath: m_Center.y
-      value: -0.16
-      objectReference: {fileID: 0}
     - target: {fileID: 6630952557506678139, guid: 3e9e2ba5946970b4c8fbda2b57b61011, type: 3}
       propertyPath: m_Name
       value: Enemy_C
-      objectReference: {fileID: 0}
-    - target: {fileID: 6630952557506678139, guid: 3e9e2ba5946970b4c8fbda2b57b61011, type: 3}
-      propertyPath: m_IsActive
-      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 7379818191227290302, guid: 3e9e2ba5946970b4c8fbda2b57b61011, type: 3}
       propertyPath: m_LocalPosition.x
@@ -60747,18 +60661,6 @@ PrefabInstance:
     - target: {fileID: 7379818191227290302, guid: 3e9e2ba5946970b4c8fbda2b57b61011, type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 8479834100856933391, guid: 3e9e2ba5946970b4c8fbda2b57b61011, type: 3}
-      propertyPath: m_Mass
-      value: 10
-      objectReference: {fileID: 0}
-    - target: {fileID: 8479834100856933391, guid: 3e9e2ba5946970b4c8fbda2b57b61011, type: 3}
-      propertyPath: m_Constraints
-      value: 126
-      objectReference: {fileID: 0}
-    - target: {fileID: 8678660751868330430, guid: 3e9e2ba5946970b4c8fbda2b57b61011, type: 3}
-      propertyPath: m_Enabled
-      value: 1
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []

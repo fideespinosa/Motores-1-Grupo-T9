@@ -12,6 +12,7 @@ public class EnemyMovement : MonoBehaviour
     public float waypointTolerance = 0.6f;
     public float waitAtWaypoint = 1f;
     [Range(0f, 1f)] public float stoppingDistanceFactor = 0.5f;
+    [SerializeField] private Animator animator;
 
     [Header("El FOV")]
     public float detectionRange = 10f;
@@ -47,6 +48,7 @@ public class EnemyMovement : MonoBehaviour
     private float resetCooldown = 0f;
     private const float resetCooldownTime = 5f;
     private MonsterAudioController audioController;
+    private static readonly int IsChasingHash = Animator.StringToHash("IsChasing");
 
     // Maquina de estados
     private EnemyStateMachine stateMachine;
@@ -63,6 +65,9 @@ public class EnemyMovement : MonoBehaviour
     void Start()
     {
         agent = GetComponent<NavMeshAgent>();
+
+        animator = GetComponentInChildren<Animator>();
+        SetChaseAnimation(false);
 
         if (agent != null)
         {
@@ -146,19 +151,28 @@ public class EnemyMovement : MonoBehaviour
 
     public void OnChaseStarted()
     {
+        SetChaseAnimation(true);
+
         if (audioController != null)
-        {
             audioController.PlayRoar();
+
+        if (GameMusicManager.Instance != null)
             GameMusicManager.Instance.SetCombatState(true);
-        }
     }
 
     public void OnChaseEnded()
     {
-        if (audioController != null)
-        {
+        SetChaseAnimation(false);
+
+        if (GameMusicManager.Instance != null)
             GameMusicManager.Instance.SetCombatState(false);
-        }
+    }
+
+    void SetChaseAnimation(bool chasing)
+    {
+        Debug.Log($"SetChase {chasing} | animator: {(animator ? animator.gameObject.name : "NULL")}");
+        if (animator != null)
+            animator.SetBool(IsChasingHash, chasing);
     }
 
     public void TriggerAttack()
@@ -279,6 +293,7 @@ public class EnemyMovement : MonoBehaviour
 
     public void ResetEnemy()
     {
+        SetChaseAnimation(false);
         isAttacking = false;
         minigameActive = false;
         resetCooldown = resetCooldownTime;
@@ -294,6 +309,7 @@ public class EnemyMovement : MonoBehaviour
 
     public void RestartPatrol()
     {
+        SetChaseAnimation(false);
         if (agent != null)
         {
             agent.ResetPath();
