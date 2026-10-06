@@ -2688,7 +2688,7 @@ MonoBehaviour:
   waitAtWaypoint: 0.15
   stoppingDistanceFactor: 0.5
   animator: {fileID: 3390342341252165693}
-  detectionRange: 11
+  detectionRange: 8
   hearDetectionRange: 4
   fieldOfViewAngle: 90
   obstacles:
@@ -4898,7 +4898,7 @@ SkinnedMeshRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: -876546973899608171, guid: be8fc207af5c2884f9cb632c88785b4e, type: 3}
+  - {fileID: 2100000, guid: 2d5b9079da1927945be25eedcb6a23c2, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
