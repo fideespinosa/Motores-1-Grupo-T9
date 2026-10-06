@@ -867,7 +867,7 @@ MonoBehaviour:
   requiredFlag: ObjectsReadyToPickUp2
   flagToSetOnPickup: red_key_picked_up
   outline: {fileID: 32462625}
-  audioSource: {fileID: 32462627}
+  audioSource: {fileID: 1676664710}
   pickedObj: {fileID: 8300000, guid: 0209607070eabeb49b1efc648a815570, type: 3}
 --- !u!82 &32462627
 AudioSource:
@@ -876,7 +876,7 @@ AudioSource:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 32462623}
-  m_Enabled: 1
+  m_Enabled: 0
   serializedVersion: 4
   OutputAudioMixerGroup: {fileID: 8285214626755014582, guid: 8ae6de4a4ce8e8c44a52514f69fa1e82, type: 2}
   m_audioClip: {fileID: 0}
@@ -2737,7 +2737,7 @@ MonoBehaviour:
   placementPointToActivate: {fileID: 169338639}
   flagToSetOnPickup: 
   outline: {fileID: 92697162}
-  audioSource: {fileID: 92697165}
+  audioSource: {fileID: 1676664710}
   moveObj: {fileID: 8300000, guid: 045b7cc20cd925642add284af66dae97, type: 3}
   pickObj: {fileID: 8300000, guid: defd86b75135be045b41ec5f00d09a12, type: 3}
 --- !u!64 &92697161
@@ -2787,7 +2787,7 @@ AudioSource:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 92697159}
-  m_Enabled: 1
+  m_Enabled: 0
   serializedVersion: 4
   OutputAudioMixerGroup: {fileID: 8285214626755014582, guid: 8ae6de4a4ce8e8c44a52514f69fa1e82, type: 2}
   m_audioClip: {fileID: 0}
@@ -4556,6 +4556,11 @@ AudioSource:
 --- !u!4 &189793283 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 2578289470925833901, guid: dac055900b74720429addf1066689b35, type: 3}
+  m_PrefabInstance: {fileID: 8603252963807832690}
+  m_PrefabAsset: {fileID: 0}
+--- !u!82 &189793285 stripped
+AudioSource:
+  m_CorrespondingSourceObject: {fileID: 7850941343138437587, guid: dac055900b74720429addf1066689b35, type: 3}
   m_PrefabInstance: {fileID: 8603252963807832690}
   m_PrefabAsset: {fileID: 0}
 --- !u!4 &197840868 stripped
@@ -6704,7 +6709,7 @@ MonoBehaviour:
   slideOffset: {x: 2.5, y: 0, z: 0}
   openDuration: 0.6
   outline: {fileID: 283588615}
-  audioSource: {fileID: 347714281}
+  audioSource: {fileID: 1676664710}
   keyUnlock: {fileID: 0}
   keyLock: {fileID: 0}
   closeDoor: {fileID: 8300000, guid: c870bcf9547391349ad90c6acc3d4cef, type: 3}
@@ -8514,7 +8519,7 @@ MonoBehaviour:
   slideOffset: {x: 0, y: 0, z: 0.4}
   openDuration: 0.6
   outline: {fileID: 347714276}
-  audioSource: {fileID: 347714281}
+  audioSource: {fileID: 1676664710}
   keyUnlock: {fileID: 8300000, guid: 30c24676b0a03b14d897b08118faae1c, type: 3}
   keyLock: {fileID: 8300000, guid: 07312a2eca16eda4bae7536b8ad24f87, type: 3}
   closeDoor: {fileID: 8300000, guid: c870bcf9547391349ad90c6acc3d4cef, type: 3}
@@ -15936,6 +15941,7 @@ GameObject:
   - component: {fileID: 651006637}
   - component: {fileID: 651006638}
   - component: {fileID: 651006639}
+  - component: {fileID: 651006640}
   m_Layer: 8
   m_Name: Openable Door
   m_TagString: Exit-door
@@ -16041,10 +16047,113 @@ MonoBehaviour:
   oldPlayerCamera: {fileID: 1434242616}
   newPlayer: {fileID: 1676664700}
   drone: {fileID: 6891182721162927388}
+  audioSource: {fileID: 651006640}
+  doorClip: {fileID: 8300000, guid: 7a0e9bd5e9f249d48b14299ada148341, type: 3}
+  ambientAndMusicSources:
+  - {fileID: 1996033213}
+  - {fileID: 189793285}
+  doorSoundDelay: 6
   Ship: {fileID: 255171496}
   HUD: {fileID: 62206203}
   PreviousHUD: {fileID: 92881367}
   Canvas: {fileID: 183082931}
+--- !u!82 &651006640
+AudioSource:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 651006634}
+  m_Enabled: 1
+  serializedVersion: 4
+  OutputAudioMixerGroup: {fileID: 8285214626755014582, guid: 8ae6de4a4ce8e8c44a52514f69fa1e82, type: 2}
+  m_audioClip: {fileID: 0}
+  m_Resource: {fileID: 0}
+  m_PlayOnAwake: 1
+  m_Volume: 1
+  m_Pitch: 1
+  Loop: 0
+  Mute: 0
+  Spatialize: 0
+  SpatializePostEffects: 0
+  Priority: 128
+  DopplerLevel: 1
+  MinDistance: 1
+  MaxDistance: 10
+  Pan2D: 0
+  rolloffMode: 0
+  BypassEffects: 0
+  BypassListenerEffects: 0
+  BypassReverbZones: 0
+  rolloffCustomCurve:
+    serializedVersion: 2
+    m_Curve:
+    - serializedVersion: 3
+      time: 0
+      value: 1
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0.33333334
+      outWeight: 0.33333334
+    - serializedVersion: 3
+      time: 1
+      value: 0
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0.33333334
+      outWeight: 0.33333334
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 4
+  panLevelCustomCurve:
+    serializedVersion: 2
+    m_Curve:
+    - serializedVersion: 3
+      time: 0
+      value: 0.59
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0.33333334
+      outWeight: 0.33333334
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 4
+  spreadCustomCurve:
+    serializedVersion: 2
+    m_Curve:
+    - serializedVersion: 3
+      time: 0
+      value: 0
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0.33333334
+      outWeight: 0.33333334
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 4
+  reverbZoneMixCustomCurve:
+    serializedVersion: 2
+    m_Curve:
+    - serializedVersion: 3
+      time: 0
+      value: 1
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0.33333334
+      outWeight: 0.33333334
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 4
 --- !u!1001 &653678375
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -51572,6 +51681,11 @@ Transform:
   m_CorrespondingSourceObject: {fileID: 4153228210669751475, guid: bf320a0f2ae261a4a904f81424fe86d2, type: 3}
   m_PrefabInstance: {fileID: 48102539}
   m_PrefabAsset: {fileID: 0}
+--- !u!82 &1996033213 stripped
+AudioSource:
+  m_CorrespondingSourceObject: {fileID: 5666678979118232689, guid: bf320a0f2ae261a4a904f81424fe86d2, type: 3}
+  m_PrefabInstance: {fileID: 48102539}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1 &1998419109
 GameObject:
   m_ObjectHideFlags: 0
@@ -51891,7 +52005,7 @@ MonoBehaviour:
   requiredFlag: 
   flagToSetOnPickup: black_key_picked_up
   outline: {fileID: 2004595851}
-  audioSource: {fileID: 2004595852}
+  audioSource: {fileID: 1676664710}
   pickedObj: {fileID: 8300000, guid: 0209607070eabeb49b1efc648a815570, type: 3}
 --- !u!114 &2004595851
 MonoBehaviour:
@@ -51918,7 +52032,7 @@ AudioSource:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 2004595848}
-  m_Enabled: 1
+  m_Enabled: 0
   serializedVersion: 4
   OutputAudioMixerGroup: {fileID: 8285214626755014582, guid: 8ae6de4a4ce8e8c44a52514f69fa1e82, type: 2}
   m_audioClip: {fileID: 0}
