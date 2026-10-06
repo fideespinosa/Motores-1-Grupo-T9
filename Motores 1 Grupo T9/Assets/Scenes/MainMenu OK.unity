@@ -640,6 +640,7 @@ GameObject:
   - component: {fileID: 372171409}
   - component: {fileID: 372171408}
   - component: {fileID: 372171410}
+  - component: {fileID: 372171411}
   m_Layer: 5
   m_Name: OpcionesUIDocument
   m_TagString: Untagged
@@ -697,6 +698,18 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e326f2e66744cb247a82977119db92c3, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::UIToolkitAudioBridge
+--- !u!114 &372171411
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 372171407}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: aec82e8faaefb4b4c8b673692a680f80, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::CursorHoverToolkit
 --- !u!1001 &381106858
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -1270,6 +1283,7 @@ GameObject:
   - component: {fileID: 582423394}
   - component: {fileID: 582423393}
   - component: {fileID: 582423395}
+  - component: {fileID: 582423396}
   m_Layer: 5
   m_Name: SalirUIDocument
   m_TagString: Untagged
@@ -1327,6 +1341,18 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e326f2e66744cb247a82977119db92c3, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::UIToolkitAudioBridge
+--- !u!114 &582423396
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 582423392}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: aec82e8faaefb4b4c8b673692a680f80, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::CursorHoverToolkit
 --- !u!1001 &605236902
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -2126,6 +2152,7 @@ GameObject:
   - component: {fileID: 1144917324}
   - component: {fileID: 1144917323}
   - component: {fileID: 1144917325}
+  - component: {fileID: 1144917326}
   m_Layer: 5
   m_Name: JugarUIDocument
   m_TagString: Untagged
@@ -2183,6 +2210,18 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e326f2e66744cb247a82977119db92c3, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::UIToolkitAudioBridge
+--- !u!114 &1144917326
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1144917322}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: aec82e8faaefb4b4c8b673692a680f80, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::CursorHoverToolkit
 --- !u!1001 &1165680515
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -2831,6 +2870,7 @@ GameObject:
   - component: {fileID: 1553925117}
   - component: {fileID: 1553925118}
   - component: {fileID: 1553925119}
+  - component: {fileID: 1553925120}
   m_Layer: 5
   m_Name: UIDocument
   m_TagString: Untagged
@@ -2939,6 +2979,18 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::TurnOff
   tvShaderMaterial: {fileID: 2100000, guid: 54ef99df3c8c1fe40b67a87c8357ef2c, type: 2}
   transitionDuration: 0.5
+--- !u!114 &1553925120
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1553925113}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: aec82e8faaefb4b4c8b673692a680f80, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::CursorHoverToolkit
 --- !u!1001 &1570511241
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -3711,6 +3763,53 @@ PrefabInstance:
     m_AddedGameObjects: []
     m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 65769a95eda687a478d825e8f770852a, type: 3}
+--- !u!1 &2027380352
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 2027380353}
+  - component: {fileID: 2027380354}
+  m_Layer: 0
+  m_Name: CursorManager
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &2027380353
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2027380352}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: -293.0493, y: -0, z: -180.84126}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &2027380354
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2027380352}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 77948137f7962944cb7606d814e32828, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::CursorManager
+  normalCursor: {fileID: 2800000, guid: 73193d511241f7843bb5e03515c9e942, type: 3}
+  hoverCursor: {fileID: 2800000, guid: de550aa2ed0c80749b292ca6a1d44688, type: 3}
+  clickCursor: {fileID: 2800000, guid: 5342ba37093f4b9469617be73400d068, type: 3}
 --- !u!1 &2055317947
 GameObject:
   m_ObjectHideFlags: 0
@@ -4948,3 +5047,4 @@ SceneRoots:
   - {fileID: 2055317950}
   - {fileID: 4410768}
   - {fileID: 1604380275}
+  - {fileID: 2027380353}
