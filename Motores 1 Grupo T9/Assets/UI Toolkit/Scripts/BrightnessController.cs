@@ -6,7 +6,6 @@ public class BrightnessController : MonoBehaviour
     public static BrightnessController Instance { get; private set; }
 
     private UIDocument uiDocument;
-    [SerializeField] private string overlayElementName = "brightnessOverlay";
 
     private VisualElement overlayElement;
 
@@ -26,7 +25,7 @@ public class BrightnessController : MonoBehaviour
     {
         uiDocument = GetComponent<UIDocument>();
         var root = uiDocument.rootVisualElement;
-        overlayElement = root.Q<VisualElement>(overlayElementName);
+        overlayElement = root.Q<VisualElement>("brightnessOverlay");
 
         root.pickingMode = PickingMode.Ignore;
         overlayElement.pickingMode = PickingMode.Ignore;
