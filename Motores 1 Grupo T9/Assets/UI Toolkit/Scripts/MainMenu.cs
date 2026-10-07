@@ -34,6 +34,9 @@ public class MainMenu : MonoBehaviour
 
     private void OnEnable()
     {
+        UnityEngine.Cursor.lockState = CursorLockMode.None;
+        UnityEngine.Cursor.visible = true;
+
         nameDocument2.SetActive(false);
         // 1. Vincular botones del Menú 3D (World Space)
         if (playDocument != null)
