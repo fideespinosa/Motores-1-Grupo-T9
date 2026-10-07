@@ -61727,6 +61727,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: Enemy_C
       objectReference: {fileID: 0}
+    - target: {fileID: 6630952557506678139, guid: 3e9e2ba5946970b4c8fbda2b57b61011, type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 7379818191227290302, guid: 3e9e2ba5946970b4c8fbda2b57b61011, type: 3}
       propertyPath: m_LocalPosition.x
       value: -9.52
@@ -61765,6 +61769,14 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 7379818191227290302, guid: 3e9e2ba5946970b4c8fbda2b57b61011, type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 8012592894549002439, guid: 3e9e2ba5946970b4c8fbda2b57b61011, type: 3}
+      propertyPath: 'm_Materials.Array.data[0]'
+      value: 
+      objectReference: {fileID: 2100000, guid: 2d5b9079da1927945be25eedcb6a23c2, type: 2}
+    - target: {fileID: 9206404128346529522, guid: 3e9e2ba5946970b4c8fbda2b57b61011, type: 3}
+      propertyPath: m_Enabled
       value: 0
       objectReference: {fileID: 0}
     m_RemovedComponents: []
