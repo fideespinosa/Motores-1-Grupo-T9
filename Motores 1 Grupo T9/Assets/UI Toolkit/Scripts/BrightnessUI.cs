@@ -3,35 +3,38 @@ using UnityEngine.UIElements;
 
 public class BrightnessUI : MonoBehaviour
 {
-    [SerializeField] private UIDocument uiDocument;
-    [SerializeField] private BrightnessController brightnessController;
+    private UIDocument uiDocument;
 
     private Slider brightnessSlider;
 
-    private void Start()
+    private void OnEnable()
     {
+        uiDocument = GetComponent<UIDocument>();
         var root = uiDocument.rootVisualElement;
-
         brightnessSlider = root.Q<Slider>("brightnessSlider");
 
-        brightnessSlider.lowValue = -2f;
-        brightnessSlider.highValue = 2f;
+        if (brightnessSlider == null) return;
 
-        brightnessSlider.SetValueWithoutNotify(
-        BrightnessManager.Instance.Brightness
-        );
+        // Rango del slider: 0 (oscuro) a 1 (brillo normal/máximo)
+        brightnessSlider.lowValue = 0f;
+        brightnessSlider.highValue = 1f;
 
-        brightnessController.ApplyBrightness(
-        BrightnessManager.Instance.Brightness
-        );
+        float savedBrightness = BrightnessManager.Instance.Brightness;
+        brightnessSlider.SetValueWithoutNotify(savedBrightness);
 
         brightnessSlider.RegisterValueChangedCallback(OnBrightnessChanged);
+    }
+
+    private void OnDisable()
+    {
+        if (brightnessSlider != null)
+        {
+            brightnessSlider.UnregisterValueChangedCallback(OnBrightnessChanged);
+        }
     }
 
     private void OnBrightnessChanged(ChangeEvent<float> evt)
     {
         BrightnessManager.Instance.SetBrightness(evt.newValue);
-
-        brightnessController.ApplyBrightness(evt.newValue);
     }
 }
