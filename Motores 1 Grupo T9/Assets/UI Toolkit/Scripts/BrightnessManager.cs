@@ -2,11 +2,12 @@ using UnityEngine;
 
 public class BrightnessManager : MonoBehaviour
 {
-    public static BrightnessManager Instance;
+    public static BrightnessManager Instance { get; private set; }
 
     private const string BRIGHTNESS_KEY = "Brightness";
 
-    public float Brightness { get; private set; } = 0f;
+    // Por defecto 1f (brillo completo / claro)
+    public float Brightness { get; private set; } = 1f;
 
     private void Awake()
     {
@@ -19,7 +20,7 @@ public class BrightnessManager : MonoBehaviour
         Instance = this;
         DontDestroyOnLoad(gameObject);
 
-        Brightness = PlayerPrefs.GetFloat(BRIGHTNESS_KEY, 0f);
+        Brightness = PlayerPrefs.GetFloat(BRIGHTNESS_KEY, 1f);
     }
 
     public void SetBrightness(float value)
@@ -28,5 +29,10 @@ public class BrightnessManager : MonoBehaviour
 
         PlayerPrefs.SetFloat(BRIGHTNESS_KEY, value);
         PlayerPrefs.Save();
+
+        if (BrightnessController.Instance != null)
+        {
+            BrightnessController.Instance.ApplyBrightness(value);
+        }
     }
 }
