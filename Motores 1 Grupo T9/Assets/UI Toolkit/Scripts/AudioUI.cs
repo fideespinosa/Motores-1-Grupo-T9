@@ -14,9 +14,9 @@ public class AudioUI : MonoBehaviour
     [SerializeField] private AudioMixer audioMixer;
 
     // Guardamos los últimos valores para restaurarlos al quitar el mute
-    private float lastMusicVol = 0.1585f;
-    private float lastFxVol = 0.5623f;
-    private float lastMasterVol = 3f;
+    private float lastMusicVol = 0.5f;
+    private float lastFxVol = 0.5f;
+    private float lastMasterVol = 0.5f;
     private bool isMuted = false;
 
     private void OnEnable()

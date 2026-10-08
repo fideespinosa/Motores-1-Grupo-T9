@@ -8,8 +8,10 @@ public class PlayerSwitcher : MonoBehaviour
     public MonoBehaviour droneMovement;
     public MonoBehaviour droneCameraControl;
     public Camera droneCamera;
-    public DroneEngineAudio droneAudioScript;   
+    public DroneEngineAudio droneAudioScript;
 
+    public CamDroneUI droneUI;
+    public GameObject drone;
 
     private bool controllingDrone = false;
     private bool canSwitch = false;
@@ -87,6 +89,28 @@ public class PlayerSwitcher : MonoBehaviour
         if (droneCameraControl != null) droneCameraControl.enabled = isDrone;
         if (droneCamera != null) droneCamera.enabled = isDrone;
         if (dronHUD != null) dronHUD.gameObject.SetActive(isDrone);
+
+        if (droneUI != null)
+        {
+            if (isDrone)
+            {
+                if (drone != null)
+                {
+                    var inventory = drone.GetComponent<PlayerInventory>();
+                    if (inventory != null)
+                    {
+                        droneUI.SetHudDroneVisible(true,
+                            inventory.metalCollected,
+                            inventory.combustibleCollected,
+                            inventory.insumosCollected);
+                    }
+                }
+            }
+            else
+            {
+                droneUI.SetHudDroneVisible(false, 0, 0, 0);
+            }
+        }
 
         var droneAudio = droneCamera != null ? droneCamera.GetComponent<AudioListener>() : null;
         if (droneAudio != null) droneAudio.enabled = isDrone;
