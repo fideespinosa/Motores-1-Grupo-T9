@@ -66,7 +66,7 @@ public class PlayerInventory : MonoBehaviour
                 metalCollected++;
                 //textMetal.text = metalCollected.ToString();
                 //camDrone.resources1Lbl.text = $"/ " +  metalCollected.ToString() + "  Piezas de Metal";
-                //textPMetal.text = metalCollected.ToString();
+              //  textPMetal.text = metalCollected.ToString();
                 camDrone.qResources1Lbl.text = metalCollected.ToString();
                 break;
 
@@ -74,7 +74,7 @@ public class PlayerInventory : MonoBehaviour
                 combustibleCollected++;
                 //textCombustible.text = combustibleCollected.ToString();
                 //camDrone.resources2Lbl.text = $"/" + metalCollected.ToString() + "  Posible Combustible";
-                //textPCombustible.text = combustibleCollected.ToString();
+               // textPCombustible.text = combustibleCollected.ToString();
                 camDrone.qResources2Lbl.text = combustibleCollected.ToString();
                 break;
 
@@ -82,7 +82,7 @@ public class PlayerInventory : MonoBehaviour
                 insumosCollected++;
                 //textInsumos.text = insumosCollected.ToString();
                 //camDrone.resources3Lbl.text = $"/" + metalCollected.ToString() + "  Insumos Electrónicos";
-                //textPInsumos.text = insumosCollected.ToString();
+              //  textPInsumos.text = insumosCollected.ToString();
                 camDrone.qResources3Lbl.text = insumosCollected.ToString();
                 break;
         }
