@@ -3524,7 +3524,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 1, y: 1}
-  m_AnchoredPosition: {x: -0.37597656, y: -3.7616272}
+  m_AnchoredPosition: {x: -0.37597656, y: -3.7615967}
   m_SizeDelta: {x: 0, y: -7.1120605}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!225 &102945626
@@ -10485,6 +10485,55 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 430737031}
   m_CullTransparentMesh: 1
+--- !u!1 &432548240
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 432548242}
+  - component: {fileID: 432548241}
+  m_Layer: 0
+  m_Name: Global Volume
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!114 &432548241
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 432548240}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 172515602e62fb746b5d573b38a5fe58, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Unity.RenderPipelines.Core.Runtime::UnityEngine.Rendering.Volume
+  m_IsGlobal: 1
+  priority: 0
+  blendDistance: 0
+  weight: 1
+  sharedProfile: {fileID: 11400000, guid: 203f2ee3fa0f8444a8b609b2f7e73534, type: 2}
+--- !u!4 &432548242
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 432548240}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 266.169, y: 6.125, z: 828.742}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &434469994
 GameObject:
   m_ObjectHideFlags: 0
@@ -31039,6 +31088,8 @@ MonoBehaviour:
   droneCameraControl: {fileID: 5326829191275646101}
   droneCamera: {fileID: 653986404633663559}
   droneAudioScript: {fileID: 8898654158852840258}
+  droneUI: {fileID: 0}
+  drone: {fileID: 0}
   dronHUD: {fileID: 1654381878}
   playerDialogueHUD: {fileID: 1939576822}
 --- !u!4 &1213029920
@@ -66245,3 +66296,4 @@ SceneRoots:
   - {fileID: 722384495}
   - {fileID: 2104888805}
   - {fileID: 1306772099}
+  - {fileID: 432548242}
