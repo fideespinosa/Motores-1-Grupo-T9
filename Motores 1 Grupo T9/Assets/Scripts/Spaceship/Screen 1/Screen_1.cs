@@ -35,7 +35,7 @@ public class Screen_1 : MonoBehaviour
         switcher = Object.FindFirstObjectByType<PlayerSwitcher>();
 
         if (astronautCamera == null) astronautCamera = Camera.main;
-        if (deployCanvas != null) deployCanvas.gameObject.SetActive(false);
+       // if (deployCanvas != null) deployCanvas.gameObject.SetActive(false);
     }
 
     private void OnMouseEnter()
