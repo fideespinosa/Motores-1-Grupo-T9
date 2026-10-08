@@ -32,6 +32,9 @@ public class MainMenu : MonoBehaviour
     private Button btnQuit;
     private Button btnBackFromOptions;
 
+    public static MainMenu Instance { get; private set; }
+
+    
     private void OnEnable()
     {
         UnityEngine.Cursor.lockState = CursorLockMode.None;
@@ -79,7 +82,14 @@ public class MainMenu : MonoBehaviour
       //  nameDocument.position = new Vector3(261.24f, 6.02f, 819.06f);
         //btnPlay.Focus();
     }
-
+    private void OnDisable()
+    {
+        // Suscribir eventos
+        btnPlay?.UnregisterCallback<ClickEvent>(OnPlayClicked);
+        btnOptions?.UnregisterCallback<ClickEvent>(OnOptionsClicked);
+        btnQuit?.UnregisterCallback<ClickEvent>(OnQuitClicked);
+        btnBackFromOptions?.UnregisterCallback<ClickEvent>(OnBackFromOptionsClicked);
+    }
 
     private void OnPlayClicked(ClickEvent evt)
     {
