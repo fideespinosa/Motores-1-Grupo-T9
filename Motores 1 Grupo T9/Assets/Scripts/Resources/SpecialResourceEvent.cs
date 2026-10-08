@@ -27,4 +27,10 @@ public class SpecialResourceEvent : MonoBehaviour
     {
         return isTaken;
     }
+
+    public void OnDoorOpened()
+    {
+        Debug.Log("aparicion enemigo");
+        //logica del enemigo al abrirse la puerta :)
+    }
 }

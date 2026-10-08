@@ -92,6 +92,22 @@ public class PlayerMovement : MonoBehaviour
         }
     }
 
+    public void SetLookDirection(Vector3 worldDirection)
+    {
+        if (worldDirection.sqrMagnitude < 0.0001f) return;
+
+        Quaternion look = Quaternion.LookRotation(worldDirection.normalized);
+        float yaw = look.eulerAngles.y;
+        float pitch = Mathf.DeltaAngle(0f, look.eulerAngles.x);
+
+        transform.rotation = Quaternion.Euler(0f, yaw, 0f);
+        rotationX = Mathf.Clamp(pitch, -verticalAngleLimit, verticalAngleLimit);
+
+        if (cameraTransform != null)
+        {
+            cameraTransform.localRotation = Quaternion.Euler(rotationX, 0f, 0f);
+        }
+    }
     private void HandleMovement()
     {
         bool isGrounded = controller.isGrounded;
