@@ -15,27 +15,38 @@ public class BrightnessUI : MonoBehaviour
 
         if (brightnessSlider == null) return;
 
-        // Rango del slider: 0 (oscuro) a 1 (brillo normal/máximo)
-        brightnessSlider.lowValue = 0f;
-        brightnessSlider.highValue = 1f;
-        //brightnessSlider.value = 1f;
+        if (brightnessSlider != null)
+        {
+            // Aseguramos que el slider use internamente valores de 0 a 1
+            brightnessSlider.lowValue = 0f;
+            brightnessSlider.highValue = 1f;
 
-        float savedBrightness = BrightnessManager.Instance.Brightness;
-        brightnessSlider.SetValueWithoutNotify(savedBrightness);
+            // 3. Le asignamos el valor que esté guardado actualmente en el juego
+            if (GlobalBrightnessManager.Instance != null)
+            {
+                brightnessSlider.value = GlobalBrightnessManager.Instance.GetNormalizedBrightness();
+            }
 
-        brightnessSlider.RegisterValueChangedCallback(OnBrightnessChanged);
+            // 4. Nos suscribimos al evento de cambio de valor
+            brightnessSlider.RegisterValueChangedCallback(OnSliderChanged);
+        }
     }
 
     private void OnDisable()
     {
+        // Buena práctica: desvincular el evento al destruir o apagar la UI
         if (brightnessSlider != null)
         {
-            brightnessSlider.UnregisterValueChangedCallback(OnBrightnessChanged);
+            brightnessSlider.UnregisterValueChangedCallback(OnSliderChanged);
         }
     }
 
-    private void OnBrightnessChanged(ChangeEvent<float> evt)
+    private void OnSliderChanged(ChangeEvent<float> evt)
     {
-        BrightnessManager.Instance.SetBrightness(evt.newValue);
+        // Le enviamos el valor puro (0 a 1) al manager global
+        if (GlobalBrightnessManager.Instance != null)
+        {
+            GlobalBrightnessManager.Instance.UpdateBrightness(evt.newValue);
+        }
     }
 }
