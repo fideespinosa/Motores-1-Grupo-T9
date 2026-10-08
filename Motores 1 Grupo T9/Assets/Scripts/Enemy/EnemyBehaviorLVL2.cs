@@ -28,6 +28,7 @@ public class EnemyBehaviorLVL2 : MonoBehaviour
     [SerializeField] private float cameraMoveDuration = 1f;
     [SerializeField] private float cameraReturnDuration = 1f;
     [SerializeField] private float cameraLookSpeed = 5f;
+    [SerializeField] FlashlightFlicker flashlightFlicker;
 
     bool run = false;
     private bool jumpscareActive = false;
@@ -104,6 +105,7 @@ public class EnemyBehaviorLVL2 : MonoBehaviour
 
         // panel que activa shift para correr!!
         panelFadeScript.SetActive(true);
+        flashlightFlicker.StartFlicker();
 
         Run();
 
@@ -165,6 +167,8 @@ public class EnemyBehaviorLVL2 : MonoBehaviour
         {
             playerDeathAnimator.SetTrigger("play");
         }
+
+
     }
 
     // Llamado por Animation Event al final del clip de grito de muerte

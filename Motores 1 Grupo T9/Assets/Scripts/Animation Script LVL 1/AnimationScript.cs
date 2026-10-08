@@ -11,6 +11,9 @@ public class AnimationScript : MonoBehaviour
     [SerializeField] private GameObject PreviousHUD;
     [SerializeField] private GameObject brokenDron;
 
+    [Header("Rat")]
+    [SerializeField] private GameObject rat;
+
     [Header("Fog")]
     [SerializeField] private GameObject fog;
 
@@ -66,6 +69,8 @@ public class AnimationScript : MonoBehaviour
                 fogScript.FadeOut();
             }
         }
+
+        rat.SetActive(true);
     }
 
     public void PlayDoor()
