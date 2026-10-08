@@ -18,6 +18,7 @@ public class BrightnessUI : MonoBehaviour
         // Rango del slider: 0 (oscuro) a 1 (brillo normal/máximo)
         brightnessSlider.lowValue = 0f;
         brightnessSlider.highValue = 1f;
+        //brightnessSlider.value = 1f;
 
         float savedBrightness = BrightnessManager.Instance.Brightness;
         brightnessSlider.SetValueWithoutNotify(savedBrightness);
