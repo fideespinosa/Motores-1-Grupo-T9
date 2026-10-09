@@ -1,135 +1,171 @@
+
 using System.Collections;
 using UnityEngine;
 
 public class CinematicManager : MonoBehaviour
 {
     [Header("Referencias")]
-    [SerializeField] EnemyBehaviorLVL2 enemy;
-    [SerializeField] Transform enemyLookPoint;   // punto en la cabeza/pecho del enemigo
-    [SerializeField] Camera playerCamera;
-    [SerializeField] Transform playerRoot;       // el objeto Player
-    [SerializeField] Transform cameraPivot;      // el CameraPivot
-    [SerializeField] CameraSequenceController cameraSequence; // el hijo del Player
-    [SerializeField] FadeBehaviorScript panelScript;
+    [SerializeField] private EnemyBehaviorLVL2 enemy;
+    [SerializeField] private Transform enemyLookPoint;
+    [SerializeField] private Camera playerCamera;
+    [SerializeField] private Transform playerRoot;
+    [SerializeField] private CameraSequenceController cameraSequence;
+    [SerializeField] private FadeBehaviorScript panelScript;
     [SerializeField] private PlayerMovement PlayScript;
 
     [Header("Retroceso")]
-    [SerializeField] float backwardSpeed = 1.5f;
-    [SerializeField] float lookSmooth = 10f;
-    [SerializeField] float maxDuration = 15f;    // seguro por si algo falla
+    [SerializeField] private float backwardSpeed = 1.5f;
+    [SerializeField] private float lookSmooth = 10f;
+    [SerializeField] private float maxDuration = 15f;
 
-    private CameraController cameraController;
-    private bool cinematicPlaying = false;
-    private bool lockLook = false;
-    float lastPitch;
+    private bool cinematicPlaying;
+    private bool lockLook;
 
-    void Start()
+    private bool previousMovementEnabled;
+    private bool previousCameraSequenceEnabled;
+
+    private Rigidbody rb;
+
+    private void Awake()
     {
-        // busca el CameraController donde esté (cámara, pivot o player)
-        cameraController = playerCamera.GetComponentInParent<CameraController>();
-        if (cameraController == null)
-            cameraController = playerRoot.GetComponentInChildren<CameraController>(true);
+        if (playerRoot != null)
+            rb = playerRoot.GetComponent<Rigidbody>();
     }
 
-    // Inclinación vertical: el pivot apunta al enemigo después de todos los demás scripts
-    void LateUpdate()
+    private void LateUpdate()
     {
-       
-        if (!lockLook || cameraPivot == null) return;
+        if (!lockLook || playerCamera == null || enemyLookPoint == null)
+            return;
 
-        Vector3 toEnemy = enemyLookPoint.position - cameraPivot.position;
-        Vector3 local = cameraPivot.parent.InverseTransformDirection(toEnemy);
-        float flat = new Vector2(local.x, local.z).magnitude;
-        float pitch = -Mathf.Atan2(local.y, flat) * Mathf.Rad2Deg;
-        pitch = Mathf.Clamp(pitch, -25f, 25f);
+        // Único control de orientación de la cámara durante la cinemática.
+        Vector3 direction = enemyLookPoint.position - playerCamera.transform.position;
 
-        if (Mathf.Abs(pitch - lastPitch) > 8f)
-            Debug.Log($"salto pitch {lastPitch:F1} -> {pitch:F1} | distancia {toEnemy.magnitude:F2}");
-        lastPitch = pitch;
+        if (direction.sqrMagnitude < 0.001f)
+            return;
 
-        cameraPivot.localRotation = Quaternion.Slerp(
-            cameraPivot.localRotation,
-            Quaternion.Euler(pitch, 0f, 0f),
-            lookSmooth * Time.deltaTime);
+        Quaternion targetRotation = Quaternion.LookRotation(direction);
+
+        playerCamera.transform.rotation = Quaternion.Slerp(
+            playerCamera.transform.rotation,
+            targetRotation,
+            lookSmooth * Time.deltaTime
+        );
     }
 
     public void StartMonsterCinematic()
     {
-        Debug.Log("StartMonsterCinematic llamado");
         if (cinematicPlaying)
             return;
 
         StartCoroutine(MonsterSequence());
     }
 
-    IEnumerator MonsterSequence()
+    private IEnumerator MonsterSequence()
     {
-        Debug.Log("MonsterSequence empezó");
         cinematicPlaying = true;
 
-        PlayScript.enabled = false;
-        if (cameraController != null) cameraController.enabled = false;
-        if (cameraSequence != null) cameraSequence.enabled = false;
+        // Guardar los estados originales para restaurarlos al terminar.
+        if (PlayScript != null)
+        {
+            previousMovementEnabled = PlayScript.enabled;
+            PlayScript.enabled = false;
+        }
 
-        Rigidbody rb = playerRoot.GetComponent<Rigidbody>();
+        if (cameraSequence != null)
+        {
+            previousCameraSequenceEnabled = cameraSequence.enabled;
+
+            // Detener cualquier secuencia anterior de cámara.
+            cameraSequence.StopLook();
+            cameraSequence.enabled = false;
+        }
+
         if (rb != null)
         {
             if (!rb.isKinematic)
-                rb.linearVelocity = Vector3.zero; // si tu Unity es anterior a la 6, usá rb.velocity
+                rb.linearVelocity = Vector3.zero;
+
             rb.interpolation = RigidbodyInterpolation.Interpolate;
         }
 
+        // Desde acá, este script controla la orientación de la cámara.
         lockLook = true;
+
         enemy.StartScreaming();
 
         float elapsed = 0f;
 
-        // mientras el enemigo hace el intro: el jugador lo mira y retrocede
-        while (!enemy.IntroDone && elapsed < maxDuration)
+        while (!enemy.ScreamEnded && elapsed < maxDuration)
         {
             elapsed += Time.fixedDeltaTime;
 
-            // giro horizontal del Player hacia el enemigo
-            Vector3 toEnemy = enemyLookPoint.position - playerRoot.position;
-            toEnemy.y = 0f;
-            if (toEnemy.sqrMagnitude > 0.001f)
+            // Girar el jugador horizontalmente hacia el enemigo.
+            if (enemyLookPoint != null)
             {
-                Quaternion targetYaw = Quaternion.LookRotation(toEnemy.normalized);
-                Quaternion newRot = Quaternion.Slerp(
-                    rb != null ? rb.rotation : playerRoot.rotation,
-                    targetYaw,
-                    lookSmooth * Time.fixedDeltaTime);
+                Vector3 toEnemy = enemyLookPoint.position - playerRoot.position;
+                toEnemy.y = 0f;
 
-                if (rb != null) rb.MoveRotation(newRot);
-                else playerRoot.rotation = newRot;
+                if (toEnemy.sqrMagnitude > 0.001f)
+                {
+                    Quaternion targetYaw =
+                        Quaternion.LookRotation(toEnemy.normalized);
+
+                    Quaternion currentRotation =
+                        rb != null ? rb.rotation : playerRoot.rotation;
+
+                    Quaternion newRotation = Quaternion.Slerp(
+                        currentRotation,
+                        targetYaw,
+                        lookSmooth * Time.fixedDeltaTime
+                    );
+
+                    if (rb != null)
+                        rb.MoveRotation(newRotation);
+                    else
+                        playerRoot.rotation = newRotation;
+                }
             }
 
-            // retroceder alejándose del enemigo
+            // Retroceder alejándose del enemigo.
             Vector3 away = playerRoot.position - enemy.transform.position;
             away.y = 0f;
-            Vector3 step = away.normalized * backwardSpeed * Time.fixedDeltaTime;
 
-            if (rb != null) rb.MovePosition(rb.position + step);
-            else playerRoot.position += step;
+            if (away.sqrMagnitude > 0.001f)
+            {
+                Vector3 step =
+                    away.normalized * backwardSpeed * Time.fixedDeltaTime;
+
+                if (rb != null)
+                    rb.MovePosition(rb.position + step);
+                else
+                    playerRoot.position += step;
+            }
 
             yield return new WaitForFixedUpdate();
         }
 
+        // Detener el movimiento y liberar la cámara.
         lockLook = false;
 
         if (rb != null && !rb.isKinematic)
-            rb.linearVelocity = Vector3.zero; // si tu Unity es anterior a la 6, usá rb.velocity
+            rb.linearVelocity = Vector3.zero;
 
-        panelScript.StartFade();
-        Debug.Log("fade del shift");
+        if (panelScript != null)
+            panelScript.StartFade();
 
-        // devolver el control sin que la cámara pegue un salto
-        PlayScript.SetLookDirection(playerCamera.transform.forward);
+        // Sincronizar la orientación del jugador con la cámara actual.
+        if (PlayScript != null && playerCamera != null)
+            PlayScript.SetLookDirection(playerCamera.transform.forward);
 
-        if (cameraController != null) cameraController.enabled = true;
-        if (cameraSequence != null) cameraSequence.enabled = true;
-        PlayScript.enabled = true;
+        // Restaurar los controles que estaban activos antes.
+        if (cameraSequence != null)
+            cameraSequence.enabled = previousCameraSequenceEnabled;
+
+        if (PlayScript != null)
+            PlayScript.enabled = previousMovementEnabled;
 
         cinematicPlaying = false;
+
+        Debug.Log("Cinemática terminada. Control devuelto.");
     }
 }

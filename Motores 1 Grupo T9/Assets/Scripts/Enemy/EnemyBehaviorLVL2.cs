@@ -35,8 +35,6 @@ public class EnemyBehaviorLVL2 : MonoBehaviour
 
     [Header("Cámara")]
     [SerializeField] private CameraSequenceController cameraController;
-    [SerializeField] private float cameraMoveDuration = 1f;
-    [SerializeField] private float cameraReturnDuration = 1f;
     [SerializeField] private float cameraLookSpeed = 5f;
     [SerializeField] FlashlightFlicker flashlightFlicker;
 
@@ -46,6 +44,7 @@ public class EnemyBehaviorLVL2 : MonoBehaviour
     private bool contactEnabled = false; // bloquea el trigger hasta que termine el intro
 
     public bool IntroDone { get; private set; }
+    public bool ScreamEnded { get; private set; }
 
     void Start()
     {
@@ -78,8 +77,10 @@ public class EnemyBehaviorLVL2 : MonoBehaviour
                 introMoveSpeed * Time.deltaTime);
 
             if (Vector3.Distance(transform.position, introTarget.position) <= introArriveDistance)
+            {
                 introMoving = false;
-            Debug.Log($"[{Time.time:F2}] llegó al introTarget");
+                Debug.Log($"[{Time.time:F2}] llegó al introTarget");
+            }
         }
 
         // Persecución: con NavMeshAgent
@@ -92,8 +93,6 @@ public class EnemyBehaviorLVL2 : MonoBehaviour
 
             agent.destination = player.position;
         }
-        if (Input.GetKeyDown(KeyCode.K))
-            StartScreaming();
     }
 
     // ---------- FASE 1: Spawn / intro ----------
@@ -102,14 +101,13 @@ public class EnemyBehaviorLVL2 : MonoBehaviour
     {
         Debug.Log("StartScreaming llamado");
         introSequenceActive = true;
-        animator.SetTrigger("StartIntro");
+        animator.SetTrigger("StartIntro"); // Idle -> Scream
 
         if (introTarget != null)
             introMoving = true;
 
         if (GameMusicManager.Instance != null)
             GameMusicManager.Instance.SetCombatState(true);
-
     }
 
     // Animation Event en el frame del grito
@@ -126,7 +124,10 @@ public class EnemyBehaviorLVL2 : MonoBehaviour
         if (jumpscareActive)
             OnDeathScreamEnd();
         else if (introSequenceActive)
+        {
+            ScreamEnded = true; // el jugador se libera acá
             StartCoroutine(IntroToRunRoutine());
+        }
     }
 
     private IEnumerator IntroToRunRoutine()
@@ -141,24 +142,35 @@ public class EnemyBehaviorLVL2 : MonoBehaviour
         animator.SetBool("IsRunning", true); // Run
 
         // panel que activa shift para correr!!
-        panelFadeScript.SetActive(true);
-        flashlightFlicker.StartFlicker();
+        if (panelFadeScript != null)
+            panelFadeScript.SetActive(true);
+
+        if (flashlightFlicker != null)
+            flashlightFlicker.StartFlicker();
+
         Debug.Log($"[{Time.time:F2}] IntroDone");
         IntroDone = true;
         Run();
 
         contactEnabled = true; // recién acá el contacto puede matarte
     }
+
     public void Run()
     {
-        staticImage.SetActive(true);
+        Debug.Log($"[{Time.time:F2}] Run llamado");
 
-        // activa el agente y lo engancha al NavMesh más cercano
-        agent.enabled = true;
+        if (staticImage != null)
+            staticImage.SetActive(true);
+
         NavMeshHit hit;
-        if (NavMesh.SamplePosition(transform.position, out hit, 2f, NavMesh.AllAreas))
-            agent.Warp(hit.position);
+        if (!NavMesh.SamplePosition(transform.position, out hit, 5f, NavMesh.AllAreas))
+        {
+            Debug.LogWarning("Run: no hay NavMesh a menos de 5 m del enemigo");
+            return;
+        }
 
+        transform.position = hit.position; // lo apoya sobre el NavMesh
+        agent.enabled = true;              // recién ahora se enciende el agente
         agent.speed = runSpeed;
         agent.isStopped = false;
         run = true;
