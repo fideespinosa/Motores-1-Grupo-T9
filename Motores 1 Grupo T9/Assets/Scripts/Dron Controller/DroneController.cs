@@ -10,6 +10,12 @@ public class DroneController : MonoBehaviour
     public float motorForce = 300f;
     public float turnForce = 150f;
 
+    [Header("Turning")]
+    [SerializeField] private float turnFactor = 1f;
+    [SerializeField] private float turnRamp = 4f;
+    [SerializeField] private float turnStartValue = 0.4f;
+    [SerializeField] private float maxTurnRate = 1.5f;
+
     [SerializeField] private float stabilityStrength = 10f;
     [SerializeField] private float stabilityDamper = 2f;
     [SerializeField] private Vector3 customCenterOfMass = new Vector3(0, -0.6f, 0);
@@ -23,6 +29,7 @@ public class DroneController : MonoBehaviour
     private Rigidbody rb;
     [SerializeField] private LayerMask groundLayer;
     private Vector2 inputMove;
+    private float smoothedTurn;
     private Coroutine unfreezeRoutine;
     [SerializeField] private DroneHitSequence hitSequence;
 
@@ -51,20 +58,39 @@ public class DroneController : MonoBehaviour
 
     void FixedUpdate()
     {
-        float leftPower = inputMove.y + inputMove.x;
-        float rightPower = inputMove.y - inputMove.x;
+        if (Mathf.Abs(inputMove.x) > 0.01f && Mathf.Abs(smoothedTurn) < turnStartValue)
+        {
+            smoothedTurn = Mathf.Sign(inputMove.x) * turnStartValue;
+        }
+
+        smoothedTurn = Mathf.MoveTowards(smoothedTurn, inputMove.x, turnRamp * Time.fixedDeltaTime);
+
+        float turnPower = smoothedTurn * motorForce * turnFactor;
+        float leftForce = inputMove.y * motorForce + turnPower;
+        float rightForce = inputMove.y * motorForce - turnPower;
 
         foreach (var wheel in leftWheels)
         {
-            wheel.ApplyDriveForce(leftPower * motorForce);
+            wheel.ApplyDriveForce(leftForce);
         }
 
         foreach (var wheel in rightWheels)
         {
-            wheel.ApplyDriveForce(rightPower * motorForce);
+            wheel.ApplyDriveForce(rightForce);
         }
 
         ApplyGiroscopicStabiliy();
+        LimitYawRate();
+    }
+
+    private void LimitYawRate()
+    {
+        float yawRate = Vector3.Dot(rb.angularVelocity, transform.up);
+
+        if (Mathf.Abs(yawRate) > maxTurnRate)
+        {
+            rb.angularVelocity -= transform.up * (yawRate - Mathf.Sign(yawRate) * maxTurnRate);
+        }
     }
 
     public void FreezeDrone()
@@ -72,6 +98,7 @@ public class DroneController : MonoBehaviour
         rb.linearVelocity = Vector3.zero;
         rb.angularVelocity = Vector3.zero;
         rb.constraints = RigidbodyConstraints.FreezeAll;
+        smoothedTurn = 0f;
 
         if (colliderToggle != null)
             colliderToggle.SetColliders(false);

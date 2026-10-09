@@ -5,9 +5,13 @@ public class ImageItem : MonoBehaviour, IInteractable
     [Header("Image To Show")]
     [SerializeField] private Sprite imageToShow;
 
+
+
     [Header("On Interact")]
     [Tooltip("Si está activo, el objeto desaparece de la escena después de mostrarse una vez.")]
     [SerializeField] private bool disableOnInteract = false;
+    [Tooltip("Objetos que se activan al interactuar. Dejar vacío si no aplica.")]
+    [SerializeField] private GameObject[] objectsToActivate;
 
     [Header("Requirement")]
     [Tooltip("Flag que debe estar activo para poder interactuar con este objeto. Dejar vacío si no aplica.")]
@@ -41,12 +45,22 @@ public class ImageItem : MonoBehaviour, IInteractable
     public void Action()
     {
         if (!IsUnlocked()) return;
+        if (objectsToActivate != null)
+        {
+            foreach (GameObject obj in objectsToActivate)
+            {
+                if (obj != null)
+                {
+                    obj.SetActive(true);
+                }
+            }
+        }
 
         if (ImagePanelManager.Instance != null)
         {
             audioSource.PlayOneShot(paperOn);
             ImagePanelManager.Instance.ShowImage(imageToShow);
-            
+
 
         }
         else
@@ -59,11 +73,12 @@ public class ImageItem : MonoBehaviour, IInteractable
             StoryFlagManager.Instance.SetFlag(flagToSetOnInteract);
         }
 
+
         if (disableOnInteract)
         {
             audioSource.PlayOneShot(paperOff);
             gameObject.SetActive(false);
-           
+
         }
     }
 

@@ -1041,7 +1041,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: 056fa38af1ebb0b4cbb7be21d0f345f4, type: 3}
       propertyPath: m_LocalPosition.x
-      value: 27.497
+      value: 27.462
       objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: 056fa38af1ebb0b4cbb7be21d0f345f4, type: 3}
       propertyPath: m_LocalPosition.y
@@ -1049,7 +1049,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: 056fa38af1ebb0b4cbb7be21d0f345f4, type: 3}
       propertyPath: m_LocalPosition.z
-      value: 16.467
+      value: 16.389
       objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: 056fa38af1ebb0b4cbb7be21d0f345f4, type: 3}
       propertyPath: m_LocalRotation.w
@@ -1092,12 +1092,20 @@ PrefabInstance:
       value: 10
       objectReference: {fileID: 0}
     - target: {fileID: 919132149155446097, guid: 056fa38af1ebb0b4cbb7be21d0f345f4, type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 919132149155446097, guid: 056fa38af1ebb0b4cbb7be21d0f345f4, type: 3}
       propertyPath: m_TagString
       value: Item
       objectReference: {fileID: 0}
     - target: {fileID: 2374596986368171837, guid: 056fa38af1ebb0b4cbb7be21d0f345f4, type: 3}
       propertyPath: m_Layer
       value: 10
+      objectReference: {fileID: 0}
+    - target: {fileID: 2374596986368171837, guid: 056fa38af1ebb0b4cbb7be21d0f345f4, type: 3}
+      propertyPath: m_IsActive
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 7660408689964609359, guid: 056fa38af1ebb0b4cbb7be21d0f345f4, type: 3}
       propertyPath: 'm_Materials.Array.data[0]'
@@ -2665,6 +2673,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::ImageItem
   imageToShow: {fileID: 21300000, guid: f6cb62bb2ec74804ea130b8b02799e00, type: 3}
   disableOnInteract: 0
+  objectsToActivate: []
   requiredFlag: 
   flagToSetOnInteract: test
   outline: {fileID: 90292880}
@@ -17521,7 +17530,7 @@ BoxCollider:
   m_LayerOverridePriority: 0
   m_IsTrigger: 1
   m_ProvidesContacts: 0
-  m_Enabled: 0
+  m_Enabled: 1
   serializedVersion: 3
   m_Size: {x: 3.0044582, y: 5.6458855, z: 0.59619904}
   m_Center: {x: -0.004853606, y: 2.8590832, z: 6.978092}
@@ -18723,6 +18732,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::ImageItem
   imageToShow: {fileID: 21300000, guid: 97874015f41d11945a085a32db35eeb0, type: 3}
   disableOnInteract: 0
+  objectsToActivate: []
   requiredFlag: 
   flagToSetOnInteract: medication_task_started
   outline: {fileID: 686240785}
@@ -19901,6 +19911,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::ImageItem
   imageToShow: {fileID: 21300000, guid: 14198563b5fc9e242b232c99ea618a44, type: 3}
   disableOnInteract: 1
+  objectsToActivate:
+  - {fileID: 32462623}
   requiredFlag: ObjectsReadyToPickUp
   flagToSetOnInteract: ObjectsReadyToPickUp2
   outline: {fileID: 741920026}
@@ -21415,6 +21427,14 @@ PrefabInstance:
       propertyPath: m_Name
       value: Guitar
       objectReference: {fileID: 0}
+    - target: {fileID: 919132149155446097, guid: 8e546252c8dc4b1478dfc6bdd3141bc8, type: 3}
+      propertyPath: m_Layer
+      value: 10
+      objectReference: {fileID: 0}
+    - target: {fileID: 919132149155446097, guid: 8e546252c8dc4b1478dfc6bdd3141bc8, type: 3}
+      propertyPath: m_TagString
+      value: Item
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
@@ -21422,6 +21442,12 @@ PrefabInstance:
     - targetCorrespondingSourceObject: {fileID: 919132149155446097, guid: 8e546252c8dc4b1478dfc6bdd3141bc8, type: 3}
       insertIndex: -1
       addedObject: {fileID: 1088509939}
+    - targetCorrespondingSourceObject: {fileID: 919132149155446097, guid: 8e546252c8dc4b1478dfc6bdd3141bc8, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 1088509943}
+    - targetCorrespondingSourceObject: {fileID: 919132149155446097, guid: 8e546252c8dc4b1478dfc6bdd3141bc8, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 1088509942}
   m_SourcePrefab: {fileID: 100100000, guid: 8e546252c8dc4b1478dfc6bdd3141bc8, type: 3}
 --- !u!1 &805413459
 GameObject:
@@ -26599,6 +26625,38 @@ BoxCollider:
   serializedVersion: 3
   m_Size: {x: 0.01564233, y: 0.042061023, z: 0.0046784966}
   m_Center: {x: 3.3039566e-10, y: 0.021002553, z: 0.00029248098}
+--- !u!114 &1088509942
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1088509936}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 90d9969e95ecb6240b893b733238a437, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: '::'
+  requiredFlag: 
+  outline: {fileID: 1088509943}
+--- !u!114 &1088509943
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1088509936}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 5fea29bb7c508c244a1f805a5fd3fc4d, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::Outline
+  outlineMode: 0
+  outlineColor: {r: 1, g: 1, b: 1, a: 1}
+  outlineWidth: 2
+  precomputeOutline: 0
+  bakeKeys: []
+  bakeValues: []
 --- !u!1001 &1095498568
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -37906,7 +37964,7 @@ MonoBehaviour:
   fpsOldInput: {fileID: 1474393664}
   subScript: {fileID: 1434242624}
   waitAtPointB: 8
-  waitAtPointC: 43.5
+  waitAtPointC: 1
   continuePanel: {fileID: 102945626}
   hud: {fileID: 519435143}
   panelFadeDuration: 1
@@ -37935,7 +37993,7 @@ MonoBehaviour:
     displayDuration: 4
   - text: '"Despliega el Dron de reconocimiento en <mark>la pantalla derecha</mark>."'
     displayDuration: 2
-  - text: "\"Ver\xE1s la funcionalidad en tu <mark>monitor izquierdo</mark>.\""
+  - text: "\"Ver\xE1s la funcionalidad en tu <mark>monitor derecho</mark>.\""
     displayDuration: 2
   - text: "\"Una vez en la superficie... podr\xE1s mover la unidad utilizando las
       teclas <mark>W, A ,S, D</mark> del teclado.\""
@@ -52702,7 +52760,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 1f10877ceb460714bad4c6cfb080d14a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::TextItem
-  commentText: "Es el juguete favorito de mi hijo... nunca entend\xED por qu\xE9
+  commentText: "Es el juguete favorito de Adri\xE1n... nunca entend\xED por qu\xE9
     le gusta tanto este pez. Desde que enferm\xF3 no ha tenido muchas ganas de jugar..."
   outline: {fileID: 1816711972}
 --- !u!114 &1816711972
@@ -61327,8 +61385,6 @@ Transform:
   - {fileID: 3058833582884811293}
   - {fileID: 1089974398120580578}
   - {fileID: 3465443833003968681}
-  - {fileID: 3844838069063010968}
-  - {fileID: 270027362955750369}
   - {fileID: 1360484344}
   - {fileID: 805413460}
   m_Father: {fileID: 0}
@@ -61677,7 +61733,7 @@ Transform:
   m_GameObject: {fileID: 7362301278509887174}
   serializedVersion: 2
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: -9.65, y: 3.78, z: -88.22}
+  m_LocalPosition: {x: -21.76071, y: 12.39228, z: -23.373772}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
@@ -61687,7 +61743,7 @@ Transform:
   - {fileID: 140609878550196267}
   - {fileID: 4609354344865180854}
   - {fileID: 3485963279479953877}
-  m_Father: {fileID: 84742751501287777}
+  m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!4 &365837357082219845
 Transform:
@@ -63632,14 +63688,14 @@ Transform:
   m_GameObject: {fileID: 7790987137022849749}
   serializedVersion: 2
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 21.3, y: 4.308, z: -92.045}
+  m_LocalPosition: {x: 9.189289, y: 12.92028, z: -27.198769}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
   - {fileID: 522019668593124971}
   - {fileID: 365837357082219845}
   - {fileID: 210786495}
-  m_Father: {fileID: 84742751501287777}
+  m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &3854646762801022934
 GameObject:
@@ -67745,6 +67801,8 @@ SceneRoots:
   - {fileID: 136500877654796543}
   - {fileID: 1006182513}
   - {fileID: 1213029920}
+  - {fileID: 3844838069063010968}
+  - {fileID: 270027362955750369}
   - {fileID: 84742751501287777}
   - {fileID: 535172955}
   - {fileID: 1947410652}
