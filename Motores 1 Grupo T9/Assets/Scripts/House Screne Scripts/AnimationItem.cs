@@ -1,4 +1,5 @@
 using UnityEngine;
+using UnityEngine.Events;
 
 public class AnimationItem : MonoBehaviour, IInteractable
 {
@@ -15,6 +16,9 @@ public class AnimationItem : MonoBehaviour, IInteractable
 
     [Header("Outline")]
     [SerializeField] private Outline outline;
+
+    [Header("Eventos")]
+    [SerializeField] private UnityEvent onAction;
 
     private bool hasPlayed = false;
 
@@ -40,19 +44,15 @@ public class AnimationItem : MonoBehaviour, IInteractable
         hasPlayed = true;
 
         if (animator != null)
-        {
             animator.SetTrigger(triggerName);
-        }
 
         if (!string.IsNullOrEmpty(flagToSetOnInteract) && StoryFlagManager.Instance != null)
-        {
             StoryFlagManager.Instance.SetFlag(flagToSetOnInteract);
-        }
+
+        onAction?.Invoke();
 
         if (playOnce && outline != null)
-        {
             outline.enabled = false;
-        }
     }
 
     public void OnHoverEnter()
