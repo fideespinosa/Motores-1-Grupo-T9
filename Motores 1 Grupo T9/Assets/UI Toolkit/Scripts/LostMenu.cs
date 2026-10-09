@@ -13,7 +13,8 @@ public class LostMenu : MonoBehaviour
     [SerializeField] private CanvasGroup panel;
     [SerializeField] private float fadeDuration = 3f;
 
-    [SerializeField] private string sceneName = "MainMenu OK";
+    private string sceneMain = "MainMenu OK";
+    private string sceneLevel = "Level1";
 
     private Button btnPlay;
     private Button btnMenu;
@@ -58,10 +59,10 @@ public class LostMenu : MonoBehaviour
         UnityEngine.Cursor.visible = false;
         UnityEngine.Cursor.lockState = CursorLockMode.Locked;
         Debug.Log("Cargando juego...");
-        StartCoroutine(FadeInCoroutine());
+        StartCoroutine(FadeInCoroutine(sceneLevel));
     }
 
-    private IEnumerator FadeInCoroutine()
+    private IEnumerator FadeInCoroutine(string sceneName)
     {
         float time = 0f;
         panel.alpha = 0f;
@@ -74,10 +75,17 @@ public class LostMenu : MonoBehaviour
         }
 
         panel.alpha = 1f;
-        SceneManager.LoadScene("Level1");
+        SceneManager.LoadScene(sceneName);
     }
     public void OnMenuClicked(ClickEvent evt)
     {
-        SceneManager.LoadScene(sceneName);
+        if (MenuMusicManager.Instance != null)
+        {
+            MenuMusicManager.Instance.FadeOutAndDestroy(15f);
+        }
+        UnityEngine.Cursor.visible = false;
+        UnityEngine.Cursor.lockState = CursorLockMode.Locked;
+        Debug.Log("Cargando juego...");
+        StartCoroutine(FadeInCoroutine(sceneMain));
     }
 }

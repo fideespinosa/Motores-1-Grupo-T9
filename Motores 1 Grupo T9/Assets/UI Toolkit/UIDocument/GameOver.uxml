@@ -1,7 +1,6 @@
 <ui:UXML xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:ui="UnityEngine.UIElements" xmlns:uie="UnityEditor.UIElements" noNamespaceSchemaLocation="../../../UIElementsSchema/UIElements.xsd" editor-extension-mode="False">
     <Style src="project://database/Assets/UI%20Toolkit/Style/ButtonMenu.uss?fileID=7433441132597879392&amp;guid=95c23b62ca0790742a2542e60935a46f&amp;type=3#ButtonMenu"/>
     <ui:VisualElement name="GameOverVE" style="flex-grow: 1;">
-        <ui:Label text="La suprema excelencia consiste&#10;en romper la resistencia&#10; del enemigo sin luchar." class="labelName" style="top: 200px; left: 76px; border-bottom-width: 2px; border-top-width: 2px; border-right-width: 2px; border-left-width: 2px;"/>
         <ui:Label text="Perdiste" name="LostLbl" class="labelName" style="top: 52px; left: 192px;"/>
     </ui:VisualElement>
 </ui:UXML>
