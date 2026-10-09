@@ -12,11 +12,13 @@ public class CinematicManager : MonoBehaviour
     [SerializeField] private CameraSequenceController cameraSequence;
     [SerializeField] private FadeBehaviorScript panelScript;
     [SerializeField] private PlayerMovement PlayScript;
+    private CharacterController playerController;
 
     [Header("Retroceso")]
     [SerializeField] private float backwardSpeed = 1.5f;
     [SerializeField] private float lookSmooth = 10f;
     [SerializeField] private float maxDuration = 15f;
+
 
     private bool cinematicPlaying;
     private bool lockLook;
@@ -29,7 +31,10 @@ public class CinematicManager : MonoBehaviour
     private void Awake()
     {
         if (playerRoot != null)
+        {
             rb = playerRoot.GetComponent<Rigidbody>();
+            playerController = playerRoot.GetComponent<CharacterController>();
+        }
     }
 
     private void LateUpdate()
@@ -39,6 +44,11 @@ public class CinematicManager : MonoBehaviour
 
         // Único control de orientación de la cámara durante la cinemática.
         Vector3 direction = enemyLookPoint.position - playerCamera.transform.position;
+        Debug.Log(
+    $"Tiempo: {Time.time:F2} | " +
+    $"EnemyLookPoint: {enemyLookPoint.position} | " +
+    $"Cámara: {playerCamera.transform.position}"
+);
 
         if (direction.sqrMagnitude < 0.001f)
             return;
@@ -62,6 +72,7 @@ public class CinematicManager : MonoBehaviour
 
     private IEnumerator MonsterSequence()
     {
+        Debug.Log($"Inicio cinemática: ScreamEnded = {enemy.ScreamEnded}");
         cinematicPlaying = true;
 
         // Guardar los estados originales para restaurarlos al terminar.
@@ -135,15 +146,20 @@ public class CinematicManager : MonoBehaviour
                 Vector3 step =
                     away.normalized * backwardSpeed * Time.fixedDeltaTime;
 
-                if (rb != null)
-                    rb.MovePosition(rb.position + step);
+                if (playerController != null && playerController.enabled)
+                {
+                    playerController.Move(step);
+                }
                 else
+                {
                     playerRoot.position += step;
+                }
             }
-
+            Debug.Log($"Esperando Scream: {enemy.ScreamEnded}, tiempo: {elapsed:F2}");
             yield return new WaitForFixedUpdate();
         }
 
+        Debug.Log($"Cinemática termina. ScreamEnded: {enemy.ScreamEnded}");
         // Detener el movimiento y liberar la cámara.
         lockLook = false;
 

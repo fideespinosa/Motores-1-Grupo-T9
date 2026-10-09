@@ -8,35 +8,30 @@ public class FadeBehaviorScript : MonoBehaviour
     [SerializeField] private float waitDuration = 1f;
     [SerializeField] private float fadeOutDuration = 1f;
 
+    private Coroutine fadeCoroutine;
 
     private void OnEnable()
     {
-        StartCoroutine(FadeRoutine());
+        StartFade();
     }
+
     public void StartFade()
     {
-        Debug.Log("START FADE");
-        Debug.Log("Duration: " + fadeInDuration);
-        Debug.Log("Object active: " + gameObject.activeInHierarchy);
+        if (fadeCoroutine != null)
+            StopCoroutine(fadeCoroutine);
 
-        StartCoroutine(FadeRoutine());
+        fadeCoroutine = StartCoroutine(FadeRoutine());
     }
 
-    public IEnumerator FadeRoutine()
+    private IEnumerator FadeRoutine()
     {
-        Debug.Log("toutinasd");
-
         float time = 0f;
-
         panel.alpha = 0f;
 
         while (time < fadeInDuration)
         {
             time += Time.deltaTime;
             panel.alpha = Mathf.Lerp(0f, 1f, time / fadeInDuration);
-
-            Debug.Log("Alpha: " + panel.alpha);
-
             yield return null;
         }
 
@@ -54,5 +49,6 @@ public class FadeBehaviorScript : MonoBehaviour
         }
 
         panel.alpha = 0f;
+        fadeCoroutine = null;
     }
 }

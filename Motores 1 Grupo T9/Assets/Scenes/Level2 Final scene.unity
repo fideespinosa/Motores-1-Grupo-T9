@@ -10508,7 +10508,7 @@ Rigidbody:
   m_IsKinematic: 1
   m_Interpolate: 0
   m_Constraints: 0
-  m_CollisionDetection: 0
+  m_CollisionDetection: 1
 --- !u!65 &467610073
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -18097,7 +18097,7 @@ Transform:
   m_GameObject: {fileID: 1347392344}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 19.44, y: 0.72359, z: -66.02826}
+  m_LocalPosition: {x: 19.44, y: 0.74, z: -66.02826}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -21968,6 +21968,10 @@ MonoBehaviour:
   - {fileID: 1996658292}
   motorForce: 250
   turnForce: 120
+  turnFactor: 1
+  turnRamp: 4
+  turnStartValue: 0.4
+  maxTurnRate: 1.5
   stabilityStrength: 10
   stabilityDamper: 2
   customCenterOfMass: {x: 0, y: -0.6, z: 0}
@@ -25348,6 +25352,10 @@ PrefabInstance:
       propertyPath: m_Layer
       value: 3
       objectReference: {fileID: 0}
+    - target: {fileID: 7942133447520297949, guid: 21a24d9404a568745a5490feefecbb52, type: 3}
+      propertyPath: m_Enabled
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 7974454191990940273, guid: 21a24d9404a568745a5490feefecbb52, type: 3}
       propertyPath: m_Layer
       value: 3
@@ -25453,6 +25461,10 @@ PrefabInstance:
       value: 
       objectReference: {fileID: 467610042}
     - target: {fileID: 8610236762625826126, guid: 21a24d9404a568745a5490feefecbb52, type: 3}
+      propertyPath: cameraLookSpeed
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 8610236762625826126, guid: 21a24d9404a568745a5490feefecbb52, type: 3}
       propertyPath: panelFadeScript
       value: 
       objectReference: {fileID: 485196424}
@@ -25470,7 +25482,7 @@ PrefabInstance:
       objectReference: {fileID: 1668580203}
     - target: {fileID: 8610236762625826126, guid: 21a24d9404a568745a5490feefecbb52, type: 3}
       propertyPath: introArriveDistance
-      value: 0.5
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 8615054850040238146, guid: 21a24d9404a568745a5490feefecbb52, type: 3}
       propertyPath: m_Layer
