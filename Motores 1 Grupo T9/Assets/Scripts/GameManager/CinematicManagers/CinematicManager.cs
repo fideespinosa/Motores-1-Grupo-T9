@@ -14,11 +14,17 @@ public class CinematicManager : MonoBehaviour
     [SerializeField] private PlayerMovement PlayScript;
     private CharacterController playerController;
 
+
+
     [Header("Retroceso")]
     [SerializeField] private float backwardSpeed = 1.5f;
     [SerializeField] private float lookSmooth = 10f;
     [SerializeField] private float maxDuration = 15f;
 
+    [SerializeField] private float backwardDistance = 2f;
+    private bool isKnockingBack;
+    private Vector3 knockbackDirection;
+    private Vector3 knockbackStartPosition;
 
     private bool cinematicPlaying;
     private bool lockLook;
@@ -55,11 +61,11 @@ public class CinematicManager : MonoBehaviour
 
         Quaternion targetRotation = Quaternion.LookRotation(direction);
 
-        playerCamera.transform.rotation = Quaternion.Slerp(
+/*        playerCamera.transform.rotation = Quaternion.Slerp(
             playerCamera.transform.rotation,
             targetRotation,
             lookSmooth * Time.deltaTime
-        );
+        );*/
     }
 
     public void StartMonsterCinematic()
@@ -111,7 +117,7 @@ public class CinematicManager : MonoBehaviour
             elapsed += Time.fixedDeltaTime;
 
             // Girar el jugador horizontalmente hacia el enemigo.
-            if (enemyLookPoint != null)
+/*            if (enemyLookPoint != null)
             {
                 Vector3 toEnemy = enemyLookPoint.position - playerRoot.position;
                 toEnemy.y = 0f;
@@ -135,7 +141,7 @@ public class CinematicManager : MonoBehaviour
                     else
                         playerRoot.rotation = newRotation;
                 }
-            }
+            }*/
 
             // Retroceder alejándose del enemigo.
             /* Vector3 away = playerRoot.position - enemy.transform.position;
@@ -183,5 +189,48 @@ public class CinematicManager : MonoBehaviour
         cinematicPlaying = false;
 
         Debug.Log("Cinemática terminada. Control devuelto.");
+    }
+
+    public void StartKnockback()
+    {
+        if (playerRoot == null) return;
+
+        knockbackDirection = playerRoot.position - enemy.transform.position;
+        knockbackDirection.y = 0f;
+
+        if (knockbackDirection.sqrMagnitude < 0.001f) return;
+
+        knockbackDirection.Normalize();
+        knockbackStartPosition = playerRoot.position;
+        isKnockingBack = true;
+    }
+
+    private void FixedUpdate()
+    {
+        if (!isKnockingBack || playerRoot == null)
+            return;
+
+        float distanceTraveled = Vector3.Dot(
+            playerRoot.position - knockbackStartPosition,
+            knockbackDirection
+        );
+
+        if (distanceTraveled >= backwardDistance)
+        {
+            isKnockingBack = false;
+            return;
+        }
+
+        float stepDistance = Mathf.Min(
+            backwardSpeed * Time.fixedDeltaTime,
+            backwardDistance - distanceTraveled
+        );
+
+        Vector3 step = knockbackDirection * stepDistance;
+
+        if (playerController != null && playerController.enabled)
+            playerController.Move(step);
+        else
+            playerRoot.position += step;
     }
 }

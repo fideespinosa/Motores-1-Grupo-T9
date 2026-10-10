@@ -3,6 +3,9 @@ using UnityEngine;
 
 public class DoorLookEvent : MonoBehaviour
 {
+
+    [SerializeField] CinematicManager cinematicManager;
+
     [Header("Look Target")]
     [SerializeField] private Transform lookTarget;
 
@@ -90,5 +93,10 @@ public class DoorLookEvent : MonoBehaviour
         }
 
         playerCameraTransform.rotation = to;
+    }
+
+    public void moveBackwards()
+    {
+        cinematicManager.StartKnockback();
     }
 }
