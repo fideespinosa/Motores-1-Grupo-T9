@@ -138,24 +138,24 @@ public class CinematicManager : MonoBehaviour
             }
 
             // Retroceder alejándose del enemigo.
-            Vector3 away = playerRoot.position - enemy.transform.position;
-            away.y = 0f;
+            /* Vector3 away = playerRoot.position - enemy.transform.position;
+             away.y = 0f;
 
-            if (away.sqrMagnitude > 0.001f)
-            {
-                Vector3 step =
-                    away.normalized * backwardSpeed * Time.fixedDeltaTime;
+             if (away.sqrMagnitude > 0.001f)
+             {
+                 Vector3 step =
+                     away.normalized * backwardSpeed * Time.fixedDeltaTime;
 
-                if (playerController != null && playerController.enabled)
-                {
-                    playerController.Move(step);
-                }
-                else
-                {
-                    playerRoot.position += step;
-                }
-            }
-            Debug.Log($"Esperando Scream: {enemy.ScreamEnded}, tiempo: {elapsed:F2}");
+                 if (playerController != null && playerController.enabled)
+                 {
+                     playerController.Move(step);
+                 }
+                 else
+                 {
+                     playerRoot.position += step;
+                 }
+             }
+             Debug.Log($"Esperando Scream: {enemy.ScreamEnded}, tiempo: {elapsed:F2}");*/
             yield return new WaitForFixedUpdate();
         }
 
@@ -170,8 +170,8 @@ public class CinematicManager : MonoBehaviour
             panelScript.StartFade();
 
         // Sincronizar la orientación del jugador con la cámara actual.
-        if (PlayScript != null && playerCamera != null)
-            PlayScript.SetLookDirection(playerCamera.transform.forward);
+        /*if (PlayScript != null && playerCamera != null)
+            PlayScript.SetLookDirection(playerCamera.transform.forward);*/
 
         // Restaurar los controles que estaban activos antes.
         if (cameraSequence != null)

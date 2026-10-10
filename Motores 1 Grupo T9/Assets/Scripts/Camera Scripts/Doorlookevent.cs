@@ -56,7 +56,7 @@ public class DoorLookEvent : MonoBehaviour
 
         if (playerMovement != null)
         {
-            playerMovement.SetLookDirection(direction);
+            //playerMovement.SetLookDirection(direction);
 
             if (movementWasEnabled)
             {

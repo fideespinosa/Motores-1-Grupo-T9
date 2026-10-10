@@ -92,7 +92,7 @@ public class PlayerMovement : MonoBehaviour
         }
     }
 
-    public void SetLookDirection(Vector3 worldDirection)
+/*    public void SetLookDirection(Vector3 worldDirection)
     {
         if (worldDirection.sqrMagnitude < 0.0001f) return;
 
@@ -107,7 +107,7 @@ public class PlayerMovement : MonoBehaviour
         {
             cameraTransform.localRotation = Quaternion.Euler(rotationX, 0f, 0f);
         }
-    }
+    }*/
     private void HandleMovement()
     {
         bool isGrounded = controller.isGrounded;

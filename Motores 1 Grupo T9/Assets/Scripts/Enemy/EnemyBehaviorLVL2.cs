@@ -184,6 +184,7 @@ public class EnemyBehaviorLVL2 : MonoBehaviour
 
         if (other.gameObject.CompareTag("Player") && !jumpscareActive)
         {
+            SceneManager.LoadScene("Gracias por jugar escena"); // borrar linea cuando se implemente animacion del enemigo que te atrapa
             jumpscareActive = true;
             StartDeathSequence();
         }
