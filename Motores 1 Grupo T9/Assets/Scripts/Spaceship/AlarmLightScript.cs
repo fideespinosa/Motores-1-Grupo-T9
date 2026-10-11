@@ -29,7 +29,8 @@ public class AlarmLightScript : MonoBehaviour
     {
         enabled = true;
         alarmLight.enabled = true;
-        audioSource.PlayOneShot(alarmClip);
+        audioSource.clip = alarmClip;
+        audioSource.Play();
     }
 
     public void DeactivateAlarm()

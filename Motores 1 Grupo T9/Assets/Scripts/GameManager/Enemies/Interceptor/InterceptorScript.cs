@@ -19,6 +19,11 @@ public class InterceptorScript : MonoBehaviour
     [SerializeField] private GameObject zone;
     [SerializeField] private CountdownBar countdownBar;
 
+
+    [Header("Audio")]
+    [SerializeField] private AudioSource counterSource;
+    [SerializeField] private AudioClip timerClip;
+
     private Coroutine attackRoutine;
     private Coroutine attackTimerRoutine;
 
@@ -38,6 +43,12 @@ public class InterceptorScript : MonoBehaviour
             return;
 
         attackRoutine = StartCoroutine(AppearTimer());
+
+        counterSource.enabled= true;
+        counterSource.clip = timerClip;
+        counterSource.Play();
+
+
     }
 
     private void StopAllLocalCoroutines()
@@ -53,6 +64,8 @@ public class InterceptorScript : MonoBehaviour
             StopCoroutine(attackTimerRoutine);
             attackTimerRoutine = null;
         }
+
+        counterSource.Stop();
     }
 
     private IEnumerator AppearTimer()

@@ -9899,6 +9899,8 @@ MonoBehaviour:
   alarmLightScript: {fileID: 2008631540}
   zone: {fileID: 1863718145}
   countdownBar: {fileID: 228290494}
+  counterSource: {fileID: 1474393665}
+  timerClip: {fileID: 8300000, guid: 40bb5a51065dc1948a0cdd5d672d7bbd, type: 3}
 --- !u!1 &449608468
 GameObject:
   m_ObjectHideFlags: 0
@@ -15534,10 +15536,10 @@ AudioSource:
   m_GameObject: {fileID: 636767781}
   m_Enabled: 1
   serializedVersion: 4
-  OutputAudioMixerGroup: {fileID: 0}
+  OutputAudioMixerGroup: {fileID: 8285214626755014582, guid: 8ae6de4a4ce8e8c44a52514f69fa1e82, type: 2}
   m_audioClip: {fileID: 0}
   m_Resource: {fileID: 8300000, guid: 0dedf2d95d7cf68489b67a2203ade510, type: 3}
-  m_PlayOnAwake: 1
+  m_PlayOnAwake: 0
   m_Volume: 1
   m_Pitch: 1
   Loop: 0
@@ -15631,7 +15633,7 @@ AudioSource:
   m_GameObject: {fileID: 636767781}
   m_Enabled: 1
   serializedVersion: 4
-  OutputAudioMixerGroup: {fileID: 0}
+  OutputAudioMixerGroup: {fileID: 8285214626755014582, guid: 8ae6de4a4ce8e8c44a52514f69fa1e82, type: 2}
   m_audioClip: {fileID: 0}
   m_Resource: {fileID: 8300000, guid: d810e55b20901134c8e9978daec6a0e5, type: 3}
   m_PlayOnAwake: 1
@@ -54979,6 +54981,10 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 337198231026335531, guid: 1c7b76fe5892dc849b8a26bdda20a0c2, type: 3}
+      propertyPath: m_Resource
+      value: 
+      objectReference: {fileID: 8300000, guid: 87f0092e6efae0445b6dbfe0cb6c921d, type: 3}
     - target: {fileID: 2095557770011775093, guid: 1c7b76fe5892dc849b8a26bdda20a0c2, type: 3}
       propertyPath: m_Range
       value: 100
@@ -55168,9 +55174,17 @@ PrefabInstance:
       value: 
       objectReference: {fileID: 2390235786126282857}
     - target: {fileID: 7547163592104657820, guid: 1c7b76fe5892dc849b8a26bdda20a0c2, type: 3}
+      propertyPath: maxPitch
+      value: 1.45
+      objectReference: {fileID: 0}
+    - target: {fileID: 7547163592104657820, guid: 1c7b76fe5892dc849b8a26bdda20a0c2, type: 3}
       propertyPath: m_Enabled
       value: 1
       objectReference: {fileID: 0}
+    - target: {fileID: 7689860054280079038, guid: 1c7b76fe5892dc849b8a26bdda20a0c2, type: 3}
+      propertyPath: m_Resource
+      value: 
+      objectReference: {fileID: 8300000, guid: badf7ef55fa387b4f80e9b237bf8cb2b, type: 3}
     - target: {fileID: 9070350723101137155, guid: 1c7b76fe5892dc849b8a26bdda20a0c2, type: 3}
       propertyPath: m_IsActive
       value: 1
