@@ -21,6 +21,7 @@ public class InterceptorScript : MonoBehaviour
 
     private Coroutine attackRoutine;
     private Coroutine attackTimerRoutine;
+    private int Attemps = 0;
 
     /*    private void OnEnable()
         {
@@ -87,16 +88,25 @@ public class InterceptorScript : MonoBehaviour
         ActivateZone();
         Debug.Log("aparece");
 
+        if (Attemps >= 1)
+        {
+            startTimer();
+        }
 
+        Attemps++;
 
         animatorScript.StartAnimation();
 
-        attackTimerRoutine = StartCoroutine(AttackTimer());
         if (drone != null) drone.FreezeDrone();
-
-        if (countdownBar != null) countdownBar.StartCountdown(timeWhileAttacking);
     }
 
+    public void startTimer()
+    {
+
+        attackTimerRoutine = StartCoroutine(AttackTimer());
+        if (countdownBar != null) countdownBar.StartCountdown(timeWhileAttacking); //asd
+
+    }
     private IEnumerator AttackTimer()
     {
         yield return new WaitForSeconds(timeWhileAttacking);

@@ -19,5 +19,6 @@ public class MemoryInstructions : MonoBehaviour
         panelManager.StartMemoryMinigame();
         gameObject.SetActive(false);
         minigamesManager.UnfreezeGame();
+
     }
 }

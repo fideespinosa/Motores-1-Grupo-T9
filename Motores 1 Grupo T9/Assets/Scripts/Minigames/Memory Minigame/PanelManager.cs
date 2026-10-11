@@ -19,6 +19,7 @@ public class PanelManager : MonoBehaviour
 
     public void StartMemoryMinigame()
     {
+        interceptorScript.startTimer();
         RandomizeOrder();
     }
 
