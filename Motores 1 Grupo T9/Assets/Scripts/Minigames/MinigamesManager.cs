@@ -22,6 +22,10 @@ public class MinigamesManager : MonoBehaviour
     [SerializeField] GameObject alarmLight;
     [SerializeField] GameObject screenWarningImage;
 
+    [Header("Audio Ref")]
+    [SerializeField] private ShipVoiceManager shipVoiceManager;
+    [SerializeField] private ShipAlarmSFXController shipAlarmSFXController;
+
     protected PlayerSwitcher switcher;
     public bool isAlarmActive;
 
@@ -44,6 +48,8 @@ public class MinigamesManager : MonoBehaviour
         alarmLight.SetActive(true);
         screenWarningImage.SetActive(true);
 
+        shipVoiceManager.AlarmOn();
+
         if (SFXManager.Instance != null && SFXManager.Instance.Alarm != null)
         {
             SFXManager.Instance.Alarm.SetAlarmState(true);
@@ -65,6 +71,7 @@ public class MinigamesManager : MonoBehaviour
     public void EndLettersGame()
     {
         Debug.Log("termino del minijuego");
+        shipVoiceManager.AlarmSolved();
         isAlarmActive = false;
         alarmLight.SetActive(false);
         screenWarningImage.SetActive(false);

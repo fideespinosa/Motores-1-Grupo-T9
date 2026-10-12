@@ -26,7 +26,7 @@ public class CameraPointSwitcher : MonoBehaviour
     [Header("References")]
     [SerializeField] private MonoBehaviour fpsOldInput;
     [SerializeField] private SubtitleSequencePlayer subScript;
-    [SerializeField] private GameObject voiceObject;
+    [SerializeField] private ShipVoiceManager voiceObject;
 
     [Header("Initial Point B Sequence")]
     [SerializeField] private float waitAtPointB = 3f;
@@ -208,7 +208,7 @@ public class CameraPointSwitcher : MonoBehaviour
         {
             subScript.Stop();
             imageScript.StopSequence();
-            voiceObject.SetActive(false);
+            voiceObject.SkipCurrentVoice();
         }
 
         if (panelShown)

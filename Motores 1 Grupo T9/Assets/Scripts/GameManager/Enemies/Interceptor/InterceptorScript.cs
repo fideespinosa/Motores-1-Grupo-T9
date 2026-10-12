@@ -16,6 +16,13 @@ public class InterceptorScript : MonoBehaviour
     [SerializeField] private AnimationManagerMemory animatorScript;
     [SerializeField] private AlarmLightScript alarmLightScript;
 
+
+    [Header("AudioRef")]
+    [SerializeField] private ShipVoiceManager shipVoiceManager;
+    [SerializeField] private MinigameSFXController minigameSFXController;
+    [SerializeField] private ShipAlarmSFXController shipAlarmSFXController;
+    
+
     [SerializeField] private GameObject zone;
     [SerializeField] private CountdownBar countdownBar;
 
@@ -47,6 +54,7 @@ public class InterceptorScript : MonoBehaviour
         {
             StopCoroutine(attackRoutine);
             attackRoutine = null;
+
         }
 
         if (attackTimerRoutine != null)
@@ -54,6 +62,9 @@ public class InterceptorScript : MonoBehaviour
             StopCoroutine(attackTimerRoutine);
             attackTimerRoutine = null;
         }
+
+        shipVoiceManager.AlarmSolved();
+        shipAlarmSFXController.SetAlarmState(false);
     }
 
     private IEnumerator AppearTimer()
@@ -82,6 +93,9 @@ public class InterceptorScript : MonoBehaviour
 
         alarmLight.SetActive(true);
 
+        shipVoiceManager.AlarmOn();
+        shipAlarmSFXController.SetAlarmState(true);
+
         playerSwitcher.SetControl(false);
         playerSwitcher.BlockSwitching();
 
@@ -91,6 +105,7 @@ public class InterceptorScript : MonoBehaviour
         if (Attemps >= 1)
         {
             startTimer();
+            
         }
 
         Attemps++;
@@ -105,6 +120,8 @@ public class InterceptorScript : MonoBehaviour
 
         attackTimerRoutine = StartCoroutine(AttackTimer());
         if (countdownBar != null) countdownBar.StartCountdown(timeWhileAttacking); //asd
+
+        minigameSFXController.TimerSFXOn();
 
     }
     private IEnumerator AttackTimer()
@@ -128,6 +145,8 @@ public class InterceptorScript : MonoBehaviour
             Debug.Log("minijuego apagado");
             GameStatusScript.Instance.EndMinigame();
         }
+
+        minigameSFXController.TimerOK();
 
         animatorScript.EndAnimation();
 

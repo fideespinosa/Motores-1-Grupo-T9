@@ -34,6 +34,9 @@ public class EnemyMovement : MonoBehaviour
     [SerializeField] InterceptorScript interceptorScript;
     [SerializeField] private Transform spawnPoint;
 
+    [Header("Ref Audio")]
+    [SerializeField] private ShipVoiceManager shipVoiceManager;
+
     [Header("Minijuegos")]
     [SerializeField] UnityEvent[] minigames;
     private int lastMinigame = -1;
@@ -155,6 +158,8 @@ public class EnemyMovement : MonoBehaviour
 
         if (audioController != null)
             audioController.PlayRoar();
+
+        shipVoiceManager.PulseEnemy();
 
         if (GameMusicManager.Instance != null)
             GameMusicManager.Instance.SetCombatState(true);
