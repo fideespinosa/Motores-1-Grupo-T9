@@ -17,6 +17,9 @@ public class FadeBehaviorScript : MonoBehaviour
 
     public void StartFade()
     {
+        if (!gameObject.activeInHierarchy)
+            gameObject.SetActive(true);
+
         if (fadeCoroutine != null)
             StopCoroutine(fadeCoroutine);
 

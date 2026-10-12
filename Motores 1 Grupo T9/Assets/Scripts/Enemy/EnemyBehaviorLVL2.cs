@@ -25,6 +25,12 @@ public class EnemyBehaviorLVL2 : MonoBehaviour
     private float runSpeed;
     private bool introMoving = false;
 
+    [Header("Escala")]
+    [SerializeField] private Vector3 screamScale = new Vector3(1.5f, 1.5f, 1.5f); // X, Y, Z durante el Scream
+    [SerializeField] private float scaleTransitionTime = 0.3f; // 0 = cambio instantáneo
+    private Vector3 originalScale;
+    private Coroutine scaleRoutine;
+
     [Header("Viewpoint")]
     [SerializeField] private Transform viewPoint;
 
@@ -48,6 +54,7 @@ public class EnemyBehaviorLVL2 : MonoBehaviour
 
     void Start()
     {
+        originalScale = transform.localScale;
         agent = GetComponent<NavMeshAgent>();
         audioController = GetComponent<MonsterAudioController>();
         runSpeed = agent.speed;   // velocidad de correr = la del NavMeshAgent en el inspector
@@ -228,5 +235,41 @@ public class EnemyBehaviorLVL2 : MonoBehaviour
         PlayerPrefs.SetString("LastScene", SceneManager.GetActiveScene().name);
         PlayerPrefs.Save();
         SceneManager.LoadScene("Gracias por jugar escena");
+    }
+    public void ApplyScreamScale()
+    {
+        SetScale(screamScale);
+    }
+
+    // Vuelve a la escala original (se puede llamar también desde un evento)
+    public void ResetScale()
+    {
+        SetScale(originalScale);
+    }
+
+    private void SetScale(Vector3 target)
+    {
+        if (scaleRoutine != null)
+            StopCoroutine(scaleRoutine);
+
+        if (scaleTransitionTime <= 0f)
+            transform.localScale = target;
+        else
+            scaleRoutine = StartCoroutine(ScaleRoutine(target));
+    }
+
+    private IEnumerator ScaleRoutine(Vector3 target)
+    {
+        Vector3 start = transform.localScale;
+        float t = 0f;
+
+        while (t < scaleTransitionTime)
+        {
+            t += Time.deltaTime;
+            transform.localScale = Vector3.Lerp(start, target, t / scaleTransitionTime);
+            yield return null;
+        }
+
+        transform.localScale = target;
     }
 }
