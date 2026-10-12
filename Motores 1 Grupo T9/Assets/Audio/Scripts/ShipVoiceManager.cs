@@ -1,4 +1,6 @@
+using System;
 using System.Collections;
+using Unity.VisualScripting;
 using UnityEngine;
 
 public class ShipVoiceManager : MonoBehaviour
@@ -11,6 +13,18 @@ public class ShipVoiceManager : MonoBehaviour
     [SerializeField] private AudioClip introTutorialClip;
     [SerializeField] private bool playIntroOnStart = true;
     [SerializeField] private float delayBeforeIntro;
+
+    [Header("IA de minijuego")]
+    [SerializeField] private AudioClip alarmIAClip;
+    [SerializeField] private AudioClip minigameOkClip;
+
+
+    [Header("IA  de amenazas")]
+
+    [SerializeField] private AudioClip firstThreat;
+    [SerializeField] private AudioClip pulseThreat;
+
+
 
     void Awake()
     {
@@ -48,4 +62,45 @@ public class ShipVoiceManager : MonoBehaviour
             voiceSource.Stop();
         }
     }
+
+    public void AlarmOn()
+    {
+        if (voiceSource != null)
+        {
+            voiceSource.clip = alarmIAClip;
+            voiceSource.Play();
+            Debug.Log("Audio de Dron desactivado");
+        }
+    }
+
+    public void AlarmSolved()
+    {
+        if (voiceSource != null)
+        {
+            voiceSource.clip = minigameOkClip;
+            voiceSource.Play();
+            Debug.Log("audio de alarma resuelta");
+        }
+    }
+
+    public void FisrtEnemy()
+    {
+        if (voiceSource != null)
+        {
+            voiceSource.clip = firstThreat;
+            voiceSource.Play();
+            Debug.Log("Primer enemigo sonando");
+        }
+    }
+
+    public void PulseEnemy()
+    {
+        if (voiceSource != null)
+        {
+            voiceSource.clip = pulseThreat;
+            voiceSource.Play();
+            Debug.Log("pulso de amenazas");
+        }
+    }
+
 }

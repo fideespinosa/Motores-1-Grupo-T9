@@ -7,6 +7,9 @@ public class MinigameSFXController : MonoBehaviour
     [SerializeField] private AudioClip minigameOkClip;
     [SerializeField] private AudioClip minigameErrClip;
 
+    [SerializeField] private AudioSource timerSource;
+    [SerializeField] private AudioClip timerSound;
+
     public void PlayFeedback(bool isSuccess)
     {
         if (interactSource2D == null) return;
@@ -16,6 +19,24 @@ public class MinigameSFXController : MonoBehaviour
         if (clipToPlay != null)
         {
             interactSource2D.PlayOneShot(clipToPlay);
+        }
+    }
+
+    public void TimerSFXOn()
+    {
+        if (timerSource != null)
+        {
+            timerSource.clip = timerSound;
+            timerSource.Play();
+        }
+    }
+
+    public void TimerOK()
+    {
+        if (timerSource != null && timerSource.isPlaying)
+        {
+            timerSource.Stop();
+
         }
     }
 }
