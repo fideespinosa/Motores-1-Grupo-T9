@@ -29,6 +29,15 @@ public class MedicationManager : MonoBehaviour
     private Dictionary<string, int> collectedAmounts = new Dictionary<string, int>();
     private Dictionary<string, string> displayNames = new Dictionary<string, string>();
 
+    public event Action OnMedicationChanged;
+
+    public IReadOnlyList<MedicationRequirement> Requirements => requirements;
+
+    public int GetCollected(string medicationId)
+    {
+        return collectedAmounts.ContainsKey(medicationId) ? collectedAmounts[medicationId] : 0;
+    }
+
     private void Awake()
     {
         if (Instance != null && Instance != this)
@@ -36,6 +45,7 @@ public class MedicationManager : MonoBehaviour
             Destroy(gameObject);
             return;
         }
+
         Instance = this;
 
         foreach (MedicationRequirement requirement in requirements)
@@ -52,12 +62,10 @@ public class MedicationManager : MonoBehaviour
         {
             audioSource.clip = notOkClip;
             audioSource.loop = false;
-            audioSource.Play(); 
+            audioSource.Play();
             ShowMessage("No, esto no es lo que busco.");
             return false;
         }
-     
-
 
         if (collectedAmounts[medicationId] >= requiredAmounts[medicationId])
         {
@@ -67,18 +75,21 @@ public class MedicationManager : MonoBehaviour
 
         collectedAmounts[medicationId]++;
 
+        OnMedicationChanged?.Invoke();
+
         if (IsComplete())
         {
             if (StoryFlagManager.Instance != null)
             {
                 StoryFlagManager.Instance.SetFlag(completedFlag);
             }
+
             ShowMessage("Ya tengo todos los remedios que necesito. Deberia dejarle tambien un vaso con agua.");
-            
+            //asd
+
             audioSource.clip = doneClip;
             audioSource.loop = false;
             audioSource.Play();
-
         }
         else
         {
@@ -98,6 +109,7 @@ public class MedicationManager : MonoBehaviour
                 return false;
             }
         }
+
         return true;
     }
 

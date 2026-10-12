@@ -20,6 +20,7 @@ public class ImagePanelManager : MonoBehaviour
     public bool IsShowingImage { get; private set; }
 
     private bool playerMovementWasEnabledBeforeShow;
+    private ImageItem currentImageItem;
 
     private void Awake()
     {
@@ -28,6 +29,7 @@ public class ImagePanelManager : MonoBehaviour
             Destroy(gameObject);
             return;
         }
+
         Instance = this;
 
         if (panel != null)
@@ -46,10 +48,12 @@ public class ImagePanelManager : MonoBehaviour
         }
     }
 
-    public void ShowImage(Sprite sprite)
+    public void ShowImage(Sprite sprite, ImageItem item)
     {
         if (panel == null || displayedImage == null || sprite == null) return;
         if (IsShowingImage) return;
+
+        currentImageItem = item;
 
         displayedImage.sprite = sprite;
         panel.SetActive(true);
@@ -74,6 +78,12 @@ public class ImagePanelManager : MonoBehaviour
 
         panel.SetActive(false);
         IsShowingImage = false;
+
+        if (currentImageItem != null)
+        {
+            currentImageItem.OnImageClosed();
+            currentImageItem = null;
+        }
 
         if (playerMovement != null && playerMovementWasEnabledBeforeShow)
         {

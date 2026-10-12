@@ -49,7 +49,7 @@ public class ImageItem : MonoBehaviour, IInteractable
         if (ImagePanelManager.Instance != null)
         {
             audioSource.PlayOneShot(paperOn);
-            ImagePanelManager.Instance.ShowImage(imageToShow);
+            ImagePanelManager.Instance.ShowImage(imageToShow, this);
 
 
         }
@@ -63,22 +63,6 @@ public class ImageItem : MonoBehaviour, IInteractable
             StoryFlagManager.Instance.SetFlag(flagToSetOnInteract);
         }
 
-
-        if (disableOnInteract)
-        {
-            audioSource.PlayOneShot(paperOff);
-            if (objectsToActivate != null)
-            {
-                foreach (GameObject obj in objectsToActivate)
-                {
-                    if (obj != null)
-                    {
-                        obj.SetActive(true);
-                    }
-                }
-            }
-            gameObject.SetActive(false);
-        }
     }
 
     public void OnHoverEnter()
@@ -96,6 +80,27 @@ public class ImageItem : MonoBehaviour, IInteractable
         if (outline != null)
         {
             outline.enabled = false;
+        }
+    }
+
+    public void OnImageClosed()
+    {
+        if (disableOnInteract)
+        {
+            audioSource.PlayOneShot(paperOff);
+
+            if (objectsToActivate != null)
+            {
+                foreach (GameObject obj in objectsToActivate)
+                {
+                    if (obj != null)
+                    {
+                        obj.SetActive(true);
+                    }
+                }
+            }
+
+            gameObject.SetActive(false);
         }
     }
 }
