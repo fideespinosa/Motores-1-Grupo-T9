@@ -14,6 +14,8 @@ public class ShipAlarmSFXController : MonoBehaviour
 
     [SerializeField] private float transitionTime = 1.5f;
 
+    
+
     public void SetAlarmState(bool isActive)
     {
         if (isActive)
@@ -49,4 +51,6 @@ public class ShipAlarmSFXController : MonoBehaviour
             }
         }
     }
+
+   
 }

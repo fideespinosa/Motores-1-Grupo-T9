@@ -30,6 +30,9 @@ public class PlayerInventory : MonoBehaviour
     [SerializeField] private bool anomalyTriggered = false;
     [SerializeField] private float anomalyDelay = 3f;
 
+    [Header("SFX Ref")]
+    [SerializeField] private ShipVoiceManager shipVoiceManager;
+
 
     [Header("Siguiente Nivel")]
     [SerializeField] public string nextLevel;
@@ -132,6 +135,8 @@ public class PlayerInventory : MonoBehaviour
         }
 
         FlickerFlashlight();
+
+        shipVoiceManager.FisrtEnemy();
     }
 
     public void CheckVictory()
