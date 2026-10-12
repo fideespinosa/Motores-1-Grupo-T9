@@ -52,6 +52,7 @@ public class AnimationScript : MonoBehaviour
     {
         playerMovement.enabled = true;
         HUD.SetActive(true);
+        rat.SetActive(true);
     }
 
     public void FogStart()
@@ -70,7 +71,6 @@ public class AnimationScript : MonoBehaviour
             }
         }
 
-        rat.SetActive(true);
     }
 
     public void PlayDoor()

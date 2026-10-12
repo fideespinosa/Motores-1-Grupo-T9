@@ -17,6 +17,8 @@ public class TVImageSequence : MonoBehaviour
     [SerializeField] private float fadeDuration = 0.5f;
     [SerializeField] private List<ImageData> images;
 
+    private Coroutine sequenceCoroutine;
+
     public void StartSequence()
     {
         image.gameObject.SetActive(true);
@@ -26,7 +28,25 @@ public class TVImageSequence : MonoBehaviour
         blackFade.color = color;
         blackFade.gameObject.SetActive(true);
 
-        StartCoroutine(PlaySequence());
+        sequenceCoroutine = StartCoroutine(PlaySequence());
+    }
+
+    public void StopSequence()
+    {
+        if (sequenceCoroutine != null)
+        {
+            StopCoroutine(sequenceCoroutine);
+            sequenceCoroutine = null;
+        }
+
+        StartCoroutine(StopRoutine());
+    }
+
+    private IEnumerator StopRoutine()
+    {
+        yield return Fade(1f);
+
+        image.gameObject.SetActive(false);
     }
 
     private IEnumerator PlaySequence()

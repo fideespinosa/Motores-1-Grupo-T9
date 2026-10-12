@@ -45,16 +45,6 @@ public class ImageItem : MonoBehaviour, IInteractable
     public void Action()
     {
         if (!IsUnlocked()) return;
-        if (objectsToActivate != null)
-        {
-            foreach (GameObject obj in objectsToActivate)
-            {
-                if (obj != null)
-                {
-                    obj.SetActive(true);
-                }
-            }
-        }
 
         if (ImagePanelManager.Instance != null)
         {
@@ -77,8 +67,17 @@ public class ImageItem : MonoBehaviour, IInteractable
         if (disableOnInteract)
         {
             audioSource.PlayOneShot(paperOff);
+            if (objectsToActivate != null)
+            {
+                foreach (GameObject obj in objectsToActivate)
+                {
+                    if (obj != null)
+                    {
+                        obj.SetActive(true);
+                    }
+                }
+            }
             gameObject.SetActive(false);
-
         }
     }
 

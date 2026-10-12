@@ -30,8 +30,21 @@ public class SubtitleSequencePlayer : MonoBehaviour
     {
         displayedText.enabled = true;
         StartCoroutine(PlaySequence());
+
     }
 
+    public void Stop()
+    {
+        StopAllCoroutines();
+        displayedText.alpha = 1f;
+
+        FadePanel(1f, 0f, fadeOutDuration);
+        panel.SetActive(false);
+
+        Debug.Log("termino textooo");
+        displayedText.text = "";
+        displayedText.enabled = false;
+    }
     private IEnumerator PlaySequence()
     {
         if (panel != null)

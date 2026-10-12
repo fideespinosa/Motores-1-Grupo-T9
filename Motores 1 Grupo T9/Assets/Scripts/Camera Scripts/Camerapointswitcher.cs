@@ -26,12 +26,17 @@ public class CameraPointSwitcher : MonoBehaviour
     [Header("References")]
     [SerializeField] private MonoBehaviour fpsOldInput;
     [SerializeField] private SubtitleSequencePlayer subScript;
+    [SerializeField] private GameObject voiceObject;
 
     [Header("Initial Point B Sequence")]
     [SerializeField] private float waitAtPointB = 3f;
     [SerializeField] private float waitAtPointC = 3f;
     [SerializeField] private CanvasGroup continuePanel;
     [SerializeField] private GameObject hud;
+
+    [Header("Skip At Point C")]
+    [SerializeField] private CanvasGroup skipPanel;
+    [SerializeField] private float skipPanelDelay = 5f;
 
     [Header("Panel Fade")]
     [SerializeField] private float panelFadeDuration = 1f;
@@ -62,6 +67,12 @@ public class CameraPointSwitcher : MonoBehaviour
         {
             continuePanel.alpha = 0f;
             continuePanel.gameObject.SetActive(false);
+        }
+
+        if (skipPanel != null)
+        {
+            skipPanel.alpha = 0f;
+            skipPanel.gameObject.SetActive(false);
         }
 
         if (startingPoint == StartPoint.PointB)
@@ -124,7 +135,7 @@ public class CameraPointSwitcher : MonoBehaviour
 
         if (!spacePressed)
         {
-            
+
             yield return new WaitUntil(() => Input.GetKeyDown(KeyCode.Space));
             FindFirstObjectByType<TypewritterText>().ForceStopAndFinish();
         }
@@ -146,12 +157,12 @@ public class CameraPointSwitcher : MonoBehaviour
         }
 
         yield return StartCoroutine(MoveTo(pointC, false));
-        
+
         // aca poner audio de la ia
         subScript.Play();
         imageScript.StartSequence();
 
-        yield return new WaitForSeconds(waitAtPointC);
+        yield return StartCoroutine(WaitAtPointC());
 
         yield return StartCoroutine(MoveTo(pointA, true));
 
@@ -159,6 +170,67 @@ public class CameraPointSwitcher : MonoBehaviour
         moveDuration = 0.4f;
 
         sequenceRunning = false;
+    }
+
+    private IEnumerator WaitAtPointC()
+    {
+        float elapsed = 0f;
+        float panelElapsed = 0f;
+        bool panelShown = false;
+        bool skipped = false;
+
+        while (elapsed < waitAtPointC)
+        {
+            elapsed += Time.deltaTime;
+
+            if (skipPanel != null && !panelShown && elapsed >= skipPanelDelay)
+            {
+                panelShown = true;
+                skipPanel.gameObject.SetActive(true);
+            }
+
+            if (panelShown)
+            {
+                panelElapsed += Time.deltaTime;
+                skipPanel.alpha = Mathf.Lerp(0f, 1f, panelElapsed / panelFadeDuration);
+
+                if (Input.GetKeyDown(KeyCode.Space))
+                {
+                    skipped = true;
+                    break;
+                }
+            }
+
+            yield return null;
+        }
+
+        if (skipped)
+        {
+            subScript.Stop();
+            imageScript.StopSequence();
+            voiceObject.SetActive(false);
+        }
+
+        if (panelShown)
+        {
+            StartCoroutine(HideSkipPanel());
+        }
+    }
+
+    private IEnumerator HideSkipPanel()
+    {
+        float startAlpha = skipPanel.alpha;
+        float elapsed = 0f;
+
+        while (elapsed < panelFadeDuration)
+        {
+            elapsed += Time.deltaTime;
+            skipPanel.alpha = Mathf.Lerp(startAlpha, 0f, elapsed / panelFadeDuration);
+            yield return null;
+        }
+
+        skipPanel.alpha = 0f;
+        skipPanel.gameObject.SetActive(false);
     }
 
     private IEnumerator MoveTo(Transform target, bool willBeAtPointA)
