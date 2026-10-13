@@ -1,3 +1,4 @@
+using System.Collections;
 using System.Text;
 using TMPro;
 using UnityEngine;
@@ -5,7 +6,7 @@ using UnityEngine;
 public class MedicationListPanel : MonoBehaviour
 {
     [Header("UI")]
-    [SerializeField] private GameObject panel;
+    [SerializeField] private CanvasGroup panelCanvasGroup;
     [SerializeField] private TextMeshProUGUI listText;
 
     [Header("Show")]
@@ -14,13 +15,19 @@ public class MedicationListPanel : MonoBehaviour
     [Header("Format")]
     [SerializeField] private string lineFormat = "{0}/{1} de {2}";
 
+    [Header("Fade")]
+    [SerializeField] private float fadeDuration = 0.5f;
+    [SerializeField] private float hideDelay = 1f;
+
     private bool isShown = false;
+    private bool finished = false;
+    private Coroutine fadeCoroutine;
 
     private void Awake()
     {
-        if (panel != null)
+        if (panelCanvasGroup != null)
         {
-            panel.SetActive(false);
+            panelCanvasGroup.alpha = 0f;
         }
     }
 
@@ -42,21 +49,64 @@ public class MedicationListPanel : MonoBehaviour
 
     private void Update()
     {
+        if (finished) return;
+        if (MedicationManager.Instance == null) return;
+
+        if (MedicationManager.Instance.IsComplete())
+        {
+            finished = true;
+
+            if (isShown)
+            {
+                StartFade(0f, hideDelay);
+            }
+
+            return;
+        }
+
         if (isShown) return;
 
-        bool flagReady = string.IsNullOrEmpty(showFlag) ||
-            (StoryFlagManager.Instance != null && StoryFlagManager.Instance.HasFlag(showFlag));
+        string flagToWaitFor = string.IsNullOrEmpty(showFlag) ? "medication_task_started" : showFlag;
+        bool flagReady = StoryFlagManager.Instance != null && StoryFlagManager.Instance.HasFlag(flagToWaitFor);
 
         if (!flagReady) return;
 
         isShown = true;
+        Refresh();
+        StartFade(1f, 0f);
+    }
 
-        if (panel != null)
+    private void StartFade(float targetAlpha, float delay)
+    {
+        if (panelCanvasGroup == null) return;
+
+        if (fadeCoroutine != null)
         {
-            panel.SetActive(true);
+            StopCoroutine(fadeCoroutine);
         }
 
-        Refresh();
+        fadeCoroutine = StartCoroutine(FadeTo(targetAlpha, delay));
+    }
+
+    private IEnumerator FadeTo(float targetAlpha, float delay)
+    {
+        if (delay > 0f)
+        {
+            yield return new WaitForSeconds(delay);
+        }
+
+        float startAlpha = panelCanvasGroup.alpha;
+        float elapsed = 0f;
+
+        while (elapsed < fadeDuration)
+        {
+            elapsed += Time.deltaTime;
+            panelCanvasGroup.alpha = Mathf.Lerp(startAlpha, targetAlpha, elapsed / fadeDuration);
+            yield return null;
+        }
+
+        panelCanvasGroup.alpha = targetAlpha;
+        fadeCoroutine = null;
     }
 
     private void Refresh()

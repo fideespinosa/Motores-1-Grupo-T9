@@ -1,5 +1,6 @@
 using System.Collections;
 using UnityEngine;
+using UnityEngine.Events;
 
 public class Openable : MonoBehaviour, IInteractable
 {
@@ -52,7 +53,7 @@ public class Openable : MonoBehaviour, IInteractable
     private Quaternion openRotation;
     private Vector3 closedPosition;
     private Vector3 openPosition;
-
+    public UnityEvent onOpen;
     private bool RequiresKey => !string.IsNullOrEmpty(requiredItemId);
     private bool RequiresFlag => !string.IsNullOrEmpty(requiredFlag);
     private bool FlagSatisfied => !RequiresFlag || (StoryFlagManager.Instance != null && StoryFlagManager.Instance.HasFlag(requiredFlag));
@@ -129,12 +130,13 @@ public class Openable : MonoBehaviour, IInteractable
         }
     }
 
-    private void Open()
+    public void Open()
     {
         Debug.Log("Sonido de puerta abriendose");
         audioSource.PlayOneShot(openDoor);
 
         isOpen = true;
+        onOpen?.Invoke();
 
         if (animationCoroutine != null)
         {
@@ -143,7 +145,7 @@ public class Openable : MonoBehaviour, IInteractable
         animationCoroutine = StartCoroutine(AnimateTo(openRotation, openPosition));
     }
 
-    private void Close()
+    public void Close()
     {
         isOpen = false;
         audioSource.PlayOneShot(closeDoor);
