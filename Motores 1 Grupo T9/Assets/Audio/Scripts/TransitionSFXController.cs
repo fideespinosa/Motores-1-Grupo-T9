@@ -11,6 +11,8 @@ public class TransitionSFXController : MonoBehaviour
 
     [Tooltip("ToShip")]
     [SerializeField] private AudioClip toShipClip;
+    [SerializeField] private AudioClip dronOff;
+    [SerializeField] private AudioSource dronPower;
 
     public void PlayTransition(bool isGoingToDrone)
     {
@@ -31,6 +33,15 @@ public class TransitionSFXController : MonoBehaviour
         if (isGoingToDrone == false && toShipClip != null)
         {
             transitionSource.PlayOneShot(toShipClip);
+        }
+    }
+
+    public void DronOffPower()
+    {
+        if (dronPower == null)
+        {
+            dronPower.clip = dronOff;
+            dronPower.Play();
         }
     }
 }
