@@ -4,6 +4,7 @@ using UnityEngine.Audio;
 using UnityEngine.InputSystem;
 using UnityEngine.SceneManagement;
 using UnityEngine.UIElements;
+using Cursor = UnityEngine.Cursor;
 
 public class MenuPause : MonoBehaviour
 {
@@ -52,49 +53,38 @@ public class MenuPause : MonoBehaviour
         hudPauseVE.style.display = DisplayStyle.None;
         optionPauseVE.style.display = DisplayStyle.None;
 
-        // Buscar botones en el UXML por su nombre
         quitButton = rootVisualElement.Q<Button>("QuitPauseBtn");
         optionScreenBtn = rootVisualElement.Q<Button>("OptionPauseBtn");
         menuButton = rootVisualElement.Q<Button>("MenuPauseBtn");
-        menuButton.Focus();
-
         brightnessSlider = rootVisualElement.Q<Slider>("brightnessSlider");
 
-        if (brightnessSlider == null) return;
+        if (quitButton == null) Debug.LogError("No encontré QuitPauseBtn");
+        if (optionScreenBtn == null) Debug.LogError("No encontré OptionPauseBtn");
+        if (menuButton == null) Debug.LogError("No encontré MenuPauseBtn");
+        if (brightnessSlider == null) Debug.LogWarning("No encontré brightnessSlider");
 
-        quitButton.clicked += QuitGame;
-        optionScreenBtn.clicked += OptionScreen;
-        menuButton.clicked += QuitToMainMenu;
+        if (quitButton != null) quitButton.clicked += QuitGame;
+        if (optionScreenBtn != null) optionScreenBtn.clicked += OptionScreen;
+        if (menuButton != null) menuButton.clicked += QuitToMainMenu;
 
         if (brightnessSlider != null)
         {
-            // Aseguramos que el slider use internamente valores de 0 a 1
             brightnessSlider.lowValue = 0f;
             brightnessSlider.highValue = 1f;
 
-            // 3. Le asignamos el valor que esté guardado actualmente en el juego
             if (GlobalBrightnessManager.Instance != null)
-            {
                 brightnessSlider.value = GlobalBrightnessManager.Instance.GetNormalizedBrightness();
-            }
 
-            // 4. Nos suscribimos al evento de cambio de valor
             brightnessSlider.RegisterValueChangedCallback(OnSliderChanged);
         }
-        /*if (pauseAction != null)
-        {
-            pauseAction.started += OnPauseTriggered;
-            pauseAction.Enable();
-        }*/
-
     }
     private void OnDisable()
     {
-        // Buena práctica: desvincular el evento al destruir o apagar la UI
+        if (quitButton != null) quitButton.clicked -= QuitGame;
+        if (optionScreenBtn != null) optionScreenBtn.clicked -= OptionScreen;
+        if (menuButton != null) menuButton.clicked -= QuitToMainMenu;
         if (brightnessSlider != null)
-        {
             brightnessSlider.UnregisterValueChangedCallback(OnSliderChanged);
-        }
     }
     void Update()
     {
@@ -119,6 +109,16 @@ public class MenuPause : MonoBehaviour
             Pause();
     }*/
 
+    void LateUpdate()
+    {
+        if (gamePaused && Cursor.lockState != CursorLockMode.None)
+        {
+            Debug.LogWarning("Re-bloqueado mientras pausa");
+            UnityEngine.Cursor.lockState = CursorLockMode.None;
+            UnityEngine.Cursor.visible = true;
+        }
+    }
+
     public void Pause()
     {
 
@@ -137,13 +137,14 @@ public class MenuPause : MonoBehaviour
         hudPauseVE.style.display = DisplayStyle.Flex;
 
         UnityEngine.Cursor.lockState = CursorLockMode.Locked;
-        UnityEngine.Cursor.visible = false;
+        UnityEngine.Cursor.visible = true;
 
-        Time.timeScale = 0f; 
+        Time.timeScale = 0f;
       //  pauseSnapshot.TransitionTo(0.5f);
 
         //Cursor.visible = true;
         //Cursor.lockState = CursorLockMode.None;
+
     }
 
     public void Continue()
@@ -163,13 +164,23 @@ public class MenuPause : MonoBehaviour
         pauseHudVE.style.display = DisplayStyle.None;
 
         UnityEngine.Cursor.lockState = CursorLockMode.None;
-        UnityEngine.Cursor.visible = true;
+        UnityEngine.Cursor.visible = false;
 
-        Time.timeScale = 1f; 
-     //   normalState.TransitionTo(0.5f);
+        Time.timeScale = 1f;
+        StartCoroutine(LockCursorNextFrame());
+
+
+        //   normalState.TransitionTo(0.5f);
 
         //Cursor.visible = false;
         //Cursor.lockState = CursorLockMode.Locked;
+    }
+
+    private System.Collections.IEnumerator LockCursorNextFrame()
+    {
+        yield return null; // un frame después
+        UnityEngine.Cursor.lockState = CursorLockMode.Locked;
+        UnityEngine.Cursor.visible = false;
     }
 
     public void QuitToMainMenu()
