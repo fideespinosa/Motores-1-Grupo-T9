@@ -2,14 +2,14 @@
     <Style src="project://database/Assets/UI%20Toolkit/Style/ButtonMenu.uss?fileID=7433441132597879392&amp;guid=95c23b62ca0790742a2542e60935a46f&amp;type=3#ButtonMenu"/>
     <ui:VisualElement style="flex-grow: 1;">
         <ui:VisualElement name="MenuPauseVE" style="flex-grow: 1;">
-            <ui:VisualElement name="HudPauseVE" style="flex-grow: 1; display: flex;">
+            <ui:VisualElement name="HudPauseVE" style="flex-grow: 1; display: none;">
                 <ui:Button text="MENU" name="MenuPauseBtn" class="Pause" style="position: absolute; top: 104px; left: 461px;"/>
                 <ui:Button text="Salir" name="QuitPauseBtn" class="Pause" style="position: absolute; top: 104px; left: 943px;"/>
                 <ui:Button text="Opciones" name="OptionPauseBtn" class="Pause" style="top: 104px; left: 700px;"/>
             </ui:VisualElement>
-            <ui:VisualElement name="OptionPauseVE" style="flex-grow: 1; display: none;">
-                <ui:Slider label="Brillo" value="42" high-value="100" name="BrightnessPauseSlider" style="position: absolute; top: 157px; left: 467px; height: 68px; width: 334px; font-size: 42px; -unity-font-definition: url(&quot;project://database/Assets/UI%20Toolkit/Font/BebasNeue-Regular.ttf?fileID=12800000&amp;guid=6c9b1dd03ba69b84a8389a9131329982&amp;type=3#BebasNeue-Regular&quot;);"/>
-                <ui:Label text="Opciones de Pantalla" style="position: absolute; -unity-font-definition: url(&quot;project://database/Assets/UI%20Toolkit/Font/BebasNeue-Regular.ttf?fileID=12800000&amp;guid=6c9b1dd03ba69b84a8389a9131329982&amp;type=3#BebasNeue-Regular&quot;); font-size: 46px; top: 50px; left: 456px; width: 366px;"/>
+            <ui:VisualElement name="OptionPauseVE" style="flex-grow: 1; display: flex;">
+                <ui:Slider label="Brillo" value="42" high-value="100" name="BrightnessPauseSlider" style="position: absolute; top: 157px; left: 467px; height: 68px; width: 334px; font-size: 42px; -unity-font-definition: url(&quot;project://database/Assets/UI%20Toolkit/Font/BebasNeue-Regular.ttf?fileID=12800000&amp;guid=6c9b1dd03ba69b84a8389a9131329982&amp;type=3#BebasNeue-Regular&quot;); color: rgb(200, 200, 200);"/>
+                <ui:Label text="Opciones de Pantalla" style="position: absolute; -unity-font-definition: url(&quot;project://database/Assets/UI%20Toolkit/Font/BebasNeue-Regular.ttf?fileID=12800000&amp;guid=6c9b1dd03ba69b84a8389a9131329982&amp;type=3#BebasNeue-Regular&quot;); font-size: 46px; top: 50px; left: 456px; width: 366px; color: rgb(200, 200, 200);"/>
             </ui:VisualElement>
             <ui:Image style="position: absolute; width: 281px; height: 350px; top: 28px; left: 66px; background-image: url(&quot;project://database/Assets/Views/LOGOS/proyectoPharusLogo.png?fileID=2800000&amp;guid=2b27f77ecc0b9f340b9c85e87284c933&amp;type=3#proyectoPharusLogo&quot;);"/>
         </ui:VisualElement>
