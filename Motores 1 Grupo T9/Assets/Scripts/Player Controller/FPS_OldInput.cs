@@ -25,7 +25,7 @@ public class FPS_OldInput : MonoBehaviour
     void Update()
     {
 
-        if (MenuPausa.gamePaused)
+        if (MenuPause.gamePaused)
         {
             return;
         }

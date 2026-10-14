@@ -30,7 +30,7 @@ public class CameraController : MonoBehaviour
 
     void Update()
     {
-        if (MenuPausa.gamePaused)
+        if (MenuPause.gamePaused)
             return;
 
         float mouseX = Input.GetAxis("Mouse X") * sensitivity * Time.deltaTime;
