@@ -9417,9 +9417,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f339ac75d9e697a4a897687344696f03, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::MenuPausa
-  panelPause: {fileID: 696364174}
-  pauseSnapshot: {fileID: -2789229496799105683, guid: 8ae6de4a4ce8e8c44a52514f69fa1e82, type: 2}
-  normalState: {fileID: 24500006, guid: 8ae6de4a4ce8e8c44a52514f69fa1e82, type: 2}
+  crosshairPanel: {fileID: 0}
+  eyesCanvas: {fileID: 0}
+  housePlayerMovement: {fileID: 0}
+  inputActions: {fileID: 0}
 --- !u!4 &303548576
 Transform:
   m_ObjectHideFlags: 0
@@ -75918,7 +75919,7 @@ MeshRenderer:
   m_RendererPriority: 0
   m_Materials:
   - {fileID: 2100000, guid: cd62da1641fe49244bcd6f38e4ed1645, type: 2}
-  - {fileID: 2100000, guid: 62f73fdc6794e214ca0804869fad2f7a, type: 2}
+  - {fileID: 2100000, guid: bab0d375dc38b2947a7131d08bccccae, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -78319,7 +78320,7 @@ MeshRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 2100000, guid: bab0d375dc38b2947a7131d08bccccae, type: 2}
+  - {fileID: 2100000, guid: fbf523da2ee120b4f8c6538bb9e2f647, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -78791,7 +78792,7 @@ MeshRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 2100000, guid: bab0d375dc38b2947a7131d08bccccae, type: 2}
+  - {fileID: 2100000, guid: 8c8eb5a573f97df4d94d47032f6ac368, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -80866,7 +80867,7 @@ MeshRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 2100000, guid: bab0d375dc38b2947a7131d08bccccae, type: 2}
+  - {fileID: 2100000, guid: d39173b891c194d46b24d757950e5aa0, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
