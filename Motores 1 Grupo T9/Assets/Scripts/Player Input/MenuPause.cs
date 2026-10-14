@@ -1,4 +1,5 @@
 using GLTFast.Schema;
+using System.Runtime.CompilerServices;
 using UnityEngine;
 using UnityEngine.Audio;
 using UnityEngine.InputSystem;
@@ -13,6 +14,7 @@ public class MenuPause : MonoBehaviour
 
     //[SerializeField] AudioMixerSnapshot pauseSnapshot;
     //[SerializeField] AudioMixerSnapshot normalState;
+    [SerializeField] private UIDocument hudDronUI;
     [SerializeField] private GameObject crosshairPanel;
     [SerializeField] private GameObject eyesCanvas;
     [SerializeField] private PlayerMovement housePlayerMovement;
@@ -27,20 +29,24 @@ public class MenuPause : MonoBehaviour
     private Button optionScreenBtn;
     private Slider brightnessSlider;
 
-    [SerializeField] private InputActionAsset inputActions;
-    private InputAction pauseAction;
+    private VisualElement dronCam;
+
+    //[SerializeField] private InputActionAsset inputActions;
+    //private InputAction pauseAction;
 
     public static bool gamePaused = false;
+    private bool openOption = false;
+    private bool openPause = false;
 
     private void Awake()
     {
         uiDocument = GetComponent<UIDocument>();
 
-        if (inputActions != null)
+        /*if (inputActions != null)
         {
             var uiMap = inputActions.FindActionMap("Menu");
             pauseAction = uiMap.FindAction("Pause");
-        }
+        }*/
     }
     private void OnEnable()
     {
@@ -56,12 +62,15 @@ public class MenuPause : MonoBehaviour
         quitButton = rootVisualElement.Q<Button>("QuitPauseBtn");
         optionScreenBtn = rootVisualElement.Q<Button>("OptionPauseBtn");
         menuButton = rootVisualElement.Q<Button>("MenuPauseBtn");
-        brightnessSlider = rootVisualElement.Q<Slider>("brightnessSlider");
+        brightnessSlider = rootVisualElement.Q<Slider>("BrightnessPauseSlider");
 
         if (quitButton == null) Debug.LogError("No encontré QuitPauseBtn");
         if (optionScreenBtn == null) Debug.LogError("No encontré OptionPauseBtn");
         if (menuButton == null) Debug.LogError("No encontré MenuPauseBtn");
         if (brightnessSlider == null) Debug.LogWarning("No encontré brightnessSlider");
+
+        dronCam = hudDronUI.rootVisualElement;
+        //dronCam = root.Q<VisualElement>("DronCam");
 
         if (quitButton != null) quitButton.clicked += QuitGame;
         if (optionScreenBtn != null) optionScreenBtn.clicked += OptionScreen;
@@ -89,9 +98,15 @@ public class MenuPause : MonoBehaviour
     void Update()
     {
         
-        if (Input.GetKeyDown(KeyCode.P))
+        if (Input.GetKeyDown(KeyCode.P) || Keyboard.current.pKey.isPressed)
         {
-            if (gamePaused)
+            if (gamePaused && openOption)
+            {
+                hudPauseVE.style.display = DisplayStyle.Flex;
+                optionPauseVE.style.display = DisplayStyle.None;
+                openOption = false;
+            }
+            else if (gamePaused && openPause)
             {
                 Continue();
             }
@@ -123,6 +138,12 @@ public class MenuPause : MonoBehaviour
     {
 
         gamePaused = true;
+        openPause = true;
+
+        if (dronCam != null)
+        {
+            dronCam.style.display = DisplayStyle.None;
+        }
 
         if (crosshairPanel != null)
         { crosshairPanel.SetActive(false); }
@@ -151,6 +172,11 @@ public class MenuPause : MonoBehaviour
     {
 
         gamePaused = false;
+
+        if (dronCam != null)
+        {
+            dronCam.style.display = DisplayStyle.Flex;
+        }
 
         if (crosshairPanel != null)
         { crosshairPanel.SetActive(true); }
@@ -193,6 +219,7 @@ public class MenuPause : MonoBehaviour
     }
     private void OptionScreen()
     {
+        openOption = true;
         hudPauseVE.style.display = DisplayStyle.None;
         optionPauseVE.style.display = DisplayStyle.Flex;
     }

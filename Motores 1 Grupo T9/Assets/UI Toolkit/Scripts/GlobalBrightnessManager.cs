@@ -9,7 +9,7 @@ public class GlobalBrightnessManager : MonoBehaviour
 
     [Header("Rangos de Exposición (Post Processing)")]
     private float minExposure = -2f; // Oscuro
-    private float maxExposure = 5f;  // Brillante
+    private float maxExposure = 3f;  // Brillante
 
     private float currentNormalizedValue = 0.5f; // Valor de 0 a 1 (por defecto en medio)
 
