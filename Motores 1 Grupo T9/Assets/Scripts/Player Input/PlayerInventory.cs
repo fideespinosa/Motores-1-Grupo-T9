@@ -174,8 +174,28 @@ public class PlayerInventory : MonoBehaviour
     private IEnumerator ActivateAnomalyAfterDelay()
     {
         yield return new WaitForSeconds(anomalyDelay);
-        Debug.Log("[TriggerAnomaly] Anomalía activada, SetActive(true) ejecutado.");
-        anomalyObject.SetActive(true);
+
+        Vector3 startPosition = anomalyObject.transform.localPosition;
+        Vector3 targetPosition = new Vector3(
+            startPosition.x,
+            -4.7f,
+            startPosition.z
+        );
+
+        float duration = 2f;
+        float elapsed = 0f;
+
+        while (elapsed < duration)
+        {
+            elapsed += Time.deltaTime;
+
+            anomalyObject.transform.localPosition = Vector3.Lerp(startPosition,targetPosition,elapsed / duration);
+
+            yield return null;
+        }
+
+        anomalyObject.transform.localPosition = targetPosition;
+
         anomalyTrigger.SetActive(true);
         enemies.SetActive(false);
     }
