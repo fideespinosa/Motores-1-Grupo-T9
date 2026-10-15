@@ -13,6 +13,7 @@ public class MedicationListPanel : MonoBehaviour
     [SerializeField] private string showFlag = "medication_task_started";
 
     [Header("Format")]
+    [SerializeField] private string title = "Objetivos:";
     [SerializeField] private string lineFormat = "{0}/{1} de {2}";
 
     [Header("Fade")]
@@ -114,6 +115,12 @@ public class MedicationListPanel : MonoBehaviour
         if (listText == null || MedicationManager.Instance == null) return;
 
         StringBuilder builder = new StringBuilder();
+
+        if (!string.IsNullOrEmpty(title))
+        {
+            builder.Append(title);
+            builder.Append("\n");
+        }
 
         foreach (MedicationRequirement requirement in MedicationManager.Instance.Requirements)
         {
