@@ -47573,7 +47573,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: '::'
   rotationAxis: {x: 0, y: 0, z: 1}
-  rotationSpeed: 360
+  rotationSpeed: 200
   audioSource: {fileID: 1416137170}
   clockTick: {fileID: 0}
   fanMovement: {fileID: 8300000, guid: 0d51c6847f4c21f429d4ff859734f46e, type: 3}
@@ -77490,7 +77490,7 @@ MeshRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 2100000, guid: a8e8b392a9305aa4caf16db2f2f9ee56, type: 2}
+  - {fileID: 2100000, guid: 60fec40a6cce5404687e83abc051cc98, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -79055,13 +79055,13 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 529316795598617786}
   serializedVersion: 2
-  m_LocalRotation: {x: -0.7071069, y: 0, z: 0, w: 0.7071067}
-  m_LocalPosition: {x: -0, y: 6.9739304, z: -1.1368684e-15}
+  m_LocalRotation: {x: -0.7032156, y: 0.07408049, z: 0.074080475, w: 0.7032155}
+  m_LocalPosition: {x: 0, y: 6.9739304, z: 0}
   m_LocalScale: {x: 697.8738, y: 697.8738, z: 697.8738}
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 543450651725542516}
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+  m_LocalEulerAnglesHint: {x: -90, y: 0, z: 12.027}
 --- !u!4 &3243971505489560557
 Transform:
   m_ObjectHideFlags: 0
@@ -81058,7 +81058,7 @@ MeshRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 2100000, guid: 220618845c419294dac9c65130b34f8f, type: 2}
+  - {fileID: 2100000, guid: fc46a8594a4d2b04fb8207ab6fe77f94, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
