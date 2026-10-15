@@ -1,4 +1,5 @@
 using GLTFast.Schema;
+using System.Drawing;
 using System.Runtime.CompilerServices;
 using UnityEngine;
 using UnityEngine.Audio;
@@ -14,13 +15,15 @@ public class MenuPauseLevel1 : MonoBehaviour
 
     //[SerializeField] private PlayerMovement playerMovement;
     [SerializeField] private UIDocument camDronUI;
+    [SerializeField] private GameObject camDronUIObject;
+    [SerializeField] private CamDroneUI UIScript;
 
     private VisualElement camDronVE;
     private Button playBtn;
     private Button closeButton;
     private Button menuButton;
     private Slider brightnessSlider;
-
+    UnityEngine.Color color;
 
     public static bool gamePaused = false;
     private bool openOption = false;
@@ -70,7 +73,7 @@ public class MenuPauseLevel1 : MonoBehaviour
     }*/
     void Update()
     {
-        
+
         if (Input.GetKeyDown(KeyCode.P) || Keyboard.current.pKey.isPressed)
         {
             Pause();
@@ -97,13 +100,31 @@ public class MenuPauseLevel1 : MonoBehaviour
 
     public void Pause()
     {
+        UIScript.SetVisibility(false);
+
+/*        camDronVE.style.display = DisplayStyle.None;
+        camDronVE.style.visibility= Visibility.Hidden;
+        string dron = camDronVE.visible.ToString();
+        Debug.Log($"dron visible en pausa? " + dron);
+
+        color = camDronVE.style.backgroundColor.value;
+        color.a = 0;
+        camDronVE.style.backgroundColor = color;*/
+        // camDronUIObject.SetActive(false);
+
+        if (Cursor.visible && Cursor.lockState == CursorLockMode.None)
+        {
+        }
+        else
+        {
+            Cursor.visible = true;
+            Cursor.lockState = CursorLockMode.None;
+        }
+
         //StartCoroutine(LockCursorNextFrame());
         gamePaused = true;
         openPause = true;
 
-        camDronVE.style.display = DisplayStyle.None;
-        string dron = camDronVE.visible.ToString();
-        Debug.Log($"dron visible en pausa? " + dron);
 
         if (panelPause != null)
         { panelPause.SetActive(true); }
@@ -125,9 +146,19 @@ public class MenuPauseLevel1 : MonoBehaviour
 
     public void Continue()
     {
+        UIScript.SetVisibility(true);
+
+/*        camDronVE.style.visibility = Visibility.Visible;
+        color = camDronVE.style.backgroundColor.value;
+        color.a = 1;
+        camDronVE.style.backgroundColor = color;
+
+       // camDronUIObject.SetActive(true);
+
+        color.a = 0;
+        camDronVE.style.backgroundColor = color;*/
 
         gamePaused = false;
-
         if (panelPause != null)
         { panelPause.SetActive(false); }
 

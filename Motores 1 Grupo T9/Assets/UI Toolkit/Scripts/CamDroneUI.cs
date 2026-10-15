@@ -37,7 +37,7 @@ public class CamDroneUI : MonoBehaviour
         resources2Lbl = root.Q<Label>("Resources2Lbl");
         qResources2Lbl = root.Q<Label>("QResource2Lbl");
         resources3Lbl = root.Q<Label>("Resources3Lbl");
-        qResources3Lbl = root.Q<Label>("QResource3Lbl");
+       qResources3Lbl = root.Q<Label>("QResource3Lbl");
         objectiveLbl = root.Q<Label>("ObjetivesLbl");
         timeLbl = root.Q<Label>("TimeLbl");
         signalLbl = root.Q<Label>("SignalLbl");
@@ -65,6 +65,21 @@ public class CamDroneUI : MonoBehaviour
         time = (horaInicial * 3600f) + (minutoInicial * 60f);
 
         
+    }
+
+    public void SetVisibility(bool visible)
+    {
+        if (!visible)
+        {
+            camDroneUI.style.display = DisplayStyle.None;
+            camDroneUI.style.visibility = Visibility.Hidden;
+        }
+        else
+        {
+            camDroneUI.style.visibility = Visibility.Visible;
+            camDroneUI.style.display = DisplayStyle.Flex;
+
+        }
     }
     private void Update()
     {

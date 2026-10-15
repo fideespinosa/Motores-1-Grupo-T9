@@ -45492,7 +45492,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!114 &1344177506
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -45500,13 +45500,15 @@ MonoBehaviour:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1344177505}
-  m_Enabled: 0
+  m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: e938c1ec13a05e8428fae2938445bba8, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::MenuPauseLevel1
   panelPause: {fileID: 2082938667}
   camDronUI: {fileID: 1105742297}
+  camDronUIObject: {fileID: 1105742294}
+  UIScript: {fileID: 1105742296}
 --- !u!114 &1344177507
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -45568,7 +45570,7 @@ Canvas:
   m_AdditionalShaderChannelsFlag: 25
   m_UpdateRectTransformForStandalone: 0
   m_SortingLayerID: 0
-  m_SortingOrder: 0
+  m_SortingOrder: 11
   m_TargetDisplay: 0
 --- !u!224 &1344177510
 RectTransform:
@@ -54358,8 +54360,8 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 0}
-        m_TargetAssemblyTypeName: MenuPause, Assembly-CSharp
+      - m_Target: {fileID: 1344177506}
+        m_TargetAssemblyTypeName: MenuPauseLevel1, Assembly-CSharp
         m_MethodName: Continue
         m_Mode: 1
         m_Arguments:
