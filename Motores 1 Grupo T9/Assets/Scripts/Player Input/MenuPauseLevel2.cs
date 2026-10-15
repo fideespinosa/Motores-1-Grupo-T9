@@ -12,9 +12,7 @@ public class MenuPauseLevel2 : MonoBehaviour
     [Header("Interfaz")]
     public GameObject panelPause;
 
-    //[SerializeField] private PlayerMovement playerMovement;
-    //[SerializeField] private UIDocument camDronUI;
-    [SerializeField] private CamDroneUI UIScript;
+    [SerializeField] private PlayerMovement playerMovement;
 
     private VisualElement camDronVE;
     private Button playBtn;
@@ -27,45 +25,6 @@ public class MenuPauseLevel2 : MonoBehaviour
     private bool openOption = false;
     private bool openPause = false;
 
-    private void OnEnable()
-    {
-        //var rootR = camDronUI.rootVisualElement;
-        //camDronVE = rootR.Q<VisualElement>("DronCam");
-        //closeButton = rootVisualElement.Q<Button>("QuitPauseBtn");
-        //playBtn = rootR.Q<Button>("PlayButton");
-        //menuButton = rootVisualElement.Q<Button>("MenuPauseBtn");
-        //brightnessSlider = rootVisualElement.Q<Slider>("BrightnessPauseSlider");
-
-        //if (quitButton == null) Debug.LogError("No encontré QuitPauseBtn");
-        //if (playBtn == null) Debug.LogError("No encontré OptionPauseBtn");
-        //if (menuButton == null) Debug.LogError("No encontré MenuPauseBtn");
-        //if (brightnessSlider == null) Debug.LogWarning("No encontré brightnessSlider");
-
-
-
-        //if (playBtn != null) playBtn.clicked += Continue;
-        //if (optionScreenBtn != null) optionScreenBtn.clicked += OptionScreen;
-        //if (menuButton != null) menuButton.clicked += QuitToMainMenu;
-
-        //if (brightnessSlider != null)
-        //{
-        //brightnessSlider.lowValue = 0f;
-        //brightnessSlider.highValue = 1f;
-
-        //if (GlobalBrightnessManager.Instance != null)
-        //brightnessSlider.value = GlobalBrightnessManager.Instance.GetNormalizedBrightness();
-
-        //brightnessSlider.RegisterValueChangedCallback(OnSliderChanged);
-        //}
-    }
-    /*private void OnDisable()
-    {
-        if (playBtn != null) playBtn.clicked -= QuitGame;
-        //if (optionScreenBtn != null) optionScreenBtn.clicked -= OptionScreen;
-        //if (menuButton != null) menuButton.clicked -= QuitToMainMenu;
-        //if (brightnessSlider != null)
-            //brightnessSlider.UnregisterValueChangedCallback(OnSliderChanged);
-    }*/
     void Update()
     {
         
@@ -74,28 +33,10 @@ public class MenuPauseLevel2 : MonoBehaviour
             Pause();
         }
     }
-    /*private void OnPauseTriggered(InputAction.CallbackContext context)
-    {
-        if (gamePaused)
-            Continue();
-        else
-            Pause();
-    }*/
-
-    /*void LateUpdate()
-    {
-        if (gamePaused && Cursor.lockState != CursorLockMode.None)
-        {
-            Debug.LogWarning("Re-bloqueado mientras pausa");
-            UnityEngine.Cursor.lockState = CursorLockMode.None;
-            UnityEngine.Cursor.visible = true;
-        }
-    }*/
 
     public void Pause()
     {
-        UIScript.SetVisibility(false);
-
+        playerMovement.enabled = false;
         if (Cursor.visible && Cursor.lockState == CursorLockMode.None)
         {
         }
@@ -105,7 +46,6 @@ public class MenuPauseLevel2 : MonoBehaviour
             Cursor.lockState = CursorLockMode.None;
         }
 
-        //StartCoroutine(LockCursorNextFrame());
         gamePaused = true;
         openPause = true;
 
@@ -113,51 +53,26 @@ public class MenuPauseLevel2 : MonoBehaviour
         if (panelPause != null)
         { panelPause.SetActive(true); }
 
-        //if (playerMovement != null)
-        //{ playerMovement.enabled = false; }
-
-        //UnityEngine.Cursor.lockState = CursorLockMode.Locked;
-        //UnityEngine.Cursor.visible = true;
-
+        
         Time.timeScale = 0f;
-        //  pauseSnapshot.TransitionTo(0.5f);
-
-        /// Liberar el cursor para poder usar el menú con el ratón
-        Cursor.lockState = CursorLockMode.None;
-        Cursor.visible = true;
-
     }
 
     public void Continue()
     {
-        UIScript.SetVisibility(true);
+        playerMovement.enabled = false;
 
         gamePaused = false;
 
         if (panelPause != null)
         { panelPause.SetActive(false); }
 
-        //if (playerMovement != null)
-        //{ playerMovement.enabled = true;  }
-
         if(camDronVE != null) camDronVE.style.display = DisplayStyle.Flex;
 
         Time.timeScale = 1f;
-        //StartCoroutine(LockCursorNextFrame());
-
-
-        //   normalState.TransitionTo(0.5f);
 
         // Ocultar y volver a bloquear el cursor para jugar
         Cursor.lockState = CursorLockMode.Locked;
         Cursor.visible = false;
-    }
-
-    private System.Collections.IEnumerator LockCursorNextFrame()
-    {
-        yield return null; // un frame después
-        UnityEngine.Cursor.lockState = CursorLockMode.Locked;
-        UnityEngine.Cursor.visible = false;
     }
 
     public void QuitToMainMenu()
@@ -168,13 +83,7 @@ public class MenuPauseLevel2 : MonoBehaviour
         
         SceneManager.LoadScene("MainMenu OK");
     }
-    private void OptionScreen()
-    {
-        openOption = true;
-        //hudPauseVE.style.display = DisplayStyle.None;
-        //optionPauseVE.style.display = DisplayStyle.Flex;
-    }
-    private void OnSliderChanged(ChangeEvent<float> evt)
+    public void OnSliderChanged(ChangeEvent<float> evt)
     {
         // Le enviamos el valor puro (0 a 1) al manager global
         if (GlobalBrightnessManager.Instance != null)
@@ -182,7 +91,7 @@ public class MenuPauseLevel2 : MonoBehaviour
             GlobalBrightnessManager.Instance.UpdateBrightness(evt.newValue);
         }
     }
-    private void QuitGame()
+    public void QuitGame()
     {
         Application.Quit();
     }

@@ -13,7 +13,7 @@ public class BotonHoverEfecto : MonoBehaviour, IPointerEnterHandler, IPointerExi
     void Start()
     {
         animator = GetComponent<Animator>();
-        //animator.Play("Normal");
+        animator.Play("Normal");
     }
 
     public void OnPointerEnter(PointerEventData eventData)
