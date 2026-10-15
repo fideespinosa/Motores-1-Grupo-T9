@@ -12,8 +12,9 @@ public class MenuPauseLevel2 : MonoBehaviour
     [Header("Interfaz")]
     public GameObject panelPause;
 
-    [SerializeField] private PlayerMovement playerMovement;
-    [SerializeField] private UIDocument camDronUI;
+    //[SerializeField] private PlayerMovement playerMovement;
+    //[SerializeField] private UIDocument camDronUI;
+    [SerializeField] private CamDroneUI UIScript;
 
     private VisualElement camDronVE;
     private Button playBtn;
@@ -28,8 +29,8 @@ public class MenuPauseLevel2 : MonoBehaviour
 
     private void OnEnable()
     {
-        var rootR = camDronUI.rootVisualElement;
-        camDronVE = rootR.Q<VisualElement>("DronCam");
+        //var rootR = camDronUI.rootVisualElement;
+        //camDronVE = rootR.Q<VisualElement>("DronCam");
         //closeButton = rootVisualElement.Q<Button>("QuitPauseBtn");
         //playBtn = rootR.Q<Button>("PlayButton");
         //menuButton = rootVisualElement.Q<Button>("MenuPauseBtn");
@@ -71,7 +72,6 @@ public class MenuPauseLevel2 : MonoBehaviour
         if (Input.GetKeyDown(KeyCode.P) || Keyboard.current.pKey.isPressed)
         {
             Pause();
-            if (camDronVE != null) camDronVE.style.display = DisplayStyle.None;
         }
     }
     /*private void OnPauseTriggered(InputAction.CallbackContext context)
@@ -94,7 +94,18 @@ public class MenuPauseLevel2 : MonoBehaviour
 
     public void Pause()
     {
-        StartCoroutine(LockCursorNextFrame());
+        UIScript.SetVisibility(false);
+
+        if (Cursor.visible && Cursor.lockState == CursorLockMode.None)
+        {
+        }
+        else
+        {
+            Cursor.visible = true;
+            Cursor.lockState = CursorLockMode.None;
+        }
+
+        //StartCoroutine(LockCursorNextFrame());
         gamePaused = true;
         openPause = true;
 
@@ -102,8 +113,8 @@ public class MenuPauseLevel2 : MonoBehaviour
         if (panelPause != null)
         { panelPause.SetActive(true); }
 
-        if (playerMovement != null)
-        { playerMovement.enabled = false; }
+        //if (playerMovement != null)
+        //{ playerMovement.enabled = false; }
 
         //UnityEngine.Cursor.lockState = CursorLockMode.Locked;
         //UnityEngine.Cursor.visible = true;
@@ -119,14 +130,15 @@ public class MenuPauseLevel2 : MonoBehaviour
 
     public void Continue()
     {
+        UIScript.SetVisibility(true);
 
         gamePaused = false;
 
         if (panelPause != null)
         { panelPause.SetActive(false); }
 
-        if (playerMovement != null)
-        { playerMovement.enabled = true;  }
+        //if (playerMovement != null)
+        //{ playerMovement.enabled = true;  }
 
         if(camDronVE != null) camDronVE.style.display = DisplayStyle.Flex;
 
