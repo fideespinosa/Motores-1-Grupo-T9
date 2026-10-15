@@ -36,6 +36,7 @@ public class EnemyMovement : MonoBehaviour
 
     [Header("Ref Audio")]
     [SerializeField] private ShipVoiceManager shipVoiceManager;
+    [SerializeField] private MonsterAudioController monstAudio;
 
     [Header("Minijuegos")]
     [SerializeField] UnityEvent[] minigames;
@@ -50,7 +51,7 @@ public class EnemyMovement : MonoBehaviour
     private bool minigameActive = false;
     private float resetCooldown = 0f;
     private const float resetCooldownTime = 5f;
-    private MonsterAudioController audioController;
+
     private static readonly int IsChasingHash = Animator.StringToHash("IsChasing");
 
     // Maquina de estados
@@ -69,6 +70,8 @@ public class EnemyMovement : MonoBehaviour
     {
         agent = GetComponent<NavMeshAgent>();
 
+        monstAudio.IdlePlay();
+
         animator = GetComponentInChildren<Animator>();
         SetChaseAnimation(false);
 
@@ -78,8 +81,6 @@ public class EnemyMovement : MonoBehaviour
             agent.updateRotation = false;
             agent.stoppingDistance = waypointTolerance;
         }
-
-        audioController = GetComponent<MonsterAudioController>();
 
         GameObject p = GameObject.FindGameObjectWithTag("Player");
         if (p) player = p.transform;
@@ -156,9 +157,8 @@ public class EnemyMovement : MonoBehaviour
     {
         SetChaseAnimation(true);
 
-        if (audioController != null)
-            audioController.PlayRoar();
-
+        monstAudio.SetChaseMode(true);
+        monstAudio.PlayPersue();
         shipVoiceManager.PulseEnemy();
 
         if (GameMusicManager.Instance != null)
@@ -182,8 +182,8 @@ public class EnemyMovement : MonoBehaviour
 
     public void TriggerAttack()
     {
-        if (audioController != null)
-            audioController.PlayAttackSound();
+
+        monstAudio.PlayRoar();
 
         resetCooldown = 15f; //bien hardcodeado
 
@@ -310,6 +310,9 @@ public class EnemyMovement : MonoBehaviour
         }
 
         stateMachine.ChangeState(PatrolState);
+
+        monstAudio.SetChaseMode(false);
+        monstAudio.IdlePlay();
     }
 
     public void RestartPatrol()

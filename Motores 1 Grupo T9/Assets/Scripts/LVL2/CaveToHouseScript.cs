@@ -14,6 +14,11 @@ public class CaveToHouseScript : MonoBehaviour
     [SerializeField] private string triggerText;
     [SerializeField] private GameObject shipDoor;
 
+
+    [Header("Audio Ref")]
+    [SerializeField] SFXTransitionManager transAudio;
+
+
     [Header("Transition")]
     [SerializeField] string SceneName;
     [SerializeField] float FadeDuration = 4f;
@@ -47,6 +52,8 @@ public class CaveToHouseScript : MonoBehaviour
             return;
 
         transitioning = true;
+
+        transAudio.ToHouseFromShip();
 
         droneController.enabled = false;
         playerSwitcher.enabled = false;
