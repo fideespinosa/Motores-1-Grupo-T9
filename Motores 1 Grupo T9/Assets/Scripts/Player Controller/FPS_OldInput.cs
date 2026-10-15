@@ -11,6 +11,8 @@ public class FPS_OldInput : MonoBehaviour
     private float rotationX = 0;
     private bool canLook = true;
 
+
+
     void Start()
     {
         ScreensManagerScript.OnScreenActive += DisableCameraMovement;
@@ -25,7 +27,7 @@ public class FPS_OldInput : MonoBehaviour
     void Update()
     {
 
-        if (MenuPause.gamePaused)
+        if (MenuPauseLevel1.gamePaused)
         {
             return;
         }
