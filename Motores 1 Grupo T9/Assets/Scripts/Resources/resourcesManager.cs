@@ -3,7 +3,7 @@ using UnityEngine;
 
 public class resourcesManager : MonoBehaviour
 {
-    public enum ResourceType { Metal, Combustible, InsumosElectronicos }
+    public enum ResourceType { Metal, Combustible, InsumosElectronicos, Peluche }
     public ResourceType type;
 
     [SerializeField] private AudioSource audioSource;

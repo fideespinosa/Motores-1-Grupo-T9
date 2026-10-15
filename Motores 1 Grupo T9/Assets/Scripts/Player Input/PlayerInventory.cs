@@ -20,6 +20,10 @@ public class PlayerInventory : MonoBehaviour
     [SerializeField] public int combustibleNeeded = 3;
     [SerializeField] public int insumosNeeded = 3;
 
+    [Header("Objeto final")]
+    [SerializeField] private GameObject finalItem; // objeto en escena, desactivado por defecto
+    private bool finalItemActivated;
+
     [Header("Spawns por recolección")]
     [SerializeField] private List<SpawnTrigger> spawnTriggers = new List<SpawnTrigger>();
 
@@ -144,18 +148,27 @@ public class PlayerInventory : MonoBehaviour
         Debug.Log($"[CheckVictory] metal={metalCollected}/{metalNeeded}, combustible={combustibleCollected}/{combustibleNeeded}, insumos={insumosCollected}/{insumosNeeded}");
 
         if (metalCollected >= metalNeeded &&
-            combustibleCollected >= combustibleNeeded &&
-            insumosCollected >= insumosNeeded)
+         combustibleCollected >= combustibleNeeded &&
+         insumosCollected >= insumosNeeded)
         {
-            Debug.Log("[CheckVictory] condición cumplida, llamando TriggerAnomaly");
+            if (finalItem != null)
+            {
+                if (!finalItemActivated)
+                {
+                    finalItemActivated = true;
+                    finalItem.SetActive(true);
+                    Debug.Log("[CheckVictory] recursos completos, objeto final activado");
+                }
+                return;
+            }
+
+            // Si no hay objeto final asignado, mantiene el comportamiento anterior
             TriggerAnomaly();
             return;
         }
-
-        Debug.Log("Faltan materiales");
     }
 
-    private void TriggerAnomaly()
+        private void TriggerAnomaly()
     {
         Debug.Log($"[TriggerAnomaly] anomalyTriggered={anomalyTriggered}, anomalyObject={(anomalyObject != null ? anomalyObject.name : "NULL")}");
 
@@ -227,6 +240,11 @@ public class PlayerInventory : MonoBehaviour
 
         droneFlashlight.intensity = baseIntensity;
         flickerRoutine = null;
+    }
+    public void CollectFinalItem()
+    {
+        if (finalItem != null) finalItem.SetActive(false);
+        TriggerAnomaly(); // sigue la logica de siempre
     }
 
     public void LevelUp()
