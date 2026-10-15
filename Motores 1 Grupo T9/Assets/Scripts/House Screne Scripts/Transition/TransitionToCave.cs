@@ -17,6 +17,9 @@ public class TransitionToCave : MonoBehaviour
     [Header("Scene Change")]
     [SerializeField] private string sceneToLoad;
 
+    [Header("Audio Ref")]
+    [SerializeField] SFXTransitionManager transAudio;
+
     private bool triggered = false;
 
     private void Awake()
@@ -32,6 +35,8 @@ public class TransitionToCave : MonoBehaviour
     {
         if (triggered) return;
         triggered = true;
+
+        transAudio.ToCaveFromHouse();
 
         HUD.SetActive(false);
         MissionPanel.SetActive(false);

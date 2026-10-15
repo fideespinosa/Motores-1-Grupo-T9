@@ -49,6 +49,20 @@ AudioMixerEffectController:
   m_SendTarget: {fileID: 0}
   m_EnableWetMix: 0
   m_Bypass: 0
+--- !u!244 &-8803620059190157050
+AudioMixerEffectController:
+  m_ObjectHideFlags: 3
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_Name: 
+  m_EffectID: 8ac6cb1e931db1d41ba5d6202f0c246f
+  m_EffectName: Attenuation
+  m_MixLevel: ba7570dde4cc6a140891b3565ce3bbd0
+  m_Parameters: []
+  m_SendTarget: {fileID: 0}
+  m_EnableWetMix: 0
+  m_Bypass: 0
 --- !u!244 &-8766645317112322866
 AudioMixerEffectController:
   m_ObjectHideFlags: 3
@@ -193,6 +207,25 @@ AudioMixerEffectController:
   m_SendTarget: {fileID: 0}
   m_EnableWetMix: 0
   m_Bypass: 0
+--- !u!243 &-6855160927624164406
+AudioMixerGroupController:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_Name: TRANSITION
+  m_AudioMixer: {fileID: 24100000}
+  m_GroupID: 96ac30b99cf52654f87e62365f8dbf54
+  m_Children: []
+  m_Volume: 2be1be2dab2c8f4479f3b62d8553959d
+  m_Pitch: 05e0923deee13314faafb6a5c642d142
+  m_Send: 00000000000000000000000000000000
+  m_Effects:
+  - {fileID: -8803620059190157050}
+  m_UserColorIndex: 0
+  m_Mute: 0
+  m_Solo: 0
+  m_BypassEffects: 0
 --- !u!243 &-6679638397229494320
 AudioMixerGroupController:
   m_ObjectHideFlags: 0
@@ -618,9 +651,10 @@ AudioMixerController:
     - 52b8fe373c32d7d489bf0e7362637e1b
     - f210e3e77d9eb5349be750ec499abb8c
     - fc29a64e85ce51640913b51bc6a421f5
+    - 96ac30b99cf52654f87e62365f8dbf54
     name: View
   m_CurrentViewIndex: 0
-  m_TargetSnapshot: {fileID: 24500006}
+  m_TargetSnapshot: {fileID: 1071171978596945951}
 --- !u!243 &24300002
 AudioMixerGroupController:
   m_ObjectHideFlags: 0
@@ -1135,6 +1169,7 @@ AudioMixerGroupController:
   - {fileID: -6476232975484960500}
   - {fileID: -8626459347206343955}
   - {fileID: 8064559072308962337}
+  - {fileID: -6855160927624164406}
   m_Volume: badc73f800d63b948b8bdcfd1912c17b
   m_Pitch: 7d6ced27f963295469757d75f03717c7
   m_Send: 00000000000000000000000000000000
