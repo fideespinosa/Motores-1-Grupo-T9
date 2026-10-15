@@ -14,6 +14,7 @@ public class PlayerInventory : MonoBehaviour
     public int metalCollected;
     public int combustibleCollected;
     public int insumosCollected;
+    public int anomaliaCollected;
 
     [Header("Recursos necesarios para ganar")]
     [SerializeField] public int metalNeeded = 4;
@@ -153,12 +154,21 @@ public class PlayerInventory : MonoBehaviour
          combustibleCollected >= combustibleNeeded &&
          insumosCollected >= insumosNeeded)
         {
+
+            camDrone.resources1Lbl.text = "";
+            camDrone.resources2Lbl.text = "";
+            camDrone.resources3Lbl.text = "";
+            camDrone.qResources1Lbl.text = "";
+            camDrone.qResources2Lbl.text = "";
+            camDrone.qResources3Lbl.text = "";
             if (finalItem != null)
             {
                 if (!finalItemActivated)
                 {
                     finalItemActivated = true;
                     finalItem.SetActive(true);
+                    camDrone.resources1Lbl.text = " / 1 Anomalia";
+                    camDrone.qResources1Lbl.text = "0";
                     Debug.Log("[CheckVictory] recursos completos, objeto final activado");
                 }
                 return;
@@ -259,6 +269,7 @@ public class PlayerInventory : MonoBehaviour
     public void CollectFinalItem()
     {
         if (finalItem != null) finalItem.SetActive(false);
+        camDrone.qResources1Lbl.text = "1";
         TriggerAnomaly(); // sigue la logica de siempre
     }
 
