@@ -29,7 +29,6 @@ public class CaveToHouseScript : MonoBehaviour
         color.a = 0f;
         panelImage.color = color;
 
-        Panel.SetActive(false);
     }
 
     private void OnTriggerEnter(Collider other)

@@ -33,6 +33,8 @@ public class PlayerInventory : MonoBehaviour
     [SerializeField] private GameObject enemies;
     [SerializeField] private bool anomalyTriggered = false;
     [SerializeField] private float anomalyDelay = 3f;
+    [SerializeField] private CanvasGroup whitePanel;
+    [SerializeField] private float fadeDuration = 0.5f;
 
     [Header("SFX Ref")]
     [SerializeField] private ShipVoiceManager shipVoiceManager;
@@ -188,29 +190,42 @@ public class PlayerInventory : MonoBehaviour
     {
         yield return new WaitForSeconds(anomalyDelay);
 
-        Vector3 startPosition = anomalyObject.transform.localPosition;
-        Vector3 targetPosition = new Vector3(
-            startPosition.x,
-            -4.7f,
-            startPosition.z
-        );
+        // Pantalla blanca
+        yield return StartCoroutine(FadePanel(0f, 1f));
 
-        float duration = 2f;
+        // Activar la anomalía mientras la pantalla está blanca
+        anomalyTrigger.SetActive(true);
+        enemies.SetActive(false);
+        anomalyObject.SetActive(true);
+
+        // Volver gradualmente al juego
+        yield return StartCoroutine(FadePanel(1f, 0f));
+
+        // Ocultar el panel cuando termina el fade out
+        whitePanel.alpha = 0f;
+        whitePanel.gameObject.SetActive(false);
+    }
+
+    private IEnumerator FadePanel(float startAlpha, float targetAlpha)
+    {
+        whitePanel.gameObject.SetActive(true);
+        whitePanel.alpha = startAlpha;
+
         float elapsed = 0f;
 
-        while (elapsed < duration)
+        while (elapsed < fadeDuration)
         {
-            elapsed += Time.deltaTime;
+            elapsed += Time.unscaledDeltaTime;
 
-            anomalyObject.transform.localPosition = Vector3.Lerp(startPosition,targetPosition,elapsed / duration);
+            float t = Mathf.Clamp01(elapsed / fadeDuration);
+            t = Mathf.SmoothStep(0f, 1f, t);
+
+            whitePanel.alpha = Mathf.Lerp(startAlpha, targetAlpha, t);
 
             yield return null;
         }
 
-        anomalyObject.transform.localPosition = targetPosition;
-
-        anomalyTrigger.SetActive(true);
-        enemies.SetActive(false);
+        whitePanel.alpha = targetAlpha;
     }
 
     public void FlickerFlashlight()
