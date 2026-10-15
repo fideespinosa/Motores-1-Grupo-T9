@@ -25,4 +25,8 @@ public class BotonHoverEfecto : MonoBehaviour, IPointerEnterHandler, IPointerExi
     {
         animator.Play("Normal");
     }
+    public void OnPointerDown(PointerEventData eventData)
+    {
+        animator.Play("Pressed");
+    }
 }
