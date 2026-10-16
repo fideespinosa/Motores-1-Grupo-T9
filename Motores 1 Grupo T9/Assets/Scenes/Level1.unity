@@ -9366,9 +9366,9 @@ MonoBehaviour:
   onOpen:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 0}
-        m_TargetAssemblyTypeName: Screamer_AlAbrirPuerta, Assembly-CSharp
-        m_MethodName: EjecutarSusto
+      - m_Target: {fileID: 406290437}
+        m_TargetAssemblyTypeName: ScareTrigger_Pasillo, Assembly-CSharp
+        m_MethodName: StopBathNoise
         m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
@@ -9900,7 +9900,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!114 &303548575
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -49905,7 +49905,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!114 &1370611436
 MonoBehaviour:
   m_ObjectHideFlags: 0
