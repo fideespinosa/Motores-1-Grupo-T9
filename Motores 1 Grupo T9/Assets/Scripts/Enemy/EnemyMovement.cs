@@ -70,8 +70,6 @@ public class EnemyMovement : MonoBehaviour
     {
         agent = GetComponent<NavMeshAgent>();
 
-        monstAudio.IdlePlay();
-
         animator = GetComponentInChildren<Animator>();
         SetChaseAnimation(false);
 
@@ -123,6 +121,8 @@ public class EnemyMovement : MonoBehaviour
         }
 
         stateMachine.Tick();
+
+        monstAudio.IdlePlay();
     }
 
     public void ChangeState(EnemyState next)
@@ -159,7 +159,6 @@ public class EnemyMovement : MonoBehaviour
 
         monstAudio.SetChaseMode(true);
         monstAudio.PlayPersue();
-        shipVoiceManager.PulseEnemy();
 
         if (GameMusicManager.Instance != null)
             GameMusicManager.Instance.SetCombatState(true);
@@ -171,6 +170,8 @@ public class EnemyMovement : MonoBehaviour
 
         if (GameMusicManager.Instance != null)
             GameMusicManager.Instance.SetCombatState(false);
+
+        monstAudio.SetChaseMode(false);
     }
 
     void SetChaseAnimation(bool chasing)
@@ -203,6 +204,7 @@ public class EnemyMovement : MonoBehaviour
     {
         if (player == null) return false;
 
+
         Vector3 toPlayer = player.position - transform.position;
         float distance = toPlayer.magnitude;
 
@@ -223,6 +225,7 @@ public class EnemyMovement : MonoBehaviour
         }
 
         return true;
+
     }
 
     public bool CanHearPlayerNearby()

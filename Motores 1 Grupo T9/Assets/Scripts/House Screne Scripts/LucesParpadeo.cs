@@ -13,6 +13,11 @@ public class LucesParpadeo : MonoBehaviour
     public float maxInterval = 0.15f;
     public float intensityMultiplier = 1.5f;
 
+    [Header("Audio REF")]
+
+    [SerializeField] private AudioSource audioSource;
+    [SerializeField] private AudioClip flickerClip;
+
     [Header("Final State")]
     public bool leaveLightsOn = true;
 
@@ -47,6 +52,9 @@ public class LucesParpadeo : MonoBehaviour
     {
         float elapsed = 0f;
 
+        audioSource.clip = flickerClip;
+        audioSource.Play();
+
         while (elapsed < duration)
         {
             for (int i = 0; i < lights.Count; i++)
@@ -76,6 +84,8 @@ public class LucesParpadeo : MonoBehaviour
             lights[i].intensity = originalIntensities[i];
             lights[i].enabled = leaveLightsOn ? true : false;
         }
+
+        
 
         flickerCoroutine = null;
     }
