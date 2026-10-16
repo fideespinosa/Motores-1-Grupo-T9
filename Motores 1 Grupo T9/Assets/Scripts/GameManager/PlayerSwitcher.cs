@@ -103,6 +103,7 @@ public class PlayerSwitcher : MonoBehaviour
                             inventory.metalCollected,
                             inventory.combustibleCollected,
                             inventory.insumosCollected);
+                        inventory.RefreshUI();
                     }
                 }
             }

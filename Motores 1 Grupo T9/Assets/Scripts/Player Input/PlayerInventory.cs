@@ -68,6 +68,50 @@ public class PlayerInventory : MonoBehaviour
         if (droneFlashlight != null)
             baseIntensity = droneFlashlight.intensity;
     }
+    private bool finalItemCollected;
+
+    private bool AllResourcesDone =>
+        metalCollected >= metalNeeded &&
+        combustibleCollected >= combustibleNeeded &&
+        insumosCollected >= insumosNeeded;
+
+    // Llamala también al volver a la nave/dron (ver paso 4)
+    public void RefreshUI()
+    { 
+        // Contadores simples
+        if (textMetal) textMetal.text = metalCollected.ToString();
+        if (textCombustible) textCombustible.text = combustibleCollected.ToString();
+        if (textInsumos) textInsumos.text = insumosCollected.ToString();
+
+        // Panel de la nave
+        if (textPMetal) textPMetal.text = metalCollected.ToString();
+        if (textPCombustible) textPCombustible.text = combustibleCollected.ToString();
+        if (textPInsumos) textPInsumos.text = insumosCollected.ToString();
+
+        if (camDrone == null || camDrone.qResources1Lbl == null) return;
+
+        if (!AllResourcesDone)
+        {
+            camDrone.qResources1Lbl.text = metalCollected.ToString();
+            camDrone.qResources2Lbl.text = combustibleCollected.ToString();
+            camDrone.qResources3Lbl.text = insumosCollected.ToString();
+            return;
+        }
+
+        // Todo recolectado: limpia y muestra el objetivo final
+        camDrone.resources1Lbl.text = "";
+        camDrone.resources2Lbl.text = "";
+        camDrone.resources3Lbl.text = "";
+        camDrone.qResources1Lbl.text = "";
+        camDrone.qResources2Lbl.text = "";
+        camDrone.qResources3Lbl.text = "";
+
+        if (finalItemActivated || finalItemCollected)
+        {
+            camDrone.resources1Lbl.text = " / 1 Anomalia";
+            camDrone.qResources1Lbl.text = finalItemCollected ? "1" : "0";
+        }
+    }
 
     public void CollectResource(resourcesManager.ResourceType type)
     {
@@ -75,29 +119,15 @@ public class PlayerInventory : MonoBehaviour
         {
             case resourcesManager.ResourceType.Metal:
                 metalCollected++;
-                textMetal.text = metalCollected.ToString();
-                //camDrone.resources1Lbl.text = $"/ " +  metalCollected.ToString() + "  Piezas de Metal";
-              //textPMetal.text = metalCollected.ToString();
-                camDrone.qResources1Lbl.text = metalCollected.ToString();
                 break;
-
             case resourcesManager.ResourceType.Combustible:
                 combustibleCollected++;
-                textCombustible.text = combustibleCollected.ToString();
-                //camDrone.resources2Lbl.text = $"/" + metalCollected.ToString() + "  Posible Combustible";
-               // textPCombustible.text = combustibleCollected.ToString();
-                camDrone.qResources2Lbl.text = combustibleCollected.ToString();
                 break;
-
             case resourcesManager.ResourceType.InsumosElectronicos:
                 insumosCollected++;
-                textInsumos.text = insumosCollected.ToString();
-                //camDrone.resources3Lbl.text = $"/" + metalCollected.ToString() + "  Insumos Electrónicos";
-              //  textPInsumos.text = insumosCollected.ToString();
-                camDrone.qResources3Lbl.text = insumosCollected.ToString();
                 break;
         }
-
+        RefreshUI();
         CheckSpawnTriggers(type);
         CheckVictory();
     }
@@ -151,37 +181,26 @@ public class PlayerInventory : MonoBehaviour
     {
         Debug.Log($"[CheckVictory] metal={metalCollected}/{metalNeeded}, combustible={combustibleCollected}/{combustibleNeeded}, insumos={insumosCollected}/{insumosNeeded}");
 
-        if (metalCollected >= metalNeeded &&
-         combustibleCollected >= combustibleNeeded &&
-         insumosCollected >= insumosNeeded)
+        if (!AllResourcesDone) return;
+
+        if (finalItem != null)
         {
-
-            camDrone.resources1Lbl.text = "";
-            camDrone.resources2Lbl.text = "";
-            camDrone.resources3Lbl.text = "";
-            camDrone.qResources1Lbl.text = "";
-            camDrone.qResources2Lbl.text = "";
-            camDrone.qResources3Lbl.text = "";
-            if (finalItem != null)
+            if (!finalItemActivated)
             {
-                if (!finalItemActivated)
-                {
-                    finalItemActivated = true;
-                    finalItem.SetActive(true);
-                    camDrone.resources1Lbl.text = " / 1 Anomalia";
-                    camDrone.qResources1Lbl.text = "0";
-                    Debug.Log("[CheckVictory] recursos completos, objeto final activado");
-                }
-                return;
+                finalItemActivated = true;
+                finalItem.SetActive(true);
+                Debug.Log("[CheckVictory] recursos completos, objeto final activado");
             }
-
-            // Si no hay objeto final asignado, mantiene el comportamiento anterior
-            TriggerAnomaly();
+            RefreshUI();
             return;
         }
+
+       
+        RefreshUI();
+        TriggerAnomaly();
     }
 
-        private void TriggerAnomaly()
+    private void TriggerAnomaly()
     {
         Debug.Log($"[TriggerAnomaly] anomalyTriggered={anomalyTriggered}, anomalyObject={(anomalyObject != null ? anomalyObject.name : "NULL")}");
 
@@ -266,9 +285,12 @@ public class PlayerInventory : MonoBehaviour
     }
     public void CollectFinalItem()
     {
+        if (!finalItemActivated || finalItemCollected) return;
+
         if (finalItem != null) finalItem.SetActive(false);
-        camDrone.qResources1Lbl.text = "1";
-        TriggerAnomaly(); // sigue la logica de siempre
+        finalItemCollected = true;
+        RefreshUI();
+        TriggerAnomaly();
     }
 
     public void LevelUp()
