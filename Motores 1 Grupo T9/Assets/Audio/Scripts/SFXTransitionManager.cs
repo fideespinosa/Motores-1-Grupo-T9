@@ -62,9 +62,14 @@ public class SFXTransitionManager : MonoBehaviour
     }
     private IEnumerator FadeOutAudiosRoutine(AudioSource[] audiosToFade, float duration)
     {
-        if (audiosToFade == null || audiosToFade.Length == 0) yield break;
+        if (audiosToFade == null || audiosToFade.Length == 0)
+        {
+            Debug.LogWarning("Se intentó hacer un Fade Out, pero el array de audios está vacío.");
+            yield break;
+        }
 
-        
+        Debug.Log($"Fade Out de {audiosToFade.Length} audios. Duración: {duration} segundos.");
+
         float[] startVolumes = new float[audiosToFade.Length];
         for (int i = 0; i < audiosToFade.Length; i++)
         {
@@ -74,10 +79,10 @@ public class SFXTransitionManager : MonoBehaviour
 
         float elapsed = 0f;
 
-        
         while (elapsed < duration)
         {
-            elapsed += Time.deltaTime;
+            
+            elapsed += Time.unscaledDeltaTime;
             float lerpProgress = elapsed / duration;
 
             for (int i = 0; i < audiosToFade.Length; i++)
@@ -95,5 +100,7 @@ public class SFXTransitionManager : MonoBehaviour
             if (audiosToFade[i] != null)
                 audiosToFade[i].volume = 0f;
         }
+
+        Debug.Log("Fade Out Ok.");
     }
 }

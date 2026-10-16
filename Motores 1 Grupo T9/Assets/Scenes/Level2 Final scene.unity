@@ -3021,9 +3021,9 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 0}
-        m_TargetAssemblyTypeName: MenuPauseLevel2, Assembly-CSharp
-        m_MethodName: Continue
+      - m_Target: {fileID: 229284148}
+        m_TargetAssemblyTypeName: UIMenuAudioManager, Assembly-CSharp
+        m_MethodName: PlayClick
         m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
@@ -3582,6 +3582,22 @@ Transform:
   m_CorrespondingSourceObject: {fileID: -8679921383154817045, guid: f491bb212f9189c41bd107cc19c232d6, type: 3}
   m_PrefabInstance: {fileID: 211013244}
   m_PrefabAsset: {fileID: 0}
+--- !u!82 &229284147 stripped
+AudioSource:
+  m_CorrespondingSourceObject: {fileID: 608978600386142414, guid: b1c271f8446bd0a418999d98f4919fa8, type: 3}
+  m_PrefabInstance: {fileID: 886132181}
+  m_PrefabAsset: {fileID: 0}
+--- !u!114 &229284148 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 587827998810468712, guid: b1c271f8446bd0a418999d98f4919fa8, type: 3}
+  m_PrefabInstance: {fileID: 886132181}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: a03d67c6a9103d140a8c7695801b5c9f, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::Audio
 --- !u!1 &240026854
 GameObject:
   m_ObjectHideFlags: 0
@@ -12050,6 +12066,14 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 608978600386142414, guid: b1c271f8446bd0a418999d98f4919fa8, type: 3}
+      propertyPath: BypassEffects
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 608978600386142414, guid: b1c271f8446bd0a418999d98f4919fa8, type: 3}
+      propertyPath: BypassReverbZones
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 1912161810273744888, guid: b1c271f8446bd0a418999d98f4919fa8, type: 3}
       propertyPath: m_Name
       value: UIAudioManager
@@ -19909,6 +19933,7 @@ MonoBehaviour:
   fxSlider: {fileID: 428480971}
   brightnessSlider: {fileID: 1737164548}
   playerMovement: {fileID: 467610043}
+  uiAudioSource: {fileID: 229284147}
 --- !u!1001 &1528509889
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -21111,9 +21136,9 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 0}
-        m_TargetAssemblyTypeName: MenuPauseLevel2, Assembly-CSharp
-        m_MethodName: QuitGame
+      - m_Target: {fileID: 229284148}
+        m_TargetAssemblyTypeName: UIMenuAudioManager, Assembly-CSharp
+        m_MethodName: ErrorPlay
         m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
@@ -26343,9 +26368,9 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 0}
-        m_TargetAssemblyTypeName: MenuPauseLevel2, Assembly-CSharp
-        m_MethodName: QuitToMainMenu
+      - m_Target: {fileID: 229284148}
+        m_TargetAssemblyTypeName: UIMenuAudioManager, Assembly-CSharp
+        m_MethodName: PlayClick
         m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
@@ -26804,6 +26829,11 @@ GameObject:
 --- !u!4 &919132148583131296 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 8020382044430772280, guid: 21a24d9404a568745a5490feefecbb52, type: 3}
+  m_PrefabInstance: {fileID: 4194594978207456468}
+  m_PrefabAsset: {fileID: 0}
+--- !u!195 &919132148583131298 stripped
+NavMeshAgent:
+  m_CorrespondingSourceObject: {fileID: 7942133447520297949, guid: 21a24d9404a568745a5490feefecbb52, type: 3}
   m_PrefabInstance: {fileID: 4194594978207456468}
   m_PrefabAsset: {fileID: 0}
 --- !u!1001 &4194594978207456468
@@ -27826,6 +27856,10 @@ PrefabInstance:
       propertyPath: m_Layer
       value: 3
       objectReference: {fileID: 0}
+    - target: {fileID: 4826536762209078857, guid: 21a24d9404a568745a5490feefecbb52, type: 3}
+      propertyPath: m_Resource
+      value: 
+      objectReference: {fileID: 0}
     - target: {fileID: 4923119082895899449, guid: 21a24d9404a568745a5490feefecbb52, type: 3}
       propertyPath: m_LocalEulerAnglesHint.x
       value: -0.009856189
@@ -28106,6 +28140,34 @@ PrefabInstance:
       propertyPath: m_Layer
       value: 3
       objectReference: {fileID: 0}
+    - target: {fileID: 6040516528348005064, guid: 21a24d9404a568745a5490feefecbb52, type: 3}
+      propertyPath: agent
+      value: 
+      objectReference: {fileID: 919132148583131298}
+    - target: {fileID: 6040516528348005064, guid: 21a24d9404a568745a5490feefecbb52, type: 3}
+      propertyPath: idleClip
+      value: 
+      objectReference: {fileID: 8300000, guid: 2a04099ba68b97f488b7d115cd9cabdb, type: 3}
+    - target: {fileID: 6040516528348005064, guid: 21a24d9404a568745a5490feefecbb52, type: 3}
+      propertyPath: attackClip
+      value: 
+      objectReference: {fileID: 0}
+    - target: {fileID: 6040516528348005064, guid: 21a24d9404a568745a5490feefecbb52, type: 3}
+      propertyPath: roarClips.Array.size
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 6040516528348005064, guid: 21a24d9404a568745a5490feefecbb52, type: 3}
+      propertyPath: 'roarClips.Array.data[0]'
+      value: 
+      objectReference: {fileID: 8300000, guid: 537968c07953f8e498716175760f5c7e, type: 3}
+    - target: {fileID: 6040516528348005064, guid: 21a24d9404a568745a5490feefecbb52, type: 3}
+      propertyPath: 'roarClips.Array.data[1]'
+      value: 
+      objectReference: {fileID: 8300000, guid: e8c5ccda8aed0e447926d1d6b08dadc3, type: 3}
+    - target: {fileID: 6040516528348005064, guid: 21a24d9404a568745a5490feefecbb52, type: 3}
+      propertyPath: 'roarClips.Array.data[2]'
+      value: 
+      objectReference: {fileID: 8300000, guid: d3090431c554f7246b5446c299bd1add, type: 3}
     - target: {fileID: 6043768416148465345, guid: 21a24d9404a568745a5490feefecbb52, type: 3}
       propertyPath: m_Layer
       value: 3
@@ -28173,6 +28235,10 @@ PrefabInstance:
     - target: {fileID: 6218252463812979275, guid: 21a24d9404a568745a5490feefecbb52, type: 3}
       propertyPath: m_Layer
       value: 3
+      objectReference: {fileID: 0}
+    - target: {fileID: 6218872891750174808, guid: 21a24d9404a568745a5490feefecbb52, type: 3}
+      propertyPath: m_Resource
+      value: 
       objectReference: {fileID: 0}
     - target: {fileID: 6279173176538018368, guid: 21a24d9404a568745a5490feefecbb52, type: 3}
       propertyPath: m_Layer

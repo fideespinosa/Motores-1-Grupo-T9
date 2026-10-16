@@ -9919,6 +9919,7 @@ MonoBehaviour:
   fxSlider: {fileID: 0}
   brightnessSlider: {fileID: 0}
   playerMovement: {fileID: 0}
+  uiAudioSource: {fileID: 0}
 --- !u!4 &303548576
 Transform:
   m_ObjectHideFlags: 0
@@ -13174,6 +13175,18 @@ MonoBehaviour:
           m_StringArgument: 
           m_BoolArgument: 0
         m_CallState: 2
+      - m_Target: {fileID: 1834658174}
+        m_TargetAssemblyTypeName: UIMenuAudioManager, Assembly-CSharp
+        m_MethodName: PlayClick
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
 --- !u!114 &379590467
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -13334,6 +13347,18 @@ MonoBehaviour:
       - m_Target: {fileID: 1370611436}
         m_TargetAssemblyTypeName: MenuPauseLevel1, Assembly-CSharp
         m_MethodName: Continue
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+      - m_Target: {fileID: 1834658174}
+        m_TargetAssemblyTypeName: UIMenuAudioManager, Assembly-CSharp
+        m_MethodName: PlayClick
         m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
@@ -13847,7 +13872,8 @@ MonoBehaviour:
   ambientAndMusicSources:
   - {fileID: 189793285}
   - {fileID: 33231941}
-  fadeInDuration: 0
+  - {fileID: 834120554}
+  fadeInDuration: 2
 --- !u!65 &406290438
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -17780,7 +17806,7 @@ MonoBehaviour:
   - {fileID: 33231941}
   - {fileID: 2143543618}
   - {fileID: 1228020489}
-  audioFadeDuration: 3
+  audioFadeDuration: 1
 --- !u!95 &501444582
 Animator:
   serializedVersion: 7
@@ -18324,6 +18350,11 @@ Light:
   m_LightUnit: 1
   m_LuxAtDistance: 1
   m_EnableSpotReflector: 1
+--- !u!82 &508071983 stripped
+AudioSource:
+  m_CorrespondingSourceObject: {fileID: 3114760876780685638, guid: 9418f00290f99db4da235faeff2e945b, type: 3}
+  m_PrefabInstance: {fileID: 321574661}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1001 &511516760
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -20269,6 +20300,18 @@ MonoBehaviour:
       - m_Target: {fileID: 1370611436}
         m_TargetAssemblyTypeName: MenuPauseLevel1, Assembly-CSharp
         m_MethodName: QuitGame
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+      - m_Target: {fileID: 1834658174}
+        m_TargetAssemblyTypeName: UIMenuAudioManager, Assembly-CSharp
+        m_MethodName: ErrorPlay
         m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
@@ -27585,7 +27628,7 @@ AudioSource:
   MinDistance: 1
   MaxDistance: 5
   Pan2D: 0
-  rolloffMode: 0
+  rolloffMode: 1
   BypassEffects: 0
   BypassListenerEffects: 0
   BypassReverbZones: 0
@@ -30318,6 +30361,11 @@ Transform:
   m_CorrespondingSourceObject: {fileID: 1101639721560927154, guid: c043b80b40366e44ca04b35353117353, type: 3}
   m_PrefabInstance: {fileID: 763249203117357230}
   m_PrefabAsset: {fileID: 0}
+--- !u!82 &834120554 stripped
+AudioSource:
+  m_CorrespondingSourceObject: {fileID: 1810538475575701323, guid: c043b80b40366e44ca04b35353117353, type: 3}
+  m_PrefabInstance: {fileID: 763249203117357230}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1 &835079893
 GameObject:
   m_ObjectHideFlags: 0
@@ -32833,6 +32881,11 @@ MonoBehaviour:
   alarmLight: {fileID: 2008631539}
   triggerText: "El dron est\xE1 roto... voy a tener que salir a arreglarlo"
   shipDoor: {fileID: 651006634}
+  ambientAndMusicSources:
+  - {fileID: 189793285}
+  - {fileID: 834120554}
+  - {fileID: 508071983}
+  - {fileID: 1996033213}
   alarmSFXController: {fileID: 1707376721}
   SceneName: HouseScene 1
   FadeDuration: 1
@@ -35922,6 +35975,11 @@ PrefabInstance:
     m_AddedGameObjects: []
     m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: b1c271f8446bd0a418999d98f4919fa8, type: 3}
+--- !u!82 &1045144957 stripped
+AudioSource:
+  m_CorrespondingSourceObject: {fileID: 608978600386142414, guid: b1c271f8446bd0a418999d98f4919fa8, type: 3}
+  m_PrefabInstance: {fileID: 1045144956}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1 &1046311716
 GameObject:
   m_ObjectHideFlags: 0
@@ -49924,6 +49982,7 @@ MonoBehaviour:
   musicSlider: {fileID: 501853713}
   fxSlider: {fileID: 1559055766}
   brightnessSlider: {fileID: 549121481}
+  uiAudioSource: {fileID: 1045144957}
 --- !u!114 &1370611437
 MonoBehaviour:
   m_ObjectHideFlags: 0

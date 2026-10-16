@@ -13,6 +13,8 @@ public class LostMenu : MonoBehaviour
     [SerializeField] private CanvasGroup panel;
     [SerializeField] private float fadeDuration = 3f;
 
+    [SerializeField] private AudioSource uiAudioSource;
+
     private string sceneMain = "MainMenu OK";
     private string sceneLevel = "Level1";
 
@@ -32,7 +34,14 @@ public class LostMenu : MonoBehaviour
         if (menuDocument != null)
             btnMenu = menuDocument.rootVisualElement.Q<Button>("MenuButton");
 
-        uIDocument = GetComponent<UIDocument>();
+        if (uiAudioSource != null)
+        {
+            uiAudioSource.ignoreListenerPause = true;
+        }
+
+        if (playDocument != null)
+
+            uIDocument = GetComponent<UIDocument>();
         var root = uIDocument.rootVisualElement;
         gameOverVE = root.Q<VisualElement>("GameOverVE");
 

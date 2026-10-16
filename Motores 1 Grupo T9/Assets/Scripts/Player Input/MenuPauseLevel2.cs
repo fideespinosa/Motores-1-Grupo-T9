@@ -17,22 +17,30 @@ public class MenuPauseLevel2 : MonoBehaviour
     public Slider brightnessSlider;
     public PlayerMovement playerMovement;
 
+    [Header("UI Audio")]
+    public AudioSource uiAudioSource;
 
     private float lastMusicVol;
     private float lastFxVol;
 
-
     public static bool gamePaused = false;
     private bool openOption = false;
     private bool openPause = false;
+
     private void Awake()
     {
         musicSlider.onValueChanged.AddListener(OnMusicChanged); //el slider al cambiar de valor, llama a la funcion ChangeVolumenMaster
         fxSlider.onValueChanged.AddListener(OnFxChanged);
         brightnessSlider.onValueChanged.AddListener(OnSliderChanged);
     }
+
     private void Start()
     {
+        if (uiAudioSource != null)
+        {
+            uiAudioSource.ignoreListenerPause = true;
+        }
+
         // 1. Cargar y sincronizar Volúmenes (AudioMixer -> Sliders)
         if (audioMixer != null)
         {
@@ -53,9 +61,9 @@ public class MenuPauseLevel2 : MonoBehaviour
             brightnessSlider.value = GlobalBrightnessManager.Instance.GetNormalizedBrightness();
         }
     }
+
     void Update()
     {
-        
         if (Input.GetKeyDown(KeyCode.P) || Keyboard.current.pKey.isPressed)
         {
             Pause();
@@ -77,12 +85,11 @@ public class MenuPauseLevel2 : MonoBehaviour
         gamePaused = true;
         openPause = true;
 
-
         if (panelPause != null)
         { panelPause.SetActive(true); }
 
-        
         Time.timeScale = 0f;
+        AudioListener.pause = true;
 
         if (brightnessSlider != null && GlobalBrightnessManager.Instance != null)
         {
@@ -110,9 +117,9 @@ public class MenuPauseLevel2 : MonoBehaviour
         if (panelPause != null)
         { panelPause.SetActive(false); }
 
-        
-
         Time.timeScale = 1f;
+        AudioListener.pause = false;
+
         if (Cursor.visible && Cursor.lockState == CursorLockMode.None)
         {
         }
@@ -128,12 +135,13 @@ public class MenuPauseLevel2 : MonoBehaviour
 
     public void QuitToMainMenu()
     {
-        Time.timeScale = 1f; 
+        Time.timeScale = 1f;
         gamePaused = false;
+        AudioListener.pause = false;
 
-        
         SceneManager.LoadScene("MainMenu OK");
     }
+
     public void OnSliderChanged(float newValue)
     {
         // Le enviamos el valor puro (0 a 1) al manager global
@@ -142,6 +150,7 @@ public class MenuPauseLevel2 : MonoBehaviour
             GlobalBrightnessManager.Instance.UpdateBrightness(newValue);
         }
     }
+
     public void OnMusicChanged(float volumen)
     {
         SetVolume("VolMusic", volumen);
@@ -166,6 +175,7 @@ public class MenuPauseLevel2 : MonoBehaviour
     {
         return Mathf.Pow(10f, dB / 20f);
     }
+
     public void QuitGame()
     {
         Application.Quit();

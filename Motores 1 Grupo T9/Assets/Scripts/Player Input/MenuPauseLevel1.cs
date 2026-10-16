@@ -22,6 +22,9 @@ public class MenuPauseLevel1 : MonoBehaviour
     public Slider fxSlider;
     public Slider brightnessSlider;
 
+    [Header("UI Audio")]
+    public AudioSource uiAudioSource;
+
 
     public static bool gamePaused = false;
     private bool openOption = false;
@@ -34,6 +37,11 @@ public class MenuPauseLevel1 : MonoBehaviour
     }
     private void Start()
     {
+        if (uiAudioSource != null)
+        {
+            uiAudioSource.ignoreListenerPause = true;
+        }
+
         // 1. Cargar y sincronizar Volúmenes (AudioMixer -> Sliders)
         if (audioMixer != null)
         {
@@ -60,7 +68,7 @@ public class MenuPauseLevel1 : MonoBehaviour
         if (Input.GetKeyDown(KeyCode.P) || Keyboard.current.pKey.isPressed)
         {
             Pause();
-            
+
         }
     }
     public void Pause()
@@ -84,6 +92,7 @@ public class MenuPauseLevel1 : MonoBehaviour
         { panelPause.SetActive(true); }
 
         Time.timeScale = 0f;
+        AudioListener.pause = true;
 
         if (brightnessSlider != null && GlobalBrightnessManager.Instance != null)
         {
@@ -111,6 +120,7 @@ public class MenuPauseLevel1 : MonoBehaviour
         { panelPause.SetActive(false); }
 
         Time.timeScale = 1f;
+        AudioListener.pause = false;
 
         // Ocultar y volver a bloquear el cursor para jugar
         Cursor.lockState = CursorLockMode.Locked;
@@ -118,10 +128,11 @@ public class MenuPauseLevel1 : MonoBehaviour
     }
     public void QuitToMainMenu()
     {
-        Time.timeScale = 1f; 
+        Time.timeScale = 1f;
         gamePaused = false;
+        AudioListener.pause = false;
 
-        
+
         SceneManager.LoadScene("MainMenu OK");
     }
     public void OnSliderChanged(float newValue)
