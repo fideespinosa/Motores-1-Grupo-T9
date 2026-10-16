@@ -28679,6 +28679,10 @@ PrefabInstance:
       value: 
       objectReference: {fileID: 467610044}
     - target: {fileID: 8610236762625826126, guid: 21a24d9404a568745a5490feefecbb52, type: 3}
+      propertyPath: lungeTime
+      value: 0.6
+      objectReference: {fileID: 0}
+    - target: {fileID: 8610236762625826126, guid: 21a24d9404a568745a5490feefecbb52, type: 3}
       propertyPath: introTarget
       value: 
       objectReference: {fileID: 1347392345}
@@ -28692,7 +28696,7 @@ PrefabInstance:
       objectReference: {fileID: 112534483}
     - target: {fileID: 8610236762625826126, guid: 21a24d9404a568745a5490feefecbb52, type: 3}
       propertyPath: endCrossFade
-      value: 0.5
+      value: 0.2
       objectReference: {fileID: 0}
     - target: {fileID: 8610236762625826126, guid: 21a24d9404a568745a5490feefecbb52, type: 3}
       propertyPath: fadeDuration
@@ -28740,7 +28744,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 8610236762625826126, guid: 21a24d9404a568745a5490feefecbb52, type: 3}
       propertyPath: cameraLookSpeed
-      value: 0
+      value: 20
       objectReference: {fileID: 0}
     - target: {fileID: 8610236762625826126, guid: 21a24d9404a568745a5490feefecbb52, type: 3}
       propertyPath: panelFadeScript
@@ -28768,7 +28772,7 @@ PrefabInstance:
       objectReference: {fileID: 1668580203}
     - target: {fileID: 8610236762625826126, guid: 21a24d9404a568745a5490feefecbb52, type: 3}
       propertyPath: lungeStopDistance
-      value: 0.5
+      value: 1.25
       objectReference: {fileID: 0}
     - target: {fileID: 8610236762625826126, guid: 21a24d9404a568745a5490feefecbb52, type: 3}
       propertyPath: introArriveDistance
@@ -28912,15 +28916,15 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 8964630084653301266, guid: 21a24d9404a568745a5490feefecbb52, type: 3}
       propertyPath: m_LocalPosition.x
-      value: 0.05
+      value: 0.076
       objectReference: {fileID: 0}
     - target: {fileID: 8964630084653301266, guid: 21a24d9404a568745a5490feefecbb52, type: 3}
       propertyPath: m_LocalPosition.y
-      value: 0.6
+      value: 2.338
       objectReference: {fileID: 0}
     - target: {fileID: 8964630084653301266, guid: 21a24d9404a568745a5490feefecbb52, type: 3}
       propertyPath: m_LocalPosition.z
-      value: 0.16
+      value: -0.004
       objectReference: {fileID: 0}
     - target: {fileID: 8964630084653301266, guid: 21a24d9404a568745a5490feefecbb52, type: 3}
       propertyPath: m_LocalRotation.w
