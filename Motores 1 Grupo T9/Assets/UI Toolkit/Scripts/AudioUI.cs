@@ -35,6 +35,7 @@ public class AudioUI : MonoBehaviour
         {
             musicSlider.lowValue = 0.0001f;
             musicSlider.highValue = 1f;
+            audioMixer.GetFloat("VolMusic", out lastMusicVol);
             musicSlider.value = lastMusicVol;
 
             musicSlider.RegisterValueChangedCallback(evt =>
@@ -52,6 +53,7 @@ public class AudioUI : MonoBehaviour
         {
             fxSlider.lowValue = 0.0001f;
             fxSlider.highValue = 1f;
+            audioMixer.GetFloat("VolFX", out lastFxVol);
             fxSlider.value = lastFxVol;
 
             fxSlider.RegisterValueChangedCallback(evt =>

@@ -75,12 +75,12 @@ public class MenuPauseLevel1 : MonoBehaviour
         
         SceneManager.LoadScene("MainMenu OK");
     }
-    private void OnSliderChanged(ChangeEvent<float> evt)
+    public void OnSliderChanged(float newValue)
     {
         // Le enviamos el valor puro (0 a 1) al manager global
         if (GlobalBrightnessManager.Instance != null)
         {
-            GlobalBrightnessManager.Instance.UpdateBrightness(evt.newValue);
+            GlobalBrightnessManager.Instance.UpdateBrightness(newValue);
         }
     }
     public void QuitGame()
