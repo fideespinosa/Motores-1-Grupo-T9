@@ -27,10 +27,7 @@ public class BrightnessUI : MonoBehaviour
             // 3. Le asignamos el valor que esté guardado actualmente en el juego
             if (GlobalBrightnessManager.Instance != null)
             {
-                volumenBrigtness.profile.TryGet<ColorAdjustments>(out var colorAdjustments);
-
-                brightnessSlider.value = colorAdjustments.postExposure.value;
-                //brightnessSlider.value = GlobalBrightnessManager.Instance.GetNormalizedBrightness();
+                brightnessSlider.value = GlobalBrightnessManager.Instance.GetNormalizedBrightness();
             }
 
             // 4. Nos suscribimos al evento de cambio de valor

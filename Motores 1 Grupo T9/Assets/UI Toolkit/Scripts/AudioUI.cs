@@ -31,12 +31,16 @@ public class AudioUI : MonoBehaviour
         btnBackFromOptions = root.Q<Button>("BackButton");
 
         // Configuración del Slider de Música
+        if (musicSlider != null && audioMixer.GetFloat("VolMusic", out float musicDB))
+        {
+            lastMusicVol = DBToNormalized(musicDB);
+            musicSlider.value = lastMusicVol;
+        }
+
         if (musicSlider != null)
         {
             musicSlider.lowValue = 0.0001f;
             musicSlider.highValue = 1f;
-            audioMixer.GetFloat("VolMusic", out lastMusicVol);
-            musicSlider.value = lastMusicVol;
 
             musicSlider.RegisterValueChangedCallback(evt =>
             {
@@ -49,12 +53,16 @@ public class AudioUI : MonoBehaviour
         }
 
         // Configuración del Slider de SFX/FX
+        if (fxSlider != null && audioMixer.GetFloat("VolFX", out float fxDB))
+        {
+            lastFxVol = DBToNormalized(fxDB);
+            fxSlider.value = lastFxVol;
+        }
+
         if (fxSlider != null)
         {
             fxSlider.lowValue = 0.0001f;
             fxSlider.highValue = 1f;
-            audioMixer.GetFloat("VolFX", out lastFxVol);
-            fxSlider.value = lastFxVol;
 
             fxSlider.RegisterValueChangedCallback(evt =>
             {
@@ -118,5 +126,9 @@ public class AudioUI : MonoBehaviour
         // Conversión a escala logarítmica (de 0.0001-1 a dB)
         float dB = Mathf.Log10(Mathf.Clamp(normalizedValue, 0.0001f, 1f)) * 20f;
         audioMixer.SetFloat(parameterName, dB);
+    }
+    private float DBToNormalized(float dB)
+    {
+        return Mathf.Pow(10f, dB / 20f);
     }
 }
