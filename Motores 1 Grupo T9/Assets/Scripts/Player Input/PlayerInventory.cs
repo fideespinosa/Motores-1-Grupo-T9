@@ -45,7 +45,7 @@ public class PlayerInventory : MonoBehaviour
     [Header("Siguiente Nivel")]
     [SerializeField] public string nextLevel;
 
-    [Header("GUI - Dron")]
+    [Header("GUI - Player Name Resources")]
     [SerializeField] private TextMeshProUGUI textMetal;
     [SerializeField] private TextMeshProUGUI textCombustible;
     [SerializeField] private TextMeshProUGUI textInsumos;
@@ -76,7 +76,7 @@ public class PlayerInventory : MonoBehaviour
         insumosCollected >= insumosNeeded;
 
     // Llamala también al volver a la nave/dron (ver paso 4)
-    public void RefreshUI()
+    /*public void RefreshUI()
     { 
         // Contadores simples
         if (textMetal) textMetal.text = metalCollected.ToString();
@@ -110,6 +110,55 @@ public class PlayerInventory : MonoBehaviour
         {
             camDrone.resources1Lbl.text = " / 1 Anomalia";
             camDrone.qResources1Lbl.text = finalItemCollected ? "1" : "0";
+        }
+    }*/
+    public void RefreshUI()
+    {
+        if (!AllResourcesDone)
+        {
+            // Estado Normal: Muestra cantidades recolectadas de cada recurso
+            if (textMetal) textMetal.text = metalCollected.ToString();
+            if (textCombustible) textCombustible.text = combustibleCollected.ToString();
+            if (textInsumos) textInsumos.text = insumosCollected.ToString();
+
+            if (textPMetal) textPMetal.text = metalCollected.ToString();
+            if (textPCombustible) textPCombustible.text = combustibleCollected.ToString();
+            if (textPInsumos) textPInsumos.text = insumosCollected.ToString();
+
+            if (camDrone != null && camDrone.qResources1Lbl != null)
+            {
+                camDrone.qResources1Lbl.text = metalCollected.ToString();
+                camDrone.qResources2Lbl.text = combustibleCollected.ToString();
+                camDrone.qResources3Lbl.text = insumosCollected.ToString();
+            }
+            return;
+        }
+
+        // --- RECURSOS COMPLETADOS ---
+        // Limpia los slots 2 y 3 (Combustible e Insumos)
+        if (textCombustible) textCombustible.text = "";
+        if (textInsumos) textInsumos.text = "";
+        if (textPCombustible) textPCombustible.text = "";
+        if (textPInsumos) textPInsumos.text = "";
+
+        if (camDrone != null)
+        {
+            if (camDrone.resources2Lbl != null) camDrone.resources2Lbl.text = "";
+            if (camDrone.resources3Lbl != null) camDrone.resources3Lbl.text = "";
+            if (camDrone.qResources2Lbl != null) camDrone.qResources2Lbl.text = "";
+            if (camDrone.qResources3Lbl != null) camDrone.qResources3Lbl.text = "";
+        }
+
+        // Configura el slot 1 para el recurso Anomalía
+        string cantidadAnomalia = finalItemCollected ? "1" : "0";
+
+        if (textMetal) textMetal.text =  "/ 1 Anomalia";
+        if (textPMetal) textPMetal.text = cantidadAnomalia;
+
+        if (camDrone != null)
+        {
+            if (camDrone.resources1Lbl != null) camDrone.resources1Lbl.text = " / 1 Anomalia";
+            if (camDrone.qResources1Lbl != null) camDrone.qResources1Lbl.text = cantidadAnomalia;
         }
     }
 
