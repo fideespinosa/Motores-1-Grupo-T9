@@ -32,6 +32,7 @@ public class PlayerInventory : MonoBehaviour
     [SerializeField] private GameObject anomalyObject;
     [SerializeField] private GameObject anomalyTrigger;
     [SerializeField] private GameObject enemies;
+    [SerializeField] private GameObject wallCaveBlock;
     [SerializeField] private bool anomalyTriggered = false;
     [SerializeField] private float anomalyDelay = 3f;
     [SerializeField] private CanvasGroup whitePanel;
@@ -200,20 +201,17 @@ public class PlayerInventory : MonoBehaviour
     {
         yield return new WaitForSeconds(anomalyDelay);
 
-        // Pantalla blanca
         yield return StartCoroutine(FadePanel(0f, 1f));
 
-        // Activar la anomalía mientras la pantalla está blanca
         anomalyTrigger.SetActive(true);
         enemies.SetActive(false);
         anomalyObject.SetActive(true);
+        wallCaveBlock.SetActive(false); // se desactiva la pared de piedra que bloqueaba la salida cuando no estaba la puerta de la casa en la cueva
 
-        // Volver gradualmente al juego
         yield return StartCoroutine(FadePanel(1f, 0f));
 
-        // Ocultar el panel cuando termina el fade out
-        whitePanel.alpha = 0f;
         whitePanel.gameObject.SetActive(false);
+        whitePanel.alpha = 1f; // lo pongo en 1 porque en otro script se usa este panel pero no tiene la logica de ponerlo en 1 al panel
     }
 
     private IEnumerator FadePanel(float startAlpha, float targetAlpha)
