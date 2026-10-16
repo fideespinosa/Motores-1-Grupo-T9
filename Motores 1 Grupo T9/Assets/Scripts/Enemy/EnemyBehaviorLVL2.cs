@@ -44,6 +44,36 @@ public class EnemyBehaviorLVL2 : MonoBehaviour
     [SerializeField] private float cameraLookSpeed = 5f;
     [SerializeField] FlashlightFlicker flashlightFlicker;
 
+    [Header("Muerte - End")]
+    [SerializeField] private string endStateName = "End";
+    [SerializeField] private float endCrossFade = 0.1f;
+    [SerializeField] private bool waitForEndEvent = false;   // true = espera Animation Event
+    [SerializeField] private float endAnimationDelay = 2f;   // si no usa evento
+
+    [Header("Muerte - Shake")]
+    [SerializeField] private Transform shakeTarget;          // la camara del jugador
+    [SerializeField] private float shakeMagnitude = 0.08f;
+    [SerializeField] private float shakeDuration = 1.5f;
+
+    [Header("Muerte - Cámara 'te come'")]
+    [SerializeField] private float pullBackDistance = 0.8f;  // cuanto se aleja
+    [SerializeField] private float pullBackTime = 0.4f;
+    [SerializeField] private float lungeStartDelay = 1.5f;   // segundos desde que te atrapa hasta que se lanza (si no usa evento)
+    [SerializeField] private float lungeTime = 0.35f;        // que tan rápido te "come"
+    [SerializeField] private float lungeStopDistance = 0.3f; // a qué distancia del viewPoint frena
+
+    private bool lungeEvent;
+
+    [Header("Muerte - Fade / Música / Escena")]
+    [SerializeField] private CanvasGroup deathFadeGroup;     // Image negra con CanvasGroup (alpha 0)
+    [SerializeField] private float fadeDuration = 1f;
+    [SerializeField] private AudioSource blackScreenSource;
+    [SerializeField] private AudioClip blackScreenMusic;
+    [SerializeField] private float blackHoldTime = 3f;
+    [SerializeField] private string deathSceneName = "Gracias por jugar escena";
+
+    private bool endAnimFinished;
+
     bool run = false;
     private bool jumpscareActive = false;
     private bool introSequenceActive = false;
@@ -185,15 +215,12 @@ public class EnemyBehaviorLVL2 : MonoBehaviour
 
     // ---------- FASE 2: Contacto / muerte ----------
 
-    private void OnTriggerEnter(Collider other)
+    public void OnCatchContact()
     {
-        if (!contactEnabled) return; // ignora cualquier contacto antes de tiempo
+        if (!contactEnabled || jumpscareActive) return;
 
-        if (other.gameObject.CompareTag("Player") && !jumpscareActive)
-        {
-            jumpscareActive = true;
-            StartDeathSequence();
-        }
+        jumpscareActive = true;
+        StartDeathSequence();
     }
 
     private void StartDeathSequence()
@@ -211,7 +238,8 @@ public class EnemyBehaviorLVL2 : MonoBehaviour
         }
 
         animator.applyRootMotion = false;
-        animator.SetBool("IsRunning", false); // vuelve al Scream
+        animator.SetBool("IsRunning", false);
+        animator.CrossFade(endStateName, endCrossFade);
 
         if (playerMovementScript != null)
             playerMovementScript.enabled = false;
@@ -221,19 +249,102 @@ public class EnemyBehaviorLVL2 : MonoBehaviour
 
         if (playerDeathAnimator != null)
             playerDeathAnimator.SetTrigger("play");
+        if (shakeTarget != null && viewPoint != null)
+            StartCoroutine(CameraEatRoutine());
+
+        StartCoroutine(DeathRoutine());
     }
 
     // Se llama desde OnScreamEnd cuando el Scream es el de la muerte
-    public void OnDeathScreamEnd()
+    public void OnEndAnimationFinished() => endAnimFinished = true;
+
+    // Compatibilidad: si OnScreamEnd todavía llega durante la muerte
+    public void OnDeathScreamEnd() => endAnimFinished = true;
+
+    private IEnumerator DeathRoutine()
     {
-        Debug.Log("OnDeathScreamEnd llamado");
+        if (waitForEndEvent)
+            yield return new WaitUntil(() => endAnimFinished);
+        else
+            yield return new WaitForSeconds(endAnimationDelay);
+
+        // Fade a negro
+        if (deathFadeGroup != null)
+        {
+            for (float t = 0; t < fadeDuration; t += Time.deltaTime)
+            {
+                deathFadeGroup.alpha = t / fadeDuration;
+                yield return null;
+            }
+            deathFadeGroup.alpha = 1f;
+        }
+
+        // Música justo cuando queda todo negro
+        if (blackScreenSource != null && blackScreenMusic != null)
+        {
+            blackScreenSource.clip = blackScreenMusic;
+            blackScreenSource.Play();
+        }
+
+        yield return new WaitForSeconds(blackHoldTime);
 
         if (cameraController != null)
             cameraController.StopLook();
 
         PlayerPrefs.SetString("LastScene", SceneManager.GetActiveScene().name);
         PlayerPrefs.Save();
-        SceneManager.LoadScene("Gracias por jugar escena");
+        SceneManager.LoadScene(deathSceneName);
+    }
+
+    public void OnEndLunge() => lungeEvent = true;
+
+    private Vector3 ShakeOffset(float elapsed)
+    {
+        if (elapsed >= shakeDuration) return Vector3.zero;
+        return Random.insideUnitSphere * shakeMagnitude * (1f - elapsed / shakeDuration);
+    }
+
+    private IEnumerator CameraEatRoutine()
+    {
+        Transform cam = shakeTarget;
+        Vector3 startPos = cam.position;
+
+        Vector3 away = startPos - viewPoint.position;
+        away.y = 0f;
+        away.Normalize();
+
+        Vector3 backPos = startPos + away * pullBackDistance;
+        Vector3 lungePos = viewPoint.position + away * lungeStopDistance;
+        lungePos.y = startPos.y;
+
+        float elapsed = 0f;
+
+        // 1) Se aleja
+        for (float t = 0; t < pullBackTime; t += Time.deltaTime)
+        {
+            elapsed += Time.deltaTime;
+            float k = Mathf.SmoothStep(0f, 1f, t / pullBackTime);
+            cam.position = Vector3.Lerp(startPos, backPos, k) + ShakeOffset(elapsed);
+            yield return null;
+        }
+
+        // 2) Espera (temblando) hasta el evento o hasta el delay
+        while (!lungeEvent && elapsed < lungeStartDelay)
+        {
+            elapsed += Time.deltaTime;
+            cam.position = backPos + ShakeOffset(elapsed);
+            yield return null;
+        }
+
+        // 3) Se lanza hacia adelante
+        for (float t = 0; t < lungeTime; t += Time.deltaTime)
+        {
+            elapsed += Time.deltaTime;
+            float k = (t / lungeTime) * (t / lungeTime); // acelera
+            cam.position = Vector3.Lerp(backPos, lungePos, k) + ShakeOffset(elapsed);
+            yield return null;
+        }
+        cam.position = lungePos;
     }
     public void ApplyScreamScale()
     {
