@@ -7,6 +7,18 @@ public class SFXTransitionManager : MonoBehaviour
     [SerializeField] private AudioSource transAudioSource;
     [SerializeField] private AudioClip sfxToHouse;
     [SerializeField] private AudioClip sfxToCave;
+    [SerializeField] private AudioSource sfxTransitionSource;
+    [SerializeField] private AudioClip transitionSFX;
+
+
+    public void TransitionSFX()
+    {
+        if(sfxTransitionSource  != null)
+        {
+            sfxTransitionSource.clip = transitionSFX;
+            sfxTransitionSource.Play();
+        }
+    }
 
    public void ToHouseFromShip()
     {

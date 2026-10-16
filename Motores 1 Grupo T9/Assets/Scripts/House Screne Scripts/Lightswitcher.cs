@@ -12,6 +12,11 @@ public class LightSwitcher : MonoBehaviour, IInteractable
     [SerializeField] private Vector3 rotationOffset = new Vector3(0f, 0f, 30f);
     [SerializeField] private float rotateDuration = 0.1f;
 
+    [Header("Audio REF")]
+    [SerializeField] private AudioSource lightSource;
+    [SerializeField] private AudioClip switchClipON;
+    [SerializeField] private AudioClip switchClipOFF;
+
     [Header("Requirement")]
     [SerializeField] private string requiredFlag;
 
@@ -63,6 +68,12 @@ public class LightSwitcher : MonoBehaviour, IInteractable
         }
 
         rotateCoroutine = StartCoroutine(RotateSwitch(target));
+
+        if (lightSource != null)
+        {
+            lightSource.clip = isOn ? switchClipON : switchClipOFF;
+            lightSource.Play();
+        }
     }
 
     private void ApplyLights()
