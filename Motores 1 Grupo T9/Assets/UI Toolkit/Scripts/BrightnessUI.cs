@@ -1,8 +1,11 @@
 using UnityEngine;
+using UnityEngine.Rendering;
+using UnityEngine.Rendering.Universal;
 using UnityEngine.UIElements;
 
 public class BrightnessUI : MonoBehaviour
 {
+    [SerializeField] private Volume volumenBrigtness;
     private UIDocument uiDocument;
 
     private Slider brightnessSlider;
@@ -24,7 +27,10 @@ public class BrightnessUI : MonoBehaviour
             // 3. Le asignamos el valor que esté guardado actualmente en el juego
             if (GlobalBrightnessManager.Instance != null)
             {
-                brightnessSlider.value = GlobalBrightnessManager.Instance.GetNormalizedBrightness();
+                volumenBrigtness.profile.TryGet<ColorAdjustments>(out var colorAdjustments);
+
+                brightnessSlider.value = colorAdjustments.postExposure.value;
+                //brightnessSlider.value = GlobalBrightnessManager.Instance.GetNormalizedBrightness();
             }
 
             // 4. Nos suscribimos al evento de cambio de valor
