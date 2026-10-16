@@ -1,10 +1,8 @@
-using GLTFast.Schema;
-using System.Runtime.CompilerServices;
 using UnityEngine;
 using UnityEngine.Audio;
 using UnityEngine.InputSystem;
 using UnityEngine.SceneManagement;
-using UnityEngine.UIElements;
+using UnityEngine.UI;
 using Cursor = UnityEngine.Cursor;
 
 public class MenuPauseLevel2 : MonoBehaviour
@@ -27,6 +25,12 @@ public class MenuPauseLevel2 : MonoBehaviour
     public static bool gamePaused = false;
     private bool openOption = false;
     private bool openPause = false;
+    private void Awake()
+    {
+        musicSlider.onValueChanged.AddListener(OnMusicChanged); //el slider al cambiar de valor, llama a la funcion ChangeVolumenMaster
+        fxSlider.onValueChanged.AddListener(OnFxChanged);
+        brightnessSlider.onValueChanged.AddListener(OnSliderChanged);
+    }
     private void Start()
     {
         // 1. Cargar y sincronizar Volúmenes (AudioMixer -> Sliders)
@@ -79,6 +83,22 @@ public class MenuPauseLevel2 : MonoBehaviour
 
         
         Time.timeScale = 0f;
+
+        if (brightnessSlider != null && GlobalBrightnessManager.Instance != null)
+        {
+            brightnessSlider.value = GlobalBrightnessManager.Instance.GetNormalizedBrightness();
+        }
+        if (audioMixer != null)
+        {
+            if (musicSlider != null && audioMixer.GetFloat("VolMusic", out float musicDB))
+            {
+                musicSlider.value = DBToNormalized(musicDB);
+            }
+            if (fxSlider != null && audioMixer.GetFloat("VolFX", out float fxDB))
+            {
+                fxSlider.value = DBToNormalized(fxDB);
+            }
+        }
     }
 
     public void Continue()
