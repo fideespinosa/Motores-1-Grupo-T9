@@ -81575,11 +81575,11 @@ PrefabInstance:
     - target: {fileID: 5933045433369117976, guid: 1c7b76fe5892dc849b8a26bdda20a0c2, type: 3}
       propertyPath: textMetal
       value: 
-      objectReference: {fileID: 1998419111}
+      objectReference: {fileID: 1903201036}
     - target: {fileID: 5933045433369117976, guid: 1c7b76fe5892dc849b8a26bdda20a0c2, type: 3}
       propertyPath: textPMetal
       value: 
-      objectReference: {fileID: 325592541}
+      objectReference: {fileID: 1119007703}
     - target: {fileID: 5933045433369117976, guid: 1c7b76fe5892dc849b8a26bdda20a0c2, type: 3}
       propertyPath: whitePanel
       value: 
@@ -81589,9 +81589,13 @@ PrefabInstance:
       value: 2
       objectReference: {fileID: 0}
     - target: {fileID: 5933045433369117976, guid: 1c7b76fe5892dc849b8a26bdda20a0c2, type: 3}
+      propertyPath: shipMonitor
+      value: 
+      objectReference: {fileID: 0}
+    - target: {fileID: 5933045433369117976, guid: 1c7b76fe5892dc849b8a26bdda20a0c2, type: 3}
       propertyPath: textInsumos
       value: 
-      objectReference: {fileID: 1514658499}
+      objectReference: {fileID: 1803227482}
     - target: {fileID: 5933045433369117976, guid: 1c7b76fe5892dc849b8a26bdda20a0c2, type: 3}
       propertyPath: anomalyDelay
       value: 0.2
@@ -81603,7 +81607,7 @@ PrefabInstance:
     - target: {fileID: 5933045433369117976, guid: 1c7b76fe5892dc849b8a26bdda20a0c2, type: 3}
       propertyPath: textPInsumos
       value: 
-      objectReference: {fileID: 1750307554}
+      objectReference: {fileID: 209907791}
     - target: {fileID: 5933045433369117976, guid: 1c7b76fe5892dc849b8a26bdda20a0c2, type: 3}
       propertyPath: anomalyObject
       value: 
@@ -81635,7 +81639,7 @@ PrefabInstance:
     - target: {fileID: 5933045433369117976, guid: 1c7b76fe5892dc849b8a26bdda20a0c2, type: 3}
       propertyPath: textCombustible
       value: 
-      objectReference: {fileID: 679371691}
+      objectReference: {fileID: 1504260151}
     - target: {fileID: 5933045433369117976, guid: 1c7b76fe5892dc849b8a26bdda20a0c2, type: 3}
       propertyPath: shipVoiceManager
       value: 
@@ -81643,7 +81647,7 @@ PrefabInstance:
     - target: {fileID: 5933045433369117976, guid: 1c7b76fe5892dc849b8a26bdda20a0c2, type: 3}
       propertyPath: textPCombustible
       value: 
-      objectReference: {fileID: 1702232900}
+      objectReference: {fileID: 1386865924}
     - target: {fileID: 5933045433369117976, guid: 1c7b76fe5892dc849b8a26bdda20a0c2, type: 3}
       propertyPath: combustibleNeeded
       value: 2

@@ -24,6 +24,7 @@ public class PlayerInventory : MonoBehaviour
     [Header("Objeto final")]
     [SerializeField] private GameObject finalItem; // objeto en escena, desactivado por defecto
     private bool finalItemActivated;
+    private bool finalItemCollected;
 
     [Header("Spawns por recolección")]
     [SerializeField] private List<SpawnTrigger> spawnTriggers = new List<SpawnTrigger>();
@@ -41,19 +42,20 @@ public class PlayerInventory : MonoBehaviour
     [Header("SFX Ref")]
     [SerializeField] private ShipVoiceManager shipVoiceManager;
 
-
     [Header("Siguiente Nivel")]
     [SerializeField] public string nextLevel;
 
-    [Header("GUI - Player Name Resources")]
+    [Header("GUI - Monitor de la nave (Canvas) - Nombres")]
     [SerializeField] private TextMeshProUGUI textMetal;
     [SerializeField] private TextMeshProUGUI textCombustible;
     [SerializeField] private TextMeshProUGUI textInsumos;
 
-    [Header("GUI - Player")]
+    [Header("GUI - Monitor de la nave (Canvas) - Cantidades")]
     [SerializeField] private TextMeshProUGUI textPMetal;
     [SerializeField] private TextMeshProUGUI textPCombustible;
     [SerializeField] private TextMeshProUGUI textPInsumos;
+
+    [Header("GUI - HUD del dron (UI Toolkit)")]
     [SerializeField] private CamDroneUI camDrone;
 
     [Header("Linterna del dron")]
@@ -68,63 +70,24 @@ public class PlayerInventory : MonoBehaviour
         if (droneFlashlight != null)
             baseIntensity = droneFlashlight.intensity;
     }
-    private bool finalItemCollected;
 
     private bool AllResourcesDone =>
         metalCollected >= metalNeeded &&
         combustibleCollected >= combustibleNeeded &&
         insumosCollected >= insumosNeeded;
 
-    // Llamala también al volver a la nave/dron (ver paso 4)
-    /*public void RefreshUI()
-    { 
-        // Contadores simples
-        if (textMetal) textMetal.text = metalCollected.ToString();
-        if (textCombustible) textCombustible.text = combustibleCollected.ToString();
-        if (textInsumos) textInsumos.text = insumosCollected.ToString();
-
-        // Panel de la nave
-        if (textPMetal) textPMetal.text = metalCollected.ToString();
-        if (textPCombustible) textPCombustible.text = combustibleCollected.ToString();
-        if (textPInsumos) textPInsumos.text = insumosCollected.ToString();
-
-        if (camDrone == null || camDrone.qResources1Lbl == null) return;
-
-        if (!AllResourcesDone)
-        {
-            camDrone.qResources1Lbl.text = metalCollected.ToString();
-            camDrone.qResources2Lbl.text = combustibleCollected.ToString();
-            camDrone.qResources3Lbl.text = insumosCollected.ToString();
-            return;
-        }
-
-        // Todo recolectado: limpia y muestra el objetivo final
-        camDrone.resources1Lbl.text = "";
-        camDrone.resources2Lbl.text = "";
-        camDrone.resources3Lbl.text = "";
-        camDrone.qResources1Lbl.text = "";
-        camDrone.qResources2Lbl.text = "";
-        camDrone.qResources3Lbl.text = "";
-
-        if (finalItemActivated || finalItemCollected)
-        {
-            camDrone.resources1Lbl.text = " / 1 Anomalia";
-            camDrone.qResources1Lbl.text = finalItemCollected ? "1" : "0";
-        }
-    }*/
+    // Repinta el monitor de la nave y el HUD del dron según el estado actual.
+    // Se llama al recolectar y también desde PlayerSwitcher al volver al dron.
     public void RefreshUI()
     {
         if (!AllResourcesDone)
         {
-            // Estado Normal: Muestra cantidades recolectadas de cada recurso
-            if (textMetal) textMetal.text = metalCollected.ToString();
-            if (textCombustible) textCombustible.text = combustibleCollected.ToString();
-            if (textInsumos) textInsumos.text = insumosCollected.ToString();
-
+            // Monitor de la nave: solo las cantidades
             if (textPMetal) textPMetal.text = metalCollected.ToString();
             if (textPCombustible) textPCombustible.text = combustibleCollected.ToString();
             if (textPInsumos) textPInsumos.text = insumosCollected.ToString();
 
+            // HUD del dron
             if (camDrone != null && camDrone.qResources1Lbl != null)
             {
                 camDrone.qResources1Lbl.text = metalCollected.ToString();
@@ -134,31 +97,28 @@ public class PlayerInventory : MonoBehaviour
             return;
         }
 
-        // --- RECURSOS COMPLETADOS ---
-        // Limpia los slots 2 y 3 (Combustible e Insumos)
-        if (textCombustible) textCombustible.text = "";
-        if (textInsumos) textInsumos.text = "";
-        if (textPCombustible) textPCombustible.text = "";
-        if (textPInsumos) textPInsumos.text = "";
-
-        if (camDrone != null)
-        {
-            if (camDrone.resources2Lbl != null) camDrone.resources2Lbl.text = "";
-            if (camDrone.resources3Lbl != null) camDrone.resources3Lbl.text = "";
-            if (camDrone.qResources2Lbl != null) camDrone.qResources2Lbl.text = "";
-            if (camDrone.qResources3Lbl != null) camDrone.qResources3Lbl.text = "";
-        }
-
-        // Configura el slot 1 para el recurso Anomalía
+        // --- RECURSOS COMPLETADOS: el slot 1 pasa a ser la Anomalía, se limpian los slots 2 y 3 ---
         string cantidadAnomalia = finalItemCollected ? "1" : "0";
 
-        if (textMetal) textMetal.text =  "/ 1 Anomalia";
-        if (textPMetal) textPMetal.text = cantidadAnomalia;
+        // Monitor de la nave
+        if (textMetal) textMetal.text = "/ 1 Anomalia";
+        if (textCombustible) textCombustible.text = "";
+        if (textInsumos) textInsumos.text = "";
 
+        if (textPMetal) textPMetal.text = cantidadAnomalia;
+        if (textPCombustible) textPCombustible.text = "";
+        if (textPInsumos) textPInsumos.text = "";
+        Debug.Log($"[RefreshUI completado] textMetal={(textMetal ? textMetal.text : "NULL")} | textPMetal={(textPMetal ? textPMetal.text : "NULL")}", textPMetal);
+        // HUD del dron
         if (camDrone != null)
         {
             if (camDrone.resources1Lbl != null) camDrone.resources1Lbl.text = " / 1 Anomalia";
+            if (camDrone.resources2Lbl != null) camDrone.resources2Lbl.text = "";
+            if (camDrone.resources3Lbl != null) camDrone.resources3Lbl.text = "";
+
             if (camDrone.qResources1Lbl != null) camDrone.qResources1Lbl.text = cantidadAnomalia;
+            if (camDrone.qResources2Lbl != null) camDrone.qResources2Lbl.text = "";
+            if (camDrone.qResources3Lbl != null) camDrone.qResources3Lbl.text = "";
         }
     }
 
@@ -176,9 +136,9 @@ public class PlayerInventory : MonoBehaviour
                 insumosCollected++;
                 break;
         }
-        RefreshUI();
+
         CheckSpawnTriggers(type);
-        CheckVictory();
+        CheckVictory(); // también repinta la UI
     }
 
     private int GetCollectedAmount(resourcesManager.ResourceType type)
@@ -230,6 +190,9 @@ public class PlayerInventory : MonoBehaviour
     {
         Debug.Log($"[CheckVictory] metal={metalCollected}/{metalNeeded}, combustible={combustibleCollected}/{combustibleNeeded}, insumos={insumosCollected}/{insumosNeeded}");
 
+        // Siempre repinta, aunque todavía no estén todos los recursos
+        RefreshUI();
+
         if (!AllResourcesDone) return;
 
         if (finalItem != null)
@@ -240,12 +203,10 @@ public class PlayerInventory : MonoBehaviour
                 finalItem.SetActive(true);
                 Debug.Log("[CheckVictory] recursos completos, objeto final activado");
             }
-            RefreshUI();
             return;
         }
 
-       
-        RefreshUI();
+        // Si no hay objeto final asignado, mantiene el comportamiento anterior
         TriggerAnomaly();
     }
 
@@ -332,8 +293,10 @@ public class PlayerInventory : MonoBehaviour
         droneFlashlight.intensity = baseIntensity;
         flickerRoutine = null;
     }
+
     public void CollectFinalItem()
     {
+        // Solo se puede recoger si ya se activó y una sola vez
         if (!finalItemActivated || finalItemCollected) return;
 
         if (finalItem != null) finalItem.SetActive(false);
