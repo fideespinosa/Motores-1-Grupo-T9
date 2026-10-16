@@ -1957,6 +1957,11 @@ Transform:
   m_Children: []
   m_Father: {fileID: 786303435}
   m_LocalEulerAnglesHint: {x: -1.335, y: 21.93, z: -0.116}
+--- !u!82 &1058052250 stripped
+AudioSource:
+  m_CorrespondingSourceObject: {fileID: 3007260110674843695, guid: d895e37bd8b216049994114e74ac015e, type: 3}
+  m_PrefabInstance: {fileID: 6001904656109067119}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1 &1153471750
 GameObject:
   m_ObjectHideFlags: 0
@@ -2148,6 +2153,67 @@ MonoBehaviour:
             m_StringArgument: 
             m_BoolArgument: 0
           m_CallState: 2
+--- !u!1001 &1153984391
+PrefabInstance:
+  m_ObjectHideFlags: 0
+  serializedVersion: 2
+  m_Modification:
+    serializedVersion: 3
+    m_TransformParent: {fileID: 0}
+    m_Modifications:
+    - target: {fileID: 1865037117868099146, guid: c3c6aa24a9e074d47ba06f5746ddb225, type: 3}
+      propertyPath: m_Name
+      value: MenuMusicManager
+      objectReference: {fileID: 0}
+    - target: {fileID: 2669441893706449723, guid: c3c6aa24a9e074d47ba06f5746ddb225, type: 3}
+      propertyPath: musicTrack
+      value: 
+      objectReference: {fileID: 8300000, guid: a84fd2385c6e1af4a879a32e88865926, type: 3}
+    - target: {fileID: 5927957983168673751, guid: c3c6aa24a9e074d47ba06f5746ddb225, type: 3}
+      propertyPath: m_LocalPosition.x
+      value: 1.49412
+      objectReference: {fileID: 0}
+    - target: {fileID: 5927957983168673751, guid: c3c6aa24a9e074d47ba06f5746ddb225, type: 3}
+      propertyPath: m_LocalPosition.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 5927957983168673751, guid: c3c6aa24a9e074d47ba06f5746ddb225, type: 3}
+      propertyPath: m_LocalPosition.z
+      value: 0.60328
+      objectReference: {fileID: 0}
+    - target: {fileID: 5927957983168673751, guid: c3c6aa24a9e074d47ba06f5746ddb225, type: 3}
+      propertyPath: m_LocalRotation.w
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 5927957983168673751, guid: c3c6aa24a9e074d47ba06f5746ddb225, type: 3}
+      propertyPath: m_LocalRotation.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 5927957983168673751, guid: c3c6aa24a9e074d47ba06f5746ddb225, type: 3}
+      propertyPath: m_LocalRotation.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 5927957983168673751, guid: c3c6aa24a9e074d47ba06f5746ddb225, type: 3}
+      propertyPath: m_LocalRotation.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 5927957983168673751, guid: c3c6aa24a9e074d47ba06f5746ddb225, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 5927957983168673751, guid: c3c6aa24a9e074d47ba06f5746ddb225, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 5927957983168673751, guid: c3c6aa24a9e074d47ba06f5746ddb225, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.z
+      value: 0
+      objectReference: {fileID: 0}
+    m_RemovedComponents: []
+    m_RemovedGameObjects: []
+    m_AddedGameObjects: []
+    m_AddedComponents: []
+  m_SourcePrefab: {fileID: 100100000, guid: c3c6aa24a9e074d47ba06f5746ddb225, type: 3}
 --- !u!1 &1171172457
 GameObject:
   m_ObjectHideFlags: 0
@@ -3504,6 +3570,22 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 341345308094347822, guid: d895e37bd8b216049994114e74ac015e, type: 3}
+      propertyPath: okClip
+      value: 
+      objectReference: {fileID: 8300000, guid: ba1aef1c0ada99545bf01715d0689bfa, type: 3}
+    - target: {fileID: 341345308094347822, guid: d895e37bd8b216049994114e74ac015e, type: 3}
+      propertyPath: errClip
+      value: 
+      objectReference: {fileID: 8300000, guid: 790211624d35c5648831ca9ad12372ea, type: 3}
+    - target: {fileID: 341345308094347822, guid: d895e37bd8b216049994114e74ac015e, type: 3}
+      propertyPath: uiSource
+      value: 
+      objectReference: {fileID: 1058052250}
+    - target: {fileID: 341345308094347822, guid: d895e37bd8b216049994114e74ac015e, type: 3}
+      propertyPath: openPanelClip
+      value: 
+      objectReference: {fileID: 8300000, guid: 3b5c904ec6b3a6d479f717ce1a54ddfb, type: 3}
     - target: {fileID: 2163895800296314446, guid: d895e37bd8b216049994114e74ac015e, type: 3}
       propertyPath: m_Name
       value: AudioController
@@ -3626,3 +3708,4 @@ SceneRoots:
   - {fileID: 891824516}
   - {fileID: 1516574197}
   - {fileID: 6001904656109067119}
+  - {fileID: 1153984391}

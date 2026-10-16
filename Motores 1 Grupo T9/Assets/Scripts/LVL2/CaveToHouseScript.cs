@@ -14,6 +14,9 @@ public class CaveToHouseScript : MonoBehaviour
     [SerializeField] private string triggerText;
     [SerializeField] private GameObject shipDoor;
 
+    [SerializeField] private AudioSource[] ambientAndMusicSources;
+
+
 
     [SerializeField] ShipAlarmSFXController alarmSFXController;
 
@@ -42,6 +45,11 @@ public class CaveToHouseScript : MonoBehaviour
             StartTransition();
             shipDoor.GetComponent<BoxCollider>().enabled = true;
             shipDoor.GetComponent<Outline>().enabled = true;
+        }
+
+        if (SFXTransitionManager.Instance != null && ambientAndMusicSources.Length > 0)
+        {
+            SFXTransitionManager.Instance.FadeOutAudios(ambientAndMusicSources, FadeDuration);
         }
     }
 
