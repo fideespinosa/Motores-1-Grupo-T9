@@ -7,11 +7,22 @@ public class ScareTrigger_Pasillo : MonoBehaviour
     public string requiredKeyFlag = "red_key_picked_up";
     public string flagToSet = "PuertaBano_Cerrada";
 
+
+    [Header("AudioClip y activación")]
+    [SerializeField] private AudioSource audioSource;
+    [SerializeField] private AudioClip doorSmash;
+    [SerializeField] private AudioSource bathNoise;
+
+
     [Header("Referencias del Escenario")]
     public GameObject monsterModel;
 
     [Tooltip("Arrastra aquí todas las puertas que se deben cerrar.")]
     public List<Openable> doorsToClose = new List<Openable>();
+
+    [SerializeField] private AudioSource[] ambientAndMusicSources;
+    [SerializeField] private float fadeInDuration;
+
 
     private void OnTriggerEnter(Collider other)
     {
@@ -35,7 +46,32 @@ public class ScareTrigger_Pasillo : MonoBehaviour
             if (door != null)
             {
                 door.Close();
+                audioSource.clip = doorSmash;
+                audioSource.Play();
+                BathNoise();
+
+                
+
             }
         }
+
+        if (SFXTransitionManager.Instance != null && ambientAndMusicSources.Length > 0)
+        {
+            SFXTransitionManager.Instance.FadeOutAudios(ambientAndMusicSources, fadeInDuration);
+        }
+
+    }
+
+    private void BathNoise()
+    {
+        bathNoise.enabled = true;
+        bathNoise.loop = true;
+        bathNoise.Play();
+    }
+
+    public void StopBathNoise()
+    {
+        bathNoise.Stop();
+        bathNoise.enabled=false;
     }
 }

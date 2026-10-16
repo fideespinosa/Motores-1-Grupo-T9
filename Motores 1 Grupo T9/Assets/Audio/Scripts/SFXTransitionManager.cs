@@ -1,8 +1,11 @@
 using Unity.VisualScripting;
+using System.Collections;
 using UnityEngine;
 
 public class SFXTransitionManager : MonoBehaviour
 {
+    public static SFXTransitionManager Instance { get; private set; }
+
     [Header("Audio files")]
     [SerializeField] private AudioSource transAudioSource;
     [SerializeField] private AudioClip sfxToHouse;
@@ -10,6 +13,20 @@ public class SFXTransitionManager : MonoBehaviour
     [SerializeField] private AudioSource sfxTransitionSource;
     [SerializeField] private AudioClip transitionSFX;
 
+    private void Awake()
+    {
+       
+        if (Instance != null && Instance != this)
+        {
+            Destroy(gameObject);
+            return;
+        }
+
+        Instance = this;
+
+      
+        DontDestroyOnLoad(gameObject);
+    }
 
     public void TransitionSFX()
     {
@@ -37,6 +54,46 @@ public class SFXTransitionManager : MonoBehaviour
 
             transAudioSource.clip = sfxToCave;
             transAudioSource.Play();
+        }
+    }
+    public void FadeOutAudios(AudioSource[] audiosToFade, float duration)
+    {
+        StartCoroutine(FadeOutAudiosRoutine(audiosToFade, duration));
+    }
+    private IEnumerator FadeOutAudiosRoutine(AudioSource[] audiosToFade, float duration)
+    {
+        if (audiosToFade == null || audiosToFade.Length == 0) yield break;
+
+        
+        float[] startVolumes = new float[audiosToFade.Length];
+        for (int i = 0; i < audiosToFade.Length; i++)
+        {
+            if (audiosToFade[i] != null)
+                startVolumes[i] = audiosToFade[i].volume;
+        }
+
+        float elapsed = 0f;
+
+        
+        while (elapsed < duration)
+        {
+            elapsed += Time.deltaTime;
+            float lerpProgress = elapsed / duration;
+
+            for (int i = 0; i < audiosToFade.Length; i++)
+            {
+                if (audiosToFade[i] != null)
+                {
+                    audiosToFade[i].volume = Mathf.Lerp(startVolumes[i], 0f, lerpProgress);
+                }
+            }
+            yield return null;
+        }
+
+        for (int i = 0; i < audiosToFade.Length; i++)
+        {
+            if (audiosToFade[i] != null)
+                audiosToFade[i].volume = 0f;
         }
     }
 }

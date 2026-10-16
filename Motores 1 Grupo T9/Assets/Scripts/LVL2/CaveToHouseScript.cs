@@ -15,8 +15,7 @@ public class CaveToHouseScript : MonoBehaviour
     [SerializeField] private GameObject shipDoor;
 
 
-    [Header("Audio Ref")]
-    [SerializeField] SFXTransitionManager transAudio;
+    [SerializeField] ShipAlarmSFXController alarmSFXController;
 
 
     [Header("Transition")]
@@ -53,8 +52,6 @@ public class CaveToHouseScript : MonoBehaviour
 
         transitioning = true;
 
-        transAudio.ToHouseFromShip();
-
         droneController.enabled = false;
         playerSwitcher.enabled = false;
 
@@ -63,6 +60,7 @@ public class CaveToHouseScript : MonoBehaviour
         StartCoroutine(FadeToWhite());
     }
 
+   
     IEnumerator FadeToWhite()
     {
         float elapsed = 0f;
@@ -86,6 +84,7 @@ public class CaveToHouseScript : MonoBehaviour
         panelImage.color = color;
 
         alarmLight.SetActive(true);
+        alarmSFXController.SetAlarmState(true);
         playerSwitcher.SetControl(false);
 
         if (!string.IsNullOrEmpty(triggerText) && TextPanelManager.Instance != null)

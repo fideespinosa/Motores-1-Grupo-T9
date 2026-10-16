@@ -52,12 +52,14 @@ public class Screamer_AlAbrirPuerta : MonoBehaviour
             yield break;
         }
 
+        if (monsterAudioSource != null && screamClip != null)
+            monsterAudioSource.PlayOneShot(screamClip);
+
         yield return new WaitForSeconds(delayBeforeChase);
 
         monsterModel.SetActive(true);
 
-        if (monsterAudioSource != null && screamClip != null)
-            monsterAudioSource.PlayOneShot(screamClip);
+        
 
         canTouchPlayer = true;
 

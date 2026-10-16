@@ -41,9 +41,12 @@ public class PlayerTransitionToHouse : MonoBehaviour
         oldPlayerCamera.GetComponent<CrosshairRaycast>().enabled = false;
         newPlayer.GetComponent<PlayerMovement>().enabled = false;
 
-        StartCoroutine(PlayDoorSoundDelayed()); // audio
+        if (SFXTransitionManager.Instance != null && ambientAndMusicSources.Length > 0)
+        {
+            SFXTransitionManager.Instance.FadeOutAudios(ambientAndMusicSources, fadeInDuration);
+        }
 
-        StartCoroutine(FadeOutAudioRoutine()); // audio
+        StartCoroutine(PlayAudioTransition());
 
         fadePanel.alpha = 1f;
         fadePanel.blocksRaycasts = true;
@@ -55,40 +58,13 @@ public class PlayerTransitionToHouse : MonoBehaviour
             StartCoroutine(FadeRoutine());
         }
     }
-    private IEnumerator PlayDoorSoundDelayed() // para controlar el delay en el audio de la puerta, para que no arranque de una
+    private IEnumerator PlayAudioTransition()
     {
         yield return new WaitForSeconds(doorSoundDelay);
 
-        if (audioSource != null && doorClip != null)
+        if (SFXTransitionManager.Instance != null)
         {
-            audioSource.PlayOneShot(doorClip);
-        }
-    }
-
-    private IEnumerator FadeOutAudioRoutine() // para matar el audio que venga de la cueva/nave
-    {
-        float[] startVolumes = new float[ambientAndMusicSources.Length];
-        for (int i = 0; i < ambientAndMusicSources.Length; i++)
-        {
-            if (ambientAndMusicSources[i] != null)
-                startVolumes[i] = ambientAndMusicSources[i].volume;
-        }
-
-        float time = 0f;
-
-        while (time < fadeInDuration)
-        {
-            time += Time.deltaTime;
-            float lerpProgress = time / fadeInDuration;
-
-            for (int i = 0; i < ambientAndMusicSources.Length; i++)
-            {
-                if (ambientAndMusicSources[i] != null)
-                {
-                    ambientAndMusicSources[i].volume = Mathf.Lerp(startVolumes[i], 0f, lerpProgress);
-                }
-            }
-            yield return null;
+            SFXTransitionManager.Instance.ToHouseFromShip();
         }
     }
 

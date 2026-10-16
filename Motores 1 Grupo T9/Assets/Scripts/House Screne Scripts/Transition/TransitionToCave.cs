@@ -17,8 +17,11 @@ public class TransitionToCave : MonoBehaviour
     [Header("Scene Change")]
     [SerializeField] private string sceneToLoad;
 
-    [Header("Audio Ref")]
-    [SerializeField] SFXTransitionManager transAudio;
+  
+    //[SerializeField] SFXTransitionManager transAudio;
+    [Header("Audio Fade Out")]
+    [SerializeField] private AudioSource[] audioToFadeOut;
+    [SerializeField] private float audioFadeDuration;
 
     private bool triggered = false;
 
@@ -33,10 +36,20 @@ public class TransitionToCave : MonoBehaviour
     }
     public void StartAnimation()
     {
+       
         if (triggered) return;
         triggered = true;
 
-        transAudio.ToCaveFromHouse();
+        if (SFXTransitionManager.Instance != null)
+        {
+            SFXTransitionManager.Instance.ToCaveFromHouse();
+
+            if (audioToFadeOut != null && audioToFadeOut.Length > 0)
+            {
+                SFXTransitionManager.Instance.FadeOutAudios(audioToFadeOut, audioFadeDuration);
+            }
+        }
+
 
         HUD.SetActive(false);
         MissionPanel.SetActive(false);
