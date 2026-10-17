@@ -17528,6 +17528,7 @@ GameObject:
   - component: {fileID: 501853711}
   - component: {fileID: 501853713}
   - component: {fileID: 501853712}
+  - component: {fileID: 501853714}
   m_Layer: 5
   m_Name: MusicaSlider
   m_TagString: Untagged
@@ -17631,6 +17632,18 @@ MonoBehaviour:
   m_OnValueChanged:
     m_PersistentCalls:
       m_Calls: []
+--- !u!114 &501853714
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 501853710}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: c2e7254f4d1fbe0449dcabc829e1f284, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::BotonHoverEfecto
 --- !u!1001 &503153221
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -19419,6 +19432,7 @@ GameObject:
   - component: {fileID: 549121479}
   - component: {fileID: 549121481}
   - component: {fileID: 549121480}
+  - component: {fileID: 549121482}
   m_Layer: 5
   m_Name: BrilloSlider
   m_TagString: Untagged
@@ -19522,6 +19536,18 @@ MonoBehaviour:
   m_OnValueChanged:
     m_PersistentCalls:
       m_Calls: []
+--- !u!114 &549121482
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 549121478}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: c2e7254f4d1fbe0449dcabc829e1f284, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::BotonHoverEfecto
 --- !u!1001 &551288769
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -57432,6 +57458,7 @@ GameObject:
   - component: {fileID: 1559055764}
   - component: {fileID: 1559055766}
   - component: {fileID: 1559055765}
+  - component: {fileID: 1559055767}
   m_Layer: 5
   m_Name: FxSlider
   m_TagString: Untagged
@@ -57535,6 +57562,18 @@ MonoBehaviour:
   m_OnValueChanged:
     m_PersistentCalls:
       m_Calls: []
+--- !u!114 &1559055767
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1559055763}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: c2e7254f4d1fbe0449dcabc829e1f284, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::BotonHoverEfecto
 --- !u!1 &1561007333
 GameObject:
   m_ObjectHideFlags: 0
