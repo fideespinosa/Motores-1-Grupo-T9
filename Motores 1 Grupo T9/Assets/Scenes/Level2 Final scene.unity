@@ -7986,7 +7986,7 @@ AudioSource:
   m_audioClip: {fileID: 0}
   m_Resource: {fileID: 8300000, guid: 14667f273694e5a48a70e0a02aceadfc, type: 3}
   m_PlayOnAwake: 1
-  m_Volume: 1
+  m_Volume: 0.81
   m_Pitch: 1
   Loop: 1
   Mute: 0
@@ -27923,6 +27923,10 @@ PrefabInstance:
       value: 3
       objectReference: {fileID: 0}
     - target: {fileID: 4826536762209078857, guid: 21a24d9404a568745a5490feefecbb52, type: 3}
+      propertyPath: Priority
+      value: 168
+      objectReference: {fileID: 0}
+    - target: {fileID: 4826536762209078857, guid: 21a24d9404a568745a5490feefecbb52, type: 3}
       propertyPath: m_Resource
       value: 
       objectReference: {fileID: 0}
@@ -28301,6 +28305,10 @@ PrefabInstance:
     - target: {fileID: 6218252463812979275, guid: 21a24d9404a568745a5490feefecbb52, type: 3}
       propertyPath: m_Layer
       value: 3
+      objectReference: {fileID: 0}
+    - target: {fileID: 6218872891750174808, guid: 21a24d9404a568745a5490feefecbb52, type: 3}
+      propertyPath: Priority
+      value: 153
       objectReference: {fileID: 0}
     - target: {fileID: 6218872891750174808, guid: 21a24d9404a568745a5490feefecbb52, type: 3}
       propertyPath: m_Resource

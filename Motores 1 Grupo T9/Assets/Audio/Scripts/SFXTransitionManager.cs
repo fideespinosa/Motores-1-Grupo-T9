@@ -99,6 +99,7 @@ public class SFXTransitionManager : MonoBehaviour
         {
             if (audiosToFade[i] != null)
                 audiosToFade[i].volume = 0f;
+                audiosToFade[i].Stop();
         }
 
         Debug.Log("Fade Out Ok.");
