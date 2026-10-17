@@ -1,6 +1,6 @@
 %YAML 1.1
 %TAG !u! tag:unity3d.com,2011:
---- !u!1 &6049530650993997529
+--- !u!1 &3345070340120801436
 GameObject:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -8,56 +8,37 @@ GameObject:
   m_PrefabAsset: {fileID: 0}
   serializedVersion: 6
   m_Component:
-  - component: {fileID: 6110958418064073090}
-  - component: {fileID: 2333242243242647262}
-  - component: {fileID: 7810068494773943189}
-  - component: {fileID: 3749332246366190241}
+  - component: {fileID: 702185708392199925}
+  - component: {fileID: 4408559234466890477}
   m_Layer: 0
-  m_Name: SFXTransitionManager
+  m_Name: SFXtransSource
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
---- !u!4 &6110958418064073090
+--- !u!4 &702185708392199925
 Transform:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 6049530650993997529}
+  m_GameObject: {fileID: 3345070340120801436}
   serializedVersion: 2
-  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 3.84505, y: 22.45702, z: -97.75999}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
-  m_Father: {fileID: 0}
+  m_Father: {fileID: 6110958418064073090}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &2333242243242647262
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 6049530650993997529}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: b95b0badacf6cf04fb8d91c9015bfc68, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: '::'
-  transAudioSource: {fileID: 7810068494773943189}
-  sfxToHouse: {fileID: 8300000, guid: d4207393d0e24484db4bed80c455e04a, type: 3}
-  sfxToCave: {fileID: 8300000, guid: deead9f2c411c794a983d5831209a859, type: 3}
-  sfxTransitionSource: {fileID: 3749332246366190241}
-  transitionSFX: {fileID: 8300000, guid: 86968cec906982141a90325d97d4313d, type: 3}
---- !u!82 &7810068494773943189
+--- !u!82 &4408559234466890477
 AudioSource:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 6049530650993997529}
+  m_GameObject: {fileID: 3345070340120801436}
   m_Enabled: 1
   serializedVersion: 4
   OutputAudioMixerGroup: {fileID: -6855160927624164406, guid: 8ae6de4a4ce8e8c44a52514f69fa1e82, type: 2}
@@ -148,16 +129,99 @@ AudioSource:
     m_PreInfinity: 2
     m_PostInfinity: 2
     m_RotationOrder: 4
---- !u!82 &3749332246366190241
-AudioSource:
+--- !u!1 &6049530650993997529
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 6110958418064073090}
+  - component: {fileID: 2333242243242647262}
+  m_Layer: 0
+  m_Name: SFXTransitionManager
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &6110958418064073090
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6049530650993997529}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 3.84505, y: 22.45702, z: -97.75999}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children:
+  - {fileID: 7560549910454355942}
+  - {fileID: 702185708392199925}
+  m_Father: {fileID: 0}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &2333242243242647262
+MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 6049530650993997529}
   m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: b95b0badacf6cf04fb8d91c9015bfc68, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: '::'
+  transAudioSource: {fileID: 782225439862809527}
+  sfxToHouse: {fileID: 8300000, guid: d4207393d0e24484db4bed80c455e04a, type: 3}
+  sfxToCave: {fileID: 8300000, guid: deead9f2c411c794a983d5831209a859, type: 3}
+  sfxTransitionSource: {fileID: 4408559234466890477}
+  transitionSFX: {fileID: 8300000, guid: 86968cec906982141a90325d97d4313d, type: 3}
+--- !u!1 &6591812243065231568
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 7560549910454355942}
+  - component: {fileID: 782225439862809527}
+  m_Layer: 0
+  m_Name: TransitionSource
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &7560549910454355942
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6591812243065231568}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 6110958418064073090}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!82 &782225439862809527
+AudioSource:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6591812243065231568}
+  m_Enabled: 1
   serializedVersion: 4
-  OutputAudioMixerGroup: {fileID: 0}
+  OutputAudioMixerGroup: {fileID: -6855160927624164406, guid: 8ae6de4a4ce8e8c44a52514f69fa1e82, type: 2}
   m_audioClip: {fileID: 0}
   m_Resource: {fileID: 0}
   m_PlayOnAwake: 1
