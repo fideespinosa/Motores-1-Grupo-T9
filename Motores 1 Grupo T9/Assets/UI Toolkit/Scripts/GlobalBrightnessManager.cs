@@ -13,6 +13,8 @@ public class GlobalBrightnessManager : MonoBehaviour
 
     private float currentNormalizedValue = 0.5f; // Valor de 0 a 1 (por defecto en medio)
 
+    private Volume volumeBrightness;
+
     private void Awake()
     {
         // Regla del Singleton Persistente
@@ -35,6 +37,7 @@ public class GlobalBrightnessManager : MonoBehaviour
 
     private void Start()
     {
+        volumeBrightness = GetComponent<Volume>();
         // Aplicar el brillo cargado a la primera escena (Menú Principal)
         ApplyBrightnessToCurrentVolume();
     }
@@ -73,9 +76,9 @@ public class GlobalBrightnessManager : MonoBehaviour
     private void ApplyBrightnessToCurrentVolume()
     {
         // Busca cualquier componente Volume en la escena activa
-        Volume activeVolume = Object.FindFirstObjectByType<Volume>();
+        //Volume activeVolume = Object.FindFirstObjectByType<Volume>();
 
-        if (activeVolume != null && activeVolume.profile.TryGet<ColorAdjustments>(out var colorAdjustments))
+        if (volumeBrightness != null && volumeBrightness.profile.TryGet<ColorAdjustments>(out var colorAdjustments))
         {
             // Mapeamos el valor 0-1 al rango real de exposición cinematográfica (-2 a 2)
             float realExposure = Mathf.Lerp(minExposure, maxExposure, currentNormalizedValue);
