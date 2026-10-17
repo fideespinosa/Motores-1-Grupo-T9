@@ -201,6 +201,7 @@ public class PlayerInventory : MonoBehaviour
             {
                 finalItemActivated = true;
                 finalItem.SetActive(true);
+                enemies.SetActive(false);
                 Debug.Log("[CheckVictory] recursos completos, objeto final activado");
             }
             return;
