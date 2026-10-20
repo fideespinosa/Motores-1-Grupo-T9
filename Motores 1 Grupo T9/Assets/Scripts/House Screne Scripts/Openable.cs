@@ -47,6 +47,7 @@ public class Openable : MonoBehaviour, IInteractable
 
     private bool isUnlocked = false;
     private bool isOpen = false;
+    private bool isManuallyLocked = false;
     private Coroutine animationCoroutine;
 
     private Quaternion closedRotation;
@@ -74,6 +75,12 @@ public class Openable : MonoBehaviour, IInteractable
 
     public void Action()
     {
+
+        if (isManuallyLocked)
+        {
+            audioSource.PlayOneShot(keyLock);
+            return;
+        }
         if (isUnlocked)
         {
             if (isOpen)
@@ -208,5 +215,19 @@ public class Openable : MonoBehaviour, IInteractable
         {
             outline.enabled = false;
         }
+    }
+
+    public void Lock()
+    {
+        isUnlocked = false;
+        isManuallyLocked = true;
+        Debug.Log("Puerta bloqueada: " + gameObject.name);
+    }
+
+    public void Unlock()
+    {
+        isUnlocked = true;
+        isManuallyLocked = false;
+        Debug.Log("Puerta desbloqueada: " + gameObject.name);
     }
 }

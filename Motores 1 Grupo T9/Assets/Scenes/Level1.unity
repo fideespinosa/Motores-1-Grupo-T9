@@ -6034,6 +6034,150 @@ PrefabInstance:
       insertIndex: -1
       addedObject: {fileID: 1448638517}
   m_SourcePrefab: {fileID: 100100000, guid: f5e5faac4f0f8be4fa5fb31698c5cb72, type: 3}
+--- !u!1 &188278667
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 188278671}
+  - component: {fileID: 188278670}
+  - component: {fileID: 188278669}
+  - component: {fileID: 188278668}
+  m_Layer: 0
+  m_Name: Flicking Light
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 0
+--- !u!114 &188278668
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 188278667}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 8d0743713c8d84a4d8a8b6b67674bd02, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::LightFlicker
+  minIntensity: 0.3
+  maxIntensity: 0.5
+  flickerSpeed: 10
+  smooth: 1
+--- !u!114 &188278669
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 188278667}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 474bcb49853aa07438625e644c072ee6, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Unity.RenderPipelines.Universal.Runtime::UnityEngine.Rendering.Universal.UniversalAdditionalLightData
+  m_UsePipelineSettings: 1
+  m_AdditionalLightsShadowResolutionTier: 2
+  m_CustomShadowLayers: 0
+  m_LightCookieSize: {x: 1, y: 1}
+  m_LightCookieOffset: {x: 0, y: 0}
+  m_SoftShadowQuality: 0
+  m_RenderingLayersMask:
+    serializedVersion: 0
+    m_Bits: 1
+  m_ShadowRenderingLayersMask:
+    serializedVersion: 0
+    m_Bits: 1
+  m_Version: 4
+  m_LightLayerMask: 1
+  m_ShadowLayerMask: 1
+  m_RenderingLayers: 1
+  m_ShadowRenderingLayers: 1
+--- !u!108 &188278670
+Light:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 188278667}
+  m_Enabled: 1
+  serializedVersion: 12
+  m_Type: 2
+  m_Color: {r: 1, g: 1, b: 1, a: 1}
+  m_Intensity: 0.5
+  m_Range: 7
+  m_SpotAngle: 30
+  m_InnerSpotAngle: 21.80208
+  m_CookieSize2D: {x: 0.5, y: 0.5}
+  m_Shadows:
+    m_Type: 0
+    m_Resolution: -1
+    m_CustomResolution: -1
+    m_Strength: 1
+    m_Bias: 0.05
+    m_NormalBias: 0.4
+    m_NearPlane: 0.2
+    m_CullingMatrixOverride:
+      e00: 1
+      e01: 0
+      e02: 0
+      e03: 0
+      e10: 0
+      e11: 1
+      e12: 0
+      e13: 0
+      e20: 0
+      e21: 0
+      e22: 1
+      e23: 0
+      e30: 0
+      e31: 0
+      e32: 0
+      e33: 1
+    m_UseCullingMatrixOverride: 0
+  m_Cookie: {fileID: 0}
+  m_DrawHalo: 0
+  m_Flare: {fileID: 0}
+  m_RenderMode: 0
+  m_CullingMask:
+    serializedVersion: 2
+    m_Bits: 4294967295
+  m_RenderingLayerMask: 1
+  m_Lightmapping: 4
+  m_LightShadowCasterMode: 0
+  m_AreaSize: {x: 1, y: 1}
+  m_BounceIntensity: 1
+  m_ColorTemperature: 6570
+  m_UseColorTemperature: 0
+  m_BoundingSphereOverride: {x: 0, y: 0, z: 0, w: 0}
+  m_UseBoundingSphereOverride: 0
+  m_UseViewFrustumForShadowCasterCull: 1
+  m_ForceVisible: 0
+  m_ShadowRadius: 0
+  m_ShadowAngle: 0
+  m_LightUnit: 1
+  m_LuxAtDistance: 1
+  m_EnableSpotReflector: 1
+--- !u!4 &188278671
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 188278667}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 19.916, y: 23.637, z: -80.36}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!4 &189793283 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 2578289470925833901, guid: dac055900b74720429addf1066689b35, type: 3}
@@ -9164,6 +9308,18 @@ MonoBehaviour:
           m_StringArgument: 
           m_BoolArgument: 0
         m_CallState: 2
+      - m_Target: {fileID: 347714280}
+        m_TargetAssemblyTypeName: Openable, Assembly-CSharp
+        m_MethodName: Unlock
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
 --- !u!65 &283588620
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -11860,6 +12016,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 657f83d467fc86c4a9e1ca787ef49f34, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::Screamer_AlAbrirPuerta
+  Light1: {fileID: 0}
+  Light2: {fileID: 0}
   delayBeforeChase: 0.5
   monsterCollider: {fileID: 1448638513}
   playerCollider: {fileID: 1676664713}
@@ -13674,8 +13832,25 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 64189a06cf344d045a5f4209c2b84312, type: 3}
   m_Name: 
   m_EditorClassIdentifier: '::'
+  light1: {fileID: 188278667}
+  light2: {fileID: 1140302912}
   requiredKeyFlag: red_key_picked_up
   flagToSet: PuertaBano_Cerrada
+  onPlayerEnter:
+    m_PersistentCalls:
+      m_Calls:
+      - m_Target: {fileID: 347714280}
+        m_TargetAssemblyTypeName: Openable, Assembly-CSharp
+        m_MethodName: Lock
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
   audioSource: {fileID: 1318753156}
   doorSmash: {fileID: 8300000, guid: 4e49d6020b62d564ba874e32e83ca19f, type: 3}
   bathNoise: {fileID: 1381913077}
@@ -13683,6 +13858,13 @@ MonoBehaviour:
   doorsToClose:
   - {fileID: 283588616}
   - {fileID: 347714280}
+  lightSwitchersToTurnOff:
+  - {fileID: 2018156698}
+  - {fileID: 805259535}
+  - {fileID: 187991007}
+  - {fileID: 10441035}
+  - {fileID: 2081779459}
+  - {fileID: 439374281}
   ambientAndMusicSources:
   - {fileID: 150744654}
   - {fileID: 1829014460}
@@ -14698,7 +14880,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 919132149155446097, guid: 441e89ea2a8acad4f9558cc8cf6f6028, type: 3}
       propertyPath: m_Name
-      value: LightSwitchCorridor (1)
+      value: LightSwitchBath
       objectReference: {fileID: 0}
     - target: {fileID: 919132149155446097, guid: 441e89ea2a8acad4f9558cc8cf6f6028, type: 3}
       propertyPath: m_Layer
@@ -23690,7 +23872,7 @@ BoxCollider:
   m_LayerOverridePriority: 0
   m_IsTrigger: 1
   m_ProvidesContacts: 0
-  m_Enabled: 0
+  m_Enabled: 1
   serializedVersion: 3
   m_Size: {x: 3.0044582, y: 5.6458855, z: 0.59619904}
   m_Center: {x: -0.004853606, y: 2.8590832, z: 6.978092}
@@ -23717,8 +23899,10 @@ MonoBehaviour:
   audioSource: {fileID: 651006640}
   doorClip: {fileID: 8300000, guid: 7a0e9bd5e9f249d48b14299ada148341, type: 3}
   ambientAndMusicSources:
-  - {fileID: 0}
-  - {fileID: 0}
+  - {fileID: 508071983}
+  - {fileID: 834120554}
+  - {fileID: 793960222}
+  - {fileID: 1177880538}
   doorSoundDelay: 0.5
   Ship: {fileID: 7445590574439925728}
   HUD: {fileID: 62206203}
@@ -26849,7 +27033,7 @@ PrefabInstance:
       addedObject: {fileID: 739858670}
     - targetCorrespondingSourceObject: {fileID: 919132149155446097, guid: c8a531f9c30c11b4c9bc00bf7fd34354, type: 3}
       insertIndex: -1
-      addedObject: {fileID: 739858673}
+      addedObject: {fileID: 739858676}
   m_SourcePrefab: {fileID: 100100000, guid: c8a531f9c30c11b4c9bc00bf7fd34354, type: 3}
 --- !u!4 &739858668 stripped
 Transform:
@@ -26885,7 +27069,7 @@ MonoBehaviour:
   stepDuration: 0.7
   minWait: 2
   maxWait: 3
---- !u!82 &739858673
+--- !u!82 &739858676
 AudioSource:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -26907,7 +27091,7 @@ AudioSource:
   Priority: 128
   DopplerLevel: 1
   MinDistance: 1
-  MaxDistance: 8
+  MaxDistance: 6
   Pan2D: 0
   rolloffMode: 0
   BypassEffects: 0
@@ -40444,6 +40628,150 @@ MeshCollider:
   m_Convex: 0
   m_CookingOptions: 30
   m_Mesh: {fileID: 4711208715938537054, guid: 912235e8be6e5af439eba334a7320ad6, type: 3}
+--- !u!1 &1140302912
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1140302916}
+  - component: {fileID: 1140302915}
+  - component: {fileID: 1140302914}
+  - component: {fileID: 1140302913}
+  m_Layer: 0
+  m_Name: Flicking Light (1)
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 0
+--- !u!114 &1140302913
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1140302912}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 8d0743713c8d84a4d8a8b6b67674bd02, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::LightFlicker
+  minIntensity: 0.3
+  maxIntensity: 0.7
+  flickerSpeed: 10
+  smooth: 1
+--- !u!114 &1140302914
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1140302912}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 474bcb49853aa07438625e644c072ee6, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Unity.RenderPipelines.Universal.Runtime::UnityEngine.Rendering.Universal.UniversalAdditionalLightData
+  m_UsePipelineSettings: 1
+  m_AdditionalLightsShadowResolutionTier: 2
+  m_CustomShadowLayers: 0
+  m_LightCookieSize: {x: 1, y: 1}
+  m_LightCookieOffset: {x: 0, y: 0}
+  m_SoftShadowQuality: 0
+  m_RenderingLayersMask:
+    serializedVersion: 0
+    m_Bits: 1
+  m_ShadowRenderingLayersMask:
+    serializedVersion: 0
+    m_Bits: 1
+  m_Version: 4
+  m_LightLayerMask: 1
+  m_ShadowLayerMask: 1
+  m_RenderingLayers: 1
+  m_ShadowRenderingLayers: 1
+--- !u!108 &1140302915
+Light:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1140302912}
+  m_Enabled: 1
+  serializedVersion: 12
+  m_Type: 2
+  m_Color: {r: 1, g: 1, b: 1, a: 1}
+  m_Intensity: 0.5
+  m_Range: 7
+  m_SpotAngle: 30
+  m_InnerSpotAngle: 21.80208
+  m_CookieSize2D: {x: 0.5, y: 0.5}
+  m_Shadows:
+    m_Type: 0
+    m_Resolution: -1
+    m_CustomResolution: -1
+    m_Strength: 1
+    m_Bias: 0.05
+    m_NormalBias: 0.4
+    m_NearPlane: 0.2
+    m_CullingMatrixOverride:
+      e00: 1
+      e01: 0
+      e02: 0
+      e03: 0
+      e10: 0
+      e11: 1
+      e12: 0
+      e13: 0
+      e20: 0
+      e21: 0
+      e22: 1
+      e23: 0
+      e30: 0
+      e31: 0
+      e32: 0
+      e33: 1
+    m_UseCullingMatrixOverride: 0
+  m_Cookie: {fileID: 0}
+  m_DrawHalo: 0
+  m_Flare: {fileID: 0}
+  m_RenderMode: 0
+  m_CullingMask:
+    serializedVersion: 2
+    m_Bits: 4294967295
+  m_RenderingLayerMask: 1
+  m_Lightmapping: 4
+  m_LightShadowCasterMode: 0
+  m_AreaSize: {x: 1, y: 1}
+  m_BounceIntensity: 1
+  m_ColorTemperature: 6570
+  m_UseColorTemperature: 0
+  m_BoundingSphereOverride: {x: 0, y: 0, z: 0, w: 0}
+  m_UseBoundingSphereOverride: 0
+  m_UseViewFrustumForShadowCasterCull: 1
+  m_ForceVisible: 0
+  m_ShadowRadius: 0
+  m_ShadowAngle: 0
+  m_LightUnit: 1
+  m_LuxAtDistance: 1
+  m_EnableSpotReflector: 1
+--- !u!4 &1140302916
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1140302912}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 13.636, y: 24.993, z: -74.924}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!4 &1140306417 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: -8679921383154817045, guid: f491bb212f9189c41bd107cc19c232d6, type: 3}
@@ -93076,6 +93404,8 @@ SceneRoots:
   - {fileID: 1170652697}
   - {fileID: 573661521}
   - {fileID: 902849986}
+  - {fileID: 188278671}
+  - {fileID: 1140302916}
   - {fileID: 4406497}
   - {fileID: 1435060280}
   - {fileID: 1350437896}

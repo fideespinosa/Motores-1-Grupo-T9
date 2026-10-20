@@ -24,9 +24,12 @@ public class LightSwitcher : MonoBehaviour, IInteractable
     [SerializeField] private Outline outline;
 
     private bool isOn;
+    private bool isLocked;
     private Quaternion initialRotation;
     private Quaternion offsetRotation;
     private Coroutine rotateCoroutine;
+
+    public bool IsLocked => isLocked;
 
     private Transform SwitchTarget
     {
@@ -56,11 +59,49 @@ public class LightSwitcher : MonoBehaviour, IInteractable
     public void Action()
     {
         if (!IsUnlocked()) return;
+        if (isLocked) return;
 
         isOn = !isOn;
         ApplyLights();
 
-        Quaternion target = (isOn == startsOn) ? initialRotation : offsetRotation;
+        MoveSwitchTo(GetSwitchRotation());
+
+        if (lightSource != null)
+        {
+            lightSource.clip = isOn ? switchClipON : switchClipOFF;
+            lightSource.Play();
+        }
+    }
+
+    public void TurnOffAndLock()
+    {
+        if (isLocked) return;
+
+        isLocked = true;
+        isOn = false;
+        ApplyLights();
+
+        MoveSwitchTo(GetSwitchRotation());
+
+        if (outline != null)
+        {
+            outline.enabled = false;
+        }
+    }
+
+    public void Unlock()
+    {
+        isLocked = false;
+    }
+
+    private Quaternion GetSwitchRotation()
+    {
+        return (isOn == startsOn) ? initialRotation : offsetRotation;
+    }
+
+    private void MoveSwitchTo(Quaternion target)
+    {
+        if (!isActiveAndEnabled) return;
 
         if (rotateCoroutine != null)
         {
@@ -68,12 +109,6 @@ public class LightSwitcher : MonoBehaviour, IInteractable
         }
 
         rotateCoroutine = StartCoroutine(RotateSwitch(target));
-
-        if (lightSource != null)
-        {
-            lightSource.clip = isOn ? switchClipON : switchClipOFF;
-            lightSource.Play();
-        }
     }
 
     private void ApplyLights()
@@ -118,6 +153,7 @@ public class LightSwitcher : MonoBehaviour, IInteractable
     public void OnHoverEnter()
     {
         if (!IsUnlocked()) return;
+        if (isLocked) return;
 
         if (outline != null)
         {

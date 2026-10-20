@@ -3,6 +3,8 @@ using UnityEngine;
 
 public class Screamer_AlAbrirPuerta : MonoBehaviour
 {
+    [SerializeField] GameObject Light1;
+    [SerializeField] GameObject Light2;
     public float delayBeforeChase = 0.17f;
     public Collider monsterCollider;
     public Collider playerCollider;
@@ -57,6 +59,8 @@ public class Screamer_AlAbrirPuerta : MonoBehaviour
 
         yield return new WaitForSeconds(delayBeforeChase);
 
+        if (lightsController != null)
+            lightsController.EjecutarParpadeo();
         monsterModel.SetActive(true);
 
         
@@ -99,8 +103,6 @@ public class Screamer_AlAbrirPuerta : MonoBehaviour
 
         monsterModel.SetActive(false);
 
-        if (lightsController != null)
-            lightsController.EjecutarParpadeo();
 
         scareRunning = false;
     }
@@ -112,5 +114,11 @@ public class Screamer_AlAbrirPuerta : MonoBehaviour
 
         playerTouched = true;
         canTouchPlayer = false;
+    }
+
+    public void OffFlickingLights()
+    {
+        Light1.SetActive(false);
+        Light2.SetActive(false);
     }
 }

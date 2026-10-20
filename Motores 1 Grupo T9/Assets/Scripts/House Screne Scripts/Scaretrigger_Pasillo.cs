@@ -1,12 +1,16 @@
 using System.Collections.Generic;
 using UnityEngine;
-
+using UnityEngine.Events;
 public class ScareTrigger_Pasillo : MonoBehaviour
 {
+    [SerializeField] GameObject light1;
+    [SerializeField] GameObject light2;
     [Header("Condiciones")]
     public string requiredKeyFlag = "red_key_picked_up";
     public string flagToSet = "PuertaBano_Cerrada";
 
+    [Header("Eventos al entrar el Player")]
+    [SerializeField] private UnityEvent onPlayerEnter;
 
     [Header("AudioClip y activación")]
     [SerializeField] private AudioSource audioSource;
@@ -19,6 +23,9 @@ public class ScareTrigger_Pasillo : MonoBehaviour
 
     [Tooltip("Arrastra aquí todas las puertas que se deben cerrar.")]
     public List<Openable> doorsToClose = new List<Openable>();
+
+    [Tooltip("Arrastra aquí todos los interruptores que se deben apagar y bloquear.")]
+    [SerializeField] private List<LightSwitcher> lightSwitchersToTurnOff = new List<LightSwitcher>();
 
     [SerializeField] private AudioSource[] ambientAndMusicSources;
     [SerializeField] private float fadeInDuration;
@@ -35,11 +42,17 @@ public class ScareTrigger_Pasillo : MonoBehaviour
         if (StoryFlagManager.Instance.HasFlag(flagToSet)) return;
 
         StoryFlagManager.Instance.SetFlag(flagToSet);
+        onPlayerEnter?.Invoke();
+
+        light1.SetActive(true);
+        light2.SetActive(true);
 
         if (monsterModel != null)
         {
             // monsterModel.SetActive(true);
         }
+
+
 
         foreach (Openable door in doorsToClose)
         {
@@ -50,8 +63,13 @@ public class ScareTrigger_Pasillo : MonoBehaviour
                 audioSource.Play();
                 BathNoise();
 
-                
-
+                foreach (LightSwitcher lightSwitcher in lightSwitchersToTurnOff)
+                {
+                    if (lightSwitcher != null)
+                    {
+                        lightSwitcher.TurnOffAndLock();
+                    }
+                }
             }
         }
 
@@ -72,6 +90,6 @@ public class ScareTrigger_Pasillo : MonoBehaviour
     public void StopBathNoise()
     {
         bathNoise.Stop();
-        bathNoise.enabled=false;
+        bathNoise.enabled = false;
     }
 }
