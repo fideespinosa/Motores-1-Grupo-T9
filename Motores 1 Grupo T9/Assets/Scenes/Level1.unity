@@ -7069,8 +7069,8 @@ MonoBehaviour:
   m_faceColor:
     serializedVersion: 2
     rgba: 4294967295
-  m_fontSize: 50
-  m_fontSizeBase: 50
+  m_fontSize: 40
+  m_fontSizeBase: 40
   m_fontWeight: 400
   m_enableAutoSizing: 0
   m_fontSizeMin: 18
@@ -17807,6 +17807,7 @@ MonoBehaviour:
   HUD: {fileID: 62206203}
   PreviousHUD: {fileID: 92881367}
   brokenDron: {fileID: 232981879}
+  RadioCave: {fileID: 0}
   rat: {fileID: 0}
   fog: {fileID: 695360875}
   blur: {fileID: 730943616}
@@ -23872,7 +23873,7 @@ BoxCollider:
   m_LayerOverridePriority: 0
   m_IsTrigger: 1
   m_ProvidesContacts: 0
-  m_Enabled: 1
+  m_Enabled: 0
   serializedVersion: 3
   m_Size: {x: 3.0044582, y: 5.6458855, z: 0.59619904}
   m_Center: {x: -0.004853606, y: 2.8590832, z: 6.978092}
@@ -61423,6 +61424,7 @@ MonoBehaviour:
   HUD: {fileID: 62206203}
   PreviousHUD: {fileID: 92881367}
   brokenDron: {fileID: 232981879}
+  RadioCave: {fileID: 739858669}
   rat: {fileID: 40712421}
   fog: {fileID: 695360875}
   blur: {fileID: 730943616}

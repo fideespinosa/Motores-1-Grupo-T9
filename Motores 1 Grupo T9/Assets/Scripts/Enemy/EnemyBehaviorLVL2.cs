@@ -187,6 +187,7 @@ public class EnemyBehaviorLVL2 : MonoBehaviour
 
         Debug.Log($"[{Time.time:F2}] IntroDone");
         IntroDone = true;
+        yield return new WaitForSeconds(0.5f);
         Run();
 
         contactEnabled = true; // recién acá el contacto puede matarte

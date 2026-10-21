@@ -10,6 +10,7 @@ public class AnimationScript : MonoBehaviour
     [SerializeField] private GameObject HUD;
     [SerializeField] private GameObject PreviousHUD;
     [SerializeField] private GameObject brokenDron;
+    [SerializeField] private GameObject RadioCave; // se desactiva esta radio porque sigue sonando a pesar de estar en la casa
 
     [Header("Rat")]
     [SerializeField] private GameObject rat;
@@ -44,7 +45,7 @@ public class AnimationScript : MonoBehaviour
     }
     public void DisableOutline()
     {
-
+        RadioCave.SetActive(false);
         outline.enabled = false;
     }
 
