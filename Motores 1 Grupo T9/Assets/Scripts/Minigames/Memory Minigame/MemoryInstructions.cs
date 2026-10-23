@@ -16,6 +16,7 @@ public class MemoryInstructions : MonoBehaviour
     {
         Time.timeScale = 1f;
 
+
         panelManager.StartMemoryMinigame();
         gameObject.SetActive(false);
         minigamesManager.UnfreezeGame();

@@ -21,6 +21,7 @@ public class MinigamesManager : MonoBehaviour
     [Header("Spaceship objects")]
     [SerializeField] GameObject alarmLight;
     [SerializeField] GameObject screenWarningImage;
+    [SerializeField] GameObject ArrowAboveScreen;
 
     [Header("Audio Ref")]
     [SerializeField] private ShipVoiceManager shipVoiceManager;
@@ -47,6 +48,8 @@ public class MinigamesManager : MonoBehaviour
         }
         alarmLight.SetActive(true);
         screenWarningImage.SetActive(true);
+        ArrowAboveScreen.SetActive(true);
+        //asdasdasd
 
         shipVoiceManager.AlarmOn();
 
@@ -75,6 +78,7 @@ public class MinigamesManager : MonoBehaviour
         isAlarmActive = false;
         alarmLight.SetActive(false);
         screenWarningImage.SetActive(false);
+        ArrowAboveScreen.SetActive(false);
         lettersPanel.SetActive(false);
         lettersGame.SetActive(false);
         UnfreezeGame();

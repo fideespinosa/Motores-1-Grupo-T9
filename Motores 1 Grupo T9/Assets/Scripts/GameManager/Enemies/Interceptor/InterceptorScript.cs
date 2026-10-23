@@ -13,6 +13,7 @@ public class InterceptorScript : MonoBehaviour
 
     [SerializeField] private PlayerSwitcher playerSwitcher;
     [SerializeField] private GameObject alarmLight;
+    [SerializeField] private CameraLookAtPoint LookAtScript;
     [SerializeField] private AnimationManagerMemory animatorScript;
     [SerializeField] private AlarmLightScript alarmLightScript;
 
@@ -70,7 +71,6 @@ public class InterceptorScript : MonoBehaviour
     private IEnumerator AppearTimer()
     {
         float timer = Random.Range(minSeconds, maxSeconds);
-
         while (timer > 0f)
         {
 
@@ -92,6 +92,7 @@ public class InterceptorScript : MonoBehaviour
             GameStatusScript.Instance.StartMinigame();
 
         alarmLight.SetActive(true);
+        LookAtScript.LookAtTarget();
 
         shipVoiceManager.AlarmOn();
         shipAlarmSFXController.SetAlarmState(true);
@@ -117,11 +118,11 @@ public class InterceptorScript : MonoBehaviour
 
     public void startTimer()
     {
-
         attackTimerRoutine = StartCoroutine(AttackTimer());
         if (countdownBar != null) countdownBar.StartCountdown(timeWhileAttacking); //asd
 
         minigameSFXController.TimerSFXOn();
+
 
     }
     private IEnumerator AttackTimer()

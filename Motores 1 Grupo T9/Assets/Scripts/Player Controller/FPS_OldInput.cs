@@ -59,4 +59,15 @@ public class FPS_OldInput : MonoBehaviour
         Cursor.visible = false;
     }
 
+    public void SetLookRotation(Quaternion worldRotation)
+    {
+        Vector3 euler = worldRotation.eulerAngles;
+
+        rotationX = euler.x > 180f ? euler.x - 360f : euler.x;
+        rotationX = Mathf.Clamp(rotationX, -lookXLimit, lookXLimit);
+
+        playerCamera.localRotation = Quaternion.Euler(rotationX, 0f, 0f);
+        PointA.localRotation = Quaternion.Euler(rotationX, 0f, 0f);
+    }
+
 }
