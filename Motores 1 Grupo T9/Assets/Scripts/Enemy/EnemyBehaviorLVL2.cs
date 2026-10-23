@@ -61,6 +61,8 @@ public class EnemyBehaviorLVL2 : MonoBehaviour
     [SerializeField] private float lungeStartDelay = 1.5f;   // segundos desde que te atrapa hasta que se lanza (si no usa evento)
     [SerializeField] private float lungeTime = 0.35f;        // que tan rápido te "come"
     [SerializeField] private float lungeStopDistance = 0.3f; // a qué distancia del viewPoint frena
+    [SerializeField] private float lookBeforeRunTime = 1f;  // segundos mirando al jugador antes de correr
+    [SerializeField] private float lookTurnSpeed = 8f;      // qué tan rápido gira hacia el jugador
 
     private bool lungeEvent;
 
@@ -176,6 +178,22 @@ public class EnemyBehaviorLVL2 : MonoBehaviour
 
         yield return new WaitForSeconds(delayAfterScream);
 
+        // Espera 1 segundo mirando al jugador (antes de empezar a correr)
+        for (float t = 0f; t < lookBeforeRunTime; t += Time.deltaTime)
+        {
+            Vector3 toPlayer = player.position - transform.position;
+            toPlayer.y = 0f;
+
+            if (toPlayer.sqrMagnitude > 0.001f)
+            {
+                transform.rotation = Quaternion.Slerp(
+                    transform.rotation,
+                    Quaternion.LookRotation(toPlayer),
+                    lookTurnSpeed * Time.deltaTime);
+            }
+            yield return null;
+        }
+
         animator.SetBool("IsRunning", true); // Run
 
         // panel que activa shift para correr!!
@@ -190,7 +208,7 @@ public class EnemyBehaviorLVL2 : MonoBehaviour
         yield return new WaitForSeconds(0.5f);
         Run();
 
-        contactEnabled = true; // recién acá el contacto puede matarte
+        contactEnabled = true;
     }
 
     public void Run()
