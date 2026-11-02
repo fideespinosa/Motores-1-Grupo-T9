@@ -1,6 +1,6 @@
 using UnityEngine;
 
-public class MedicationPill : MonoBehaviour, IInteractable
+public class MedicationPill : MonoBehaviour, IInteractable, IInteractionGate
 {
     [Header("Medication Id")]
     [Tooltip("Debe coincidir con el Medication Id configurado en el MedicationManager. Cualquier otro valor se trata como pastilla distractora.")]
@@ -18,12 +18,17 @@ public class MedicationPill : MonoBehaviour, IInteractable
     [SerializeField] private string requiredFlag = "medication_task_started";
 
     [SerializeField] private AudioSource audioSource;
-    [SerializeField] private AudioClip[] clipList; 
+    [SerializeField] private AudioClip[] clipList;
 
     private bool IsUnlocked()
     {
         if (string.IsNullOrEmpty(requiredFlag)) return true;
         return StoryFlagManager.Instance != null && StoryFlagManager.Instance.HasFlag(requiredFlag);
+    }
+
+    public bool CanInteract()
+    {
+        return IsUnlocked();
     }
 
     private void Awake()
@@ -52,7 +57,7 @@ public class MedicationPill : MonoBehaviour, IInteractable
 
         bool wasCollected = MedicationManager.Instance.TryCollect(medicationId);
 
-      
+
         if (wasCollected)
         {
             PlayRandomPillSound();

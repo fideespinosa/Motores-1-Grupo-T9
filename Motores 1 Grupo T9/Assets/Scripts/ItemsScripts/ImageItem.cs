@@ -1,6 +1,6 @@
 using UnityEngine;
 
-public class ImageItem : MonoBehaviour, IInteractable
+public class ImageItem : MonoBehaviour, IInteractable, IInteractionGate
 {
     [Header("Image To Show")]
     [SerializeField] private Sprite imageToShow;
@@ -32,6 +32,11 @@ public class ImageItem : MonoBehaviour, IInteractable
     {
         if (string.IsNullOrEmpty(requiredFlag)) return true;
         return StoryFlagManager.Instance != null && StoryFlagManager.Instance.HasFlag(requiredFlag);
+    }
+
+    public bool CanInteract()
+    {
+        return IsUnlocked();
     }
 
     private void Awake()

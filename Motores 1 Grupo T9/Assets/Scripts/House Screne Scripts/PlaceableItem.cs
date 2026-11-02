@@ -1,6 +1,6 @@
 using UnityEngine;
 
-public class PlaceableItem : MonoBehaviour, IInteractable
+public class PlaceableItem : MonoBehaviour, IInteractable, IInteractionGate
 {
     [Header("Item Id")]
     [Tooltip("Identificador único de este objeto. El PlacementPoint que lo reciba debe usar el mismo id.")]
@@ -29,6 +29,11 @@ public class PlaceableItem : MonoBehaviour, IInteractable
     {
         if (string.IsNullOrEmpty(requiredFlag)) return true;
         return StoryFlagManager.Instance != null && StoryFlagManager.Instance.HasFlag(requiredFlag);
+    }
+
+    public bool CanInteract()
+    {
+        return IsUnlocked();
     }
 
     private void Awake()

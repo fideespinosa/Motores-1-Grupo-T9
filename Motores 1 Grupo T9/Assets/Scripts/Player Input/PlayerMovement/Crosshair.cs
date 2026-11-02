@@ -28,15 +28,17 @@ public class Crosshair : MonoBehaviour
             IInteractable interactable = null;
             if (hit.collider.gameObject.layer == LayerMask.NameToLayer("Item"))
             {
-                interactable = hit.collider.GetComponent<IInteractable>();
-                crosshairImage.sprite = interactSprite;
-            }
-            else
-            {
-                crosshairImage.sprite = defaultSprite;
+                IInteractable candidate = hit.collider.GetComponent<IInteractable>();
+
+                if (candidate != null && CanInteract(candidate))
+                {
+                    interactable = candidate;
+                }
             }
 
-                UpdateHover(interactable);
+            crosshairImage.sprite = interactable != null ? interactSprite : defaultSprite;
+
+            UpdateHover(interactable);
 
             if (interactable != null && Input.GetMouseButtonDown(0))
             {
@@ -49,6 +51,12 @@ public class Crosshair : MonoBehaviour
             Debug.DrawRay(origin, direction * rayDistance, Color.green);
             UpdateHover(null);
         }
+    }
+
+    private bool CanInteract(IInteractable interactable)
+    {
+        IInteractionGate gate = interactable as IInteractionGate;
+        return gate == null || gate.CanInteract();
     }
 
     private void UpdateHover(IInteractable newInteractable)
