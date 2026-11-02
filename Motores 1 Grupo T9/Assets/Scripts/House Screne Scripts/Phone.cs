@@ -1,7 +1,7 @@
 using System.Collections;
 using UnityEngine;
 
-public class Phone : MonoBehaviour, IInteractable
+public class Phone : MonoBehaviour, IInteractable, IInteractionGate
 {
     private enum PhoneState
     {
@@ -39,6 +39,11 @@ public class Phone : MonoBehaviour, IInteractable
     [SerializeField] private AudioClip debtCall;
 
     private PhoneState state = PhoneState.Idle;
+
+    public bool CanInteract()
+    {
+        return state == PhoneState.Ringing;
+    }
 
     private void Awake()
     {

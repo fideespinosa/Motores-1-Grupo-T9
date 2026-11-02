@@ -1,7 +1,7 @@
 using System.Collections;
 using UnityEngine;
 
-public class BackpackTrigger : MonoBehaviour, IInteractable
+public class BackpackTrigger : MonoBehaviour, IInteractable, IInteractionGate
 {
     [Header("Requirement")]
     [Tooltip("Flag que debe estar activo para que esta secuencia se dispare al mirar el objeto. Dejar vacío si no aplica.")]
@@ -32,6 +32,11 @@ public class BackpackTrigger : MonoBehaviour, IInteractable
             if (string.IsNullOrEmpty(requiredFlag)) return true;
             return StoryFlagManager.Instance != null && StoryFlagManager.Instance.HasFlag(requiredFlag);
         }
+    }
+
+    public bool CanInteract()
+    {
+        return !alreadyTriggered && FlagSatisfied;
     }
 
     private void Awake()
