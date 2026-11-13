@@ -1,10 +1,15 @@
+
 using Unity.VisualScripting;
 using UnityEngine;
+using UnityEngine.Events;
 
 public class SoundItem : MonoBehaviour, IInteractable
 {
     [Header("Requirement")]
     [SerializeField] private string requiredFlag;
+
+    [Header("On Interact Event")]
+    [SerializeField] private UnityEvent onInteractEvent;
 
     [Header("Outline")]
     [SerializeField] private Outline outline;
@@ -12,6 +17,7 @@ public class SoundItem : MonoBehaviour, IInteractable
     [Header("Acordes de Guitarra")]
     [SerializeField] private AudioSource audioSource;
     [SerializeField] private AudioClip[] sfxSequence;
+
     private int currentClickIndex = 0;
 
     private bool IsUnlocked()
@@ -33,12 +39,15 @@ public class SoundItem : MonoBehaviour, IInteractable
         if (!IsUnlocked()) return;
 
         Debug.Log("prueba");
+
         if (audioSource != null && sfxSequence != null && sfxSequence.Length > 0)
         {
             audioSource.PlayOneShot(sfxSequence[currentClickIndex]);
 
             currentClickIndex = (currentClickIndex + 1) % sfxSequence.Length;
         }
+
+        onInteractEvent?.Invoke();
     }
 
     public void OnHoverEnter()

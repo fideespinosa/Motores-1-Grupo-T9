@@ -1,22 +1,23 @@
+
 using UnityEngine;
+using UnityEngine.Events;
 
 public class PlaceableItem : MonoBehaviour, IInteractable, IInteractionGate
 {
     [Header("Item Id")]
-    [Tooltip("Identificador único de este objeto. El PlacementPoint que lo reciba debe usar el mismo id.")]
     [SerializeField] private string itemId;
 
     [Header("Requirement")]
-    [Tooltip("Flag que debe estar activo para poder agarrar este objeto. Dejar vacío si no aplica.")]
     [SerializeField] private string requiredFlag;
 
     [Header("Placement Point")]
-    [Tooltip("GameObject del PlacementPoint correspondiente, que empieza desactivado en la escena y se activa al agarrar este objeto.")]
     [SerializeField] private GameObject placementPointToActivate;
 
     [Header("Story Flag")]
-    [Tooltip("Flag que se activa al agarrar este objeto. Dejar vacío si no aplica.")]
     [SerializeField] private string flagToSetOnPickup;
+
+    [Header("On Pickup Event")]
+    [SerializeField] private UnityEvent onPickupEvent;
 
     [Header("Outline")]
     [SerializeField] private Outline outline;
@@ -49,9 +50,8 @@ public class PlaceableItem : MonoBehaviour, IInteractable, IInteractionGate
         if (!IsUnlocked()) return;
         if (PlacementManager.Instance == null) return;
 
-        Debug.Log("Sonido de objeto recogido");
-
-        audioSource.PlayOneShot(pickObj);
+        if (audioSource != null && pickObj != null)
+            audioSource.PlayOneShot(pickObj);
 
         PlacementManager.Instance.PickUp(itemId);
 
@@ -64,10 +64,15 @@ public class PlaceableItem : MonoBehaviour, IInteractable, IInteractionGate
         {
             StoryFlagManager.Instance.SetFlag(flagToSetOnPickup);
 
-            audioSource.Stop();
-            audioSource.clip = moveObj;
-            audioSource.Play();
+            if (audioSource != null && moveObj != null)
+            {
+                audioSource.Stop();
+                audioSource.clip = moveObj;
+                audioSource.Play();
+            }
         }
+
+        onPickupEvent?.Invoke();
 
         gameObject.SetActive(false);
     }
