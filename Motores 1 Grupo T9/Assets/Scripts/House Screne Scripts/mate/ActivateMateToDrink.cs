@@ -10,6 +10,8 @@ public class ActivateMateToDrink : MonoBehaviour
     [SerializeField] Outline outlineTermo;
     [SerializeField] Outline outlineMate;
     [SerializeField] SoundItem soundItem;
+    [SerializeField] AudioSource audioSource;
+    [SerializeField] AudioClip termoClip;
 
     private void Start()
     {
@@ -42,11 +44,14 @@ public class ActivateMateToDrink : MonoBehaviour
     public void OpenWater()
     {
         water.Open();
+        audioSource.clip = termoClip;
+        audioSource.Play();
     }
 
     public void closeWater()
     {
         water.Close();
+        audioSource.Stop();
     }
 
 }
