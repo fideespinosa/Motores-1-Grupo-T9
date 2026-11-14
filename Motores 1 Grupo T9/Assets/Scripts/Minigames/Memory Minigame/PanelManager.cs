@@ -86,6 +86,8 @@ public class PanelManager : MonoBehaviour
             incorrect.Play();
             Debug.Log("mal");
 
+            button.Shake();
+
             foreach (PanelButton pressedButton in pressedButtons)
             {
                 pressedButton.ResetVisual();

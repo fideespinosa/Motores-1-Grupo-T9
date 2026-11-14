@@ -7950,6 +7950,9 @@ MonoBehaviour:
   pressDistance: -0.1
   buttonRenderer: {fileID: 248654562}
   pressedColor: {r: 0.01815593, g: 0.2264151, b: 0.01815593, a: 1}
+  shakeDuration: 0.3
+  shakeStrength: 0.02
+  errorColor: {r: 1, g: 0, b: 0, a: 1}
 --- !u!65 &248654561
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -23952,7 +23955,7 @@ BoxCollider:
   m_LayerOverridePriority: 0
   m_IsTrigger: 1
   m_ProvidesContacts: 0
-  m_Enabled: 1
+  m_Enabled: 0
   serializedVersion: 3
   m_Size: {x: 3.0044582, y: 5.6458855, z: 0.59619904}
   m_Center: {x: -0.004853606, y: 2.8590832, z: 6.978092}
@@ -30598,6 +30601,9 @@ MonoBehaviour:
   pressDistance: -0.1
   buttonRenderer: {fileID: 835079897}
   pressedColor: {r: 0.01815593, g: 0.2264151, b: 0.01815593, a: 1}
+  shakeDuration: 0.3
+  shakeStrength: 0.02
+  errorColor: {r: 1, g: 0, b: 0, a: 1}
 --- !u!65 &835079896
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -46526,6 +46532,9 @@ MonoBehaviour:
   pressDistance: -0.1
   buttonRenderer: {fileID: 1277198774}
   pressedColor: {r: 0.01815593, g: 0.2264151, b: 0.01815593, a: 1}
+  shakeDuration: 0.3
+  shakeStrength: 0.02
+  errorColor: {r: 1, g: 0, b: 0, a: 1}
 --- !u!65 &1277198773
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -48329,6 +48338,9 @@ MonoBehaviour:
   pressDistance: -0.1
   buttonRenderer: {fileID: 1333170356}
   pressedColor: {r: 0.019607844, g: 0.22745098, b: 0.019607844, a: 1}
+  shakeDuration: 0.3
+  shakeStrength: 0.02
+  errorColor: {r: 1, g: 0, b: 0, a: 1}
 --- !u!65 &1333170355
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -54018,6 +54030,9 @@ MonoBehaviour:
   pressDistance: -0.1
   buttonRenderer: {fileID: 1460174184}
   pressedColor: {r: 0.01815593, g: 0.2264151, b: 0.01815593, a: 1}
+  shakeDuration: 0.3
+  shakeStrength: 0.02
+  errorColor: {r: 1, g: 0, b: 0, a: 1}
 --- !u!65 &1460174183
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -62771,6 +62786,9 @@ MonoBehaviour:
   pressDistance: -0.1
   buttonRenderer: {fileID: 1695813014}
   pressedColor: {r: 0.019607844, g: 0.22745098, b: 0.019607844, a: 1}
+  shakeDuration: 0.3
+  shakeStrength: 0.02
+  errorColor: {r: 1, g: 0, b: 0, a: 1}
 --- !u!65 &1695813013
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -72920,6 +72938,9 @@ MonoBehaviour:
   pressDistance: -0.1
   buttonRenderer: {fileID: 1842062511}
   pressedColor: {r: 0.01815593, g: 0.2264151, b: 0.01815593, a: 1}
+  shakeDuration: 0.3
+  shakeStrength: 0.02
+  errorColor: {r: 1, g: 0, b: 0, a: 1}
 --- !u!65 &1842062510
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -73451,6 +73472,9 @@ MonoBehaviour:
   pressDistance: -0.1
   buttonRenderer: {fileID: 1861812005}
   pressedColor: {r: 0.01815593, g: 0.2264151, b: 0.01815593, a: 1}
+  shakeDuration: 0.3
+  shakeStrength: 0.02
+  errorColor: {r: 1, g: 0, b: 0, a: 1}
 --- !u!65 &1861812004
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -80265,6 +80289,9 @@ MonoBehaviour:
   pressDistance: -0.1
   buttonRenderer: {fileID: 2056215755}
   pressedColor: {r: 0.019607844, g: 0.22745098, b: 0.019607844, a: 1}
+  shakeDuration: 0.3
+  shakeStrength: 0.02
+  errorColor: {r: 1, g: 0, b: 0, a: 1}
 --- !u!65 &2056215754
 BoxCollider:
   m_ObjectHideFlags: 0
